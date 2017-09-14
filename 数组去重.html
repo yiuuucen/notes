@@ -1,0 +1,67 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="urf-8">  
+    <title></title> 
+        
+</head>  
+<body>
+  <script>
+      // http://www.jb51.net/article/46154.htm
+      // Array.prototype.unique1 = function(){
+      //   var res = [this[0]];
+      //   for(var i = 1; i < this.length; i++){
+      //     var repeat = false;
+      //     for(var j = 0; j < res.length; j++){
+      //       if(this[i] == res[j]){
+      //         repeat = true;
+      //         break;
+      //       }
+      //     }
+      //     if(!repeat){
+      //       res.push(this[i]);
+      //     }
+      //   }
+      //  return res;
+      // }
+      // var arr = [1, 'a', 'a', 'b', '', 'e', 'e', 1, 0]
+      // alert(arr.unique1());
+
+
+      // Array.prototype.remove=function(){
+      //   var arr=[this[0]];
+      //   for(var i=1;i<this.length;i++){
+
+      //     var flag=true;
+      //     for(var j=0;j<arr.length;j++){
+      //       if(this[i]==arr[j]){
+      //         flag=false;
+      //         break;
+      //       }
+      //     }
+      //     if(flag){
+      //       arr.push(this[i]);
+      //     }
+
+      //   }
+      //   return arr;
+      // }
+      // var ar=[1,4,2,6,2,5,1,2,4,2,8];
+      // alert(ar.remove());
+      Array.prototype.remove=function(){
+        var arr=[];
+        var json={};
+
+        for(var i=0;i<this.length;i++){
+          if(!json[this[i]]){
+            json[this[i]]=1;
+            arr.push(this[i]);
+          }
+        }
+        return arr;
+      }
+      var arr=[5,4,3,2,1,5,4,3,2,1];
+      alert(arr.remove());
+  </script>
+</body>  
+</html>  
