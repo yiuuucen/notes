@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise</title>
+</head>
+<body>
+	<script>
+		/* 
+		> 两个原型方法：	
+			 promise.prototype.then()
+			 promise.prototype.catch()
+
+		> 两个常用的静态方法：
+			 promise.all()
+			 promise.resolve()
+
+			new Promise(cb)
+				Pending(进行中) ===> Resolved(已完成)
+			 	Pending(进行中) ===> Rejected(已失败)
+		*/
+
+		const imgs=['1.jpg','2.jpg','3.jpg'];
+		// 将Promise封装成一个函数
+		function loadImg(url){
+			const p=new Promise(function(resolve,reject){
+				const img=new Image();
+				img.src=url;
+
+				// 当图片加载成功，执行resolve
+				img.onload=function(){
+					resolve(this);
+				};
+				// 当图片加载失败，执行
+				img.onerror=function(){
+					// reject(this);
+					reject(new Error('图片加载失败'))
+				};
+			});
+			return p;
+		}
+		
+		// loadImg(imgs[0]).then(function(cc){
+		// 	document.body.appendChild(cc);
+		// })
+
+		// 1.参数是Promise实例，将不做任何修改，原封不动的返回这个实例
+		// Promise.resolve(loadImg(imgs[0])).then(function(dd){
+		// 	document.body.appendChild(dd);
+		// })
+
+		//2.将对象转为Promise对象，然后就立即执行thenable对象的then方法
+		// Promise.resolve({
+		// 	then(resolve,reject){
+		// 		const img=new Image();
+		// 		img.src=imgs[0];
+		// 		img.onload=function(){
+		// 			resolve(this);
+		// 		}
+		// 	}
+		// }).then(function(ee){
+		// 	document.body.appendChild(ee);
+		// }) 
+
+		3.参数是一个基本数据类型或者不传参数，那么返回一个状态为resolved的Promise对象
+	</script>
+</body>
+</html>
