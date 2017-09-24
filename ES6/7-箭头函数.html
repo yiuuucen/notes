@@ -33,6 +33,7 @@
 			console.log(func4(1,1));
 
 			document.onclick =  () => {
+				// 箭头函数里的this指向的都是window
 				console.log(this);
 				/*let that = this;
 				setTimeout(function (){
