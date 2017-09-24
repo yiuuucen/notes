@@ -53,7 +53,7 @@
 			只有其中有一个被rejected,Promise.all的状态就会变成rejected,此时第一个被reject的实例的返回值，会传递给p的回调函数
 		*/
 
-		const allDone=Promise.all([loadImg(imgs[0]),loadImg(imgs[1]),loadImg(imgs[3])]);
+		const allDone=Promise.all([loadImg(imgs[0]),loadImg(imgs[1]),loadImg(imgs[99])]);
 		allDone.then(function(dd){
 			dd.forEach(function(item){
 				document.body.appendChild(item);
