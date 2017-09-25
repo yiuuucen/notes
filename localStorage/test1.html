@@ -5,6 +5,21 @@
 	<title>Document</title>
 </head>
 <body>
-	
+	<div style="border: 2px dashed #ccc;width:320px;text-align:center;">     
+	    <label for="user_name">姓名：</label>  
+	    <input type="text" id="user_name" name="user_name" class="text"/>  
+	    <br/>  
+	    <label for="mobilephone">手机：</label>  
+	    <input type="text" id="mobilephone" name="mobilephone"/>  
+	    <br/>  
+	    <input type="button" onclick="save()" value="新增记录"/>  
+	    <hr/>  
+	    <label for="search_phone">输入手机号：</label>  
+	    <input type="text" id="search_phone" name="search_phone"/>  
+	    <input type="button" onclick="find()" value="查找机主"/>  
+	    <p id="find_result"><br/></p>  
+	</div>  
+	<br/>  
+	<div id="list"></div>
 </body>
 </html>
