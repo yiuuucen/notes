@@ -21,5 +21,13 @@
 	</div>  
 	<br/>  
 	<div id="list"></div>
+	<script>
+		//保存数据
+    	function save(){  
+    	    var mobilephone = document.getElementById("mobilephone").value;  
+    	    var user_name = document.getElementById("user_name").value;  
+    	    localStorage.setItem(mobilephone,user_name);  
+    	}  
+	</script>
 </body>
 </html>
