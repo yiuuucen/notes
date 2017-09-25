@@ -18,6 +18,11 @@
 	    <label for="search_phone">输入手机号：</label>  
 	    <input type="text" id="search_phone" name="search_phone"/>  
 	    <input type="button" onclick="find()" value="查找机主"/>  
+	    <br>
+        <input type="text" id="delete_phone" name="delete_phone"/>  
+        <input type="button" onclick="det()" value="删除该号码数据"/> 
+        <br>
+        <input type="button" onclick="detAll()" value="删除所有数据"/> 
 	    <p id="find_result"><br/></p>  
 	</div>  
 	<br/>  
@@ -68,6 +73,10 @@
     	function det(){
     		var list2=document.getElementById('delete_phone');
     		localStorage.removeItem(list2.value);
+    	}
+    	//删除所有数据：localStorage.clear();
+    	function detAll(){
+    		localStorage.clear();
     	}
 	</script>
 </body>
