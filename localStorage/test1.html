@@ -36,6 +36,16 @@
     	    var find_result = document.getElementById("find_result");  
     	    find_result.innerHTML = search_phone + "的机主是：" + name;  
     	}
+    	// //保存数据  
+    	// function save(){  
+    	//     var contact = new Object;  
+    	//     contact.user_name = document.getElementById("user_name").value;  
+    	//     contact.mobilephone = document.getElementById("mobilephone").value;  
+    	//     contact.company = document.getElementById("company").value;  
+    	//     var str = JSON.stringify(contact);  
+    	//     localStorage.setItem(contact.mobilephone,str);  
+    	//     loadAll();  
+    	// }  
     	//将所有存储在localStorage中的对象提取出来，并展现到界面上  
     	function loadAll(){  
     	    var list = document.getElementById("list");  
