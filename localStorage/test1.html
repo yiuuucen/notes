@@ -64,6 +64,11 @@
     	    }  
     	}  
     	loadAll();
+    	// 删除单个数据：localStorage.removeItem(key);
+    	function det(){
+    		var list2=document.getElementById('delete_phone');
+    		localStorage.removeItem(list2.value);
+    	}
 	</script>
 </body>
 </html>
