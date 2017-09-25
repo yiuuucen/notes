@@ -1,3 +1,4 @@
+<!-- 参考http://blog.csdn.net/hbcui1984/article/details/8466743 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +36,24 @@
     	    var find_result = document.getElementById("find_result");  
     	    find_result.innerHTML = search_phone + "的机主是：" + name;  
     	}
+    	//将所有存储在localStorage中的对象提取出来，并展现到界面上  
+    	function loadAll(){  
+    	    var list = document.getElementById("list");  
+    	    if(localStorage.length>0){  
+    	        var result = "<table border='1'>";  
+    	        result += "<tr><td>姓名</td><td>手机号码</td></tr>";  
+    	        for(var i=0;i<localStorage.length;i++){  
+    	            var mobilephone = localStorage.key(i);  
+    	            var name = localStorage.getItem(mobilephone);  
+    	            result += "<tr><td>"+name+"</td><td>"+mobilephone+"</td></tr>";  
+    	        }  
+    	        result += "</table>";  
+    	        list.innerHTML = result;  
+    	    }else{  
+    	        list.innerHTML = "目前数据为空，赶紧开始加入联系人吧";  
+    	    }  
+    	}  
+    	loadAll();
 	</script>
 </body>
 </html>
