@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+
+	<script>
+		// 作用域是针对变量的，比如我们创建了一个函数，函数里面又包含了一个函数，那么现在就有三个作用域
+
+		// 　　全局作用域==>函数1作用域==>函数2作用域
+
+		// 作用域的特点就是，先在自己的变量范围中查找，如果找不到，就会沿着作用域往上找。
+		var a = 1;
+		function b(){
+		    var a = 2;
+		    function c(){
+		        // var a = 3;
+		        console.log(a);
+		    }
+		    c();
+		}
+		b();
+
+		// 原型链是针对构造函数的，比如我先创建了一个函数，然后通过一个变量new了这个函数，那么这个被new出来的函数就会继承创建出来的那个函数的属性，然后如果我访问new出来的这个函数的某个属性，但是我并没有在这个new出来的函数中定义这个变量，那么它就会往上（向创建出它的函数中）查找，这个查找的过程就叫做原型链。
+
+		// 　　Object ==> 构造函数1 ==> 构造函数2
+
+		// 　　就和css中的继承一样，如果自身没有定义就会继承父元素的样式。
+		function aa(){};
+		aa.prototype.name = "哈哈哈";
+		var bb = new aa();
+		console.log(bb.name); //哈哈哈
+	</script>
+</body>
+</html>
