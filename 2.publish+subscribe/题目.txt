@@ -1,0 +1,1 @@
+使用js 实现一个 publish/subscribe 模式

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 订单类，存储订单的所有变量和函数
+        function Order( goods ){
+            this.goods = goods;
+        }
+        Order.prototype = {
+            done: function(){
+                // 订单完成代码
+                this.sendSuccessMsg();
+            },
+            sendSuccessMsg: function(){
+                var message = new Message();
+                message.sendMsg(this.goods);
+            }
+        }
+
+
+        // 消息类，具备各种消息功能函数
+        function Message(){}
+        Message.prototype = {
+            sendMsg: function( goods ){
+                alert("商品名："+goods.name+"\n"+"价格："+goods.price);
+            }
+            //其它信息模块的方法
+        }
+        var order = new Order({ name:"索尼耳机", price:100})
+        order.done() //弹出商品的信息
+    </script>
+</body>
+</html>
