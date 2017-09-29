@@ -21,7 +21,11 @@
 		oDiv.onmouseover=function(){
 			clearInterval(oDiv.timer);
 			oDiv.timer=setInterval(function(){
-				n=n-160;
+				if(n<-1040){
+					n=0;
+				}else{
+					n=n-160;
+				}
 				oDiv.style.backgroundPositionX=n+'px';		
 			},200)
 		}
