@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			display: block;
+		    background-image: url(start.png);
+		    width: 80px;
+		    height: 80px;
+		    background-position: 0px 0px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+		var oDiv=document.getElementById('box');
+		var n=0;
+		oDiv.onmouseover=function(){
+			clearInterval(oDiv.timer);
+			oDiv.timer=setInterval(function(){
+				n=n-160;
+				oDiv.style.backgroundPositionX=n+'px';		
+			},200)
+		}
+		oDiv.onmouseout=function(){
+			oDiv.style.backgroundPositionX=0+'px';
+			clearInterval(oDiv.timer);
+		}
+	</script>
+</body>
+</html>
