@@ -36,3 +36,7 @@ div {
 #div3 span a:hover {
   border-width: 1px;
 }
+.class {
+  color: #a2a2a2;
+  display: block;
+}

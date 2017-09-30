@@ -14,7 +14,7 @@ div{
 }
 
 
-//2.如果带了()则该类名不会编译出来，但会存在
+//2.变量混合.如果带了()则该类名不会编译出来，但会存在
 .rounded-corners (@radius: 15px) {
   border-radius: @radius;
   -webkit-border-radius: @radius;
@@ -53,4 +53,18 @@ div{
     }
 }
 
-//5.
+//5.函数的使用
+.mixin (dark, @color) {
+  color: darken(@color, 10%);
+}
+.mixin (light, @color) {
+  color: lighten(@color, 10%);
+}
+.mixin (@_, @color) {
+  display: block;
+}
+@switch: light;
+
+.class {
+  .mixin(@switch, #888);
+}
