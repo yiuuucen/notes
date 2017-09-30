@@ -94,3 +94,12 @@ div {
 #div5 {
   color: #ffffff;
 }
+/*
+	7.import指令
+	less里面使用import将外部的less引入到本地less文件里面来。
+	就近原则，谁离样式近用谁
+*/
+.div6 {
+  color: #ffffff;
+  background: #00000f;
+}
