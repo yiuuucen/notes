@@ -60,11 +60,29 @@ div{
 .mixin (light, @color) {
   color: lighten(@color, 10%);
 }
-.mixin (@_, @color) {
+.mixin (@________, @color) {
   display: block;
 }
-@switch: light;
+@switch1: dark;
+@switch2: light;
 
-.class {
-  .mixin(@switch, #888);
+.class1 {
+  .mixin(@switch1, #888);
 }
+.class2 {
+  .mixin(@switch2, #888);
+}
+
+//6.条件判断
+.mixin2 (@a) when (lightness(@a) >= 50%) {
+  background-color: black;
+}
+.mixin2 (@a) when (lightness(@a) < 50%) {
+  background-color: white;
+}
+.mixin2 (@a) {
+  color: @a;
+}
+
+.class3 { .mixin2(#ddd) }
+.class4 { .mixin2(#555) }
