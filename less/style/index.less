@@ -1,1 +1,37 @@
-@charset "utf-8";
+@base: #f938ab;
+
+div{
+    background-color:@base;
+    padding:50px;
+}
+
+//1.在Less里面，变量可以动态计算。
+@nice-blue: #f938ab;
+@light-blue: @nice-blue + #333;
+
+.div1 {
+  background-color: @light-blue;
+}
+
+
+//2.如果带了()则该类名不会编译出来，但会存在
+.rounded-corners (@radius: 15px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+#div1 {
+    padding:20px;
+    width:200px;
+    height:100px;
+    border:2px solid red;
+  .rounded-corners;
+}
+#div2 {
+    padding:20px;
+    width:200px;
+    height:100px;
+    border:2px solid green;
+  .rounded-corners(30px);
+}
