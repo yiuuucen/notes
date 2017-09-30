@@ -4,8 +4,9 @@ div{
     background-color:@base;
     padding:50px;
 }
-
-//1.在Less里面，变量可以动态计算。
+/*
+	1.在Less里面，变量可以动态计算。
+*/
 @nice-blue: #f938ab;
 @light-blue: @nice-blue + #333;
 
@@ -13,8 +14,9 @@ div{
   background-color: @light-blue;
 }
 
-
-//2.变量混合.如果带了()则该类名不会编译出来，但会存在
+/*
+	2.变量混合.如果带了()则该类名不会编译出来，但会存在
+*/
 .rounded-corners (@radius: 15px) {
   border-radius: @radius;
   -webkit-border-radius: @radius;
@@ -35,8 +37,9 @@ div{
     border:2px solid green;
   .rounded-corners(30px);
 }
-
-//4.嵌套规则
+/*
+	3.嵌套规则
+*/
 #div3 {
     h1 {
         font-size: 26px;
@@ -52,8 +55,9 @@ div{
         }
     }
 }
-
-//5.函数的使用
+/*
+	4.函数的使用
+*/
 .mixin (dark, @color) {
   color: darken(@color, 10%);
 }
@@ -72,8 +76,27 @@ div{
 .class2 {
   .mixin(@switch2, #888);
 }
+/*
+	5.条件判断
+*/
+/*  
+	when的语法不难理解，就是一个条件判断，关键是下面的color从哪里来的。
+	原来在Less里面是一种混合调用的方式，也就是说，如果定义了三个函数mixin2，
+	分别对应有三个不同的条件，那么我们调用mixin函数的时候如果三个的条件都满足，
+	那么它三个的结果都会得到。这就是为什么我们class3和class4得到如上结果。
+	在Less里面所有的运算符有： >、 >=、 =、 =<、 <，除了这5个运算符，
+	Less还提供了基于值类型进行判断的方法：
+	iscolor()、isnumber()、isstring()、iskeyword()、isurl()等
 
-//6.条件判断
+	.mixin2 (@a, @b: 0) when (isnumber(@b)) { ... }
+	.mixin2 (@a, @b: black) when (iscolor(@b)) { ... }
+
+	Less还提供了and、not等逻辑表达式
+
+	.mixin2 (@b) when not (@b > 0) {
+       background-color:blue;
+    }
+*/
 .mixin2 (@a) when (lightness(@a) >= 50%) {
   background-color: black;
 }
@@ -86,3 +109,19 @@ div{
 
 .class3 { .mixin2(#ddd) }
 .class4 { .mixin2(#555) }
+
+/*
+	6.变量作用域
+*/
+@aaa: #fff;
+
+#div4 {
+  @aaa: #ff0;
+  #header {
+    color: @aaa; 
+  }
+}
+
+#div5 {
+  color: @aaa;   
+}
