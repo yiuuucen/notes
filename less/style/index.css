@@ -2,13 +2,9 @@ div {
   background-color: #f938ab;
   padding: 50px;
 }
-
-//1.
 .div1 {
   background-color: #ff6bde;
 }
-
-//2.
 #div1 {
   padding: 20px;
   width: 200px;
@@ -26,4 +22,17 @@ div {
   border-radius: 30px;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
+}
+#div3 h1 {
+  font-size: 26px;
+  font-weight: bold;
+}
+#div3 span {
+  font-size: 12px;
+}
+#div3 span a {
+  text-decoration: none;
+}
+#div3 span a:hover {
+  border-width: 1px;
 }
