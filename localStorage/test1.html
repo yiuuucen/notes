@@ -45,9 +45,11 @@
     	    var user_name = document.getElementById("user_name").value;  
     	    localStorage.setItem(mobilephone,user_name);  
     	}  
+
     	//查找数据  
     	function find(){  
-    	    var search_phone = document.getElementById("search_phone").value;  
+    	    var search_phone = document.getElementById("search_phone").value; 
+    	    //取其中一个值得出另一个值 
     	    var name = localStorage.getItem(search_phone);  
     	    var find_result = document.getElementById("find_result");  
     	    find_result.innerHTML = search_phone + "的机主是：" + name;  
