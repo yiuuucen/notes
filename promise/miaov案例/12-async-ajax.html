@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+			依次发送以下三个请求
+				获取用户信息
+				GET http://localhost:8888/promise/userInfo  
+				获取用户的商品列表		
+				POST http://localhost:8888/promise/shopListById
+				获取用户的送货地址  
+				GET http://localhost:8888/promise/dress  		
+			*/
+
+		</script>
+		<script src="./jquery-3.2.1.js"></script>
+	</head>
+
+	<body>
+		<script>
+			// 异步处理
+			function ajax(path,method){
+				return new Promise(function(resolve, reject){
+					$.ajax({
+						method: method,
+						url: 'http://localhost:8888/promise/'+path,
+						success: resolve,
+						error: reject
+					})
+				})
+			}
+
+			// 标记为异步函数
+			async function sendAllAjax(){
+				// 这几个是同时发送的，并发
+				let ajax1 = ajax('userInfo',"get");
+				let ajax2 = ajax('shopListById',"post",ajax1);
+				let ajax3 = ajax('dress',"get",ajax2);
+				// 并且同时回来之后猜得到结果
+
+				return Promise.all([ajax1,ajax2,ajax3])
+				
+			}
+
+			sendAllAjax().then(function (data){
+				console.log(data)
+			})
+
+
+
+			// 写异步的方式跟写同步的方式一样
+
+
+		</script>
+	</body>
+</html>

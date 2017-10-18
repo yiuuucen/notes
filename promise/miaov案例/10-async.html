@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+			依次发送以下三个请求
+				获取用户信息
+				GET http://localhost:8888/promise/userInfo  
+				获取用户的商品列表		
+				POST http://localhost:8888/promise/shopListById
+				获取用户的送货地址  
+				GET http://localhost:8888/promise/dress  		
+			*/
+
+		</script>
+		<script src="./jquery-3.2.1.js"></script>
+	</head>
+
+	<body>
+		<script>
+
+			function time(){
+				return new Promise(function (resolve,reject){
+						setTimeout(function (){
+							resolve('hello')	
+						},1000)
+				})
+			}
+
+			// 函数就变成了异步函数
+			async function fn(){
+				//return await 123 // promise对象
+				let t1 = await time();  // 等待这个异步操作之后，在继续执行代码
+				console.log(t1)
+				let t2 = await time();  // 异步执行之后，返回成功的值
+				console.log(t2)
+				let t3 = await time();
+				console.log(t3)
+				let t4 = await time();
+				console.log(t4)
+				console.log('执行完了');
+
+			}
+
+			let p = fn();
+
+			console.log(p);
+
+			p.then(function (data){
+				console.log(data)
+			})
+
+		</script>
+	</body>
+</html>

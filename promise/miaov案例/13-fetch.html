@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+			依次发送以下三个请求
+				获取用户信息
+				GET http://localhost:8888/promise/userInfo  
+				获取用户的商品列表		
+				POST http://localhost:8888/promise/shopListById
+				获取用户的送货地址  
+				GET http://localhost:8888/promise/dress  		
+			*/
+
+		</script>
+		<script src="./jquery-3.2.1.js"></script>
+	</head>
+
+	<body>
+		<script>
+			fetch({
+				url:,
+				method:
+				data:{}
+			})
+			.then(function (data){
+				return data.json()	
+			})
+			.then(function (d){
+				console.log(d)
+			})
+		</script>
+	</body>
+</html>
