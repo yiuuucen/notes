@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SmartEyesShh.iml" filepath="$PROJECT_DIR$/SmartEyesShh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/smarteyesshh.iml" filepath="$PROJECT_DIR$/.idea/smarteyesshh.iml" />
     </modules>
   </component>
 </project>

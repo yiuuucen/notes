@@ -66,7 +66,7 @@
 	<!-- 处理静态资源 -->
 	<!-- 静态资源映射 -->
     <mvc:resources mapping="/static/**" location="/static/" cache-period="31536000"/>
-	<mvc:resources mapping="/SmartEyes/**" location="/SmartEyes/" cache-period="31536000"/>
+	<mvc:resources mapping="/smarteyesshh/**" location="/smarteyesshh/" cache-period="31536000"/>
     <!-- 文件上传 -->
     <bean id="multipartResolver"
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver"

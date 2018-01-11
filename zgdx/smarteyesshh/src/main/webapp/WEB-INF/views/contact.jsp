@@ -168,13 +168,14 @@
     var myChart1;
     var myChart2;
     var myChart3;
-    var myDate = new Date();
+    var myDate = new Date("2017-12-31");
     var myyear = ""+myDate.getFullYear();    //获取完整的年份(4位,1970-????)
 
     var targetPhone=$("#targetPhone").val();
     var nodeTimerange=[];
     function allChange2(value) {
-        var myDate = new Date();
+//        var myDate = new Date();
+        var myDate = new Date("2017-12-31");
         var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
         mymonth = mymonth + 1;
         mymonth = mymonth < 10 ? '0'+mymonth: mymonth;
@@ -214,7 +215,8 @@
     }
     //初始化
     function initialFunc(){
-        var myDate = new Date();
+//        var myDate = new Date();
+        var myDate = new Date("2017-12-31");
         var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
         mymonth = mymonth + 1;
         mymonth = mymonth < 10 ? '0'+mymonth: mymonth;//小于10前面加0
