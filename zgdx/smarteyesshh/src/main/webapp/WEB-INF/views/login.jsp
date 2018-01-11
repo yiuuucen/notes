@@ -12,6 +12,42 @@
     <link rel="stylesheet" href="${css}/style3.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
+    <style>
+        .log .logdiv .shuru>div:nth-child(1){
+            position: relative;
+        }
+        .log .logdiv .shuru>div:nth-child(1) span{
+            position: absolute;
+            color: red;
+            left: 66px;
+            bottom: 0;
+        }
+        .log .logdiv .shuru>div:nth-child(2){
+            position: relative;
+        }
+        .log .logdiv .shuru>div:nth-child(2) span{
+            position: absolute;
+            width: 200px;
+            text-align: center;
+            color: red;
+            padding: 15px;
+            border-radius: 5px;
+            left:-240px;
+            background: #fff;
+        }
+        .log .logdiv .shuru>div:nth-child(2) span:after{
+            content: "";
+            position: absolute;
+            top: 18px;
+            left: 200px;
+            display: block;
+            width: 13px;
+            height: 16px;
+            overflow: hidden;
+            background: url("${img}/logicon.png") -64px 0 no-repeat;
+            text-indent: -9999px;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid smartEyes-container log">
@@ -36,7 +72,7 @@
                         </div>
                         <div>
                             <img src="${img}/logcapt.png" alt="">
-                            <input type="text" placeholder="请输入验证码">
+                            <input type="text" placeholder="请输入验证码" name="verification">
                             <p>获取短信验证码</p>
                             <a href="findpwd.jsp">忘记密码</a>
                         </div>
@@ -55,11 +91,7 @@
             $("input[type='submit']").click(function(){
                 var tel=$("input[name='username']").val();
                 var pwd=$("input[name='password']").val();
-
-                // if(!(/^1\d{10}$/.test(tel))){
-                //      alert('您输入的号码有误');
-                // }
-
+                console.log(tel)
                 $.ajax({
                     type: "post",
                     url: "/user/login",
@@ -68,7 +100,7 @@
                     async: true,
                     success: function(data){
                         if(!data.status) {
-                            console.log(data.res)
+                            $(".shuru>div:nth-child(2)").append("<span>"+data.res+"</span>");
                         }else{
                             window.location.href = 'search';
                         }
@@ -77,6 +109,26 @@
                         console.log("ajax失败");
                     }
                 });
+            })
+            $("input[name='username']").blur(function () {
+                var tel=$("input[name='username']").val();
+                if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(tel))){
+                    $(".shuru>div:nth-child(1)").append("<span>您输入的号码有误!</span>");
+                }
+                if(tel==''){
+                    $(".shuru>div:nth-child(1) span").css('display','none');
+                }
+                // alert(1);
+            });
+            $("input[name='username']").focus(function () {
+                $(".shuru>div:nth-child(1) span").css('display','none');
+                $(".shuru>div:nth-child(2) span").css('display','none');
+            });
+            $("input[name='password']").focus(function () {
+                $(".shuru>div:nth-child(2) span").css('display','none');
+            });
+            $("input[name='verification']").focus(function () {
+                $(".shuru>div:nth-child(2) span").css('display','none');
             })
         });
     </script>

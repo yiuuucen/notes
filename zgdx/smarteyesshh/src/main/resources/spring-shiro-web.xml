@@ -97,8 +97,10 @@
                 /index.jsp = anon
                 /login = anon
                 /user/login = anon
+                /static/** = anon
                 /search = authc
                 /** = authc
+
             </value>
         </property>
     </bean>

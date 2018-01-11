@@ -41,7 +41,7 @@
 
     <div class="search">
         <div class="logdiv">
-        	<form action="" method="post">
+        	
 	            <div class="shuru">
 	                <div>
 	                    <img src="img/logtel.png" alt="">
@@ -50,16 +50,17 @@
 	                <div>
 	                    <img src="img/logpwd.png" alt="">
 	                    <input type="password" placeholder="请输入密码" name="password" autocomplete="off">
+                        <!-- <span>你输入的有误</span> -->
 	                </div>
 	                <div>
 	                    <img src="img/logcapt.png" alt="">
 	                    <input type="text" placeholder="请输入验证码">
 	                    <p>获取短信验证码</p>
 	                    <a href="找回密码.html">忘记密码</a>
-	                </div>
+	                </div> 
 	                <input type="submit" value="登录">
 	            </div>
-        	</form>
+        	   
         </div>
     </div>
 </div>
@@ -73,9 +74,7 @@
 	$(function(){
         $("input[type='submit']").click(function(){
             var tel=$("input[name='username']").val();
-            if(!(/^1\d{10}$/.test(tel))){
-                alert('您输入的号码有误');
-            }
+            $(".shuru>div:nth-child(2)").append(`<span>你输入的有误</span>`)
         }) 
 	})
 </script>

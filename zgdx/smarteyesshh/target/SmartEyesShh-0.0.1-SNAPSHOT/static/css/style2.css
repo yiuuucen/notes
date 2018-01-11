@@ -85,18 +85,3 @@
 .echart-right .e-right .e-r-l h1 .glyphicon{
 	top:0px
 }
-
-
-.smartEyes-container .g-viewlist-EcBox .g-import-title{
-    position: absolute;
-    color: #2899fc;
-    top: 0px;
-    right: 0px;
-    padding-top: 20px;
-    padding-left: 15px;
-    font-size:13px;
-    width: 100%;
-    text-align: center;
-    z-index: 1000000;
-
-}

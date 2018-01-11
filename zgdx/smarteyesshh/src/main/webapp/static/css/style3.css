@@ -63,6 +63,15 @@
     background: rgba(255,255,255,0.001);
     color: #fff;
 }
+.log .logdiv .shuru>div input:focus{
+    outline:none;
+    width: 120px;
+    border: 0px;
+    border-left: 2px solid rgba(255,255,255,0.3);
+    padding: 5px 0 5px 15px;
+    background: rgba(255,255,255,0.001);
+    color: #fff;
+}
 .log .logdiv .shuru>div:nth-child(3){
     position: relative;
 }
