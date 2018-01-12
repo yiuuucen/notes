@@ -301,18 +301,47 @@
 }
 .mag .smartEyes .logo{
     padding: 15px 0 0 55px;
-    margin: 0;
-    height: 100%;  
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
 }
-.mag .smartEyes .logo img{
-    float: left;
+.mag select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  border: solid 1px #000;
+
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url("../img/mag.png") no-repeat scroll 90% center transparent;
+  background-size: 15px;
+
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 20px;
 }
-.mag .smartEyes .logo .dropdown{
-    float: left;
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+.mag select::-ms-expand { display: none; }
+.mag .smartEyes .logo .my_dropdown{   
+    margin-left: 810px;
+    height: 30px;
+    line-height: 1;
 }
-.mag .smartEyes .logo .dropdown .btn-default{
-    background-color: transparent;
+.mag .smartEyes .logo img:nth-child(3){
+    width: 25px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+.mag .smartEyes .logo .my_dropdown select{
+    background-color: #2f3242;
     color: #fff;
+    width: 140px;
+    height: 30px;
+    border: 1px solid #fff;
+    border-radius: 20px;
 }
 .mag .hr{
     display: block;
@@ -324,7 +353,7 @@
 }
 .mag .findpwd{
     width: 1190px;
-    height: 480px;
+    height: 520px;
     margin: 0 auto;
     background: #2f3242;
 }
@@ -363,13 +392,37 @@
     font-size:16px;
 }
 .mag .findpwd .bottom{
-    height: 300px;
+    /*height: 300px;*/
+}
+.mag .findpwd .bottom .magtit{
+    width: 820px;
+    height: 100px;
+    line-height: 100px;
+    color: #fff;
+    margin: 20px auto 0;
+    border-bottom: 2px solid #999;
+    font-size: 25px;
+    letter-spacing: 3px;
+    text-align: center;
+    position: relative;
+}
+.mag .findpwd .bottom .magtit #morebtn{
+    width: 120px;
+    height: 30px;
+    background: #2196f3;
+    position: absolute;
+    right: 70px;
+    top: 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 30px;
+    cursor: pointer;
 }
 .mag .findpwd .bottom .msg{
-    width: 580px;
+    width: 600px;
     height: 300px;
     /*background: pink;*/
-    margin: 65px auto 0;
+    margin: 40px auto 0;
     color: #fff;
 }
 .mag .findpwd .bottom .msg>div{
@@ -382,59 +435,190 @@
 }
 .mag .findpwd .bottom .msg>div>p{
     width: 280px;
-    margin: 0 10px 0 0;
+    /*margin: 0 10px 0 0;*/
     height: 100%;
     text-align: right;
 }
 .mag .findpwd .bottom .msg>div>div{
-    width: 290px;
+    width: 320px;
     height: 100%;
 }
-.mag .findpwd .bottom .msg>div>div input{
+.mag .findpwd .bottom .msg>div:nth-child(1)>div{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.mag .findpwd .bottom .msg>div:nth-child(1)>div input{
+    width: 295px;
     height: 40px;
-    padding: 0 0 0 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 0 0 0 14px;
     color: #fff;
     background: transparent;
 }
-.mag .findpwd .bottom .msg>div:nth-child(2)>div{
-    display: flex;
-    align-items: center;
+.msg>div:nth-child(1)>div span{
+    position: absolute;
+    color: red;
+    left: 120px;
+    bottom: 0;
 }
-.mag .findpwd .bottom .msg>div:nth-child(2)>div input{
-    width: 180px;
-    margin: 0 10px 0 0;
-    border: 1px solid #fff;
-    border-radius: 5px;
-}
-.mag .findpwd .bottom .msg>div:nth-child(2)>div span{
-    width: 100px;
-    height: 40px;
+.mag .findpwd .bottom .msg>div:nth-child(2)>div select{
+    width: 295px;
+    height: 40px;  
     line-height: 40px;
-    text-align: center;
-    font-size: 15px;
-    background: #2196f3;
-    border: 1px solid #2196f3;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.mag .findpwd .bottom .msg>div:nth-child(3)>div input{
-    width: 290px;
-    height: 40px;
+    background-color: #2f3242; 
     border: 1px solid #fff;
     border-radius: 5px;
 }
-.mag .findpwd .bottom .msg>div:nth-child(4)>div input{
-    width: 290px;
-    height: 40px;
+.mag .findpwd .bottom .msg>div:nth-child(3)>div select{
+    width: 295px;
+    height: 40px;  
+    line-height: 40px;
+    background-color: #2f3242; 
     border: 1px solid #fff;
     border-radius: 5px;
 }
-.mag .findpwd .bottom .msg>div:nth-child(5)>div{
+.mag .findpwd .bottom .msg>div:nth-child(4)>div{
     width: 165px;
     height: 40px;
     line-height: 40px;
     text-align: center;
     background: #2196f3;
     border-radius: 5px;
+    cursor: pointer;
+    margin: 15px 0 0 0;
+}
+/*management上的2个弹窗效果*/
+.mag .submit_btn{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.5);
+    display: none;
+}
+.mag .submit_btn .submit_box{
+    width: 580px;
+    height: 280px;
+    background: #2f3242;
+    position: absolute;
+    top: 20%;
+    left:385px;
+    text-align: center;
+}
+.mag .submit_box .box_top{
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    box-shadow: 3px 5px 5px #21232f;
+}
+.mag .submit_box .box_top span{
+    font-size: 26px;
+    color: #fff;
+}
+.mag .submit_box .box_top img{
+    width: 18px;
+    margin: 29px 30px 0 0;
+    float: right;
+    cursor: pointer;
+}
+.mag .submit_box .box_bottom{
+    color: #fff;
+    overflow: hidden;
+}
+.mag .submit_box .box_bottom div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mag .submit_box .box_bottom div:nth-child(1){
+    width: 300px;
+    margin: 30px auto 0;
+}
+.mag .submit_box .box_bottom div:nth-child(1) .choose{
+    display: block;
+    width: 180px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 0 10px ;
+    cursor: pointer;
+}
+.mag .submit_box .box_bottom div:nth-child(2){
+    width: 160px;
+    height: 30px;
+    margin: 20px auto;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.mag .submit_box .box_bottom div:nth-child(3){
+    width: 385px;
+    height: 40px;
+    margin:30px auto 0;
+}
+.mag .submit_box .box_bottom div:nth-child(3) span{
+    display: block;
+    width: 160px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    float: left;
+    background: #2196f3;
+    margin: 0 65px 0 0;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.mag .submit_box .box_bottom div:nth-child(3) span:last-child{
+    margin: 0;
+}
+.mag .submit_fail{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.5);
+    display: none;
+}
+.mag .submit_fail .submit_box{
+    width: 580px;
+    height: 250px;
+    background: #2f3242;
+    position: absolute;
+    top: 20%;
+    left:385px;
+    /*text-align: right;*/
+    color: #fff;
+}
+.mag .submit_fail .submit_box img{
+    width: 20px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+.mag .submit_fail .submit_box div:nth-child(2){
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 22px;
+    margin: 80px auto 0;
+}
+.mag .submit_fail .submit_box div:nth-child(3){
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    background: #2196f3;
+    margin: 40px auto 0;
     cursor: pointer;
 }
