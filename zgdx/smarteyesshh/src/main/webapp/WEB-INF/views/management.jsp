@@ -1,15 +1,17 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ include file="/WEB-INF/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<title>目标人员管理</title>
-		<link rel="shortcut icon" href="lq.ico">
-		<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="css/base.css" />
-		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/style3.css" />
-		<script type="text/javascript" src="js/jquery-2.1.0.js" ></script>
-		<script type="text/javascript" src="js/bootstrap/js/bootstrap.js" ></script>
+		<link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
+    	<link rel="stylesheet" href="${css}/base.css" />
+    	<link rel="stylesheet" href="${css}/style.css" />
+    	<link rel="stylesheet" href="${css}/style3.css" />
+    	<script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
+    	<script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
 		<script>
 			$(function(){
 				/*$('input.datetimepicker').datetimepicker({
@@ -42,7 +44,7 @@
 					  	<option value="test3">系统权限管理</option>
 					  </select>
 					</div>
-					<img src="img/magreturn.png" alt="">
+					<img src="${img}/magreturn.png" alt="">
 				</div>
 				
 				<div class="hr clearfix"></div>
@@ -104,7 +106,7 @@
 				<div class="submit_box">
 					<div class="box_top">
 						<span>批量提交查询号码</span>
-						<img src="img/magclose.png" alt="">
+						<img src="${img}/magclose.png" alt="">
 					</div>
 					<div class="box_bottom">
 						<div>
@@ -120,7 +122,7 @@
 			</div>
 			<div class="submit_fail">
 				<div class="submit_box">
-					<img src="img/magclose.png" alt="">
+					<img src="${img}/magclose.png" alt="">
 					<div>提交失败！请重新提交。</div>
 					<div>确定</div>
 				</div>
@@ -144,6 +146,6 @@
 	            });
 			})
 		</script>
-		<script type="text/javascript" src="js/cenu.js"></script>
+		<script type="text/javascript" src="${js}/cenu.js"></script>
 	</body>
 </html>
