@@ -22,18 +22,17 @@
     background: url(../img/hrhr.png);
 }
 .log .search{
-    height: 663px;
-    background: url(../img/logbg.png) no-repeat center top;
+    background: url(../img/logbg.png) no-repeat center 27%;
     background-size: 100%;
     /*position: relative;*/
 }
 .log .logdiv{
-    width: 355px;
-    height: 450px;
+    width: 310px;
+    height: 380px;
     background: rgba(255,255,255,0.15);
     position: absolute;
-    top: 200px;
-    right: 110px;
+    top: 175px;
+    right: 170px;
 }
 .log .logdiv .shuru{
     display: flex;
@@ -41,7 +40,7 @@
 
 }
 .log .logdiv .shuru>div{
-    height: 100px;
+    height: 90px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255,255,255,0.3);
@@ -105,6 +104,7 @@
     color: rgba(255,255,255,0.5);
     cursor: pointer;
     right: 0;
+    font-size: 10px;
 }
 .log .logdiv .shuru>div:nth-child(3) a{
     position: absolute;
@@ -113,12 +113,12 @@
     color:rgba(255,255,255,0.5);
 }
 .log .logdiv .shuru>input{
-    width: 169px;
+    width: 140px;
     height: 40px;
     border: 1px solid #fff;
     position: absolute;
-    top: 370px;
-    left: 93px;
+    top: 315px;
+    left: 70px;
     border-radius: 30px;
     text-align: center;
     line-height: 40px;
@@ -307,8 +307,6 @@
     justify-content: flex-start;
 }
 .mag select {
-    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
-    border: solid 1px #000;
 
     /*很关键：将默认的select选择框样式清除*/
     appearance:none;
@@ -349,16 +347,15 @@
     background: url(../img/hrhr.png);
 }
 .mag .search{
-    margin: 83px auto 104px;
+    margin: 40px auto 20px;
 }
 .mag .findpwd{
     width: 1190px;
-    height: 520px;
     margin: 0 auto;
     background: #2f3242;
 }
 .mag .findpwd .top{
-    height: 66px;
+    height: 45px;
     box-shadow:3px 5px 5px #21232f;
 }
 .mag .findpwd .top>div{
@@ -367,12 +364,12 @@
 .mag .findpwd .top>div:nth-child(1){
     float: left;
     width: 235px;
-    height: 66px;
+    height: 45px;
     font-size: 25px;
     letter-spacing:5px;
     color: #fff;
     text-align: center;
-    line-height: 66px;
+    line-height: 45px;
     border-left: 7px solid #2196f3;
 }
 .mag .findpwd .top>a{
@@ -396,10 +393,10 @@
 }
 .mag .findpwd .bottom .magtit{
     width: 820px;
-    height: 100px;
-    line-height: 100px;
+    height: 80px;
+    line-height: 80px;
     color: #fff;
-    margin: 20px auto 0;
+    margin: 0 auto ;
     border-bottom: 2px solid #999;
     font-size: 25px;
     letter-spacing: 3px;
@@ -412,7 +409,7 @@
     background: #2196f3;
     position: absolute;
     right: 70px;
-    top: 35px;
+    top: 28px;
     border-radius: 5px;
     font-size: 16px;
     line-height: 30px;
@@ -422,7 +419,7 @@
     width: 600px;
     height: 300px;
     /*background: pink;*/
-    margin: 40px auto 0;
+    margin: 20px auto 0;
     color: #fff;
 }
 .mag .findpwd .bottom .msg>div{
@@ -443,7 +440,7 @@
     width: 320px;
     height: 100%;
 }
-.mag .findpwd .bottom .msg>div:nth-child(1)>div{
+.mag .findpwd .bottom .msg>div>div{
     display: flex;
     align-items: center;
     position: relative;
@@ -480,6 +477,7 @@
     border-radius: 5px;
 }
 .mag .findpwd .bottom .msg>div:nth-child(4)>div{
+    display: block;
     width: 165px;
     height: 40px;
     line-height: 40px;

@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="${css}/style3.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
+    <script>
+        $(function(){
+            var h= $(window).height();
+            $(".search").height(h-130);
+        })
+    </script>
     <style>
         .log .logdiv .shuru>div:nth-child(1){
             position: relative;
@@ -56,7 +62,6 @@
                 <div class="logo "><img src="${img}/logo.png"></div>
                 <div class="hr clearfix"></div>
             </div>
-
         </div>
         <div class="search">
             <div class="logdiv">
@@ -84,7 +89,7 @@
 
     </div>
     <!--底部-->
-    <footer style="position: relative;"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+    <footer><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
 
     <script>
         $(function(){

@@ -28,4 +28,43 @@
     <div class="col-lg-1 col-md-1 col-xs-1 fr">
         <a href="${ctx}/search"><img src="${img}/u03.png"></a>
     </div>
+    <div class="col-lg-1 col-md-1 col-xs-1 pull-right text-right input-group fr" style="margin-top: 27px">
+        <select class="pull-right select myselect" onchange="operateManage(this.options[this.options.selectedIndex].value)">
+            <option value="configure" selected="">&nbsp;配置</option>
+            <option value="userOperateLog" >&nbsp;用户操作日志</option>
+            <option value="targetPersonManage" >&nbsp;目标人员管理</option>
+            <option value="systemRightManage" >&nbsp;系统权限管理</option>
+        </select>
+    </div>
 </header>
+<script>
+    function operateManage(value) {
+//            var myDate = new Date();
+//        var myDate = new Date("2017-12-31");
+//        var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
+//        mymonth = mymonth + 1;
+//        mymonth = mymonth < 10 ? '0'+mymonth: mymonth;
+//        var mydate = myDate.getDate();//获取当前日(1-31)
+//        mydate = mydate-1;
+//        mydate = mydate < 10 ? '0'+mydate: mydate;
+//        var timerange = [];
+
+        switch(value){
+            case "configure":
+                <%--window.location.href="${ctx}/system";--%>
+                break;
+            case "userOperateLog":
+                window.location.href="${ctx}/system";
+                break;
+            case "targetPersonManage":
+                window.location.href="${ctx}/person";
+                break;
+            case "systemRightManage":
+                window.location.href="${ctx}/system";
+                break;
+
+        }
+
+    }
+
+</script>

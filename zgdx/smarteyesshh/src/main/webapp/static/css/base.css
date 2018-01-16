@@ -17,7 +17,14 @@ th,td{text-align: center;}
 }
 .fl{float:left}
 .fr{float:right}
-
+.clearfix{zoom:1}
+.clearfix:after{
+    content: "";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+}
 
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  

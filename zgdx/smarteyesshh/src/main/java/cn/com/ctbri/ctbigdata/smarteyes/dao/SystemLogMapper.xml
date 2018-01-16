@@ -3,7 +3,7 @@
 <mapper namespace="cn.com.ctbri.ctbigdata.smarteyes.dao.SystemLogMapper" >
   <resultMap id="BaseResultMap" type="cn.com.ctbri.ctbigdata.smarteyes.model.SystemLog" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
     <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
     <result column="search_time" property="searchTime" jdbcType="TIMESTAMP" />
     <result column="target_phone" property="targetPhone" jdbcType="VARCHAR" />
@@ -110,7 +110,7 @@
     insert into t_sys_log (user_id, user_nickname, search_time, 
       target_phone, person_type, search_type, 
       status)
-    values (#{userId,jdbcType=INTEGER}, #{userNickname,jdbcType=VARCHAR}, #{searchTime,jdbcType=TIMESTAMP}, 
+    values (#{userId,jdbcType=BIGINT}, #{userNickname,jdbcType=VARCHAR}, #{searchTime,jdbcType=TIMESTAMP}, 
       #{targetPhone,jdbcType=VARCHAR}, #{personType,jdbcType=VARCHAR}, #{searchType,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR})
   </insert>
@@ -144,7 +144,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+        #{userId,jdbcType=BIGINT},
       </if>
       <if test="userNickname != null" >
         #{userNickname,jdbcType=VARCHAR},
@@ -179,7 +179,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=BIGINT},
       </if>
       <if test="record.userNickname != null" >
         user_nickname = #{record.userNickname,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
   <update id="updateByExample" parameterType="map" >
     update t_sys_log
     set id = #{record.id,jdbcType=BIGINT},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=BIGINT},
       user_nickname = #{record.userNickname,jdbcType=VARCHAR},
       search_time = #{record.searchTime,jdbcType=TIMESTAMP},
       target_phone = #{record.targetPhone,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
     update t_sys_log
     <set >
       <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=BIGINT},
       </if>
       <if test="userNickname != null" >
         user_nickname = #{userNickname,jdbcType=VARCHAR},
@@ -247,7 +247,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.com.ctbri.ctbigdata.smarteyes.model.SystemLog" >
     update t_sys_log
-    set user_id = #{userId,jdbcType=INTEGER},
+    set user_id = #{userId,jdbcType=BIGINT},
       user_nickname = #{userNickname,jdbcType=VARCHAR},
       search_time = #{searchTime,jdbcType=TIMESTAMP},
       target_phone = #{targetPhone,jdbcType=VARCHAR},
@@ -256,4 +256,17 @@
       status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_log
+    <where>
+    <if test="id != null">
+       and user_id = #{id,jdbcType=VARCHAR}
+    </if>
+    </where>
+    limit #{startPage,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
 </mapper>

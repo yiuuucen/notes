@@ -33,9 +33,6 @@
             $("#img2").attr("src","${img}/u-04.png");
             $("#img3").attr("src","${img}/u-05.png");
 
-
-
-
         })
     </script>
 </head>
