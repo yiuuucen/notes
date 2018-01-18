@@ -99,9 +99,10 @@
 			</div>
 		</div>
 		<!--底部-->
-		<footer><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+		<footer style="position: relative"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
 		<script>
 			$(function(){
+			    $("#navList").css("display","none");
 				$("input[name='tel']").blur(function () {
 	                var tel=$("input[name='tel']").val();
 	                if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(tel))){
@@ -121,23 +122,23 @@
 				    var loadPhone=$("input[name='tel']").val();
 				    var personType=$("#miaoshu option:selected").text();
                     var searchType=$("#biaoqian option:selected").text();
-                    $.ajax({
-                        type:"get",
-                        url:"/target/insertTarget",
-                        dataType:"json",
-                        data:{"loadPhone":loadPhone,"personType":personType,"searchType":searchType},
-                        success:function (msg) {
-                            if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(loadPhone))||personType==""||searchType==""){
-                                $(".mag .submit_fail").css('display','block');
-							}
-							else{
-								console.log(msg);
-							}
-                        },
-						error:function () {
-							console.log("数据错误")
-                        }
-                    })
+                    if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(loadPhone))||personType==""||searchType==""){
+                        $(".mag .submit_fail").css('display','block');
+                    }else{
+                        $.ajax({
+                            type:"get",
+                            url:"/target/insertTarget",
+                            dataType:"json",
+                            data:{"loadPhone":loadPhone,"personType":personType,"searchType":searchType},
+                            success:function () {
+                                window.location.href="${ctx}/personlist"
+                            },
+                            error:function () {
+                                console.log("数据错误")
+                            }
+                        })
+					}
+
                 })
 			})
 		</script>

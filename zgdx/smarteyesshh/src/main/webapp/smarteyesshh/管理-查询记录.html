@@ -5,10 +5,12 @@
 		<title>目标人员管理</title>
 		<link rel="shortcut icon" href="lq.ico">
 		<link rel="stylesheet" href="js/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="css/pagination.css" />
 		<link rel="stylesheet" href="css/base.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/style3.css" />
 		<script type="text/javascript" src="js/jquery-2.1.0.js" ></script>
+		<script type="text/javascript" src="js/jquery.pagination.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap/js/bootstrap.js" ></script>
 		<script>
 			$(function(){
@@ -183,27 +185,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="tabbtn">
-						<nav>
-						  <ul class="pagination">
-						    <li>
-						      <a class="prev">
-						        上一页
-						      </a>
-						    </li>
-						    <li><a class="active">1</a></li>
-						    <li><a>2</a></li>
-						    <li><a>3</a></li>
-						    <li><a>4</a></li>
-						    <li><a>5</a></li>
-						    <li><a>...</a></li>
-						    <li>
-						      <a class="next">
-						        下一页
-						      </a>
-						    </li>
-						  </ul>
-						</nav>
+					<div class="tabbtn M-box">
 					</div>
 				</div>
 			</div>
@@ -211,21 +193,62 @@
 		<!--底部-->
 		<footer style="position: relative;"><p class="text-center">© 2017 SmartEyes | 猎犬上海网安版</p></footer>
 		<script>
-			$(function(){
-				$.ajax({
-				    type:"get",
-				    url:"/target/searchTarget",
-				    dataType:"json",
-				    data:{"pageCode":1},
-				    success:function (msg) {
-				        console.log(msg);
-				    },
-					error:function () {
-				        // $(".mag .submit_fail").css('display','block');
-						console.log("数据错误")
-				    }
-				})
-			})
+			// $(function(){
+			// 	$.ajax({
+			// 	    type:"get",
+			// 	    url:"/target/searchTarget",
+			// 	    dataType:"json",
+			// 	    data:{"pageCode":1},
+			// 	    success:function (msg) {
+			// 	        console.log(msg);
+			// 	    },
+			// 		error:function () {
+			// 	        // $(".mag .submit_fail").css('display','block');
+			// 			console.log("数据错误")
+			// 	    }
+			// 	})
+			// })
+			$('.M-box').pagination({
+			    coping:true,
+			    pageCount:8,
+			    totalData:72,
+			    showData:10,
+			    prevContent:'上页',
+			    nextContent:'下页',
+			    callback:function(index){
+			    	// console.log(api.getCurrent())
+			    	console.log(index)
+			    }
+			});
+			
+			// $(".tabbtn>a").each(function(){
+			// 	if($(this).text()=="首页"){
+			// 		$(".tabbtn a:nth-child(2)").css("width","60px");
+			// 	}else if($(this).text()=="末页"){
+			// 		$(".tabbtn a:nth-last-child(2)").css("width","60px");
+			// 	}
+			// })
+			// function tab2(selector,tp){
+			// 	var index=-1;
+			// 	var curindex=1;
+
+			// 	$(selector).children("a").click(function(){
+			// 		index=$(this).attr("data-page");
+
+			// 		// if(){
+			// 		// 	curindex = $(".tabbtn").find("span").index($(".active"));
+			// 		// }
+			// 	})
+			// }
+			// $(function(){
+			// 	$(".tabbtn").children("a").click(function(){
+			// 			var index=$(this).attr("data-page");
+			// 			console.log(index);
+			// 			// if(){
+			// 			// 	curindex = $(".tabbtn").find("span").index($(".active"));
+			// 			// }
+			// 	})
+			// })
 		</script>
 	</body>
 </html>

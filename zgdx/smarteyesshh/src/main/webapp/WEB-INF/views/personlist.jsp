@@ -7,10 +7,12 @@
     <meta charset="utf-8" />
     <title>查询记录</title>
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="${css}/pagination.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
     <link rel="stylesheet" href="${css}/style3.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
+    <script type="text/javascript" src="${js}/jquery.pagination.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
 </head>
 <body>
@@ -30,6 +32,7 @@
                 <span class="col-lg-2 col-md-2 col-xs-2">查询记录信息</span>
             </div>
             <div class="tabcont row">
+                <div class="alldata">共<span>12</span>页</div>
                 <div class="lie clearfix">
                     <span class="col-lg-1 col-md-1 col-xs-1">序号</span>
                     <span class="col-lg-1 col-md-1 col-xs-1">用户ID</span>
@@ -53,27 +56,7 @@
                     <%--</div>--%>
                 </div>
             </div>
-            <div class="tabbtn">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a class="prev">
-                                上一页
-                            </a>
-                        </li>
-                        <li><a class="active">1</a></li>
-                        <li><a>2</a></li>
-                        <li><a>3</a></li>
-                        <li><a>4</a></li>
-                        <li><a>5</a></li>
-                        <li><a>...</a></li>
-                        <li>
-                            <a class="next">
-                                下一页
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="tabbtn M-box">
             </div>
         </div>
     </div>
@@ -82,34 +65,54 @@
 <footer style="position: relative;"><p class="text-center">© 2017 SmartEyes | 猎犬上海网安版</p></footer>
 <script>
     $(function(){
-        $.ajax({
-            type:"get",
-            url:"/target/searchTarget",
-            dataType:"json",
-            data:{"pageCode":1},
-            success:function (res) {
-                // console.log(res.result);
-                // console.log(res.result.datas[3]);
-                // console.log(res.result.totalPage);
-                for(let i=0;i<res.result.datas.length;i++){
-                    var html=`<div class="lie clearfix" >
-                        <span class="col-lg-1 col-md-1 col-xs-1">${res.result.datas[i].id}</span>
-                        <span class="col-lg-1 col-md-1 col-xs-1">${res.result.datas[i].userId}</span>
-                        <span class="col-lg-1 col-md-1 col-xs-1">${res.result.datas[i].userNick}</span>
-                        <span class="col-lg-3 col-md-3 col-xs-3">${res.result.datas[i].creatTime}</span>
-                        <span class="col-lg-2 col-md-2 col-xs-2">${res.result.datas[i].targetPhone}</span>
-                        <span class="col-lg-1 col-md-1 col-xs-1">${res.result.datas[i].personType}</span>
-                        <span class="col-lg-1 col-md-1 col-xs-1">${res.result.datas[i].searchType}</span>
-                        <span class="col-lg-2 col-md-2 col-xs-2">${res.result.datas[i].status}</span>
-                    </div>`;
+        $("#navList").css("display","none");
+        var pageCount=null;
+        var totalData=null;
+        var showData=null;
+        function myajax(async,num) {
+            $.ajax({
+                type:"get",
+                url:"/target/searchTarget",
+                dataType:"json",
+                async: async,
+                data:{"pageCode":num},
+                success:function (res) {
+                    $(".xinxi").children().remove();
+                    for(var i=0;i<res.result.datas.length;i++){
+                        pageCount=res.result.totalPage;
+                        totalData=res.result.totalRecord;
+                        showData=res.result.pageSize;
+                        newTime = new Date(res.result.datas[i].createTime);
+                        Date.prototype.toLocaleString = function() {
+                            return (this.getFullYear() <10 ? "0"+this.getFullYear() : this.getFullYear()) + "." + ((this.getMonth()+ 1) <10 ? "0"+(this.getMonth() + 1) : (this.getMonth() + 1)) + "." + (this.getDate()  <10 ? "0"+this.getDate() : this.getDate() ) + "&nbsp&nbsp&nbsp" + (this.getHours()<10 ? "0"+this.getHours() : this.getHours()) + ":" + (this.getMinutes()<10 ? "0"+this.getMinutes() : this.getMinutes())+ ":" + (this.getSeconds()<10 ? "0"+this.getSeconds() : this.getSeconds());
+                        };
+                        stringTime = newTime.toLocaleString();
+                        var html='<div class="lie clearfix" ><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].id+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].userId+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].userNick+'</span><span class="col-lg-3 col-md-3 col-xs-3">'+stringTime+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+res.result.datas[i].targetPhone+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].personType+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].searchType+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+res.result.datas[i].status+'</span></div>';
+                        $(".xinxi").append(html);
+                    }
+                },
+                error:function () {
+                    // $(".mag .submit_fail").css('display','block');
+                    console.log("数据错误")
                 }
-                $(".xinxi .lie").append(html);
-            },
-            error:function () {
-                // $(".mag .submit_fail").css('display','block');
-                console.log("数据错误")
+            })
+        }
+        myajax(false,1);
+        $(".mag-jilu .tabcont .alldata span").text(pageCount);
+        $('.M-box').pagination({
+            pageCount:pageCount,
+            totalData:totalData,
+            showData:showData,
+            mode:'fixed',
+            keepShowPN:true,
+            prevContent:'上页',
+            nextContent:'下页',
+            callback:function(index){
+                // console.log(index)
+                myajax(true,index.getCurrent())
             }
-        })
+        });
+
     })
 </script>
 </body>

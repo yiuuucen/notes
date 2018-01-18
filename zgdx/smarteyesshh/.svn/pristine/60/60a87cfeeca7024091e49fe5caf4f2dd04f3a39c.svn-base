@@ -65,7 +65,6 @@
 <footer style="position: relative;"><p class="text-center">© 2017 SmartEyes | 猎犬上海网安版</p></footer>
 <script>
     $(function(){
-        $("#navList").css("display","none");
         var pageCount=null;
         var totalData=null;
         var showData=null;

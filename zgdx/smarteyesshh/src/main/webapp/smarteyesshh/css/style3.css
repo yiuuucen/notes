@@ -728,12 +728,14 @@
 .mag-jilu .jilu .mytable .tabcont .lie>span:nth-child(4),span:nth-child(7){
     border-right: 1px solid #fff;
 }
-.mag-jilu .jilu .mytable .tabbtn ul{
+.mag-jilu .jilu .mytable .tabbtn{
+    height: 40px;
+    margin: 45px auto 20px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
-.mag-jilu .jilu .mytable .tabbtn ul li a{
+.mag-jilu .jilu .mytable .tabbtn a{
     display: inline-block;
     height: 28px;
     margin-left: 12px;
@@ -745,15 +747,22 @@
     font-size: 14px;
     background-color: #2f3242;
     border: 1px solid #9d9fa6;
-    cursor: pointer;
 }
-.mag-jilu .jilu .mytable .tabbtn ul li a.active{
+.mag-jilu .jilu .mytable .tabbtn span{
+    display: inline-block;
+    height: 28px;
+    margin-left: 12px;
+    padding: 0 10px;
+    color: #fff;
+    line-height: 28px;
+    text-align: center;
+    font-family: "Microsoft YaHei",serif;
+    font-size: 14px;
+    background-color: #2f3242;
+    border: 1px solid #9d9fa6;
+}
+.mag-jilu .jilu .mytable .tabbtn span.active{
     background: #2196f3;
-}
-.mag-jilu .jilu .mytable .tabbtn nav{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .mag-jilu .jilu .mytable .tabbtn .prev{
     width: 148px;
@@ -764,7 +773,6 @@
     background-color: #2196f3;
     border: none;
     border-radius: 3px 3px 3px 3px;
-    cursor: pointer;
 }
 .mag-jilu .jilu .mytable .tabbtn .next{
     width: 148px;
@@ -775,5 +783,4 @@
     background-color: #2196f3;
     border: none;
     border-radius: 3px 3px 3px 3px;
-    cursor: pointer;
 }

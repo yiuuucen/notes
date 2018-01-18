@@ -60,7 +60,7 @@
                 window.location.href="${ctx}/person";
                 break;
             case "systemRightManage":
-                window.location.href="${ctx}/system";
+                window.location.href="${ctx}/permission";
                 break;
 
         }
