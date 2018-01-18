@@ -2,8 +2,9 @@ package cn.com.ctbri.ctbigdata.smarteyes.dao;
 
 import cn.com.ctbri.ctbigdata.smarteyes.model.User;
 import cn.com.ctbri.ctbigdata.smarteyes.model.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     int countByExample(UserExample example);
@@ -27,4 +28,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> selectByPage(@Param("startPage")int startPage, @Param("pageSize")int pageSize);
+
 }

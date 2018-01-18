@@ -307,6 +307,8 @@
     justify-content: flex-start;
 }
 .mag select {
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    border: solid 1px #000;
 
     /*很关键：将默认的select选择框样式清除*/
     appearance:none;
@@ -347,15 +349,16 @@
     background: url(../img/hrhr.png);
 }
 .mag .search{
-    margin: 40px auto 20px;
+    margin: 83px auto 104px;
 }
 .mag .findpwd{
     width: 1190px;
+    height: 520px;
     margin: 0 auto;
     background: #2f3242;
 }
 .mag .findpwd .top{
-    height: 45px;
+    height: 66px;
     box-shadow:3px 5px 5px #21232f;
 }
 .mag .findpwd .top>div{
@@ -364,12 +367,12 @@
 .mag .findpwd .top>div:nth-child(1){
     float: left;
     width: 235px;
-    height: 45px;
+    height: 66px;
     font-size: 25px;
     letter-spacing:5px;
     color: #fff;
     text-align: center;
-    line-height: 45px;
+    line-height: 66px;
     border-left: 7px solid #2196f3;
 }
 .mag .findpwd .top>a{
@@ -393,10 +396,10 @@
 }
 .mag .findpwd .bottom .magtit{
     width: 820px;
-    height: 80px;
-    line-height: 80px;
+    height: 100px;
+    line-height: 100px;
     color: #fff;
-    margin: 0 auto ;
+    margin: 20px auto 0;
     border-bottom: 2px solid #999;
     font-size: 25px;
     letter-spacing: 3px;
@@ -409,7 +412,7 @@
     background: #2196f3;
     position: absolute;
     right: 70px;
-    top: 28px;
+    top: 35px;
     border-radius: 5px;
     font-size: 16px;
     line-height: 30px;
@@ -419,7 +422,7 @@
     width: 600px;
     height: 300px;
     /*background: pink;*/
-    margin: 20px auto 0;
+    margin: 40px auto 0;
     color: #fff;
 }
 .mag .findpwd .bottom .msg>div{
@@ -440,7 +443,7 @@
     width: 320px;
     height: 100%;
 }
-.mag .findpwd .bottom .msg>div>div{
+.mag .findpwd .bottom .msg>div:nth-child(1)>div{
     display: flex;
     align-items: center;
     position: relative;
@@ -477,7 +480,6 @@
     border-radius: 5px;
 }
 .mag .findpwd .bottom .msg>div:nth-child(4)>div{
-    display: block;
     width: 165px;
     height: 40px;
     line-height: 40px;
@@ -618,5 +620,160 @@
     border-radius: 5px;
     background: #2196f3;
     margin: 40px auto 0;
+    cursor: pointer;
+}
+/*管理-查询记录页面*/
+.mag-jilu img{
+    vertical-align:baseline;
+}
+.mag-jilu button{
+    outline:none;
+}
+.mag-jilu .smartEyes{
+    height: 97px;
+    line-height: none;
+    background-color: #2f3242;
+    box-shadow:15px 35px 35px rgba(37,41,56,0.8);
+}
+.mag-jilu .smartEyes .logo{
+    padding: 15px 0 0 55px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.mag-jilu select {
+    /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+    border: solid 1px #fff;
+    /*很关键：将默认的select选择框样式清除*/
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    /*在选择框的最右侧中间显示小箭头图片*/
+    background: url("../img/mag.png") no-repeat scroll 90% center transparent;
+    background-size: 15px;
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 20px;
+}
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+.mag-jilu select::-ms-expand { display: none; }
+.mag-jilu .smartEyes .logo .my_dropdown{
+    margin-left: 810px;
+    height: 30px;
+    line-height: 1;
+}
+.mag-jilu .smartEyes .logo img:nth-child(3){
+    width: 25px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+.mag-jilu .smartEyes .logo .my_dropdown select{
+    background-color: #2f3242;
+    color: #fff;
+    width: 140px;
+    height: 30px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+}
+.mag-jilu .hr{
+    display: block;
+    height: 17px;
+    background: url(../img/hrhr.png);
+}
+.mag-jilu .jilu{
+    margin: 45px;
+    background-color: #2f3242;
+}
+.mag-jilu .jilu h3{
+    color: #fff;
+    font-size: 30px;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 27px;
+}
+.mag-jilu .jilu .mytable{
+    margin: 0 45px;
+    text-align: center;
+    color: #fff;
+}
+.mag-jilu .jilu .mytable .tabhead{
+    border: 1px solid #fff;
+}
+.mag-jilu .jilu .mytable .tabhead span{
+    height: 47px;
+    line-height: 47px;
+    font-size: 18px;
+    border-right: 1px solid #fff;
+}
+.mag-jilu .jilu .mytable .tabhead span:last-child{
+    border-right:none;
+}
+.mag-jilu .jilu .mytable .tabcont{
+    border: 1px solid #fff;
+    border-top: none;
+    box-sizing: border-box;
+}
+.mag-jilu .jilu .mytable .tabcont .lie{
+    border-bottom: 1px solid #fff;
+}
+.mag-jilu .jilu .mytable .tabcont .lie:last-child{
+    border-bottom: none;
+}
+.mag-jilu .jilu .mytable .tabcont .lie>span{
+    height: 34px;
+    font-size: 15px;
+    line-height: 34px;
+}
+.mag-jilu .jilu .mytable .tabcont .lie>span:nth-child(4),span:nth-child(7){
+    border-right: 1px solid #fff;
+}
+.mag-jilu .jilu .mytable .tabbtn ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mag-jilu .jilu .mytable .tabbtn ul li a{
+    display: inline-block;
+    height: 28px;
+    margin-left: 12px;
+    padding: 0 10px;
+    color: #fff;
+    line-height: 28px;
+    text-align: center;
+    font-family: "Microsoft YaHei",serif;
+    font-size: 14px;
+    background-color: #2f3242;
+    border: 1px solid #9d9fa6;
+    cursor: pointer;
+}
+.mag-jilu .jilu .mytable .tabbtn ul li a.active{
+    background: #2196f3;
+}
+.mag-jilu .jilu .mytable .tabbtn nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mag-jilu .jilu .mytable .tabbtn .prev{
+    width: 148px;
+    height: 38px;
+    font-size: 16px;
+    padding: 0 47px;
+    line-height: 38px;
+    background-color: #2196f3;
+    border: none;
+    border-radius: 3px 3px 3px 3px;
+    cursor: pointer;
+}
+.mag-jilu .jilu .mytable .tabbtn .next{
+    width: 148px;
+    height: 38px;
+    font-size: 16px;
+    padding: 0 47px;
+    line-height: 38px;
+    background-color: #2196f3;
+    border: none;
+    border-radius: 3px 3px 3px 3px;
     cursor: pointer;
 }

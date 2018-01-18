@@ -37,6 +37,7 @@ public class OverViewController {
                            HttpSession httpSession){
         request.setAttribute("targetPhone",targetPhone);
         User user = (User) httpSession.getAttribute(ProjectConstant.CURRENT_USER);
+        System.out.println("luis test: " + user);
         logService.createLog(user.getId(),user.getNickname(),targetPhone);
         return "overview";
     }
@@ -63,6 +64,12 @@ public class OverViewController {
     public String person(@RequestParam(value="targetPhone",required = false)String targetPhone, HttpServletRequest request){
         request.setAttribute("targetPhone",targetPhone);
         return "person";
+    }
+
+    @RequestMapping(value = "/personlist")
+    public String personlist(@RequestParam(value="targetPhone",required = false)String targetPhone, HttpServletRequest request){
+        request.setAttribute("targetPhone",targetPhone);
+        return "personlist";
     }
 
     @RequestMapping(value = "/search")

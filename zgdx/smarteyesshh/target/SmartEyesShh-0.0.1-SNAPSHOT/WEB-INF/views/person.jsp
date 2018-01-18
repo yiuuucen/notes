@@ -135,7 +135,6 @@
 							}
                         },
 						error:function () {
-                            // $(".mag .submit_fail").css('display','block');
 							console.log("数据错误")
                         }
                     })
