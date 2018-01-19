@@ -1,0 +1,271 @@
+/*.smartEyes-container {*/
+    /*position: relative;*/
+/*}*/
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 0px;
+}
+.table {
+    margin: 0px;
+}
+.smartEyes-container .searchBox .namelist {
+    background-color: #2196f3;
+}
+.sysmg-pannel {
+    position: absolute;
+    width: 76px;
+    height: 90%;
+    overflow: hidden;
+    z-index: 2;
+    background-color: #2f3242;
+    min-height: 535px;
+
+}
+.sysmg-pannel a {
+    display: inline-block;
+    width: 100%;
+    height: 85px;
+    color: #484d66;
+    font-family: "Microsoft YaHei",serif;
+    text-align: center;
+
+}
+.sysmg-pannel a.active {
+    border-left:3px solid #1e88dd;
+    background-color: #2a2d3a;
+    color: #757da4;
+}
+.sysmg-pannel a.active .sysmg-icon1{
+    background: url(../img/u-42c.png) no-repeat;
+    background-size: 40px 40px;
+}
+.sysmg-pannel a.active .sysmg-icon2{
+    background: url(../img/u-43c.png) no-repeat;
+    background-size: 40px 40px;
+}
+.sysmg-icon {
+    display: inline-block;
+    margin-top: 13px;
+    width: 40px;
+    height: 40px;
+
+}
+.sysmg-icon1 {
+    background: url(../img/u-42.png) no-repeat;
+    background-size: 40px 40px;
+}
+.sysmg-icon2 {
+    background: url(../img/u-43.png) no-repeat;
+    background-size: 40px 40px;
+}
+.sysmg-rbox {
+    margin: 33px 30px 0 106px;
+    background-color: #2f3242;
+    overflow: hidden;
+    min-height: 536px;
+}
+.sysmg-table1 {
+    width: 91%;
+    /*margin-top: 25px;*/
+    margin: 25px auto;
+    background-color: #2f3242;
+    color: #fff;
+    /*width: 1150px;*/
+    /*height: 570px;*/
+}
+.smartEyes-container .sysmg-table1 tr td,.smartEyes-container .sysmg-table1 tr th {
+    color: #fff;
+    /*background-color: red;*/
+}
+
+.sysmg-tr2 {
+
+}
+.mybtn {
+    /*color: #fff;*/
+    /*border-color: #91929b;*/
+    background-color: #2f3242;
+    width: 150px;
+    height: 40px;
+    margin-right: 9px;
+    font-size: 14px;
+    border: 1px solid #91929b;
+    border-radius: 6px 6px 6px 6px;
+
+}
+.mybtn2 {
+    /*color: #fff;*/
+    background-color: #2f3242;
+    width: 68px;
+    line-height: 24px;
+    margin-right: 5px;
+    font-size: 12px;
+    border: 1px solid #9d9fa6;
+    /*padding:;: 3px 12px;*/
+    border-radius: 6px 6px 6px 6px;
+
+
+}
+.tr2-table,.smartEyes-container .sysmg-tr2 th,.smartEyes-container .sysmg-tr2 td{
+    border-color: #595d6d;
+    /*letter-spacing: 2px;*/
+}
+
+/*.smartEyes-container .sysmg-tr2 th{*/
+    /*border-color: #595d6d;*/
+/*}*/
+/*.smartEyes-container .sysmg-tr2 td{*/
+    /*border-color: #595d6d;*/
+/*}*/
+.tr2-table {
+    margin-top: 20px;
+    border-collapse:collapse;
+
+}
+
+.smartEyes-container .sysmg-tr2 th{
+    border: none;
+    height: 47px;
+    line-height: 47px;
+    font-size: 16px;
+}
+.smartEyes-container .sysmg-tr2 td{
+    height: 30px;
+    font-size: 13px;
+    line-height: 30px;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+}
+
+
+.sysmg-table1 .row th{
+    min-width: 152px;
+}
+.sysmg-tr3 table {
+    width: 100%;
+}
+.sysmg-tr3 td:nth-child(1){
+    text-align: center;
+}
+/*.sysmg-pageTitleCell {*/
+    /*display: inline-block;*/
+    /*margin-top: 44px;*/
+    /*height: 38px;*/
+    /*line-height: 38px;*/
+    /*!*padding-left: 10%;*!*/
+
+/*}*/
+/*.sysmg-pageTitleCell a {*/
+    /*display: inline-block;*/
+    /*height: 28px;*/
+    /*margin-left: 12px;*/
+    /*padding: 0 10px;*/
+    /*color: #fff;*/
+    /*line-height: 28px;*/
+    /*text-align: center;*/
+    /*font-family: "Microsoft YaHei",serif;*/
+    /*font-size: 14px;*/
+    /*background-color: #2f3242;*/
+    /*border: 1px solid #9d9fa6;*/
+    /*cursor: pointer;*/
+/*}*/
+/*.smartEyes-container .sysmg-pagechange {*/
+    /*width: 148px;*/
+    /*height: 38px;*/
+    /*font-size: 16px;*/
+    /*padding: 0 47px;*/
+    /*line-height: 38px;*/
+    /*background-color: #2196f3;*/
+    /*border: none;*/
+    /*border-radius: 3px 3px 3px 3px;*/
+
+
+/*}*/
+/*.sysmg-tr3 .active {*/
+    /*!*width: 30px;*!*/
+    /*!*padding: 0 11px;*!*/
+    /*background-color: #2196f3;*/
+    /*border: 1px solid #2196f3;*/
+
+/*}*/
+/*.sysmg-pageTitleCell .sysmg-disable {*/
+    /*!*width: 30px;*!*/
+    /*!*padding: 0 11px;*!*/
+    /*background-color: #565656;*/
+    /*border: 1px solid #565656;*/
+    /*cursor: not-allowed;*/
+/*}*/
+.smartEyes-container .sysmg-hidetd {
+    /*display: none;*/
+    /*display: table-cell;*/
+}
+.smartEyes-container #sysmg-content .sysmg-hideinput {
+    /*display: run-in;*/
+    display: none;
+
+}
+.smartEyes-container #sysmg-content .sysmg-hideinput input{
+    color: #fff;
+    text-align: center;
+    background-color: #2f3242;
+    border: none;
+}
+
+.sysmg-adduser {
+    color: #fff;
+    margin-top: 50px;
+    margin-left: 67px;
+    /*text-align: center;*/
+
+    width: 366px;
+    height: 230px;
+    top:0;
+    left: 0;
+    /*background-color: red;*/
+
+}
+.sysmg-adduser div.item {
+    width: 364px;
+    height: 43px;
+    right: 0px;
+    margin-bottom: 24px;
+
+}
+.sysmg-adduser div span.label{
+    display: inline-block;
+    width: 72px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: right;
+    float: left;
+    /*height: 18px;*/
+    /*line-height: 18px;*/
+    /*padding: 6px 0;*/
+    /*width: 100px;*/
+    /*text-align: right;*/
+}
+input {
+    border: none;
+}
+.sysmg-adduser div input{
+    width: 290px;
+    height: 43px;
+    background-color: #2f3242;
+    border:1px solid #9e9fa7;
+    border-radius: 3px 3px 3px 3px;
+    padding-left: 5px;
+
+}
+.sysmg-subBtn {
+    width: 162px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #2196f3;
+    margin: 0 auto;
+    border-radius: 5px 5px 5px 5px;
+    border-color: #2196f3;
+    margin-right: 70px;
+    float:right;
+}
+
+

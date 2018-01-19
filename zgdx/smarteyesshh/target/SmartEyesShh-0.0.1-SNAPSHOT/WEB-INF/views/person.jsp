@@ -27,6 +27,7 @@
 				<div class="findpwd">
 					<div class="top clearfix">
 						<div>目标人员管理</div>
+						<div class="find">查询记录</div>
 					</div>
 					<div class="bottom clearfix">
 						<div class="magtit">
@@ -79,14 +80,12 @@
 						<img src="${img}/magclose.png" alt="">
 					</div>
 					<div class="box_bottom">
-						<div>
-							 <input type="file" name="fileUpload" class="choose" />
-						</div>
-						<div>下载批量提交模板</div>
-						<div>
-							<span>确认提交</span>
-							<span>取消</span>
-						</div>
+						<form action="${ctx}/target/uploadPhone" method="post" enctype="multipart/form-data" >
+							<input type="file" name="csvfile" class="choose" />
+							<div class="load">下载批量提交模板</div>
+							<input type="submit" value="确认提交">
+							<div>取消</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -99,10 +98,18 @@
 			</div>
 		</div>
 		<!--底部-->
+				<%--<jsp:include page="/WEB-INF/common/footer.jsp"/>--%>
 		<footer style="position: relative"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
 		<script>
 			$(function(){
 			    $("#navList").css("display","none");
+			    $(".mag .findpwd .top .find").click(function(){
+                    window.location.href="${ctx}/personlist"
+				});
+                //点击自动下载模板
+				$('.mag .submit_btn .box_bottom .load').click(function () {
+                    window.location.href="${ctx}/target/download";
+                })
 				$("input[name='tel']").blur(function () {
 	                var tel=$("input[name='tel']").val();
 	                if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(tel))){

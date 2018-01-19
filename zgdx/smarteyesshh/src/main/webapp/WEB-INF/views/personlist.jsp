@@ -108,10 +108,22 @@
             prevContent:'上页',
             nextContent:'下页',
             callback:function(index){
-                // console.log(index)
-                myajax(true,index.getCurrent())
+                // console.log(index.getCurrent());
+                //上一页下一页无法点击
+                if(index.getCurrent()==1){
+                    $(".mag-jilu .tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+                }else if(index.getCurrent()==pageCount){
+                    $(".mag-jilu .tabbtn .next").css("cursor","not-allowed").css("background","#565656");
+                }
+                myajax(true,index.getCurrent());
             }
         });
+        //上一页下一页无法点击
+        if($(".mag-jilu .tabbtn span").text()==1){
+            $(".mag-jilu .tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+        }else if($(".mag-jilu .tabbtn span").text()==pageCount){
+            $(".mag-jilu .tabbtn .next").css("cursor","not-allowed").css("background","#565656");
+        }
 
     })
 </script>

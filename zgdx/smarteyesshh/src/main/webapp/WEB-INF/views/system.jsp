@@ -297,9 +297,7 @@
             $('.operate-text').html("共"+pageall+"页");
             //总页数为1，上下都禁用。
             if(pageall===1){
-                $('#pageupdown li:last-child').children("a").removeClass("operate-disable");
                 $('#pageupdown').children("li").eq(0).children("a").addClass("operate-disable");
-                $('#pageupdown').children("li").eq(0).children("a").removeClass("operate-disable");
                 $('#pageupdown li:last-child').children("a").addClass("operate-disable");
 
             }else{

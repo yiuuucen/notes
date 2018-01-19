@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
-import static cn.com.ctbri.ctbigdata.smarteyes.constants.ProjectConstant.sessionCache;
-
 /**
  * Created by elite on 2018/1/10.
  */
@@ -34,9 +32,6 @@ public class LogController {
         if (pageCode == null)
             pageCode = 1;
         User user = (User) httpSession.getAttribute(ProjectConstant.CURRENT_USER);
-        if (user == null){
-            user = (User) sessionCache.get(ProjectConstant.CURRENT_USER);
-        }
         PageBean<SystemLog> data = logService.getLogPageList(user,10,pageCode);
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("data", data);

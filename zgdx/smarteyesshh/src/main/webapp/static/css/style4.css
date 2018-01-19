@@ -92,7 +92,7 @@ padding-bottom: 27px;
 .operate-tr3 td:nth-child(1){
     text-align: center;
 }
-.operate-pageTitleCell {
+.operate-pageTitleCell,.sysmg-pageTitleCell {
     display: inline-block;
     margin-top: 25px;
     height: 38px;
@@ -100,7 +100,7 @@ padding-bottom: 27px;
     /*padding-left: 10%;*/
 
 }
-.operate-pageTitleCell a {
+.operate-pageTitleCell a,.sysmg-pageTitleCell a {
     display: inline-block;
     height: 28px;
     margin-left: 12px;
@@ -114,7 +114,7 @@ padding-bottom: 27px;
     border: 1px solid #9d9fa6;
     cursor: pointer;
 }
-.smartEyes-container .operate-pagechange {
+.smartEyes-container .operate-pagechange,.smartEyes-container .sysmg-pagechange {
     width: 148px;
     height: 38px;
     font-size: 16px;
@@ -126,14 +126,14 @@ padding-bottom: 27px;
 
 
 }
-.operate-log .active {
+.operate-log .active,.sysmg-tr3 .active{
      /*width: 30px;*/
      /*padding: 0 11px;*/
      background-color: #2196f3;
      border: 1px solid #2196f3;
 
  }
-.operate-pageTitleCell .operate-disable {
+.operate-pageTitleCell .operate-disable,.sysmg-pageTitleCell .sysmg-disable  {
     /*width: 30px;*/
     /*padding: 0 11px;*/
     background-color: #565656;

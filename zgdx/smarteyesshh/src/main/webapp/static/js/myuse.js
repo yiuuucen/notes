@@ -11,10 +11,9 @@ $("#morebtn").click(function(){
 $(".mag .submit_box .box_top img").click(function(){
 	$(".mag .submit_btn").css('display','none')
 })
-$(".mag .submit_box .box_bottom div:nth-child(3) span").click(function(){
+$(".mag .submit_box .box_bottom div:last-child").click(function(){
 	$(".mag .submit_btn").css('display','none')
 })
-
 $(".mag .submit_fail .submit_box img").click(function(){
 	$(".mag .submit_fail").css('display','none')
 })

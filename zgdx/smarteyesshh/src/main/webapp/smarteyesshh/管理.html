@@ -55,6 +55,7 @@
 				<div class="findpwd">
 					<div class="top clearfix">
 						<div>目标人员管理</div>
+						<div class="find">查询记录</div>
 					</div>
 					<div class="bottom clearfix">
 						<div class="magtit">
@@ -107,14 +108,20 @@
 						<img src="img/magclose.png" alt="">
 					</div>
 					<div class="box_bottom">
-						<div>
+						<!-- <div>
 							 <input type="file" name="fileUpload" class="choose" />
 						</div>
 						<div>下载批量提交模板</div>
 						<div>
 							<span>确认提交</span>
 							<span>取消</span>
-						</div>
+						</div> -->
+						<form action="${ctx}/target/uploadPhone" method="post" enctype="multipart/form-data">
+							<input type="file" name="csvfile" class="choose" />
+							<div class="load">下载批量提交模板</div>
+							<input type="submit" value="确认提交">
+							<div>取消</div>
+						</form>
 					</div>
 				</div>
 			</div>
