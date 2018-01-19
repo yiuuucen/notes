@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- <link rel="stylesheet" href="style/pagination.css"> -->
+	<script src="common/jquery.min.js"></script>
+	<script src="jquery.pagination.js"></script>
+</head>
+<body>
+	<div class="M-box11"></div>
+	<script>
+		$('.M-box11').pagination({
+		    pageCount:15,
+            totalData:64,
+            showData:10,
+            mode:'fixed',
+            keepShowPN:true,
+            prevContent:'上页',
+            nextContent:'下页',
+            callback:function(index){
+                // console.log(index)
+                console.log(index.getCurrent())
+            }
+		});
+	</script>
+</body>
+</html>
