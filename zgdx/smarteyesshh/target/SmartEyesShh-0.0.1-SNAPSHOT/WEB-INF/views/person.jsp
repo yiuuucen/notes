@@ -80,10 +80,11 @@
 						<img src="${img}/magclose.png" alt="">
 					</div>
 					<div class="box_bottom">
-						<form action="${ctx}/target/uploadPhone" method="post" enctype="multipart/form-data" >
+						<%--<form action="${ctx}/target/uploadPhone" method="post" enctype="multipart/form-data" >--%>
+						<form method="post" enctype="multipart/form-data" id="myform" accept="text/csv">
 							<input type="file" name="csvfile" class="choose" />
 							<div class="load">下载批量提交模板</div>
-							<input type="submit" value="确认提交">
+							<input value="确认提交" id="btn" type="button">
 							<div>取消</div>
 						</form>
 					</div>
@@ -99,7 +100,7 @@
 		</div>
 		<!--底部-->
 				<%--<jsp:include page="/WEB-INF/common/footer.jsp"/>--%>
-		<footer style="position: relative"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+		<footer><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
 		<script>
 			$(function(){
 			    $("#navList").css("display","none");
@@ -146,6 +147,32 @@
                         })
 					}
 
+                });
+                // form表单提交
+                function test(){
+                    var form = new FormData($("#myform")[0]);
+                    $.ajax({
+                        url:"target/uploadPhone",
+                        type:"post",
+                        data:form,
+                        processData:false,
+                        contentType:false,
+                        success:function(data){
+                            var data=$.parseJSON(data);
+                            if(data.result!=0){
+                                alert("提交成功"+data.result+"条数据");
+                                window.location.href="${ctx}/personlist"
+							}else{
+                             	alert("您没有上传文件!");
+							}
+                        },
+                        error:function(e){
+                            alert("错误！！");
+                        }
+                    });
+                }
+                $("#btn").click(function(){
+                    test();
                 })
 			})
 		</script>

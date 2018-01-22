@@ -61,7 +61,7 @@
     margin: 33px 30px 0 106px;
     background-color: #2f3242;
     overflow: hidden;
-    min-height: 536px;
+    min-height: 556px;
 }
 .sysmg-table1 {
     width: 91%;
@@ -230,7 +230,7 @@
     margin-bottom: 24px;
 
 }
-.sysmg-adduser div span.label{
+.sysmg-adduser div span.label {
     display: inline-block;
     width: 72px;
     height: 40px;
@@ -238,11 +238,6 @@
     line-height: 40px;
     text-align: right;
     float: left;
-    /*height: 18px;*/
-    /*line-height: 18px;*/
-    /*padding: 6px 0;*/
-    /*width: 100px;*/
-    /*text-align: right;*/
 }
 input {
     border: none;
@@ -266,6 +261,125 @@ input {
     border-color: #2196f3;
     margin-right: 70px;
     float:right;
+}
+.sysmg-getuser{
+    color: #fff;
+    margin-top: 30px;
+    margin-left: 60px;
+    /*text-align: center;*/
+
+    width: 191px;
+    /*height: 217px;*/
+    top:0;
+    left: 0;
+    /*background-color: red;*/
+}
+.sysmg-getuser div.item  {
+    width: 364px;
+    height: 43px;
+    right: 0px;
+    margin-bottom: 24px;
+
+}
+
+.sysmg-getuser div span.label{
+    display: inline-block;
+    width: 72px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: right;
+
+}
+.sysmg-getuser div span.content {
+    display: inline-block;
+    width: 72px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: left;
+    padding-left: 10px;
+}
+.sysmg-cgpwBtn {
+    width: 162px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #2196f3;
+    border-radius: 5px 5px 5px 5px;
+    border-color: #2196f3;
+    margin-left: 15px;
+}
+
+.sysmg-cp {
+    color: #fff;
+    margin-top: 50px;
+    margin-left: 67px;
+    /*text-align: center;*/
+
+    width: 636px;
+    /*height: 230px;*/
+    top:0;
+    left: 0;
+    /*background-color: red;*/
+
+}
+.sysmg-cp div.item {
+    width: 636px;
+    height: 43px;
+    right: 0px;
+    margin-bottom: 24px;
+
+}
+.sysmg-cp div span.label {
+    display: inline-block;
+    width: 154px;
+    height: 43px;
+    font-size: 16px;
+    line-height: 43px;
+    text-align: right;
+    float: left;
+}
+
+.sysmg-cp div input{
+    width: 294px;
+    height: 43px;
+    background-color: #2f3242;
+    border:1px solid #9e9fa7;
+    border-radius: 3px 3px 3px 3px;
+    padding-left: 5px;
+
+}
+.sysmg-cfBtn {
+    width: 162px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #2196f3;
+    margin: 0 auto;
+    border-radius: 5px 5px 5px 5px;
+    border-color: #2196f3;
+    margin-right: 270px;
+    float:right;
+}
+.sysmg-cp div span.alabel {
+    width: 92px;
+}
+.sysmg-cp div span.alabel a {
+    color: #5e606a;
+}
+.sysmg-tips {
+    width: 320px;
+    height: 66px;
+    margin-left: 66px;
+    margin-top: 62px;
+    /*background-color: red;*/
+}
+.sysmg-tips p {
+    color: #fff;
+    font-size: 18px;
+    padding-bottom: 22px;
+}
+.sysmg-tips a {
+
 }
 
 

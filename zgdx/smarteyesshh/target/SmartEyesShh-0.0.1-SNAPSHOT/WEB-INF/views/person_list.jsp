@@ -199,7 +199,7 @@
     </div>
 </div>
 <!--底部-->
-<footer style="position: relative;"><p class="text-center">© 2017 SmartEyes | 猎犬上海网安版</p></footer>
+<footer><p class="text-center">© 2017 SmartEyes | 猎犬上海网安版</p></footer>
 <script>
     $(function(){
         $.ajax({

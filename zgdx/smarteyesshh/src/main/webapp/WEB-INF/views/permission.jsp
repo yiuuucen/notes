@@ -90,13 +90,13 @@
     <div class="sysmg-pannel">
         <ul>
             <li>
-                <a class="sysmg-b active" href="#">
+                <a class="sysmg-b active" href="#=${ctx}/permission">
                     <span class="sysmg-icon sysmg-icon1 "></span>
                     <p>用户管理</p>
                 </a>
             </li>
             <li>
-                <a class="sysmg-b" href="#">
+                <a class="sysmg-b" href="${ctx}/account">
                     <span class="sysmg-icon sysmg-icon2"></span>
                     <p>账号设置</p>
                 </a>

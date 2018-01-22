@@ -324,12 +324,10 @@
     background: url(../img/hrhr.png);
 }
 .mag .search{
-    margin: 83px auto 104px;
+    margin: 45px auto 80px;
 }
 .mag .findpwd{
-    width: 1190px;
-    height: 520px;
-    margin: 0 auto;
+    margin: 0 45px;
     background: #2f3242;
 }
 .mag .findpwd .top{
