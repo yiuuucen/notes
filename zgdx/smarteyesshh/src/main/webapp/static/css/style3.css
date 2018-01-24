@@ -329,10 +329,11 @@
 .mag .findpwd{
     margin: 0 45px;
     background: #2f3242;
+    box-shadow: 0px 0px 40px 3px #21232f;
 }
 .mag .findpwd .top{
     height: 66px;
-    box-shadow:3px 5px 5px #21232f;
+    box-shadow: 0px 5px 40px 3px #21232f;
 }
 .mag .findpwd .top>div{
 
@@ -508,23 +509,25 @@
     bottom: 0;
     margin: auto;
     text-align: center;
-    box-shadow: 0 0 6px 6px #21232f;
+    box-shadow: 0px 0px 40px 3px #21232f;
 }
 .mag .submit_box .box_top{
     height: 70px;
     text-align: center;
     line-height: 70px;
-    box-shadow: 3px 5px 5px #21232f;
+    box-shadow: 0px 5px 40px 3px #21232f;
 }
 .mag .submit_box .box_top span{
-    font-size: 26px;
+    font-size: 20px;
     color: #fff;
 }
 .mag .submit_box .box_top img{
     width: 18px;
-    margin: 29px 30px 0 0;
+    margin: 28px 30px 0 0;
     float: right;
     cursor: pointer;
+    position: absolute;
+    right: 0;
 }
 .mag .submit_box .box_bottom{
     color: #fff;
@@ -550,7 +553,7 @@
     line-height: 40px;
     float: left;
     background: #2196f3;
-    margin: 0 65px 0 100px;
+    margin: 15px 65px 0 100px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
@@ -564,7 +567,7 @@
     line-height: 40px;
     float: left;
     background: #2196f3;
-    margin: 0 65px 0 0;
+    margin: 15px 65px 0 0;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
@@ -590,7 +593,7 @@
     bottom: 0;
     margin: auto;
     color: #fff;
-    box-shadow: 0 0 6px 6px #21232f;
+    box-shadow: 0px 0px 40px 3px #21232f;
 }
 .mag .submit_fail .submit_box img{
     width: 20px;
@@ -679,6 +682,7 @@
 .mag-jilu .jilu{
     margin: 45px;
     background-color: #2f3242;
+    box-shadow: 0px 0px 40px 3px #21232f;
 }
 .mag-jilu .jilu h3{
     color: #fff;
@@ -691,22 +695,22 @@
 .mag-jilu .jilu .mytable{
     margin: 0 45px;
     text-align: center;
-    color: #fff;
+    color: #ddd;
 }
 .mag-jilu .jilu .mytable .tabhead{
-    border: 1px solid #fff;
+    border: 1px solid #ddd;
 }
 .mag-jilu .jilu .mytable .tabhead span{
     height: 47px;
     line-height: 47px;
     font-size: 18px;
-    border-right: 1px solid #fff;
+    border-right: 1px solid #ddd;
 }
 .mag-jilu .jilu .mytable .tabhead span:last-child{
     border-right:none;
 }
 .mag-jilu .jilu .mytable .tabcont{
-    border: 1px solid #fff;
+    border: 1px solid #ddd;
     border-top: none;
     box-sizing: border-box;
     position: relative;
@@ -725,7 +729,7 @@
 
 }
 .mag-jilu .jilu .mytable .tabcont .lie{
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
 }
 .mag-jilu .jilu .mytable .tabcont .lie:last-child{
     border-bottom: none;
@@ -737,7 +741,7 @@
     overflow: hidden;
 }
 .mag-jilu .jilu .mytable .tabcont .lie>span:nth-child(4),span:nth-child(7){
-    border-right: 1px solid #fff;
+    border-right: 1px solid #ddd;
 }
 .mag-jilu .jilu .mytable .tabbtn{
     height: 40px;
