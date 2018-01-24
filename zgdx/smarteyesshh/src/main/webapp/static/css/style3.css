@@ -352,7 +352,7 @@
     float: right;
     width: 120px;
     height: 30px;
-    font-size: 16px;
+    font-size: 14px;
     color: #fff;
     text-align: center;
     line-height: 30px;
@@ -400,7 +400,7 @@
     right: 70px;
     top: 35px;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 30px;
     cursor: pointer;
 }
@@ -428,6 +428,7 @@
 .mag .findpwd .bottom .msg>div>div{
     width: 320px;
     height: 100%;
+    margin: 0 0 0 5px;
 }
 .mag .findpwd .bottom .msg>div:nth-child(1)>div{
     display: flex;
@@ -493,7 +494,7 @@
     left: 0;
     top: 0;
     z-index: 9999;
-    background: rgba(0,0,0,0.5);
+    background: rgba(40,42,57,0.85);
     display: none;
 }
 .mag .submit_btn .submit_box{
@@ -507,6 +508,7 @@
     bottom: 0;
     margin: auto;
     text-align: center;
+    box-shadow: 0 0 6px 6px #21232f;
 }
 .mag .submit_box .box_top{
     height: 70px;
@@ -529,8 +531,7 @@
     overflow: hidden;
 }
 .mag .submit_box .box_bottom .choose{
-    width: 250px;
-    margin: 30px auto 0;
+    margin: 30px 0 0 210px;
 }
 .mag .submit_box .box_bottom .load{
     width: 160px;
@@ -575,7 +576,7 @@
     left: 0;
     top: 0;
     z-index: 9999;
-    background: rgba(0,0,0,0.5);
+    background: rgba(40,42,57,0.85);
     display: none;
 }
 .mag .submit_fail .submit_box{
@@ -589,6 +590,7 @@
     bottom: 0;
     margin: auto;
     color: #fff;
+    box-shadow: 0 0 6px 6px #21232f;
 }
 .mag .submit_fail .submit_box img{
     width: 20px;

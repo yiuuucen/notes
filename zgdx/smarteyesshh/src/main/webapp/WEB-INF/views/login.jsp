@@ -35,17 +35,18 @@
             position: absolute;
             width: 200px;
             text-align: center;
-            color: red;
-            padding: 15px;
+            color: #fff;
+            padding: 10px;
             border-radius: 5px;
-            left:-240px;
-            background: #fff;
+            left:-242px;
+            border: 1px solid #fff;
+            background: rgba(255,255,255,0.15);
         }
         .log .logdiv .shuru>div:nth-child(2) span:after{
             content: "";
             position: absolute;
-            top: 18px;
-            left: 200px;
+            top: 15px;
+            left: 199px;
             display: block;
             width: 13px;
             height: 16px;
@@ -89,14 +90,13 @@
 
     </div>
     <!--底部-->
-    <footer><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+    <jsp:include page="/WEB-INF/common/footer.jsp"/>
 
     <script>
         $(function(){
             $("input[type='submit']").click(function(){
                 var tel=$("input[name='username']").val();
                 var pwd=$("input[name='password']").val();
-                console.log(tel)
                 $.ajax({
                     type: "post",
                     url: "/user/login",
@@ -111,19 +111,37 @@
                         }
                     },
                     error:function(err) {
-                        console.log("ajax失败");
+                        if(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(tel)){
+                            $(".shuru>div:nth-child(1) span").css("display", "none");
+                            $(".shuru>div:nth-child(1)").append("<span>您输入的号码不存在!</span>");
+                        }
                     }
                 });
             })
             $("input[name='username']").blur(function () {
                 var tel=$("input[name='username']").val();
+                var pwd=$("input[name='password']").val();
                 if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(tel))){
                     $(".shuru>div:nth-child(1)").append("<span>您输入的号码有误!</span>");
                 }
                 if(tel==''){
                     $(".shuru>div:nth-child(1) span").css('display','none');
                 }
-                // alert(1);
+                $.ajax({
+                    type: "post",
+                    url: "/user/login",
+                    data: {"username":tel,"password":pwd},
+                    dataType: "json",
+                    async: true,
+                    success: function(){
+                    },
+                    error:function(err) {
+                        if(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(tel)){
+                            $(".shuru>div:nth-child(1) span").css("display", "none");
+                            $(".shuru>div:nth-child(1)").append("<span>您输入的号码不存在!</span>");
+                        }
+                    }
+                });
             });
             $("input[name='username']").focus(function () {
                 $(".shuru>div:nth-child(1) span").css('display','none');

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${css}/style.css" />
     <link rel="stylesheet" href="${css}/style2.css" />
     <link rel="stylesheet" href="${css}/style4.css" />
-    <%--<link rel="stylesheet" href="${css}/style5.css" />--%>
+    <link rel="stylesheet" href="${css}/style5.css" />
     <link rel="stylesheet" href="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
@@ -37,7 +37,7 @@
 </head>
 <body>
 <div class="container-fluid smartEyes-container">
-    <jsp:include page="/WEB-INF/common/head2.jsp"/>
+    <jsp:include page="/WEB-INF/common/head.jsp"/>
 
     <%--<header class="row">--%>
         <%--<!--logo-->--%>
@@ -300,20 +300,19 @@
         </div>
     </div>
     <!--底部-->
-        <jsp:include page="/WEB-INF/common/footer.jsp"/>
-    <%--<footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>--%>
+    <footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
     <script>
         $(function () {
             var ut = $("#userType").val();
 
             if(ut === "1"){
                $(".smartEyes-container").css("display","none");
-                window.location.href="${ctx}/account";
             }
 
             console.log("permission is ut");
             console.log(ut);
 
+            $("#navList").css("display","none");
             //动态获取阴影高度
             var h= $(window).height();
             $(".sysmg-rbox").height(h-226);
@@ -374,11 +373,6 @@
                                         break;
                                     }
                                 }
-                                var phoneReg = /[1][3-8]{1}\d{9}($|[^0-9]{1})/;
-                                if(!phoneReg.test(newuser[1])){
-                                    newstatus = 0;
-                                    alert("您输入的号码有误。");
-                                }
                                 console.log(newuser);
                                 if(newstatus===1){
                                     $.ajax({
@@ -394,7 +388,7 @@
                                                 window.location.reload();//刷新当前页面.
 
                                             }else{
-                                                alert("当前账号已存在不能添加");
+                                                alert("不能添加");
                                                 console.log(res);
                                             }
                                         },error:function () {
@@ -419,7 +413,6 @@
                 $(".mybtn2").click(
                     function () {
                         var mytxt = this.innerHTML;
-                        var inputuserid = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
 
                         if(mytxt ==="修改"){
                             this.innerHTML="完成";
@@ -448,7 +441,7 @@
 
                             }
                             //userId
-//                            inputuserid = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
+                            myinput[3] = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
 
                             //把文字显示出来
 
@@ -459,55 +452,29 @@
                             $(this).parent("span").parent("td").parent("tr").children('.sysmg-hideinput').css("display","none");
                             $(this).parent("span").parent("td").parent("tr").children('.sysmg-hidetd').css("display","table-cell");
                             //如果确实改了，就提交请求。
-                            var paraarr = {};
-                            paraarr.userId = inputuserid;
-                            var numArr = [];
                             for(var k = 0 ;k<3; k++){
-                                //有哪几个改了。
+                                //只要有一个不一样。
                                 if(myinput[k] !== myinput2[k]){
-                                    numArr.push(k);
-                                }
-                            }
-                            var numArrlen = numArr.length;
-                            //确实改了
-                            if(numArrlen !== 0) {
-                                for (var q = 0; q < numArrlen; q++) {
-                                    switch (numArr[q]) {
-                                        case 0:
-                                            paraarr.usernick = myinput[0];
-                                            break;
-                                        case 1:
-                                            paraarr.username = myinput[1];
-                                            break;
-                                        case 2:
-                                            paraarr.password = myinput[2];
-                                            break;
-                                    }
-                                }
-//                                console.log("parajson");
-//                                console.log(paraarr);
-//                                console.log(paraarr.userId);
-
-                                //提交保存数据
-                                $.ajax({
-                                    type:"GET",
-                                    url:"user/setUser",
-                                    dataType:"json",
-//                                    data:{"userId":myinput[3],"usernick":myinput[0],"username":myinput[1],"password":myinput[2]},
-                                    data: paraarr,
-                                    success:function (res) {
-                                        if(res.result===1){
-                                            alert("修改成功");
-                                        }else{
-                                            alert("不能修改");
+                                    //提交保存数据
+                                    $.ajax({
+                                        type:"GET",
+                                        url:"user/setUser",
+                                        dataType:"json",
+                                        data:{"userId":myinput[3],"username":myinput[1],"usernick":myinput[0],"password":myinput[2]},
+                                        success:function (res) {
+                                            if(res.result===1){
+                                                alert("修改成功");
+                                            }else{
+                                                alert("不能修改");
+                                            }
+                                        },error:function () {
+                                            console.log("修改提交错误");
                                         }
-                                    },error:function () {
-                                        console.log("修改提交错误");
-                                    }
 
-                                })
+                                    })
+                                }
+
                             }
-
 
                         }else if(mytxt ==="禁用"){
                             this.innerHTML="启用";
@@ -516,7 +483,7 @@
                                 type:"GET",
                                 url:"user/setUser",
                                 dataType:"json",
-                                data:{"userId":inputuserid,"status":-1},
+                                data:{"userId":myinput[3],"username":myinput[1],"usernick":myinput[0],"password":myinput[2],"status":1},
                                 success:function (res) {
                                     if(res.result===1){
                                         alert("禁用成功");
@@ -535,7 +502,7 @@
                                 type:"GET",
                                 url:"user/setUser",
                                 dataType:"json",
-                                data:{"userId":inputuserid,"status":1},
+                                data:{"userId":myinput[3],"username":myinput[1],"usernick":myinput[0],"password":myinput[2],"status":-1},
                                 success:function (res) {
                                     if(res.result===1){
                                         alert("启用成功");
@@ -592,7 +559,6 @@
             for(var i = 0 ;i < arr.length; i++){
                 var status;
                 if(arr[i].status=== 1){
-                    //当前状态为1，为启用状态，提示禁用按钮
                     status = "禁用";
                 }else {
                     status = "启用";

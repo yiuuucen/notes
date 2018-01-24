@@ -35,18 +35,17 @@
             position: absolute;
             width: 200px;
             text-align: center;
-            color: #fff;
-            padding: 10px;
+            color: red;
+            padding: 15px;
             border-radius: 5px;
-            left:-242px;
-            border: 1px solid #fff;
-            background: rgba(255,255,255,0.15);
+            left:-240px;
+            background: #fff;
         }
         .log .logdiv .shuru>div:nth-child(2) span:after{
             content: "";
             position: absolute;
-            top: 15px;
-            left: 199px;
+            top: 18px;
+            left: 200px;
             display: block;
             width: 13px;
             height: 16px;
@@ -90,7 +89,7 @@
 
     </div>
     <!--底部-->
-    <jsp:include page="/WEB-INF/common/footer.jsp"/>
+    <footer><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
 
     <script>
         $(function(){

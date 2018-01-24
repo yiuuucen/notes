@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/common/taglib.jsp"%>
 <header class="row">
+    <input type="hidden" value="${userType}" id="userType"/>
     <!--logo-->
     <div class="col-lg-2  col-md-2 col-xs-2 logo"><a><img src="${img}/1logo.png" alt=""></a></div>
     <div class="col-lg-5 col-md-5 col-xs-5">
@@ -38,16 +39,8 @@
     </div>
 </header>
 <script>
+    var ut = $("#userType").val();
     function operateManage(value) {
-//            var myDate = new Date();
-//        var myDate = new Date("2017-12-31");
-//        var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
-//        mymonth = mymonth + 1;
-//        mymonth = mymonth < 10 ? '0'+mymonth: mymonth;
-//        var mydate = myDate.getDate();//获取当前日(1-31)
-//        mydate = mydate-1;
-//        mydate = mydate < 10 ? '0'+mydate: mydate;
-//        var timerange = [];
 
         switch(value){
             case "configure":
@@ -60,7 +53,16 @@
                 window.location.href="${ctx}/person";
                 break;
             case "systemRightManage":
-                window.location.href="${ctx}/permission";
+                if(ut === "0"){
+                    window.location.href="${ctx}/permission";
+
+                }else if(ut === "1"){
+
+                    window.location.href="${ctx}/account";
+                    <%--window.location.href="${ctx}/permission";--%>
+                }else {
+                    console.log("error:"+ut);
+                }
                 break;
 
         }

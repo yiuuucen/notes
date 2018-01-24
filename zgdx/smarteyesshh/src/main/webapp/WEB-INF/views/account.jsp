@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${css}/style.css" />
     <link rel="stylesheet" href="${css}/style2.css" />
     <link rel="stylesheet" href="${css}/style4.css" />
-    <link rel="stylesheet" href="${css}/style5.css" />
+    <%--<link rel="stylesheet" href="${css}/style5.css" />--%>
     <link rel="stylesheet" href="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
@@ -37,64 +37,70 @@
 </head>
 <body>
 <div class="container-fluid smartEyes-container">
+    <%--<input type="hidden" value="${userType}" id="userType"/>--%>
+    <jsp:include page="/WEB-INF/common/head2.jsp"/>
 
-    <header class="row">
-        <!--logo-->
-        <div class="col-lg-2  col-md-2 col-xs-2 logo"><a><img src="${img}/1logo.png" alt=""></a></div>
-        <%--<div class="col-lg-5 col-md-5 col-xs-5">--%>
-        <%--<ul class="nav nav-pills navList" id="navList">--%>
-        <%--<li role="presentation" class=""><a href="${ctx}/overview?targetPhone=${targetPhone}"><i><img id="img1" src="${img}/u-03.png"></i>概览</a></li>--%>
-        <%--<li role="presentation" class=""><a href="${ctx}/contact?targetPhone=${targetPhone}"><i><img id="img2" src="${img}/u-04.png"></i>联系人列表</a></li>--%>
-        <%--<li role="presentation" class=""><a href="${ctx}/region?targetPhone=${targetPhone}"><i><img  id="img3" src="${img}/u-05.png"></i>区域与轨迹</a></li>--%>
-        <%--<!--<li role="presentation" class=""><a href="帐号.html"><i></i>帐号</a></li>-->--%>
-        <%--</ul>--%>
+    <%--<header class="row">--%>
+        <%--<!--logo-->--%>
+        <%--<div class="col-lg-2  col-md-2 col-xs-2 logo"><a><img src="${img}/1logo.png" alt=""></a></div>--%>
+        <%--&lt;%&ndash;<div class="col-lg-5 col-md-5 col-xs-5">&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<ul class="nav nav-pills navList" id="navList">&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<li role="presentation" class=""><a href="${ctx}/overview?targetPhone=${targetPhone}"><i><img id="img1" src="${img}/u-03.png"></i>概览</a></li>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<li role="presentation" class=""><a href="${ctx}/contact?targetPhone=${targetPhone}"><i><img id="img2" src="${img}/u-04.png"></i>联系人列表</a></li>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<li role="presentation" class=""><a href="${ctx}/region?targetPhone=${targetPhone}"><i><img  id="img3" src="${img}/u-05.png"></i>区域与轨迹</a></li>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<!--<li role="presentation" class=""><a href="帐号.html"><i></i>帐号</a></li>-->&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</ul>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--<!--<div class="col-lg-4">--%>
+            <%--<div class="form-group">--%>
+                <%--<input type="text"class="form-control"  />--%>
+            <%--</div>--%>
+
+        <%--</div>-->--%>
+        <%--<div class="col-lg-1 col-md-1 col-xs-1 fr">--%>
+            <%--<a href="${ctx}/search"><img src="${img}/u03.png"></a>--%>
         <%--</div>--%>
-        <!--<div class="col-lg-4">
-            <div class="form-group">
-                <input type="text"class="form-control"  />
-            </div>
-
-        </div>-->
-        <div class="col-lg-1 col-md-1 col-xs-1 fr">
-            <a href="${ctx}/search"><img src="${img}/u03.png"></a>
-        </div>
-        <div class="col-lg-1 col-md-1 col-xs-1 pull-right text-right input-group fr" style="margin-top: 27px">
-            <select class="pull-right select myselect" onchange="operateManage(this.options[this.options.selectedIndex].value)">
-                <option value="configure" selected=''>&nbsp;配置</option>
-                <option value="userOperateLog">&nbsp;用户操作日志</option>
-                <option value="targetPersonManage">&nbsp;目标人员管理</option>
-                <option value="systemRightManage">&nbsp;系统权限管理</option>
-            </select>
-        </div>
-    </header>
+        <%--<div class="col-lg-1 col-md-1 col-xs-1 pull-right text-right input-group fr" style="margin-top: 27px">--%>
+            <%--<select class="pull-right select myselect" onchange="operateManage(this.options[this.options.selectedIndex].value)">--%>
+                <%--<option value="configure" selected=''>&nbsp;配置</option>--%>
+                <%--<option value="userOperateLog">&nbsp;用户操作日志</option>--%>
+                <%--<option value="targetPersonManage">&nbsp;目标人员管理</option>--%>
+                <%--<option value="systemRightManage">&nbsp;系统权限管理</option>--%>
+            <%--</select>--%>
+        <%--</div>--%>
+    <%--</header>--%>
     <script>
-        function operateManage(value) {
+        <%--function operateManage(value) {--%>
 
-            switch(value){
-                case "userOperateLog":
-                    //当天热力
-                    window.location.href="${ctx}/system";
-                    break;
-                case "targetPersonManage":
-                    window.location.href="${ctx}/system";
-                    break;
-                case "systemRightManage":
-                    window.location.href="${ctx}/system";
-                    break;
+            <%--switch(value){--%>
+                <%--case "userOperateLog":--%>
+                    <%--//当天热力--%>
+                    <%--window.location.href="${ctx}/system";--%>
+                    <%--break;--%>
+                <%--case "targetPersonManage":--%>
+                    <%--window.location.href="${ctx}/system";--%>
+                    <%--break;--%>
+                <%--case "systemRightManage":--%>
+                    <%--window.location.href="${ctx}/system";--%>
+                    <%--break;--%>
 
-            }
+            <%--}--%>
 
-        }
+        <%--}--%>
 
     </script>
     <div class="sysmg-pannel">
         <ul>
-            <li>
+            <li class="sysmg-tbum">
                 <a class="sysmg-b " href="${ctx}/permission">
                     <span class="sysmg-icon sysmg-icon1 "></span>
                     <p>用户管理</p>
                 </a>
+                <p class="holdarea">
+
+                </p>
             </li>
+
             <li>
                 <a class="sysmg-b active" href="${ctx}/account">
                     <span class="sysmg-icon sysmg-icon2"></span>
@@ -158,8 +164,16 @@
         </div>
     </div>
     <!--底部-->
-    <footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+    <jsp:include page="/WEB-INF/common/footer.jsp"/>
+    <%--<footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>--%>
     <script>
+        var ut = $("#userType").val();
+        if(ut==="0"){
+
+        }else {
+            $(".sysmg-tbum").css("display","none");
+        }
+
 
         //动态获取阴影高度
         var h= $(window).height();
@@ -176,25 +190,25 @@
         $(".myselect").children("option").removeAttr("selected");
         $(".myselect").children("option[value='systemRightManage']").attr("selected",true);
         //change事件
-        function operateManage(value) {
+        <%--function operateManage(value) {--%>
 
-            switch(value){
-                case "configure":
-                <%--window.location.href="${ctx}/system";--%>
-                    break;
-                case "userOperateLog":
-                    window.location.href="${ctx}/system";
-                    break;
-                case "targetPersonManage":
-                    window.location.href="${ctx}/person";
-                    break;
-                case "systemRightManage":
-                    window.location.href="${ctx}/permission";
-                    break;
+            <%--switch(value){--%>
+                <%--case "configure":--%>
+                <%--&lt;%&ndash;window.location.href="${ctx}/system";&ndash;%&gt;--%>
+                    <%--break;--%>
+                <%--case "userOperateLog":--%>
+                    <%--window.location.href="${ctx}/system";--%>
+                    <%--break;--%>
+                <%--case "targetPersonManage":--%>
+                    <%--window.location.href="${ctx}/person";--%>
+                    <%--break;--%>
+                <%--case "systemRightManage":--%>
+                    <%--window.location.href="${ctx}/permission";--%>
+                    <%--break;--%>
 
-            }
+            <%--}--%>
 
-        }
+        <%--}--%>
         $(function(){
             getUser();
 
@@ -256,7 +270,7 @@
                                             if (res.result === 1) {
                                                 alert("修改密码成功");
                                             $(".sysmg-tips").css("display","block");
-                                            $(".sysmg-adduser").css("display","none");
+                                            $(".sysmg-cp").css("display","none");
                                             $(".sysmg-getuser").css("display","none");
 //                                                window.location.reload();//刷新当前页面.
 

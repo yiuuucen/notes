@@ -16,7 +16,7 @@
 	<body>
 		<div class="container-fluid smartEyes-container mag">
 
-			<jsp:include page="/WEB-INF/common/head.jsp"/>
+			<jsp:include page="/WEB-INF/common/head2.jsp"/>
 
 		<div class="row clearfix">
 
@@ -99,8 +99,7 @@
 			</div>
 		</div>
 		<!--底部-->
-				<%--<jsp:include page="/WEB-INF/common/footer.jsp"/>--%>
-		<footer><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+				<jsp:include page="/WEB-INF/common/footer.jsp"/>
 		<script>
 			$(function(){
 			    $("#navList").css("display","none");
@@ -160,11 +159,13 @@
                         success:function(data){
                             var data=$.parseJSON(data);
                             if(data.result!=0){
-                                alert("提交成功"+data.result+"条数据");
+                                // alert("提交成功"+data.result+"条数据");
+								alert("提交成功");
                                 window.location.href="${ctx}/personlist"
 							}else{
                              	alert("您没有上传文件!");
 							}
+							// console.log(data)
                         },
                         error:function(e){
                             alert("错误！！");

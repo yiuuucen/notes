@@ -39,28 +39,28 @@
 <body>
 <div class="container-fluid smartEyes-container">
 
-    <%--<jsp:include page="/WEB-INF/common/head.jsp"/>--%>
-    <header class="row">
-        <!--logo-->
-        <div class="col-lg-2  col-md-2 col-xs-2 logo"><a><img src="${img}/1logo.png" alt=""></a></div>
-        <!--<div class="col-lg-4">
-            <div class="form-group">
-                <input type="text"class="form-control"  />
-            </div>
+    <jsp:include page="/WEB-INF/common/head2.jsp"/>
+    <%--<header class="row">--%>
+        <%--<!--logo-->--%>
+        <%--<div class="col-lg-2  col-md-2 col-xs-2 logo"><a><img src="${img}/1logo.png" alt=""></a></div>--%>
+        <%--<!--<div class="col-lg-4">--%>
+            <%--<div class="form-group">--%>
+                <%--<input type="text"class="form-control"  />--%>
+            <%--</div>--%>
 
-        </div>-->
-        <div class="col-lg-1 col-md-1 col-xs-1 fr">
-            <a href="${ctx}/search"><img src="${img}/u03.png"></a>
-        </div>
-        <div class="col-lg-1 col-md-1 col-xs-1 pull-right text-right input-group fr" style="margin-top: 27px">
-            <select class="pull-right select myselect" onchange="operateManage(this.options[this.options.selectedIndex].value)">
-                <option value="configure" selected="">&nbsp;配置</option>
-                <option value="userOperateLog" >&nbsp;用户操作日志</option>
-                <option value="targetPersonManage" >&nbsp;目标人员管理</option>
-                <option value="systemRightManage" >&nbsp;系统权限管理</option>
-            </select>
-        </div>
-    </header>
+        <%--</div>-->--%>
+        <%--<div class="col-lg-1 col-md-1 col-xs-1 fr">--%>
+            <%--<a href="${ctx}/search"><img src="${img}/u03.png"></a>--%>
+        <%--</div>--%>
+        <%--<div class="col-lg-1 col-md-1 col-xs-1 pull-right text-right input-group fr" style="margin-top: 27px">--%>
+            <%--<select class="pull-right select myselect" onchange="operateManage(this.options[this.options.selectedIndex].value)">--%>
+                <%--<option value="configure" selected="">&nbsp;配置</option>--%>
+                <%--<option value="userOperateLog" >&nbsp;用户操作日志</option>--%>
+                <%--<option value="targetPersonManage" >&nbsp;目标人员管理</option>--%>
+                <%--<option value="systemRightManage" >&nbsp;系统权限管理</option>--%>
+            <%--</select>--%>
+        <%--</div>--%>
+    <%--</header>--%>
 
     <div class="row searchBox">
         <div class="col-lg-12 col-md-12 col-xs-12 namelist clearfix">
@@ -152,36 +152,21 @@
     <!--底部-->
     <footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
     <script>
-        //动态获取阴影高度
-        var h= $(window).height();
-        $(".operate-log").height(h-226);
-        $(window).resize(function(){
+        $(function(){
+            //动态获取阴影高度
             var h= $(window).height();
             $(".operate-log").height(h-226);
+            $(window).resize(function(){
+                var h= $(window).height();
+                $(".operate-log").height(h-226);
+            });
+            //设置选中
+
+            $("option[value='userOperateLog']").attr("selected","selected").siblings().removeAttr("selected");
+
         });
-        //设置选中
-        $(".myselect").children("option").removeAttr("selected");
-        $(".myselect").children("option[value='userOperateLog']").attr("selected",true);
-        //change事件
-        function operateManage(value) {
 
-            switch(value){
-                case "configure":
-                <%--window.location.href="${ctx}/system";--%>
-                    break;
-                case "userOperateLog":
-                    window.location.href="${ctx}/system";
-                    break;
-                case "targetPersonManage":
-                    window.location.href="${ctx}/person";
-                    break;
-                case "systemRightManage":
-                    window.location.href="${ctx}/permission";
-                    break;
 
-            }
-
-        }
         //分页操作
         //定义三个全局变量
         var currentPage = 1;//当前页

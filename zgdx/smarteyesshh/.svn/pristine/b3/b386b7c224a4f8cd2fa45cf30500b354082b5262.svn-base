@@ -374,11 +374,6 @@
                                         break;
                                     }
                                 }
-                                var phoneReg = /[1][3-8]{1}\d{9}($|[^0-9]{1})/;
-                                if(!phoneReg.test(newuser[1])){
-                                    newstatus = 0;
-                                    alert("您输入的号码有误。");
-                                }
                                 console.log(newuser);
                                 if(newstatus===1){
                                     $.ajax({
@@ -394,7 +389,7 @@
                                                 window.location.reload();//刷新当前页面.
 
                                             }else{
-                                                alert("当前账号已存在不能添加");
+                                                alert("不能添加");
                                                 console.log(res);
                                             }
                                         },error:function () {

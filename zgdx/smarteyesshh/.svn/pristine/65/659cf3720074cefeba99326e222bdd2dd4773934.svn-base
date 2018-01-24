@@ -153,6 +153,7 @@
     <footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
     <script>
         $(function(){
+//            $("#navList").css("display","none");
             //动态获取阴影高度
             var h= $(window).height();
             $(".operate-log").height(h-226);

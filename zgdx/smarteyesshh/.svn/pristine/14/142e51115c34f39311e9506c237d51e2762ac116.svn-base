@@ -99,7 +99,8 @@
 			</div>
 		</div>
 		<!--底部-->
-				<jsp:include page="/WEB-INF/common/footer.jsp"/>
+				<%--<jsp:include page="/WEB-INF/common/footer.jsp"/>--%>
+		<footer><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
 		<script>
 			$(function(){
 			    $("#navList").css("display","none");

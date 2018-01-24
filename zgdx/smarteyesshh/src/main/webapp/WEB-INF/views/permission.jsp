@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${css}/style.css" />
     <link rel="stylesheet" href="${css}/style2.css" />
     <link rel="stylesheet" href="${css}/style4.css" />
-    <link rel="stylesheet" href="${css}/style5.css" />
+    <%--<link rel="stylesheet" href="${css}/style5.css" />--%>
     <link rel="stylesheet" href="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
@@ -37,64 +37,50 @@
 </head>
 <body>
 <div class="container-fluid smartEyes-container">
+    <jsp:include page="/WEB-INF/common/head2.jsp"/>
 
-    <header class="row">
-        <!--logo-->
-        <div class="col-lg-2  col-md-2 col-xs-2 logo"><a><img src="${img}/1logo.png" alt=""></a></div>
-        <%--<div class="col-lg-5 col-md-5 col-xs-5">--%>
-            <%--<ul class="nav nav-pills navList" id="navList">--%>
-                <%--<li role="presentation" class=""><a href="${ctx}/overview?targetPhone=${targetPhone}"><i><img id="img1" src="${img}/u-03.png"></i>概览</a></li>--%>
-                <%--<li role="presentation" class=""><a href="${ctx}/contact?targetPhone=${targetPhone}"><i><img id="img2" src="${img}/u-04.png"></i>联系人列表</a></li>--%>
-                <%--<li role="presentation" class=""><a href="${ctx}/region?targetPhone=${targetPhone}"><i><img  id="img3" src="${img}/u-05.png"></i>区域与轨迹</a></li>--%>
-                <%--<!--<li role="presentation" class=""><a href="帐号.html"><i></i>帐号</a></li>-->--%>
-            <%--</ul>--%>
+    <%--<header class="row">--%>
+        <%--<!--logo-->--%>
+        <%--<div class="col-lg-2  col-md-2 col-xs-2 logo"><a><img src="${img}/1logo.png" alt=""></a></div>--%>
+        <%--&lt;%&ndash;<div class="col-lg-5 col-md-5 col-xs-5">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<ul class="nav nav-pills navList" id="navList">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<li role="presentation" class=""><a href="${ctx}/overview?targetPhone=${targetPhone}"><i><img id="img1" src="${img}/u-03.png"></i>概览</a></li>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<li role="presentation" class=""><a href="${ctx}/contact?targetPhone=${targetPhone}"><i><img id="img2" src="${img}/u-04.png"></i>联系人列表</a></li>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<li role="presentation" class=""><a href="${ctx}/region?targetPhone=${targetPhone}"><i><img  id="img3" src="${img}/u-05.png"></i>区域与轨迹</a></li>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<!--<li role="presentation" class=""><a href="帐号.html"><i></i>帐号</a></li>-->&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</ul>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--<!--<div class="col-lg-4">--%>
+            <%--<div class="form-group">--%>
+                <%--<input type="text"class="form-control"  />--%>
+            <%--</div>--%>
+
+        <%--</div>-->--%>
+        <%--<div class="col-lg-1 col-md-1 col-xs-1 fr">--%>
+            <%--<a href="${ctx}/search"><img src="${img}/u03.png"></a>--%>
         <%--</div>--%>
-        <!--<div class="col-lg-4">
-            <div class="form-group">
-                <input type="text"class="form-control"  />
-            </div>
+        <%--<div class="col-lg-1 col-md-1 col-xs-1 pull-right text-right input-group fr" style="margin-top: 27px">--%>
+            <%--<select class="pull-right select myselect" onchange="operateManage(this.options[this.options.selectedIndex].value)">--%>
+                <%--<option value="configure" selected=''>&nbsp;配置</option>--%>
+                <%--<option value="userOperateLog">&nbsp;用户操作日志</option>--%>
+                <%--<option value="targetPersonManage">&nbsp;目标人员管理</option>--%>
+                <%--<option value="systemRightManage">&nbsp;系统权限管理</option>--%>
+            <%--</select>--%>
+        <%--</div>--%>
+    <%--</header>--%>
 
-        </div>-->
-        <div class="col-lg-1 col-md-1 col-xs-1 fr">
-            <a href="${ctx}/search"><img src="${img}/u03.png"></a>
-        </div>
-        <div class="col-lg-1 col-md-1 col-xs-1 pull-right text-right input-group fr" style="margin-top: 27px">
-            <select class="pull-right select myselect" onchange="operateManage(this.options[this.options.selectedIndex].value)">
-                <option value="configure" selected=''>&nbsp;配置</option>
-                <option value="userOperateLog">&nbsp;用户操作日志</option>
-                <option value="targetPersonManage">&nbsp;目标人员管理</option>
-                <option value="systemRightManage">&nbsp;系统权限管理</option>
-            </select>
-        </div>
-    </header>
-    <script>
-        function operateManage(value) {
-
-            switch(value){
-                case "userOperateLog":
-                    //当天热力
-                    window.location.href="${ctx}/system";
-                    break;
-                case "targetPersonManage":
-                    window.location.href="${ctx}/system";
-                    break;
-                case "systemRightManage":
-                    window.location.href="${ctx}/system";
-                    break;
-
-            }
-
-        }
-
-    </script>
     <div class="sysmg-pannel">
         <ul>
             <li>
-                <a class="sysmg-b active" href="#=${ctx}/permission">
+                <a class="sysmg-b active" href="${ctx}/permission">
                     <span class="sysmg-icon sysmg-icon1 "></span>
                     <p>用户管理</p>
                 </a>
+                <p class="holdarea">
+
+                </p>
             </li>
+
             <li>
                 <a class="sysmg-b" href="${ctx}/account">
                     <span class="sysmg-icon sysmg-icon2"></span>
@@ -314,43 +300,56 @@
         </div>
     </div>
     <!--底部-->
-    <footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+        <jsp:include page="/WEB-INF/common/footer.jsp"/>
+    <%--<footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>--%>
     <script>
+        $(function () {
+            var ut = $("#userType").val();
 
-        //动态获取阴影高度
-        var h= $(window).height();
-        $(".sysmg-rbox").height(h-226);
-        //pannel高度
-        $(".sysmg-pannel").height(h-120);
-
-        $(window).resize(function(){
-            var h= $(window).height();
-            $(".sysmg-rbox").height(h-226);
-            $(".sysmg-pannel").height(h-120);
-        });
-        //设置选中
-        $(".myselect").children("option").removeAttr("selected");
-        $(".myselect").children("option[value='systemRightManage']").attr("selected",true);
-        //change事件
-        function operateManage(value) {
-
-            switch(value){
-                case "configure":
-                <%--window.location.href="${ctx}/system";--%>
-                    break;
-                case "userOperateLog":
-                    window.location.href="${ctx}/system";
-                    break;
-                case "targetPersonManage":
-                    window.location.href="${ctx}/person";
-                    break;
-                case "systemRightManage":
-                    window.location.href="${ctx}/permission";
-                    break;
-
+            if(ut === "1"){
+               $(".smartEyes-container").css("display","none");
+                window.location.href="${ctx}/account";
             }
 
-        }
+            console.log("permission is ut");
+            console.log(ut);
+
+            //动态获取阴影高度
+            var h= $(window).height();
+            $(".sysmg-rbox").height(h-226);
+            //pannel高度
+            $(".sysmg-pannel").height(h-120);
+
+            $(window).resize(function(){
+                var h= $(window).height();
+                $(".sysmg-rbox").height(h-226);
+                $(".sysmg-pannel").height(h-120);
+            });
+            //设置选中
+            $(".myselect").children("option").removeAttr("selected");
+            $(".myselect").children("option[value='systemRightManage']").attr("selected",true);
+        })
+
+        //change事件
+        <%--function operateManage(value) {--%>
+
+            <%--switch(value){--%>
+                <%--case "configure":--%>
+                <%--&lt;%&ndash;window.location.href="${ctx}/system";&ndash;%&gt;--%>
+                    <%--break;--%>
+                <%--case "userOperateLog":--%>
+                    <%--window.location.href="${ctx}/system";--%>
+                    <%--break;--%>
+                <%--case "targetPersonManage":--%>
+                    <%--window.location.href="${ctx}/person";--%>
+                    <%--break;--%>
+                <%--case "systemRightManage":--%>
+                    <%--window.location.href="${ctx}/permission";--%>
+                    <%--break;--%>
+
+            <%--}--%>
+
+        <%--}--%>
         //一些操作
         function initoperate(){
             changebtnEvent();
@@ -375,6 +374,11 @@
                                         break;
                                     }
                                 }
+                                var phoneReg = /[1][3-8]{1}\d{9}($|[^0-9]{1})/;
+                                if(!phoneReg.test(newuser[1])){
+                                    newstatus = 0;
+                                    alert("您输入的号码有误。");
+                                }
                                 console.log(newuser);
                                 if(newstatus===1){
                                     $.ajax({
@@ -390,7 +394,7 @@
                                                 window.location.reload();//刷新当前页面.
 
                                             }else{
-                                                alert("不能添加");
+                                                alert("当前账号已存在不能添加");
                                                 console.log(res);
                                             }
                                         },error:function () {
@@ -411,22 +415,24 @@
             // 修改按钮点击事件
             function changebtnEvent() {
                 var myinput = [];
+                var myinput2 = [];
                 $(".mybtn2").click(
                     function () {
                         var mytxt = this.innerHTML;
+                        var inputuserid = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
 
                         if(mytxt ==="修改"){
                             this.innerHTML="完成";
                             $(this).parent("span").parent("td").parent("tr").children('.sysmg-hidetd').css("display","none");
                             $(this).parent("span").parent("td").parent("tr").children('.sysmg-hideinput').css("display","table-cell");
-//                           for(var i = 0;i < 3;i++){
-//                               //为什么不行
-////                               myinput[i] = $(this).parent("span").parent("td").parent("tr").children("input").eq(i).val();
-//                               var mystring = "sysmgdata"+(i+1);
-//                               myinput[i] = $(this).parent("span").parent("td").parent("tr").find("input[name='"+mystring+"']").val();
-//                               console.log("myinput[i]");
-//                               console.log(myinput[i]);
-//                           }
+                           for(var j = 0;j < 3;j++){
+                               //为什么不行
+//                               myinput[i] = $(this).parent("span").parent("td").parent("tr").children("input").eq(i).val();
+                               var mystring2 = "sysmgdata"+(j+1);
+                               myinput2[j] = $(this).parent("span").parent("td").parent("tr").find("input[name='"+mystring2+"']").val();
+                               console.log("myinput2[j]");
+                               console.log(myinput2[j]);
+                           }
 //                           myinput[3] = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
 
                         }else if(mytxt ==="完成"){
@@ -441,33 +447,68 @@
                                 myinput[i] = $(this).parent("span").parent("td").parent("tr").find("input[name='"+mystring+"']").val();
 
                             }
-                            myinput[3] = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
+                            //userId
+//                            inputuserid = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
 
                             //把文字显示出来
-                            for(var j = 0;j < 3;j++){
-                                $(this).parent("span").parent("td").parent("tr").find(".sysmg-hidetd").eq(j).text(""+myinput[j]);
 
-                            }
+                            $(this).parent("span").parent("td").parent("tr").find(".sysmg-hidetd").eq(0).text(""+myinput[0]);
+                            $(this).parent("span").parent("td").parent("tr").find(".sysmg-hidetd").eq(1).text((myinput[1].substr(0,3)+"****"+myinput[1].substr(7)));
+                            $(this).parent("span").parent("td").parent("tr").find(".sysmg-hidetd").eq(2).text("********");
+
                             $(this).parent("span").parent("td").parent("tr").children('.sysmg-hideinput').css("display","none");
                             $(this).parent("span").parent("td").parent("tr").children('.sysmg-hidetd').css("display","table-cell");
-
-                            //提交保存数据
-                            $.ajax({
-                                type:"GET",
-                                url:"user/setUser",
-                                dataType:"json",
-                                data:{"userId":myinput[3],"username":myinput[1],"usernick":myinput[0],"password":myinput[2]},
-                                success:function (res) {
-                                    if(res.result===1){
-                                        alert("修改成功");
-                                    }else{
-                                        alert("不能修改");
-                                    }
-                                },error:function () {
-                                    console.log("修改提交错误");
+                            //如果确实改了，就提交请求。
+                            var paraarr = {};
+                            paraarr.userId = inputuserid;
+                            var numArr = [];
+                            for(var k = 0 ;k<3; k++){
+                                //有哪几个改了。
+                                if(myinput[k] !== myinput2[k]){
+                                    numArr.push(k);
                                 }
+                            }
+                            var numArrlen = numArr.length;
+                            //确实改了
+                            if(numArrlen !== 0) {
+                                for (var q = 0; q < numArrlen; q++) {
+                                    switch (numArr[q]) {
+                                        case 0:
+                                            paraarr.usernick = myinput[0];
+                                            break;
+                                        case 1:
+                                            paraarr.username = myinput[1];
+                                            break;
+                                        case 2:
+                                            paraarr.password = myinput[2];
+                                            break;
+                                    }
+                                }
+//                                console.log("parajson");
+//                                console.log(paraarr);
+//                                console.log(paraarr.userId);
 
-                            })
+                                //提交保存数据
+                                $.ajax({
+                                    type:"GET",
+                                    url:"user/setUser",
+                                    dataType:"json",
+//                                    data:{"userId":myinput[3],"usernick":myinput[0],"username":myinput[1],"password":myinput[2]},
+                                    data: paraarr,
+                                    success:function (res) {
+                                        if(res.result===1){
+                                            alert("修改成功");
+                                        }else{
+                                            alert("不能修改");
+                                        }
+                                    },error:function () {
+                                        console.log("修改提交错误");
+                                    }
+
+                                })
+                            }
+
+
                         }else if(mytxt ==="禁用"){
                             this.innerHTML="启用";
                             //提交保存数据
@@ -475,7 +516,7 @@
                                 type:"GET",
                                 url:"user/setUser",
                                 dataType:"json",
-                                data:{"userId":myinput[3],"username":myinput[1],"usernick":myinput[0],"password":myinput[2],"status":1},
+                                data:{"userId":inputuserid,"status":-1},
                                 success:function (res) {
                                     if(res.result===1){
                                         alert("禁用成功");
@@ -494,7 +535,7 @@
                                 type:"GET",
                                 url:"user/setUser",
                                 dataType:"json",
-                                data:{"userId":myinput[3],"username":myinput[1],"usernick":myinput[0],"password":myinput[2],"status":-1},
+                                data:{"userId":inputuserid,"status":1},
                                 success:function (res) {
                                     if(res.result===1){
                                         alert("启用成功");
@@ -549,12 +590,20 @@
             $('#sysmg-content').html("");
 
             for(var i = 0 ;i < arr.length; i++){
+                var status;
+                if(arr[i].status=== 1){
+                    //当前状态为1，为启用状态，提示禁用按钮
+                    status = "禁用";
+                }else {
+                    status = "启用";
+                }
+                var omitusername = arr[i].username.substr(0,3)+"****"+arr[i].username.substr(7);
                 $('#sysmg-content').append("<tr class=\"row\">" +
                     "<td class=\"col-lg-2 col-md-2 col-xs-2\">"+((currentPage-1)*10+1+i)+"</td>" +
                     "<td class=\"col-lg-2 col-md-2 col-xs-2\">"+arr[i].id+"</td>" +
                     "<td class=\"col-lg-2 col-md-2 col-xs-2  sysmg-hidetd \">"+arr[i].nickname+"</td>" +
-                    "<td class=\"col-lg-2 col-md-2 col-xs-2 sysmg-hidetd\">"+arr[i].username+"</td>" +
-                    "<td class=\"col-lg-2 col-md-2 col-xs-2 sysmg-hidetd\">"+arr[i].password+"</td>" +
+                    "<td class=\"col-lg-2 col-md-2 col-xs-2 sysmg-hidetd\">"+omitusername+"</td>" +
+                    "<td class=\"col-lg-2 col-md-2 col-xs-2 sysmg-hidetd\">"+"********"+"</td>" +
                     "<td class=\"col-lg-2 col-md-2 col-xs-2 sysmg-hideinput \">"+
                     "<input  type=\"text\" class=\"sysmgdata\"  name=\"sysmgdata1\" value=\""+(arr[i].nickname)+"\"/>"+
                     "</td>"+
@@ -566,7 +615,7 @@
                     "</td>"+
                     "<td class=\"col-lg-2 col-md-2 col-xs-2\">" +
                     "<span><button class=\"mybtn2\">修改</button></span>" +
-                    "<span><button class=\"mybtn2\">禁用</button></span>" +
+                    "<span><button class=\"mybtn2\">"+status+"</button></span>" +
                     "</td>" +
                     "</tr>");
             }

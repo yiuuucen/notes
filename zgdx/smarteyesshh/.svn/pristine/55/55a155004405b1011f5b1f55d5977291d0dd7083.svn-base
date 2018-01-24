@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${css}/style.css" />
     <link rel="stylesheet" href="${css}/style2.css" />
     <link rel="stylesheet" href="${css}/style4.css" />
-    <%--<link rel="stylesheet" href="${css}/style5.css" />--%>
+    <link rel="stylesheet" href="${css}/style5.css" />
     <link rel="stylesheet" href="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
@@ -38,7 +38,7 @@
 <body>
 <div class="container-fluid smartEyes-container">
     <%--<input type="hidden" value="${userType}" id="userType"/>--%>
-    <jsp:include page="/WEB-INF/common/head2.jsp"/>
+    <jsp:include page="/WEB-INF/common/head.jsp"/>
 
     <%--<header class="row">--%>
         <%--<!--logo-->--%>
@@ -164,8 +164,7 @@
         </div>
     </div>
     <!--底部-->
-    <jsp:include page="/WEB-INF/common/footer.jsp"/>
-    <%--<footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>--%>
+    <footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
     <script>
         var ut = $("#userType").val();
         if(ut==="0"){
@@ -174,6 +173,7 @@
             $(".sysmg-tbum").css("display","none");
         }
 
+        $("#navList").css("display","none");
 
         //动态获取阴影高度
         var h= $(window).height();

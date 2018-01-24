@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container-fluid smartEyes-container mag-jilu">
-    <jsp:include page="/WEB-INF/common/head.jsp"/>
+    <jsp:include page="/WEB-INF/common/head2.jsp"/>
     <div class="row clearfix">
         <div class="hr clearfix"></div>
         <div class="hr clearfix"></div>
@@ -62,7 +62,7 @@
     </div>
 </div>
 <!--底部-->
-<footer><p class="text-center">© 2017 SmartEyes | 猎犬上海网安版</p></footer>
+<jsp:include page="/WEB-INF/common/footer.jsp"/>
 <script>
     $(function(){
         $("#navList").css("display","none");
