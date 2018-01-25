@@ -62,7 +62,7 @@
         <%--</div>--%>
     <%--</header>--%>
 
-    <div class="row searchBox">
+    <div class="container-fluid row searchBox">
         <div class="col-lg-12 col-md-12 col-xs-12 namelist clearfix">
         </div>
 

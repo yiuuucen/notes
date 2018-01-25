@@ -156,7 +156,7 @@
                 </div>
                 <div class="sysmg-tips" style="display: none">
                     <p>设置成功！请牢记新的登录密码。</p>
-                    <a href="${ctx}/login">重新登录</a>
+                    <a href="${ctx}/user/logout">重新登录</a>
                 </div>
 
             </div>
@@ -243,24 +243,61 @@
                         $(".sysmg-tips").css("display", "none");
                         //点击确定按钮
                         $(".sysmg-cfBtn").unbind().click(
+//                             function () {
+//                                 var newstatus = 1;
+//                                 for (var i = 0; i < 3; i++) {
+//                                     var mystring = "cpuser" + (i + 1);
+//                                     newpw[i] = $(".sysmg-cp").find("input[name='" + mystring + "']").val();
+//                                     if (newpw[i] === "") {
+//                                         newstatus = 0;
+//                                         alert("密码不能为空");
+//                                         break;
+//                                     }
+//                                 }
+//                                 console.log(newpw);
+//                                 if(newpw[1]!==newpw[2]){
+//                                     alert("两次输入的密码不一致");
+//                                 }
+//
+//                                 if (newpw[1]===newpw[2] && newstatus === 1) {
+//
+//                                     $.ajax({
+//                                         type: "GET",
+//                                         url: "user/changePwd",
+//                                         dataType: "json",
+//                                         data: {"oldPwd": newpw[0], "newPwd": newpw[1]},
+//                                         success: function (res) {
+//                                             if (res.result === 1) {
+//                                                 alert("修改密码成功");
+//                                             $(".sysmg-tips").css("display","block");
+//                                             $(".sysmg-cp").css("display","none");
+//                                             $(".sysmg-getuser").css("display","none");
+// //                                                window.location.reload();//刷新当前页面.
+//
+//                                             } else {
+//                                                 alert("不能修改密码");
+//                                                 console.log(res);
+//                                             }
+//                                         }, error: function () {
+//                                             console.log("修改密码提交错误");
+//                                         }
+//
+//                                     })
+//                                 } else {
+//                                 }
+//                             }
                             function () {
-                                var newstatus = 1;
                                 for (var i = 0; i < 3; i++) {
                                     var mystring = "cpuser" + (i + 1);
                                     newpw[i] = $(".sysmg-cp").find("input[name='" + mystring + "']").val();
-                                    if (newpw[i] === "") {
-                                        newstatus = 0;
-                                        alert("密码不能为空");
-                                        break;
-                                    }
                                 }
-                                console.log(newpw);
-                                if(newpw[1]!==newpw[2]){
-                                    alert("确认密码与新密码不一致");
-                                }
-
-                                if (newpw[1]===newpw[2] && newstatus === 1) {
-
+                                if(newpw[0]==""|newpw[1]==""|newpw[2]==""){
+                                    alert("请您输入密码")
+                                }else if(newpw[0]==newpw[1]){
+                                    alert("新密码和原密码不能一致")
+                                }else if(newpw[1]!=newpw[2]){
+                                    alert("两次输入的密码不一致")
+                                }else{
                                     $.ajax({
                                         type: "GET",
                                         url: "user/changePwd",
@@ -273,20 +310,15 @@
                                             $(".sysmg-cp").css("display","none");
                                             $(".sysmg-getuser").css("display","none");
 //                                                window.location.reload();//刷新当前页面.
-
                                             } else {
-                                                alert("不能修改密码");
-                                                console.log(res);
+                                                alert("您的原密码有误");
                                             }
                                         }, error: function () {
                                             console.log("修改密码提交错误");
                                         }
 
                                     })
-                                } else {
                                 }
-
-
                             }
                         );
 

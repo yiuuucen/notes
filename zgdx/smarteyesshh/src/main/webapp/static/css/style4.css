@@ -15,7 +15,7 @@
 }
 .smartEyes-container .operate-log {
     /*height: 582px;*/
-    min-height: 615px;
+    min-height: 680px;
     min-width: 1039px;
     margin: 45px 45px 0 45px;
     background-color: #2f3242;
@@ -35,8 +35,11 @@ margin: 0 auto;
 width: 95%;
 margin: 0 auto;
 }
-.operate-table1 th, td{
-    color: #ffffff;
+.operate-table1 th, .operate-table1 td{
+    color: #fff;
+}
+.smartEyes-container .operate-tr2 table,.smartEyes-container .operate-tr2 tr th,.smartEyes-container .operate-tr2 tr td {
+    border-color: #595d6d;
 }
 .smartEyes-container .operate-tr1 .h1 {
 color: #fff;
@@ -55,6 +58,7 @@ padding-bottom: 27px;
     line-height: 47px;
     font-size: 18px;
 
+
 }
 .operate-table thead tr th:nth-child(1) {
     width: 17%;
@@ -66,9 +70,9 @@ padding-bottom: 27px;
     width: 37%;
 }
 .operate-table tbody tr td{
-    height: 30px;
+    height: 34px;
     font-size: 13px;
-    line-height: 30px;
+    line-height: 34px;
 
 }
 .operate-table tbody tr:nth-child(1) td{
@@ -101,7 +105,10 @@ padding-bottom: 27px;
 
 }
 .operate-pageTitleCell a,.sysmg-pageTitleCell a {
-    display: inline-block;
+    /*display: inline-block;*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
     height: 28px;
     margin-left: 12px;
     padding: 0 10px;
@@ -115,6 +122,8 @@ padding-bottom: 27px;
     cursor: pointer;
 }
 .smartEyes-container .operate-pagechange,.smartEyes-container .sysmg-pagechange {
+    margin-top: 0;
+    margin-bottom: 0;
     width: 148px;
     height: 38px;
     font-size: 16px;
@@ -167,6 +176,8 @@ padding-bottom: 27px;
     z-index: 2;
     background-color: #2f3242;
     min-height: 535px;
+    -moz-box-shadow: 10px 0 10px #272938, /*右边阴影*/ ;
+    box-shadow:10px 0 10px #272938, /*右边阴影*/;
 
 }
 .sysmg-pannel a {
@@ -205,7 +216,7 @@ padding-bottom: 27px;
 }
 
 .sysmg-icon1 {
-    background: url(../img/u-42.png) no-repeat;
+    background: url(../img/u-44.png) no-repeat;
     background-size: 40px 40px;
 }
 .sysmg-icon2 {
@@ -217,6 +228,8 @@ padding-bottom: 27px;
     background-color: #2f3242;
     overflow: hidden;
     min-height: 556px;
+    -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+    box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
 }
 .sysmg-table1 {
     width: 91%;
@@ -395,6 +408,7 @@ padding-bottom: 27px;
     line-height: 40px;
     text-align: right;
     float: left;
+    font-weight: normal;
 }
 input {
     border: none;
@@ -446,7 +460,7 @@ input {
     font-size: 16px;
     line-height: 40px;
     text-align: right;
-
+    font-weight: normal;
 }
 .sysmg-getuser div span.content {
     display: inline-block;
@@ -495,6 +509,7 @@ input {
     line-height: 43px;
     text-align: right;
     float: left;
+    font-weight: normal;
 }
 
 .sysmg-cp div input{

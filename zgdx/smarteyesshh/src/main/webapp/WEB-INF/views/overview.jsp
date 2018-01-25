@@ -1540,7 +1540,7 @@
                             bottom: 0,
                             inRange: {
 //                                color: ['#8da4c0', '#b4bec7','#96aac1'],
-                                color: ['#adcff5','#61a6f4','#0a78f5'],
+                                color: ['#c3d8e6','#71c3fe','#43b0fe','#169eff','#027ad4'],
                                 opacity: 0.9
                             },
                             controller: {

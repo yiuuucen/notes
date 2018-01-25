@@ -216,7 +216,7 @@ padding-bottom: 27px;
 }
 
 .sysmg-icon1 {
-    background: url(../img/u-44.png) no-repeat;
+    background: url(../img/u-42.png) no-repeat;
     background-size: 40px 40px;
 }
 .sysmg-icon2 {
@@ -408,7 +408,6 @@ padding-bottom: 27px;
     line-height: 40px;
     text-align: right;
     float: left;
-    font-weight: normal;
 }
 input {
     border: none;
@@ -460,7 +459,7 @@ input {
     font-size: 16px;
     line-height: 40px;
     text-align: right;
-    font-weight: normal;
+
 }
 .sysmg-getuser div span.content {
     display: inline-block;
@@ -509,7 +508,6 @@ input {
     line-height: 43px;
     text-align: right;
     float: left;
-    font-weight: normal;
 }
 
 .sysmg-cp div input{

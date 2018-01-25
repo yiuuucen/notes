@@ -412,34 +412,50 @@
 
             }
 
-            // 修改按钮点击事件
+            // 重置按钮点击事件
             function changebtnEvent() {
                 var myinput = [];
                 var myinput2 = [];
+                //0为没点击
+                var changestatus = 0;
                 $(".mybtn2").click(
                     function () {
                         var mytxt = this.innerHTML;
                         var inputuserid = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
-
-                        if(mytxt ==="修改"){
-                            this.innerHTML="完成";
-                            $(this).parent("span").parent("td").parent("tr").children('.sysmg-hidetd').css("display","none");
-                            $(this).parent("span").parent("td").parent("tr").children('.sysmg-hideinput').css("display","table-cell");
-                           for(var j = 0;j < 3;j++){
-                               //为什么不行
+                        if(mytxt ==="重置"){
+                            if(changestatus === 0){
+                                this.innerHTML="完成";
+                                $(this).parent("span").parent("td").parent("tr").children('.sysmg-hidetd').css("display","none");
+                                $(this).parent("span").parent("td").parent("tr").children('.sysmg-hideinput').css("display","table-cell");
+                                for(var j = 0;j < 3;j++){
+                                    //为什么不行
 //                               myinput[i] = $(this).parent("span").parent("td").parent("tr").children("input").eq(i).val();
-                               var mystring2 = "sysmgdata"+(j+1);
-                               myinput2[j] = $(this).parent("span").parent("td").parent("tr").find("input[name='"+mystring2+"']").val();
-                               console.log("myinput2[j]");
-                               console.log(myinput2[j]);
-                           }
+                                    var mystring2 = "sysmgdata"+(j+1);
+                                    myinput2[j] = $(this).parent("span").parent("td").parent("tr").find("input[name='"+mystring2+"']").val();
+                                    console.log("myinput2[j]");
+                                    console.log(myinput2[j]);
+                                }
+                                changestatus = 1;
 //                           myinput[3] = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
+                            }else {
+                                alert("有未完成修改的记录");
+                            }
 
                         }else if(mytxt ==="完成"){
 
-                            this.innerHTML="修改";
+                            this.innerHTML="重置";
+                            changestatus = 0;
 
                             //点击完成时获取它的值
+                            //获取输入框的值
+//                            for(var j = 0;j < 3;j++){
+//                                //为什么不行
+////                               myinput[i] = $(this).parent("span").parent("td").parent("tr").children("input").eq(i).val();
+//                                var mystring2 = "sysmgdata"+(j+1);
+//                                myinput2[j] = $(this).parent("span").parent("td").parent("tr").find("input[name='"+mystring2+"']").val();
+//                                console.log("myinput2[j]");
+//                                console.log(myinput2[j]);
+//                            }
                             for(var i = 0;i < 3;i++){
                                 //为什么不行
 //                                myinput[i] = $(this).parent("span").parent("td").parent("tr").children("input").eq(i).val();
@@ -484,9 +500,9 @@
                                             break;
                                     }
                                 }
-//                                console.log("parajson");
-//                                console.log(paraarr);
-//                                console.log(paraarr.userId);
+                                console.log("parajson");
+                                console.log(paraarr);
+                                console.log(paraarr.userId);
 
                                 //提交保存数据
                                 $.ajax({
@@ -497,9 +513,9 @@
                                     data: paraarr,
                                     success:function (res) {
                                         if(res.result===1){
-                                            alert("修改成功");
+                                            alert("重置成功");
                                         }else{
-                                            alert("不能修改");
+                                            alert("不能重置");
                                         }
                                     },error:function () {
                                         console.log("修改提交错误");
@@ -614,7 +630,7 @@
                     "<input type=\"text\" class=\"sysmgdata\"  name=\"sysmgdata3\" value=\""+(arr[i].password)+"\"/>"+
                     "</td>"+
                     "<td class=\"col-lg-2 col-md-2 col-xs-2\">" +
-                    "<span><button class=\"mybtn2\">修改</button></span>" +
+                    "<span><button class=\"mybtn2\">重置</button></span>" +
                     "<span><button class=\"mybtn2\">"+status+"</button></span>" +
                     "</td>" +
                     "</tr>");

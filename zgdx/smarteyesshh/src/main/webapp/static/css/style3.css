@@ -6,7 +6,7 @@
     /*box-shadow:15px 35px 35px rgba(37,41,56,0.8);*/
 }
 .log .smartEyes .logo{
-    padding: 15px 0 0 55px;
+    padding: 11px 0 0 55px;
     margin: 0;
     height: 100%;
 }
@@ -329,11 +329,13 @@
 .mag .findpwd{
     margin: 0 45px;
     background: #2f3242;
-    box-shadow: 0px 0px 40px 3px #21232f;
+    -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+    box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
 }
 .mag .findpwd .top{
     height: 66px;
-    box-shadow: 0px 5px 40px 3px #21232f;
+    -moz-box-shadow: 0 10px 10px #272938;
+    box-shadow:0 10px 10px #272938;
 }
 .mag .findpwd .top>div{
 
@@ -343,7 +345,7 @@
     width: 235px;
     height: 66px;
     font-size: 25px;
-    letter-spacing:5px;
+    letter-spacing:3px;
     color: #fff;
     text-align: center;
     line-height: 66px;
@@ -396,7 +398,7 @@
 .mag .findpwd .bottom .magtit #morebtn{
     width: 120px;
     height: 30px;
-    border: 1px solid #fff;
+    border: 1px solid #ddd;
     position: absolute;
     right: 70px;
     top: 35px;
@@ -449,11 +451,12 @@
 .mag .findpwd .bottom .msg>div:nth-child(1)>div input{
     width: 295px;
     height: 40px;
-    border: 1px solid #fff;
+    border: 1px solid #ddd;
     border-radius: 5px;
     padding: 0 0 0 14px;
     color: #fff;
     background: transparent;
+    font-weight: normal;
 }
 .msg>div:nth-child(1)>div span{
     position: absolute;
@@ -466,7 +469,7 @@
     height: 40px;
     line-height: 40px;
     background-color: #2f3242;
-    border: 1px solid #fff;
+    border: 1px solid #ddd;
     border-radius: 5px;
 }
 .mag .findpwd .bottom .msg>div:nth-child(3)>div select{
@@ -474,7 +477,7 @@
     height: 40px;
     line-height: 40px;
     background-color: #2f3242;
-    border: 1px solid #fff;
+    border: 1px solid #ddd;
     border-radius: 5px;
 }
 .mag .findpwd .bottom .msg>div:nth-child(4)>div{
@@ -485,7 +488,7 @@
     background: #2196f3;
     border-radius: 5px;
     cursor: pointer;
-    margin: 15px 0 0 0;
+    margin: 15px 0 0 3px;
 }
 /*management上的2个弹窗效果*/
 .mag .submit_btn{
@@ -509,13 +512,15 @@
     bottom: 0;
     margin: auto;
     text-align: center;
-    box-shadow: 0px 0px 40px 3px #21232f;
+    -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+    box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
 }
 .mag .submit_box .box_top{
     height: 70px;
     text-align: center;
     line-height: 70px;
-    box-shadow: 0px 5px 40px 3px #21232f;
+    -moz-box-shadow: 0 -10px 10px #272938, /*顶部阴影*/ ;
+    box-shadow: 0 -10px 10px #272938, /*顶部阴影*/ ;
 }
 .mag .submit_box .box_top span{
     font-size: 20px;
@@ -593,7 +598,8 @@
     bottom: 0;
     margin: auto;
     color: #fff;
-    box-shadow: 0px 0px 40px 3px #21232f;
+    -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+    box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
 }
 .mag .submit_fail .submit_box img{
     width: 20px;
@@ -681,8 +687,10 @@
 }
 .mag-jilu .jilu{
     margin: 45px;
+    min-height: 680px;
     background-color: #2f3242;
-    box-shadow: 0px 0px 40px 3px #21232f;
+    -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+    box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
 }
 .mag-jilu .jilu h3{
     color: #fff;

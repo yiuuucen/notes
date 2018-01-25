@@ -412,7 +412,7 @@
 
             }
 
-            // 重置按钮点击事件
+            // 修改按钮点击事件
             function changebtnEvent() {
                 var myinput = [];
                 var myinput2 = [];
@@ -422,7 +422,7 @@
                     function () {
                         var mytxt = this.innerHTML;
                         var inputuserid = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
-                        if(mytxt ==="重置"){
+                        if(mytxt ==="修改"){
                             if(changestatus === 0){
                                 this.innerHTML="完成";
                                 $(this).parent("span").parent("td").parent("tr").children('.sysmg-hidetd').css("display","none");
@@ -443,7 +443,7 @@
 
                         }else if(mytxt ==="完成"){
 
-                            this.innerHTML="重置";
+                            this.innerHTML="修改";
                             changestatus = 0;
 
                             //点击完成时获取它的值
@@ -513,9 +513,9 @@
                                     data: paraarr,
                                     success:function (res) {
                                         if(res.result===1){
-                                            alert("重置成功");
+                                            alert("修改成功");
                                         }else{
-                                            alert("不能重置");
+                                            alert("不能修改");
                                         }
                                     },error:function () {
                                         console.log("修改提交错误");
@@ -630,7 +630,7 @@
                     "<input type=\"text\" class=\"sysmgdata\"  name=\"sysmgdata3\" value=\""+(arr[i].password)+"\"/>"+
                     "</td>"+
                     "<td class=\"col-lg-2 col-md-2 col-xs-2\">" +
-                    "<span><button class=\"mybtn2\">重置</button></span>" +
+                    "<span><button class=\"mybtn2\">修改</button></span>" +
                     "<span><button class=\"mybtn2\">"+status+"</button></span>" +
                     "</td>" +
                     "</tr>");

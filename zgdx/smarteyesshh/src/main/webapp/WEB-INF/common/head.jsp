@@ -11,7 +11,7 @@
 <header class="row">
     <input type="hidden" value="${userType}" id="userType"/>
     <!--logo-->
-    <div class="col-lg-2  col-md-2 col-xs-2 logo"><a><img src="${img}/1logo.png" alt=""></a></div>
+    <div class="col-lg-2  col-md-2 col-xs-2 logo"><a href="${ctx}/search"><img src="${img}/1logo.png" alt=""></a></div>
     <div class="col-lg-5 col-md-5 col-xs-5">
         <ul class="nav nav-pills navList" id="navList">
             <li role="presentation" class=""><a href="${ctx}/overview?targetPhone=${targetPhone}"><i><img id="img1" src="${img}/u-03.png"></i>概览</a></li>
@@ -27,7 +27,7 @@
 
     </div>-->
     <div class="col-lg-1 col-md-1 col-xs-1 fr">
-        <a href="${ctx}/search"><img src="${img}/u03.png"></a>
+        <a href="${ctx}/user/logout"><img src="${img}/u03.png"></a>
     </div>
     <div class="col-lg-1 col-md-1 col-xs-1 pull-right text-right input-group fr" style="margin-top: 27px">
         <select class="pull-right select myselect" onchange="operateManage(this.options[this.options.selectedIndex].value)">

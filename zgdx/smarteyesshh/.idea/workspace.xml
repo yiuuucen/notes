@@ -7,13 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="e08727ed-54aa-4e0e-8e74-c3a6d93b9373" name="Default" comment="style3.css">
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head2.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head2.jsp" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/smarteyesshh/css/style3.css" afterPath="$PROJECT_DIR$/src/main/webapp/smarteyesshh/css/style3.css" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/smarteyesshh/管理.html" afterPath="$PROJECT_DIR$/src/main/webapp/smarteyesshh/管理.html" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/style.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/style.css" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/style.less" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/style.less" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/style2.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/style2.css" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/style3.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/style3.css" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/img/u-35.png" afterPath="$PROJECT_DIR$/src/main/webapp/static/img/u-35.png" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/img/u-38.png" afterPath="$PROJECT_DIR$/src/main/webapp/static/img/u-38.png" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/img/u-41.png" afterPath="$PROJECT_DIR$/src/main/webapp/static/img/u-41.png" />
@@ -44,8 +43,8 @@
       <file leaf-file-name="permission.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/permission.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6040">
-              <caret line="302" column="48" lean-forward="false" selection-start-line="302" selection-start-column="48" selection-end-line="302" selection-end-column="48" />
+            <state relative-caret-position="562">
+              <caret line="442" column="0" lean-forward="true" selection-start-line="442" selection-start-column="0" selection-end-line="442" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -54,48 +53,38 @@
       <file leaf-file-name="account.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/account.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+            <state relative-caret-position="209">
+              <caret line="274" column="78" lean-forward="false" selection-start-line="274" selection-start-column="53" selection-end-line="274" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style3.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style3.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/style3.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-941">
-              <caret line="684" column="41" lean-forward="false" selection-start-line="684" selection-start-column="41" selection-end-line="684" selection-end-column="41" />
+            <state relative-caret-position="-175">
+              <caret line="501" column="18" lean-forward="true" selection-start-line="501" selection-start-column="18" selection-end-line="501" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="head2.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="head2.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head2.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+            <state relative-caret-position="-378">
+              <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="region.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/region.jsp">
+      <file leaf-file-name="head.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="24" column="37" lean-forward="false" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="person.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/person.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="172" column="23" lean-forward="false" selection-start-line="172" selection-start-column="23" selection-end-line="172" selection-end-column="23" />
+            <state relative-caret-position="109">
+              <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -104,8 +93,8 @@
       <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="47" column="19" lean-forward="false" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+            <state relative-caret-position="440">
+              <caret line="118" column="19" lean-forward="false" selection-start-line="99" selection-start-column="16" selection-end-line="118" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -132,6 +121,8 @@
       <find>log</find>
       <find>userT</find>
       <find>shuru</find>
+      <find>operate-log</find>
+      <find>修改</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -152,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/spring-shiro-web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/smarteyesshh/css/style3.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/cenu.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/smarteyesshh/管理.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/person-list.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.jsp" />
@@ -161,13 +151,16 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/jquery.pagination.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/myuse.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/person_list.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head2.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/permission.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/footer.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/personlist.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/person.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/permission.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/style3.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/style4.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/account.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head2.jsp" />
       </list>
     </option>
   </component>
@@ -223,9 +216,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -329,6 +319,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -611,7 +604,8 @@
       <workItem from="1516341608446" duration="8735000" />
       <workItem from="1516585468223" duration="12629000" />
       <workItem from="1516672510839" duration="11536000" />
-      <workItem from="1516757835715" duration="12692000" />
+      <workItem from="1516757835715" duration="13826000" />
+      <workItem from="1516845083335" duration="19012000" />
     </task>
     <task id="LOCAL-00001" summary="登陆页面">
       <created>1515655908529</created>
@@ -743,7 +737,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150158000" />
+    <option name="totallyTimeSpent" value="170304000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -770,7 +764,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2555746" sideWeight="0.4908397" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30152673" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30763358" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -806,20 +800,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/javaTest/jsonTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/smarteyesshh/登录.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1420">
-          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/smarteyesshh/css/style3.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1840">
@@ -950,13 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/style4.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1780">
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/findpwd.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1053,14 +1026,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="45" column="34" lean-forward="false" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/overview.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1069,50 +1034,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/common/footer.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/permission.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6040">
-          <caret line="302" column="48" lean-forward="false" selection-start-line="302" selection-start-column="48" selection-end-line="302" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/account.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="47" column="19" lean-forward="false" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head2.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1133,18 +1058,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/person.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/system.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="172" column="23" lean-forward="false" selection-start-line="172" selection-start-column="23" selection-end-line="172" selection-end-column="23" />
+        <state relative-caret-position="-1638">
+          <caret line="71" column="35" lean-forward="false" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/permission.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="442" column="0" lean-forward="true" selection-start-line="442" selection-start-column="0" selection-end-line="442" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/img/u-43.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/img/u-42.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/style4.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="462" column="24" lean-forward="false" selection-start-line="462" selection-start-column="24" selection-end-line="462" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/style3.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-941">
-          <caret line="684" column="41" lean-forward="false" selection-start-line="684" selection-start-column="41" selection-end-line="684" selection-end-column="41" />
+        <state relative-caret-position="-175">
+          <caret line="501" column="18" lean-forward="true" selection-start-line="501" selection-start-column="18" selection-end-line="501" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/person.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="719">
+          <caret line="179" column="38" lean-forward="false" selection-start-line="179" selection-start-column="38" selection-end-line="179" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/account.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="274" column="78" lean-forward="false" selection-start-line="274" selection-start-column="53" selection-end-line="274" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="118" column="19" lean-forward="false" selection-start-line="99" selection-start-column="16" selection-end-line="118" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/common/head2.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-378">
+          <caret line="28" column="35" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
           <folding />
         </state>
       </provider>

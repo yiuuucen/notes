@@ -150,27 +150,36 @@
                 // form表单提交
                 function test(){
                     var form = new FormData($("#myform")[0]);
-                    $.ajax({
-                        url:"target/uploadPhone",
-                        type:"post",
-                        data:form,
-                        processData:false,
-                        contentType:false,
-                        success:function(data){
-                            var data=$.parseJSON(data);
-                            if(data.result!=0){
-                                // alert("提交成功"+data.result+"条数据");
-								alert("提交成功");
-                                window.location.href="${ctx}/personlist"
-							}else{
-                             	alert("您没有上传文件!");
-							}
-							// console.log(data)
-                        },
-                        error:function(e){
-                            alert("错误！！");
+                    var upfile=$("#myform input[type='file']").val();
+                    //如果文件以.csv结尾则进行数据传输
+					if(upfile==''){
+					    alert("请您上传文件");
+                    }else{
+                        if(/^.*.csv$/.test(upfile)){
+                            $.ajax({
+                            	url:"target/uploadPhone",
+                            	type:"post",
+                            	data:form,
+                            	processData:false,
+                            	contentType:false,
+                            	success:function(data){
+                            		var data=$.parseJSON(data);
+                            		if(data.result!=0){
+                            			// alert("提交成功"+data.result+"条数据");
+                            			alert("提交成功");
+                            			window.location.href="${ctx}/personlist"
+                            		}else{
+                            			alert("您上传文件中的数据内容有误！");
+									}
+                            	},
+                            	error:function(e){
+                           		 	alert("错误！！");
+                            	}
+                            });
+                        }else{
+							alert("您上传的文件类型有误，请下载批量提交模板")
                         }
-                    });
+                    }
                 }
                 $("#btn").click(function(){
                     test();

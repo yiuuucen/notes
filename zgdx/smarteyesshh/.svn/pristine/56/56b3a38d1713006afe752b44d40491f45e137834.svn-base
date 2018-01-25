@@ -6,7 +6,7 @@
     /*box-shadow:15px 35px 35px rgba(37,41,56,0.8);*/
 }
 .log .smartEyes .logo{
-    padding: 11px 0 0 55px;
+    padding: 15px 0 0 55px;
     margin: 0;
     height: 100%;
 }
@@ -345,7 +345,7 @@
     width: 235px;
     height: 66px;
     font-size: 25px;
-    letter-spacing:3px;
+    letter-spacing:5px;
     color: #fff;
     text-align: center;
     line-height: 66px;
@@ -398,7 +398,7 @@
 .mag .findpwd .bottom .magtit #morebtn{
     width: 120px;
     height: 30px;
-    border: 1px solid #ddd;
+    border: 1px solid #fff;
     position: absolute;
     right: 70px;
     top: 35px;
@@ -451,12 +451,11 @@
 .mag .findpwd .bottom .msg>div:nth-child(1)>div input{
     width: 295px;
     height: 40px;
-    border: 1px solid #ddd;
+    border: 1px solid #fff;
     border-radius: 5px;
     padding: 0 0 0 14px;
     color: #fff;
     background: transparent;
-    font-weight: normal;
 }
 .msg>div:nth-child(1)>div span{
     position: absolute;
@@ -469,7 +468,7 @@
     height: 40px;
     line-height: 40px;
     background-color: #2f3242;
-    border: 1px solid #ddd;
+    border: 1px solid #fff;
     border-radius: 5px;
 }
 .mag .findpwd .bottom .msg>div:nth-child(3)>div select{
@@ -477,7 +476,7 @@
     height: 40px;
     line-height: 40px;
     background-color: #2f3242;
-    border: 1px solid #ddd;
+    border: 1px solid #fff;
     border-radius: 5px;
 }
 .mag .findpwd .bottom .msg>div:nth-child(4)>div{
@@ -488,7 +487,7 @@
     background: #2196f3;
     border-radius: 5px;
     cursor: pointer;
-    margin: 15px 0 0 3px;
+    margin: 15px 0 0 0;
 }
 /*management上的2个弹窗效果*/
 .mag .submit_btn{
