@@ -107,7 +107,7 @@
                         if(!data.status) {
                             $(".shuru>div:nth-child(2)").append("<span>"+data.res+"</span>");
                         }else{
-                            window.location.href = 'search';
+                            window.location.href = '/search';
                         }
                     },
                     error:function(err) {

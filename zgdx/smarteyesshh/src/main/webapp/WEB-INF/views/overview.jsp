@@ -153,7 +153,7 @@
         var myChart3;
         var myChart4;
         var myChart5;
-        var myDate = new Date("2017-12-31");
+        var myDate = new Date();
         var myyear = ""+myDate.getFullYear();    //获取完整的年份(4位,1970-????)
 
         var avg = 240;
@@ -217,7 +217,7 @@
         });
         function allChange(value) {
 //            var myDate = new Date();
-            var myDate = new Date("2017-12-31");
+            var myDate = new Date();
             var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
             mymonth = mymonth + 1;
             mymonth = mymonth < 10 ? '0'+mymonth: mymonth;
@@ -258,7 +258,7 @@
         //初始化
         function initialFunc(){
 //            var myDate = new Date();
-            var myDate = new Date("2017-12-31");
+            var myDate = new Date();
             var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
             mymonth = mymonth + 1;
             mymonth = mymonth < 10 ? '0'+mymonth: mymonth;//小于10前面加0
@@ -710,7 +710,7 @@
         //通话特征---日期热力图
         function calendar(timerange){
             var targetPhone=$("#targetPhone").val();
-            if (myChart3 != null && myChart3 != "" && myChart3 != undefined) {
+            if (myChart3 !== null && myChart3 !== "" && myChart3 !== undefined) {
                 myChart3.dispose();
             }
             myChart3 = echarts.init(document.getElementById('calendar'));
@@ -1452,9 +1452,11 @@
             var heatmapData = [];
             var lunarData = [];
 //            var myDate = new Date();
-            var myDate = new Date("2017-12-31");
+            var myDate = new Date();
             var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
             mymonth = mymonth + 1;
+            //不带0的月份用在2018-1这种。
+            var mymonthn0 = mymonth;
             mymonth = mymonth < 10 ? '0'+mymonth: mymonth;
             var mydate = myDate.getDate();//获取当前日(1-31)
             mydate = mydate -1;
@@ -1487,11 +1489,11 @@
                     var mycgdate = mydate;
                     for(var i = 0 ; i < len;i++){
                         heatmapData.push([
-                            myyear+"-"+mymonth+"-"+mycgdate--,
+                            myyear+"-"+mymonthn0+"-"+mycgdate--,
                             res.duration[len-1-i]
                         ]);
                     }
-                    var date1 = myyear+"-"+mymonth+"-1";
+                    var date1 = myyear+"-"+mymonthn0+"-1";
                     var we = String(echarts.number.parseDate(date1)).split(" ");
                     var daynum = new Date(myyear,mymonth,0).getDate();
                     var cellsize;
@@ -1566,7 +1568,7 @@
                             monthLabel: {
                                 show: false
                             },
-                            range: myyear+'-'+mymonth
+                            range: myyear+'-'+mymonthn0
 
                         }],
 
@@ -1623,6 +1625,7 @@
                         var dt = myyear+dt1+""+dt2;
                         //点击事件
                         lineBar(dt);
+
                     });
 
 
@@ -1715,9 +1718,10 @@
                             {
                                 type: 'value',
                                 name: '次数',
-                                min: 0,
-                                max: 8,
-                                interval: 1,
+                                //自适应
+//                                min: 0,
+//                                max: 8,
+//                                interval: 1,
                                 axisLabel: {
                                     formatter: '{value} ',
                                     show: true,

@@ -154,6 +154,7 @@
 //    $(".maplist").height(h-100);
     var targetPhone=$("#targetPhone").val();
     $('#tit-person').html("  "+"SE"+targetPhone+"  ");
+    var myChart3;
 
     var mydata = [[],[],[]];
     function map(mydata){
@@ -665,8 +666,10 @@
 
     ///活动轨迹
     function map03(mydata,mytrack,index){
-        var myChart = echarts.init(document.getElementById('allmap3'));
-
+        if (myChart3 !== null && myChart3 !== "" && myChart3 !== undefined) {
+            myChart3.dispose();
+        }
+        myChart3 = echarts.init(document.getElementById('allmap3'));
 
         //一条线路三个点
         var len = mytrack.length;
@@ -676,18 +679,18 @@
         if(len > 5)
         {
             var pt11 = Math.floor(len/4);
-            console.log("1:"+pt11);
+//            console.log("1:"+pt11);
             var pt12 = Math.floor(len/2);
-            console.log("2:"+pt12);
+//            console.log("2:"+pt12);
             var pt13 = Math.floor(3*len/4);
-            console.log("3:"+pt13);
+//            console.log("3:"+pt13);
 
             myptArr.push(mytrack[pt11]);
-            console.log(mytrack[pt11]);
+//            console.log(mytrack[pt11]);
             myptArr.push(mytrack[pt12]);
-            console.log(mytrack[pt12]);
+//            console.log(mytrack[pt12]);
             myptArr.push(mytrack[pt13]);
-            console.log(mytrack[pt13]);
+//            console.log(mytrack[pt13]);
 
         }else{
             console.log("当前数据小于5个");
@@ -1088,7 +1091,7 @@
         };
 
 
-        myChart.setOption(option);
+        myChart3.setOption(option);
 
 
     }
