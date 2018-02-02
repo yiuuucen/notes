@@ -1,9 +1,6 @@
-.border(@width:1px,@style:solid,@color:#555){
-	border:@width @style @color;
-}
-.box1{
-	.border(3px,solid,#444);
-}
-.box2{
-	.border(2px,solid,#333);
+body{margin:0}
+//这个30，是由设计图的宽度（如750px）/html中设置的大小（如25）得出来的
+@rem:30rem;
+header{
+	height: 100/@rem;
 }
