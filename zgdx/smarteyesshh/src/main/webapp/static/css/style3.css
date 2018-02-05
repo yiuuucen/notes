@@ -503,7 +503,7 @@
 }
 .mag .submit_btn .submit_box{
     width: 580px;
-    height: 280px;
+    height: 260px;
     background: #2f3242;
     position: absolute;
     top: 0;
@@ -519,8 +519,8 @@
     height: 70px;
     text-align: center;
     line-height: 70px;
-    -moz-box-shadow: 0 -10px 10px #272938, /*顶部阴影*/ ;
-    box-shadow: 0 -10px 10px #272938, /*顶部阴影*/ ;
+    -moz-box-shadow: 0 10px 10px #272938;
+    box-shadow: 0 10px 10px #272938;
 }
 .mag .submit_box .box_top span{
     font-size: 20px;
@@ -542,13 +542,13 @@
     margin: 30px 0 0 210px;
 }
 .mag .submit_box .box_bottom .load{
-    width: 160px;
+    width: 130px;
     height: 30px;
-    line-height: 2;
-    margin: 20px auto;
-    border: 1px solid #fff;
+    line-height: 3;
+    margin: 10px auto;
     border-radius: 5px;
     cursor: pointer;
+    color:#2196f3;
 }
 .mag .submit_box .box_bottom input:nth-child(3){
     display: block;
@@ -732,9 +732,6 @@
     right: 0;
     font-size: 15px;
     text-align: right;
-}
-.mag-jilu .jilu .mytable .tabcont .alldata span{
-
 }
 .mag-jilu .jilu .mytable .tabcont .lie{
     border-bottom: 1px solid #ddd;

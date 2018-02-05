@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>联系人列表</title>
+    <link rel="shortcut icon" href="${img}/ddlogo.ico">
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />

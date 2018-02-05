@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>查询记录</title>
+    <link rel="shortcut icon" href="${img}/ddlogo.ico">
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/pagination.css" />
     <link rel="stylesheet" href="${css}/base.css" />
@@ -32,7 +33,7 @@
                 <span class="col-lg-2 col-md-2 col-xs-2">查询记录信息</span>
             </div>
             <div class="tabcont row">
-                <div class="alldata">共<span>12</span>页</div>
+                <div class="alldata">共<span></span>页</div>
                 <div class="lie clearfix">
                     <span class="col-lg-1 col-md-1 col-xs-1">序号</span>
                     <span class="col-lg-1 col-md-1 col-xs-1">用户ID</span>

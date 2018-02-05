@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>概览</title>
+    <link rel="shortcut icon" href="${img}/ddlogo.ico">
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
@@ -155,7 +156,6 @@
         var myChart5;
         var myDate = new Date();
         var myyear = ""+myDate.getFullYear();    //获取完整的年份(4位,1970-????)
-
         var avg = 240;
         //展示数据
         $(function () {

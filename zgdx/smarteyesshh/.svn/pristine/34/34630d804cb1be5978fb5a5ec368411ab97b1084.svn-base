@@ -467,7 +467,7 @@
         var totalData=null;
         var showData=null;
         myajax(false,1);
-        $(".alldata span").text(pageCount);
+        // $(".alldata span").text(pageCount);
         function myajax(async,num) {
             $.ajax({
                 type:"get",

@@ -73,13 +73,6 @@ padding-bottom: 27px;
     height: 34px;
     font-size: 13px;
     line-height: 34px;
-
-}
-.operate-table tbody tr:nth-child(1) td{
-    height: 34px;
-    font-size: 16px;
-    line-height: 34px;
-
 }
 .operate-th th:nth-child(1){
     min-width: 109px;
@@ -234,7 +227,7 @@ padding-bottom: 27px;
 .sysmg-table1 {
     width: 91%;
     /*margin-top: 25px;*/
-    margin: 25px auto;
+    margin: 25px auto 0;
     background-color: #2f3242;
     color: #fff;
     /*width: 1150px;*/

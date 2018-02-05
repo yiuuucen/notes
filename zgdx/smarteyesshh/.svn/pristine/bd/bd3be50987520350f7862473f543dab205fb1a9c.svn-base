@@ -156,6 +156,7 @@
         var myChart5;
         var myDate = new Date();
         var myyear = ""+myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+
         var avg = 240;
         //展示数据
         $(function () {

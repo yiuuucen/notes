@@ -7,6 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <title>操作日志</title>
+    <link rel="shortcut icon" href="${img}/ddlogo.ico">
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="${css}/style4.css" />
     <link rel="stylesheet" href="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
+    <script type="text/javascript" src="${js}/jquery.pagination.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js" ></script>
@@ -34,6 +36,73 @@
         })
     </script>
     <style>
+        <%--分页样式--%>
+        .tabbtn{
+            height: 40px;
+            margin: 45px auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tabbtn a{
+            display: inline-block;
+            height: 28px;
+            margin-left: 12px;
+            padding: 0 10px;
+            color: #fff;
+            line-height: 28px;
+            text-align: center;
+            font-family: "Microsoft YaHei",serif;
+            font-size: 14px;
+            background-color: #2f3242;
+            border: 1px solid #9d9fa6;
+        }
+        .tabbtn span{
+            display: inline-block;
+            height: 28px;
+            margin-left: 12px;
+            padding: 0 10px;
+            color: #fff;
+            line-height: 28px;
+            text-align: center;
+            font-family: "Microsoft YaHei",serif;
+            font-size: 14px;
+            background-color: #2f3242;
+            border: 1px solid #9d9fa6;
+        }
+        .tabbtn span.active{
+            background: #2196f3;
+        }
+        .tabbtn .prev{
+            width: 148px;
+            height: 38px;
+            font-size: 16px;
+            padding: 0 47px;
+            line-height: 38px;
+            background-color: #2196f3;
+            border: none;
+            border-radius: 3px 3px 3px 3px;
+        }
+        .tabbtn .next{
+            width: 148px;
+            height: 38px;
+            font-size: 16px;
+            padding: 0 47px;
+            line-height: 38px;
+            background-color: #2196f3;
+            border: none;
+            border-radius: 3px 3px 3px 3px;
+        }
+        .alldata{
+            position: absolute;
+            color: #fff;
+            width: 100px;
+            height: 30px;
+            bottom: -40px;
+            right: 30px;
+            font-size: 15px;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +139,8 @@
         <div class="col-lg-12 col-md-12 col-xs-12 operate-box">
             <!--图表展示列表-->
             <div class="operate-log ">
-                <table class="operate-table1">
+                <div style="position: relative">
+                    <table class="operate-table1">
                     <tbody>
                     <tr class="operate-tr1">
                         <td class="h1" >操作日志</td>
@@ -85,72 +155,49 @@
                                     <th>猎犬用户信息</th>
                                     <th>查询目标人员信息</th>
                                 </tr>
+                                <tr style="height: 34px;">
+                                    <td style="height: 32px;line-height: 32px">日志ID</td>
+                                    <td class="row">
+                                        <span class="col-lg-4 col-md-4 col-xs-4" style="height: 32px;line-height: 32px">用户ID </span>
+                                        <span class="col-lg-4 col-md-4 col-xs-4" style="height: 32px;line-height: 32px">用户姓名 </span>
+                                        <span class="col-lg-4 col-md-4 col-xs-4" style="height: 32px;line-height: 32px">查询时间 </span>
+                                    </td>
+                                    <td class="row">
+                                        <span class="col-lg-4 col-md-4 col-xs-4" style="height: 32px;line-height: 32px">手机号码</span>
+                                        <span class="col-lg-4 col-md-4 col-xs-4" style="height: 32px;line-height: 32px">描述</span>
+                                        <span class="col-lg-4 col-md-4 col-xs-4" style="height: 32px;line-height: 32px">涉案类型</span>
+                                    </td>
+                                </tr>
                                 </thead>
-                                <tbody class="container" id="operatelog-tbody">
-                                <tr>
-                                    <td >日志ID</td>
-                                    <td class="row">
-                                        <span class="col-lg-4 col-md-4 col-xs-4 operate-userid">用户ID </span>
-                                        <span class="col-lg-4 col-md-4 col-xs-4 operate-username">用户姓名 </span>
-                                        <span class="col-lg-4 col-md-4 col-xs-4 operate-querytime">查询时间 </span>
-                                    </td>
-                                    <td class="row">
-                                        <span class="col-lg-4 col-md-4 col-xs-4 operate-tele">手机号码</span>
-                                        <span class="col-lg-4 col-md-4 col-xs-4 operate-descrip">描述</span>
-                                        <span class="col-lg-4 col-md-4 col-xs-4 operate-type">涉案类型</span>
-                                    </td>
-
-                                </tr>
-
+                                <tbody class="container xinxi" id="operatelog-tbody">
+                                <%--<tr>--%>
+                                <%--<td >1</td>--%>
+                                <%--<td class="row">--%>
+                                <%--<span class="col-lg-4 col-md-4 col-xs-4 operate-userid">1</span>--%>
+                                <%--<span class="col-lg-4 col-md-4 col-xs-4 operate-username">张三</span>--%>
+                                <%--<span class="col-lg-4 col-md-4 col-xs-4 operate-querytime">2018.01.12   14:03:36</span>--%>
+                                <%--</td>--%>
+                                <%--<td class="row">--%>
+                                <%--<span class="col-lg-4 col-md-4 col-xs-4 operate-tele">13844556677</span>--%>
+                                <%--<span class="col-lg-4 col-md-4 col-xs-4 operate-descrip">重点人员</span>--%>
+                                <%--<span class="col-lg-4 col-md-4 col-xs-4 operate-type">涉黄</span>--%>
+                                <%--</td>--%>
+                                <%--</tr>--%>
                                 </tbody>
                             </table>
                         </td>
-
                     </tr>
-                    <!--第三行分页按钮-->
-                    <tr class="operate-tr3">
-                        <td>
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <ul class="operate-pageTitleCell clearfix" id="pageupdown">
-                                            <%--<li class="fl"><a class="operate-pagechange operate-pageprev">上一页</a></li>--%>
-
-                                            <%--<li class="fl"><a class="active">1</a></li>--%>
-                                            <%--<li class="fl"><a >2</a></li>--%>
-                                            <%--<li class="fl"><a >3</a></li>--%>
-                                            <%--<li class="fl"><a >4</a></li>--%>
-
-
-                                            <%--<li class="fl"><a class="operate-pagechange operate-pagenext">下一页</a></li>--%>
-                                        </ul>
-                                        <span class="operate-text">
-
-                                        </span>
-
-                                    </td>
-
-
-                                </tr>
-
-                                </tbody>
-
-                            </table>
-                        </td>
-
-                    </tr>
-
                     </tbody>
-
                 </table>
-
-
+                    <div class="alldata">共<span>12</span>页</div>
+                </div>
+                <div class="tabbtn M-box">
+                </div>
             </div>
         </div>
     </div>
     <!--底部-->
-    <footer style="position: fixed; bottom:0px"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+        <jsp:include page="/WEB-INF/common/footer.jsp"/>
     <script>
         $(function(){
             //动态获取阴影高度
@@ -166,252 +213,64 @@
 
         });
 
-
-        //分页操作
-        //定义三个全局变量
-        var currentPage = 1;//当前页
-        var totalpage = 1;//总页数
-        //        var pagesize = 10;//每页显示页数
-        //一共分成两步，一步加载数据，一步为变换分页
-        loadData();
-
-        function loadData() {
+        var pageCount=null;
+        var totalData=null;
+        var showData=null;
+        myajax(false,1);
+        $(".alldata span").text(pageCount);
+        function myajax(async,num) {
             $.ajax({
-                type:"GET",
+                type:"get",
                 url:"/log/searchLog",
                 dataType:"json",
-                data:{pageCode:currentPage},
+                async: async,
+                data:{"pageCode":num},
                 success:function (res) {
-                    showData(res.data.datas);
-                    showPage(res.data.totalPage,currentPage);
-                    console.log("showPage(res.data.totalPage,currentPage)");
-                    console.log(currentPage);
-                    clickEvent(currentPage,totalpage);
+                    $(".xinxi").children().remove();
+                    for(var i=0;i<res.data.datas.length;i++){
+                        pageCount=res.data.totalPage;
+                        totalData=res.data.totalRecord;
+                        showData=res.data.pageSize;
+                        newTime = new Date(res.data.datas[i].searchTime);
+                        Date.prototype.toLocaleString = function() {
+                            return (this.getFullYear() <10 ? "0"+this.getFullYear() : this.getFullYear()) + "." + ((this.getMonth()+ 1) <10 ? "0"+(this.getMonth() + 1) : (this.getMonth() + 1)) + "." + (this.getDate()  <10 ? "0"+this.getDate() : this.getDate() ) + "&nbsp&nbsp&nbsp" + (this.getHours()<10 ? "0"+this.getHours() : this.getHours()) + ":" + (this.getMinutes()<10 ? "0"+this.getMinutes() : this.getMinutes())+ ":" + (this.getSeconds()<10 ? "0"+this.getSeconds() : this.getSeconds());
+                        };
+                        stringTime = newTime.toLocaleString();
+                        var html='<tr><td>'+res.data.datas[i].id+'</td><td class="row"><span class="col-lg-4 col-md-4 col-xs-4 operate-userid">'+res.data.datas[i].userId+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-username">'+res.data.datas[i].userNickname+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-querytime">'+stringTime+'</span> </td> <td class="row"> <span class="col-lg-4 col-md-4 col-xs-4 operate-tele">'+res.data.datas[i].targetPhone+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-descrip">'+res.data.datas[i].searchType+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-type">'+res.data.datas[i].personType+'</span></td></tr>';
+                        $(".xinxi").append(html);
+                    }
                 },
                 error:function () {
-                    console.log("error");
+                    // $(".mag .submit_fail").css('display','block');
+                    console.log("数据错误")
                 }
-
             })
-
         }
-        function showData(arr){
-            $('#operatelog-tbody').html("");
-            $('#operatelog-tbody').append("<tr>"+
-                "<td>日志ID</td>" + "<td class=\"row\">" + "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-userid\">用户ID </span>" +
-                "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-username\">用户姓名 </span>" +
-                "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-querytime\">查询时间 </span>" +
-                "</td>" +
-                "<td class=\"row\">" +
-                "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-tele\">手机号码</span>" +
-                "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-descrip\">描述</span>" +
-                "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-type\">涉案类型</span>" +
-                "</td>" +
-                "</tr>");
-            for(var i = 0 ;i < arr.length; i++){
-                $('#operatelog-tbody').append("<tr>" +
-                    "<td >"+arr[i].id+"</td>" +
-                    "<td class=\"row\"><span class=\"col-lg-4 col-md-4 col-xs-4 operate-userid\">"+arr[i].userId+"</span><span class=\"col-lg-4 col-md-4 col-xs-4 operate-username\">"+arr[i].userNickname+"</span><span class=\"col-lg-4 col-md-4 col-xs-4 operate-querytime\">"+timeStamp(arr[i].searchTime)+"</span></td>" +
-                    "<td class=\"row\"><span class=\"col-lg-4 col-md-4 col-xs-4 operate-tele\">"+arr[i].targetPhone+"</span><span class=\"col-lg-4 col-md-4 col-xs-4 operate-descrip\">"+arr[i].personType+"</span><span class=\"col-lg-4 col-md-4 col-xs-4 operate-type\">"+arr[i].searchType+"</span></td>" +
-                    "</tr>");
-            }
-
-        }
-        function showPage(pageAll,cp) {
-            //询问考虑没数据情况后台返回，只显示一页
-            var _LENGTH = 5;
-            var midpage = Math.floor(_LENGTH/2)+1;
-            var pageArr = [];
-            totalpage = pageAll;
-            //总页数小于9页
-            if(pageAll < _LENGTH){
-                for(var i = 0 ;i < pageAll; i++){
-                    pageArr[i] = i+1;
+        $('.M-box').pagination({
+            pageCount:pageCount,
+            totalData:totalData,
+            showData:showData,
+            mode:'fixed',
+            keepShowPN:true,
+            prevContent:'上页',
+            nextContent:'下页',
+            callback:function(index){
+                // console.log(index.getCurrent());
+                //上一页下一页无法点击
+                if(index.getCurrent()==1){
+                    $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+                }else if(index.getCurrent()==pageCount){
+                    $(".tabbtn .next").css("cursor","not-allowed").css("background","#565656");
                 }
-            }//总页数大于9页
-            else{
-                //小于等于中间数不变
-                if(cp <= midpage){
-                    for(var j = 0 ;j < _LENGTH; j++){
-                        pageArr[j] = j+1;
-                    }
-                    console.log("pageArr");
-                    console.log(pageArr);
-                }//左边一半右边一半
-                else if(cp <= pageAll-midpage+1){
-                    for(var k =0 ; k < _LENGTH; k++){
-                        pageArr[k] = cp-midpage+1+k;
-                    }
-                    console.log("pageArr2");
-                    console.log(pageArr);
-                }//不变
-                else {
-                    for(var m =0 ; m < _LENGTH; m++){
-                        pageArr[m] = pageAll-_LENGTH+1+m;
-                    }
-                    console.log("pageArr3");
-                    console.log(pageArr);
-                }
-
+                myajax(true,index.getCurrent());
             }
-            drawPage(pageArr,cp,pageAll);
-
+        });
+        //上一页下一页无法点击
+        if($(".tabbtn span").text()==1){
+            $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+        }else if($(".tabbtn span").text()==pageCount){
+            $("tabbtn .next").css("cursor","not-allowed").css("background","#565656");
         }
-        function drawPage(pagearr,cp,pageall) {
-            $('#pageupdown').html("");
-            var _html = "";
-
-            $('#pageupdown').append("<li class=\"fl\" ><a class=\"operate-pagechange operate-pageprev\">上一页</a></li>");
-
-            for(var i = 0; i < pagearr.length;i++){
-                _html += "<li class=\"fl\"><a >"+ pagearr[i]+"</a></li>";
-            }
-            $('#pageupdown').append(_html);
-
-            //下一页
-            $('#pageupdown').append("<li class=\"fl\" ><a class=\"operate-pagechange operate-pagenext\">下一页</a></li>");
-
-            //激活当前页。
-            var index = getIndex(pagearr,cp);
-            console.log(index);
-            console.log(cp);
-            $('#pageupdown').children("li").eq(index+1).children("a").addClass("active");
-
-            //文字总页数pageAll
-
-            $('.operate-text').html("共"+pageall+"页");
-            //总页数为1，上下都禁用。
-            if(pageall===1){
-                $('#pageupdown').children("li").eq(0).children("a").addClass("operate-disable");
-                $('#pageupdown li:last-child').children("a").addClass("operate-disable");
-
-            }else{
-                //如果为1上一页禁用
-                if(cp === 1){
-                    console.log("cp1");
-                    console.log(cp);
-                    $('#pageupdown li:last-child').children("a").removeClass("operate-disable");
-                    $('#pageupdown').children("li").eq(0).children("a").addClass("operate-disable");
-                }
-                //如果为总页数下一页禁用
-                else if(cp === pageall){
-                    console.log("cp2");
-                    console.log(cp);
-                    $('#pageupdown').children("li").eq(0).children("a").removeClass("operate-disable");
-                    $('#pageupdown li:last-child').children("a").addClass("operate-disable");
-
-                }else {}
-            }
-
-
-
-
-            //成功了调用切换tab函数
-//            tab("#pageupdown",tp);
-
-        }
-//        clickEvent(currentPage,totalpage);
-        //点击事件
-        function clickEvent(crp,tp){
-            $('#pageupdown').children("li").click(function(){
-//                alert("a");
-                var text = $(this).children("a").text();//获取当前点击页数
-//                alert(text);
-                if(text === "上一页"){ //如果是点击的上一页
-//                alert(text);
-                    if( crp > 1){
-                        currentPage--;
-                    }else{
-                        //alert("已经是第一页");
-                       // $('#pageupdown').children("li").eq(tp+1).children("a").removeClass("operate-disable");
-                       // $('#pageupdown').children("li").eq(0).children("a").addClass("operate-disable");
-                    }
-                }else if(text === "下一页"){//如果是点击的下一页
-                    if(crp < tp){
-                        currentPage++;
-                        console.log("currentPage");
-                        console.log(currentPage);
-                    }else{
-//                        alert("已经是最后一页");
-                       // $('#pageupdown').children("li").eq(0).children("a").removeClass("operate-disable");
-                       // $('#pageupdown').children("li").eq(tp+1).children("a").addClass("operate-disable");
-                    }
-                }else{
-                    currentPage = parseInt(text);//将获取的页数转化成数字
-                }
-                loadData();
-
-
-
-            });
-        }
-
-
-
-        function getIndex(pagearr,cp) {
-            var index = 0;
-            for (var i = 0 ; i < pagearr.length; i++){
-                if(pagearr[i] === cp ){
-                    index = i;
-                }
-            }
-            return index;
-        }
-        function timeStamp(searchTime) {
-            var newTime = new Date(searchTime);
-            Date.prototype.toLocaleString = function() {
-                return (this.getFullYear() <10 ? "0"+this.getFullYear() : this.getFullYear()) + "." + ((this.getMonth()+ 1) <10 ? "0"+(this.getMonth() + 1) : (this.getMonth() + 1)) + "." + (this.getDate()  <10 ? "0"+this.getDate() : this.getDate() ) + "&nbsp&nbsp&nbsp" + (this.getHours()<10 ? "0"+this.getHours() : this.getHours()) + ":" + (this.getMinutes()<10 ? "0"+this.getMinutes() : this.getMinutes())+ ":" + (this.getSeconds()<10 ? "0"+this.getSeconds() : this.getSeconds());
-            };
-            return newTime.toLocaleString();
-        }
-
-
-        //        function logdataajax(pageCode) {
-        //            $.ajax({
-        //                type:"GET",
-        //                url:"/log/searchLog",
-        //                dataType:"json",
-        //                data:{pageCode:pageCode},
-        //                success:function (res) {
-        //                    var mylog = res.data.datas;
-        //                    var newTime;
-        //                    var stringTime;
-        //                    $('#operatelog-tbody').html("");
-        //                    $('#operatelog-tbody').append("<tr>"+
-        //                        "<td>日志ID</td>" + "<td class=\"row\">" + "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-userid\">用户ID </span>" +
-        //                        "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-username\">用户姓名 </span>" +
-        //                        "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-querytime\">查询时间 </span>" +
-        //                        "</td>" +
-        //                        "<td class=\"row\">" +
-        //                        "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-tele\">手机号码</span>" +
-        //                        "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-descrip\">描述</span>" +
-        //                        "<span class=\"col-lg-4 col-md-4 col-xs-4 operate-type\">涉案类型</span>" +
-        //                        "</td>" +
-        //                        "</tr>");
-        //                    for(var i = 0 ;i < mylog.length; i++){
-        //                        newTime = new Date(mylog[i].searchTime);
-        //                        Date.prototype.toLocaleString = function() {
-        //                            return (this.getFullYear() <10 ? "0"+this.getFullYear() : this.getFullYear()) + "." + ((this.getMonth()+ 1) <10 ? "0"+(this.getMonth() + 1) : (this.getMonth() + 1)) + "." + (this.getDate()  <10 ? "0"+this.getDate() : this.getDate() ) + "&nbsp&nbsp&nbsp" + (this.getHours()<10 ? "0"+this.getHours() : this.getHours()) + ":" + (this.getMinutes()<10 ? "0"+this.getMinutes() : this.getMinutes())+ ":" + (this.getSeconds()<10 ? "0"+this.getSeconds() : this.getSeconds());
-        //                        };
-        //                        stringTime = newTime.toLocaleString();
-        //
-        //                        $('#operatelog-tbody').append("<tr>" +
-        //                            "<td >"+mylog[i].id+"</td>" +
-        //                            "<td class=\"row\"><span class=\"col-lg-4 col-md-4 col-xs-4 operate-userid\">"+mylog[i].userId+"</span><span class=\"col-lg-4 col-md-4 col-xs-4 operate-username\">"+mylog[i].userNickname+"</span><span class=\"col-lg-4 col-md-4 col-xs-4 operate-querytime\">"+stringTime+"</span></td>" +
-        //                            "<td class=\"row\"><span class=\"col-lg-4 col-md-4 col-xs-4 operate-tele\">"+mylog[i].targetPhone+"</span><span class=\"col-lg-4 col-md-4 col-xs-4 operate-descrip\">"+mylog[i].personType+"</span><span class=\"col-lg-4 col-md-4 col-xs-4 operate-type\">"+mylog[i].searchType+"</span></td>" +
-        //                            "</tr>");
-        //                    }
-        //
-        //                },
-        //                error:function() {
-        //                    console.log("获取基本信息失败,请联系管理员");
-        //                }
-        //            })
-        //        }
-
-
-
-
 
     </script>
 

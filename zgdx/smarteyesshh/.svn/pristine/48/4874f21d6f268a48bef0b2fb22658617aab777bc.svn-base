@@ -6,7 +6,6 @@
 <head>
     <meta charset="utf-8" />
     <title>系统权限管理</title>
-    <link rel="shortcut icon" href="${img}/ddlogo.ico">
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
@@ -467,7 +466,7 @@
         var totalData=null;
         var showData=null;
         myajax(false,1);
-        $(".alldata span").text(pageCount);
+        // $(".alldata span").text(pageCount);
         function myajax(async,num) {
             $.ajax({
                 type:"get",
