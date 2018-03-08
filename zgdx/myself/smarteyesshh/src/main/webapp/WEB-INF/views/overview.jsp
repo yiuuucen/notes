@@ -6,6 +6,8 @@
 <head>
     <meta charset="utf-8" />
     <title>概览</title>
+    <link rel="shortcut icon" href="${img}/ddlogo.ico">
+    <link rel="stylesheet" href="${css}/ele-ui.css" />
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
@@ -21,6 +23,8 @@
     <script type="text/javascript" src="${js}/bmap.js" ></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Zl1DTZtwQh8Vfk7G8PpVExYywZAmET9p"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+    <script src="${js}/vue.js"></script>
+    <script src="${js}/ele-ui.js"></script>
     <script>
         $(function(){
             $('input.datetimepicker').datetimepicker({
@@ -51,17 +55,25 @@
                 <span id="tit-person"></span>
             </div>
             <div class="pull-right text-right input-group col-lg-5 col-md-5 col-xs-5">
-                <!--<input placeholder="2017-10-01 16:49" type="text" class="pull-right datetimepicker" />
-                <input placeholder="2017-10-02 16:49" type="text" class="pull-right datetimepicker" />-->
-                <%--<select id="overview-select" onchange="calendar(this.options[this.options.selectedIndex].value)" class="pull-right select" style="margin-top: 7px; margin-right: 16px;">--%>
-                <select id="overview-select" onchange="allChange(this.options[this.options.selectedIndex].value)" class="pull-right select" style="margin-top: 7px; margin-right: 16px;">
-                    <option value="day" >&nbsp;最近一天</option>
-                    <option value="week">&nbsp;最近一周</option>
-                    <option value="month" selected=''>&nbsp;最近一月</option>
-                    <%--<option value="year">&nbsp;最近一年</option>--%>
-                    <%--<option value="自定义">&nbsp;自定义</option>--%>
-                    <%--<option value="全部">&nbsp;全部</option>--%>
-                </select>
+                <div id="app">
+                    <template>
+                        <div class="block">
+                            <el-date-picker
+                                    v-model="value7"
+                                    type="daterange"
+                                    align="right"
+                                    value-format="yyyy-MM-dd"
+                                    unlink-panels
+                                    :start-placeholder="morenT"
+                                    range-separator="至"
+                                    :end-placeholder="morenT2"
+                                    :picker-options="pickerOptions2"
+                                    @change="gettime"
+                            >
+                            </el-date-picker>
+                        </div>
+                    </template>
+                </div>
             </div>
         </div>
         <%--图表展示--%>
@@ -155,7 +167,6 @@
         var myChart5;
         var myDate = new Date();
         var myyear = ""+myDate.getFullYear();    //获取完整的年份(4位,1970-????)
-
         var avg = 240;
         //展示数据
         $(function () {
@@ -215,72 +226,81 @@
 
 
         });
-        function allChange(value) {
-//            var myDate = new Date();
-            var myDate = new Date();
-            var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
-            mymonth = mymonth + 1;
-            mymonth = mymonth < 10 ? '0'+mymonth: mymonth;
-            var mydate = myDate.getDate();//获取当前日(1-31)
-            mydate = mydate-1;
-            mydate = mydate < 10 ? '0'+mydate: mydate;
-            var timerange = [];
-
-            switch(value){
-                case "day":
-                    //当天热力
-                    timerange[0] = myyear+mymonth+""+mydate;
-                    timerange[1] = myyear+mymonth+""+mydate;
-                    avg = 20;
-
-                    break;
-                case "week":
-                    var mywkdate = mydate;
-                    timerange[1] = myyear+mymonth+""+mydate;
-                    mywkdate = (mydate-6) < 0 ? '0'+1 : mydate-6+"";
-                    timerange[0] = myyear+mymonth+""+mywkdate;
-                    avg = 110;
-
-                    break;
-                case "month":
-                    timerange[0] = myyear+mymonth+""+"01";
-                    timerange[1] = myyear+mymonth+""+mydate;
-                    avg = 240;
-
-                    break;
-
+        var timerange;
+        new Vue({
+            el:'#app',
+            data:{
+                morenT:new Date()- 3600 * 1000 * 24 * 7,
+                morenT2:new Date(),
+                pickerOptions2: {
+                    shortcuts: [{
+                        text: '最近一周',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '最近一个月',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '最近三个月',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }]
+                },
+                value6: '',
+                value7: ''
+            },
+            methods:{
+                gettime(value){
+                    value[0]=value[0].slice(0,4)+value[0].slice(5,7)+value[0].slice(8,10);
+                    value[1]=value[1].slice(0,4)+value[1].slice(5,7)+value[1].slice(8,10);
+                    // value[0]=20180306;
+                    // console.log(value[0]);
+                    // console.log(value[1]);
+                    timerange = [value[0],value[1]];
+                    calendar(timerange);
+                    relation(timerange);
+                    pcher(timerange);
+                },
+                formatDate1(date){
+                    var y = date.getFullYear();
+                    var m = date.getMonth() + 1;
+                    m = m < 10 ? '0' + m : m;
+                    var d = date.getDate();
+                    d = d < 10 ? ('0' + d) : d;
+                    return y + '-' + m + '-' + d;
+                }
+            },
+            // 钩子函数，页面渲染自动执行
+            mounted(){
+                this.morenT=this.formatDate1(new Date(this.morenT));
+                this.morenT2=this.formatDate1(this.morenT2);
+                morenTT=this.morenT.slice(0,4)+this.morenT.slice(5,7)+this.morenT.slice(8,10);
+                morenTT2=this.morenT2.slice(0,4)+this.morenT2.slice(5,7)+this.morenT2.slice(8,10);
+                //    初始化
+                relation([morenTT,morenTT2]);
+//              relation(["20171221","20171221"]);
+                calendar([morenTT,morenTT2]);
+//              calendar(["20171221","20171221"]);
+                pcher([morenTT,morenTT2]);
+//              pcher(["20171221","20171221"]);
+                lineBar(morenTT);
+//              lineBar("20171206");
             }
-            calendar(timerange);
-            relation(timerange);
-            pcher(timerange);
 
-        }
-        //初始化
-        function initialFunc(){
-//            var myDate = new Date();
-            var myDate = new Date();
-            var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
-            mymonth = mymonth + 1;
-            mymonth = mymonth < 10 ? '0'+mymonth: mymonth;//小于10前面加0
-            var mydate = myDate.getDate();//获取当前日(1-31)
-            mydate = mydate-1;//得到昨天的日子
-            mydate = mydate < 10 ? '0'+mydate: mydate;
-            var timerange = [];
-//            timerange[0] = myyear+mymonth+""+mydate;
-//            timerange[1] = myyear+mymonth+""+mydate;
-            timerange[0] = myyear+mymonth+""+"01";
-            timerange[1] = myyear+mymonth+""+mydate;
-
-            relation(timerange);
-//            relation(["20171221","20171221"]);
-            calendar(timerange);
-//            calendar(["20171221","20171221"]);
-            pcher(timerange);
-//            pcher(["20171221","20171221"]);
-            lineBar(timerange[0]);
-//            lineBar("20171206");
-        }
-        initialFunc();
+        });
         //联系人特征---关系图
         function relation(timerange){
             var targetPhone=$("#targetPhone").val();
@@ -1664,7 +1684,6 @@
                         data.duration[i]= data.duration[i].toFixed(2);
                     }
 
-
                     option = {
                         tooltip: {
 //                            formatter: function (params) {
@@ -1848,8 +1867,6 @@
 
         }
         map02();
-
-
 
 </script>
 

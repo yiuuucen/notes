@@ -1,0 +1,63 @@
+package cn.com.ctbri.ctbigdata.smarteyes.controller;
+
+import cn.com.ctbri.ctbigdata.smarteyes.service.ContactNewService;
+import cn.com.ctbri.ctbigdata.smarteyes.service.MdnToEncrypt;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * Created by elite on 2018/3/7.
+ */
+@Controller
+@RequestMapping(value = "/new")
+public class ContactListNewController {
+
+    @Autowired
+    ContactNewService contactNewService;
+
+    @Autowired
+    MdnToEncrypt mdnToEncrypt;
+
+    @RequestMapping(value = "/getAllContacts",produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getContacts(@RequestParam(value="targetPhone")String targetPhone,
+                              @RequestParam(value="startTime")String startTime,
+                              @RequestParam(value="endTime")String endTime){
+        targetPhone = mdnToEncrypt.mdnTtoEnc(targetPhone);
+        JSONObject jsonObject = contactNewService.getAllContact(targetPhone,startTime,endTime);
+        return JSON.toJSONString(jsonObject);
+    }
+
+    @RequestMapping(value = "/getGraph", produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String getGraph(@RequestParam(value="targetPhone")String targetPhone,
+                           @RequestParam(value="startTime")String startTime,
+                           @RequestParam(value="endTime")String endTime){
+        JSONObject jsonObject = new JSONObject();
+        JSONArray nodeArray = new JSONArray();
+        JSONObject object = new JSONObject();
+        object.put("name", targetPhone);
+        object.put("category", 0);
+        object.put("exp", 1);
+        nodeArray.add(object);
+        JSONObject nodetemp = contactNewService.getGraph(targetPhone,startTime,endTime);
+        try{
+            nodeArray.addAll((JSONArray) nodetemp.get("nodes"));
+            JSONArray linkArray = (JSONArray) nodetemp.get("links");
+            jsonObject.put("nodes",nodeArray);
+            jsonObject.put("links",linkArray);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return JSON.toJSONString(jsonObject, SerializerFeature.PrettyFormat,SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+
+}

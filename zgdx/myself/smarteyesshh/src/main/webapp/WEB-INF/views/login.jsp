@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>登录</title>
+    <link rel="shortcut icon" href="${img}/ddlogo.ico">
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
@@ -79,7 +80,7 @@
                         <div>
                             <img src="${img}/logcapt.png" alt="">
                             <input type="text" placeholder="请输入验证码" name="verification">
-                            <p>获取短信验证码</p>
+                            <p id="idcode" onclick="sendMes()">获取短信验证码</p>
                             <a href="findpwd.jsp">忘记密码</a>
                         </div>
                         <input type="submit" value="登录">
@@ -152,8 +153,29 @@
             });
             $("input[name='verification']").focus(function () {
                 $(".shuru>div:nth-child(2) span").css('display','none');
-            })
+            });
         });
+
+        //验证码
+        function sendMes() {
+            var i=11;
+            var timer;
+            clearInterval(timer);
+            timer=setInterval(function () {
+                i--;
+                $("#idcode").html(i+" 秒").css("font-size","22px");
+                if(i==-1){
+                    $("#idcode").html("再次获取验证码").css("color","rgba(255,255,255,0.5)").css("font-size","10px");
+                    clearInterval(timer);
+                }
+                if($("#idcode").html().length>6){
+                    $("#idcode").attr("onclick","sendMes()")
+                }else{
+                    $("#idcode").attr("onclick","")
+                }
+            },1000)
+        }
+
     </script>
 </body>
 </html>

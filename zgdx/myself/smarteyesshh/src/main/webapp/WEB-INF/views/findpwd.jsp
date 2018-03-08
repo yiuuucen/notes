@@ -77,7 +77,7 @@
 
 </div>
 <!--底部-->
-<footer style="position: relative;"><p class="text-center">© 2017 SmarttEyes | 猎犬上海网安版</p></footer>
+    <jsp:include page="/WEB-INF/common/footer.jsp"/>
 
 <script>
     $(function(){
