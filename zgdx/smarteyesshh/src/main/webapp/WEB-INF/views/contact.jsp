@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <title>联系人列表</title>
     <link rel="shortcut icon" href="${img}/ddlogo.ico">
+    <link rel="stylesheet" href="${css}/ele-ui.css" />
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
@@ -17,6 +18,8 @@
     <script type="text/javascript" src="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js" ></script>
     <script type="text/javascript" src="${js}/echarts.js" ></script>
+    <script src="${js}/vue.js"></script>
+    <script src="${js}/ele-ui.js"></script>
     <script>
         $(function(){
             $('input.datetimepicker').datetimepicker({
@@ -40,7 +43,8 @@
             //图标展示高度
             var h= $(window).height()-60;
             $("#ect").height(h);
-            $(".listl .list").height((h/2)-40);
+
+            // $(".listl .list").height((h/2)-40);
 
         })
     </script>
@@ -51,59 +55,84 @@
     </style>
 </head>
 <body>
-<div class="container-fluid smartEyes-container">
+<div class="container-fluid smartEyes-container contact">
     <input type="hidden" value="${targetPhone}" id="targetPhone"/>
     <jsp:include page="/WEB-INF/common/head.jsp"/>
 
-    <div class="row searchBox listbox">
+    <div class="row searchBox listbox container-fluid">
         <div class="col-lg-12 col-md-12 col-xs-12 namelist clearfix">
             <div class="pull-left namelistcc col-lg-4 col-md-4 col-xs-4">
                 <span>当前重点人员：</span>
                 <span id="tit-person"> </span>
             </div>
             <div class="pull-right text-right input-group col-lg-5">
-                <!--<input placeholder="2017-10-01 16:49" type="text" class="pull-right datetimepicker" />
-                <input placeholder="2017-10-02 16:49" type="text" class="pull-right datetimepicker" />-->
-                <select class="pull-right select" onchange="allChange2(this.options[this.options.selectedIndex].value)" style="margin-top: 7px; margin-right: 16px;">
-                    <option value="day" >&nbsp;最近一天</option>
-                    <option value="week">&nbsp;最近一周</option>
-                    <option value="month" selected=''>&nbsp;最近一月</option>
-                    <%--<option value="最近一年">&nbsp;最近一年</option>--%>
-                    <%--<option value="自定义">&nbsp;自定义</option>--%>
-                    <%--<option value="全部">&nbsp;全部</option>--%>
-                </select>
+                <div id="app">
+                    <template>
+                        <div class="block">
+                            <el-date-picker
+                                    v-model="value7"
+                                    type="daterange"
+                                    align="right"
+                                    value-format="yyyy-MM-dd"
+                                    unlink-panels
+                                    :start-placeholder="morenT"
+                                    range-separator="至"
+                                    :end-placeholder="morenT2"
+                                    :picker-options="pickerOptions2"
+                                    @change="gettime"
+                            >
+                            </el-date-picker>
+                        </div>
+                    </template>
+                </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3 listl" style="border-bottom: none;">
+        <div class="listl" style="border-bottom: none;">
             <div class="l-contacts">
                 <div class="c-head clearfix">
-                    <span class="pull-left"><i></i>一度联系人</span>
-                    <span class="pull-right" id="1total">-人</span>
+                    <span class="pull-left">筛选</span>
+                    <span class="pull-right">一度</span>
+                    <span class="pull-right">重点人员</span>
+                </div>
+                <div class="c-head clearfix">
+                    <span class="pull-left">编号</span>
+                    <span class="pull-left">描述</span>
+                    <span class="pull-left">关联度</span>
+                    <span class="pull-left">关联指数</span>
                 </div>
                 <ul class="list" id="firstcontact">
-                    <%--<li class="list-group-item">--%>
-                        <%--<span><i> </i> </span>--%>
-                        <%--<span> </span>--%>
-                        <%--<span> </span>--%>
-                    <%--</li>--%>
+                    <li class="list-person">
+                        <span>1.SE5cb3fv9sc0d3</span>
+                        <span>重点人员</span>
+                        <span>一度</span>
+                        <span>0.90</span>
+                    </li>
+                    <li class="list-person">
+                        <span>2.SE5cb3fv9sc0d3</span>
+                        <span>重点人员</span>
+                        <span>一度</span>
+                        <span>0.90</span>
+                    </li>
+                    <li class="list-person">
+                        <span>3.SE5cb3fv9sc0d3</span>
+                        <span>重点人员</span>
+                        <span>一度</span>
+                        <span>0.90</span>
+                    </li>
                 </ul>
+                <div class="daochu">导出列表信息</div>
             </div>
-            <div class="l-contacts t-contacts">
-                <div class="c-head clearfix">
-                    <span class="pull-left"><i></i>二度联系人</span>
-                    <span class="pull-right" id="2total">-人</span>
-                </div>
-                <ul class="list" id="secondcontact">
-                    <%--<li class="list-group-item">--%>
-                        <%--<span><i> </i> </span>--%>
-                        <%--<span> </span>--%>
-                        <%--<span> </span>--%>
-                    <%--</li>--%>
-                </ul>
-            </div>
+            <%--<div class="l-contacts t-contacts">--%>
+                <%--<div class="c-head clearfix">--%>
+                    <%--<span class="pull-left"><i></i>二度联系人</span>--%>
+                    <%--<span class="pull-right" id="2total">-人</span>--%>
+                <%--</div>--%>
+                <%--<ul class="list" id="secondcontact">--%>
+                <%--</ul>--%>
+            <%--</div>--%>
         </div>
         <!--图表展示-->
-        <div class="col-lg-9 col-md-9 col-xs-9 echartBox">
+        <div class="list2 echartBox col-lg-8 col-md-8 col-xs-8">
             <div class="echart03" id="ect"></div>
         </div>
     </div>
@@ -173,451 +202,475 @@
     var myyear = ""+myDate.getFullYear();    //获取完整的年份(4位,1970-????)
 
     var targetPhone=$("#targetPhone").val();
-    var nodeTimerange=[];
-    function allChange2(value) {
-//        var myDate = new Date();
-        var myDate = new Date();
-        var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
-        mymonth = mymonth + 1;
-        mymonth = mymonth < 10 ? '0'+mymonth: mymonth;
-        var mydate = myDate.getDate();//获取当前日(1-31)
-        mydate = mydate-1;
-        mydate = mydate < 10 ? '0'+mydate: mydate;
-        var timerange = [];
-
-        switch(value){
-            case "day":
-                //当天热力
-                timerange[0] = myyear+mymonth+""+mydate;
-                timerange[1] = myyear+mymonth+""+mydate;
-                nodeTimerange = timerange;
-
-                break;
-            case "week":
-                var mywkdate = mydate;
-                timerange[1] = myyear+mymonth+""+mydate;
-                mywkdate = (mydate-6) < 0 ? '0'+1 : mydate-6+"";
-                timerange[0] = myyear+mymonth+""+mywkdate;
-                nodeTimerange = timerange;
-
-                break;
-            case "month":
-                timerange[0] = myyear+mymonth+""+"01";
-                timerange[1] = myyear+mymonth+""+mydate;
-                nodeTimerange = timerange;
-
-                break;
-
-        }
-        contactList(timerange);
-        relationG(timerange);
-        $('#echart-right').hide();
-
+    //判断传过来的电话是否为86开头，如果不是则帮它加上
+    if(targetPhone.length!=13){
+        targetPhone="86"+targetPhone;
     }
-    //初始化
-    function initialFunc(){
-//        var myDate = new Date();
-        var myDate = new Date();
-        var mymonth = myDate.getMonth();//获取当前月份(0-11,0代表1月)
-        mymonth = mymonth + 1;
-        mymonth = mymonth < 10 ? '0'+mymonth: mymonth;//小于10前面加0
-        var mydate = myDate.getDate();//获取当前日(1-31)
-        mydate = mydate-1;//得到昨天的日子
-        mydate = mydate < 10 ? '0'+mydate: mydate;
-        var timerange = [];
-//        timerange[0] = myyear+mymonth+""+mydate;
-//        timerange[1] = myyear+mymonth+""+mydate;
-        timerange[0] = myyear+mymonth+""+"01";
-        timerange[1] = myyear+mymonth+""+mydate;
-
-        nodeTimerange = timerange;
-        contactList(timerange);
+    var nodeTimerange=[];
+    var timerange;
+    new Vue({
+        el:'#app',
+        data:{
+            morenT:new Date()- 3600 * 1000 * 24 * 7,
+            morenT2:new Date(),
+            pickerOptions2: {
+                shortcuts: [{
+                    text: '最近一周',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                        picker.$emit('pick', [start, end]);
+                    }
+                }, {
+                    text: '最近一个月',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                        picker.$emit('pick', [start, end]);
+                    }
+                }, {
+                    text: '最近三个月',
+                    onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                        picker.$emit('pick', [start, end]);
+                    }
+                }]
+            },
+            value6: '',
+            value7: ''
+        },
+        methods:{
+            gettime(value){
+                value[0]=value[0].slice(0,4)+value[0].slice(5,7)+value[0].slice(8,10);
+                value[1]=value[1].slice(0,4)+value[1].slice(5,7)+value[1].slice(8,10);
+                // value[0]=20180306;
+                // console.log(value[0]);
+                // console.log(value[1]);
+                timerange = [value[0],value[1]];
+                contactList(timerange);
+                relationG(timerange);
+                $('#echart-right').hide();
+            },
+            formatDate1(date){
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                m = m < 10 ? '0' + m : m;
+                var d = date.getDate();
+                d = d < 10 ? ('0' + d) : d;
+                return y + '-' + m + '-' + d;
+            }
+        },
+        // 钩子函数，页面渲染自动执行
+        mounted(){
+            this.morenT=this.formatDate1(new Date(this.morenT));
+            this.morenT2=this.formatDate1(this.morenT2);
+            morenTT=this.morenT.slice(0,4)+this.morenT.slice(5,7)+this.morenT.slice(8,10);
+            morenTT2=this.morenT2.slice(0,4)+this.morenT2.slice(5,7)+this.morenT2.slice(8,10);
+            //    初始化
+            // nodeTimerange = [morenTT,morenTT2];
+            // contactList([morenTT,morenTT2]);
 //        console.log("timerange");
 //        console.log(timerange);
 //            relation(["20171221","20171221"]);
-        relationG(timerange);
+//             relationG([morenTT,morenTT2]);
 //            relation2(["20171221","20171221"]);
 
-    }
-    initialFunc();
-
-    function sortExp(a,b){
-        return b.exp-a.exp;
-    }
-    function contactList(timerange) {
-        $.ajax({
-            type:"GET",
-            url:window.ctx+"/beta/getContacts",
-            data: {"targetPhone":targetPhone,"startTime":timerange[0],"endTime":timerange[1]},
-            dataType:"json",
-            success:function (data) {
-//                console.log("data");
-//                console.log(data);
-
-                if(data!==null){
-
-                    //初始化变量
-                    var firstcon = data.firstContact;
-                    var secondcon = data.secondContact;
-
-                    var firlen = firstcon.length;
-                    var seclen = secondcon.length;
-                    //给一度二度联系人名字加SE；
-
-                    if(firlen!==0){
-                        firstcon.forEach(function (f) {
-
-                            f.name="SE"+f.name.slice(-12);
-
-                        });
-                    }else {}
-
-                    if(seclen!==0){
-                        secondcon.forEach(function (se) {
-
-                            se.name="SE"+se.name.slice(-12);
-
-                        });
-                    }else {}
-                    //对一度联系人二度联系人排序。
-                    firstcon.sort(sortExp);
-                    secondcon.sort(sortExp);
-
-
-                    $('#1total').html(firlen+"人");
-                    $('#2total').html(seclen+"人");
-
-                    $('#tit-person').html("SE"+targetPhone+"   有效联系人总数: "+(firlen+seclen));
-
-                    //清空ul下的li
-                    $('#firstcontact').html("");
-                    $('#secondcontact').html("");
-
-                    //根据获取数据长度每次添加一个li
-                    function appendLi(id,len) {
-                        for(var j=0;j<len;j++)
-                        {
-                            var apen="<span></span><span></span>";
-                            var selector = '#'+id;
-                            $(selector).append(
-                                "<li class=\"list-group-item mylist-group-item\"><span><i></i></span>"+apen+"</li>"
-                            );
-                        }
-                    }
-                    appendLi('firstcontact',firlen);
-                    appendLi('secondcontact',seclen);
-
-
-
-                    //给第一联系人第二联系人设置具体值
-                    function setValue(id,val) {
-                        var selector = '#'+id+' >li';
-                        $(selector).each(function (i) {
-                            // $(this).children('span:eq(0)').find("i").text()
-
-                            $(this).children('span:eq(0)').html("<i>"+(i+1)+".</i>"+(val[i].name));
-
-                            if(val[i].tag==="重点人员"){
-                                $(this).children('span:eq(1)').css({"color":"#ff5353"});
-                                $(this).children('span:eq(2)').css({"color":"#ff5353"});
-                            }
-                            $(this).children('span:eq(1)').html(""+(val[i].tag));
-                            $(this).children('span:eq(2)').html("关联指数："+(val[i].exp).toFixed(2));
-                        });
-                    }
-                    setValue('firstcontact',firstcon);
-                    setValue('secondcontact',secondcon);
-
-                }else {
-                    alert("查不到数据");
-                }
-
-            },
-            error:function() {
-                console.log("获取联系人数据失败,请联系管理员");
-            }
-        });
-    }
-
-
-    function relationG(timerange) {
-        //关系图
-        if (myChart0 != null && myChart0 != "" && myChart0 != undefined) {
-            myChart0.dispose();
-        }
-        myChart0 = echarts.init(document.getElementById('ect'));
-
-        myChart0.showLoading();
-
-        $.ajax({
-            type:"GET",
-            url:window.ctx+"/beta/getGraph",
-            data: {"targetPhone":targetPhone,"startTime":timerange[0],"endTime":timerange[1]},
-            dataType:"json",
-            success:function (graph) {
-
-//                console.log("graph");
-//                console.log(graph);
-
-                myChart0.hideLoading();
-
-                var categories = [{
-                    name:'当前重点人员',
-                    itemStyle: {
-                        normal: {
-                            color: "#478fca"
-                        }
-                    }
+            $.ajax({
+                type:"GET",
+                url:"/new/getAllContacts",
+                data: {"targetPhone":targetPhone,"startTime":morenTT,"endTime":morenTT2},
+                dataType:"json",
+                success:function(data){
+                    console.log(data)
                 },
-                    {
-                        name:'一度联系人',
-                        itemStyle: {
-                            normal: {
-                                color: "#d34831"
-                            }
-                        }
-                    },
-                    {
-                        name:'二度联系人',
-                        itemStyle: {
-                            normal: {
-                                color: "#de9246"
-                            }
-                        }
-                    }
-                ];
-                function sortExp(a,b){
-                    return b.exp-a.exp
+                error:function(){
+
                 }
-                //找到max
+            });
+        }
 
-                var mynode = graph.nodes;
-                var brr1=[];
-                var brr2=[];
-                var max1,max2;
-                for(var i=0;i<mynode.length;i++){
-                    if(mynode[i].category===1){
-                        brr1.push(mynode[i]);
-
-                    }else if(mynode[i].category===2){
-                        brr2.push(mynode[i]);
-                    }else{}
-                }
-                brr1.sort(sortExp);
-                if(brr1.length!==0){max1 = brr1[0].exp;}
-                brr2.sort(sortExp);
-                if(brr2.length!==0){max2 = brr2[0].exp;}
-
-
-                graph.nodes.forEach(function (node) {
-                    //node.itemStyle = null;
-                    //node.draggable = true;
-
-
-                    //设置大小
-
-                    switch(node.category)
-                    {
-                        case 0:
-                            node.symbolSize = 40;
-                            break;
-                        case 1:
-                            node.symbolSize = 30*node.exp/max1;
-                            break;
-                        case 2:
-                            node.symbolSize = 16*node.exp/max2;
-                            break;
-                    }
-                    node.name="SE"+node.name;
-                    node.value=node.exp.toFixed(2);
-                    node.label = {
-                        normal: {
-                            //4.35
-                            show: false
-                        }
-                    };
-                    node.isnode = true;
-
-                });
-                graph.links.forEach(function (link) {
-
-                    link.source="SE"+link.source;
-                    link.target="SE"+link.target;
-                    link.islink = true;
-
-                });
-
-
-                myChart0.off('click');
-                myChart0.on("click",nodeClick);
-
-                option = {
-                    /*title: {
-                     text: 'L',
-                     subtext: 'Default layout',
-                     top: 'bottom',
-                     left: 'right'
-                     },*/
-                    //4.35
-                    tooltip: {
-                        formatter: function (params) {
-                            if(params.data.islink){
-                                if(params.data.source==="SE"+targetPhone){return params.data.source+" > "+'SE'+params.data.target.slice(-12);}
-                                else{return 'SE'+params.data.source.slice(-12)+" > "+'SE'+params.data.target.slice(-12);}
-                            }
-                            else {
-                                if(params.name==="SE"+targetPhone){return params.name+": "+params.value;}
-                                else{return 'SE'+params.name.slice(-12)+": "+params.value;}
-                            }
-                        }
-                    },
-                    legend: [{
-                        selectedMode: 'multiple',
-                        data: categories.map(function (a) {
-                            return a.name;
-                        }),
-                        textStyle: {
-                            color: '#ccc'
-                        }
-
-                    }],
-                    animationDuration: 1500,
-                    animationEasingUpdate: 'quinticInOut',
-                    series : [
-                        {
-                            name: '联系人节点',
-                            type: 'graph',
-//                            layout: 'circular',
-                            layout: 'force',
-
-                            force: {
-//                                edgeLength:200,
-//                                edgeLength:10,
-//                                repulsion: 500
-                                repulsion: 60,
-                                gravity: 0.2,
-//                                edgeLength: 30,
-                                edgeLength: 60,
-                                layoutAnimation: true
-
-                            },
-                            data: graph.nodes,
-                            links: graph.links,
-                            categories: categories,
-                            roam: false,
-                            draggable:false,
-                            label: {
-                                normal: {
-                                    position: 'left',
-                                    formatter: '{b}'
-                                }
-                            },
-
-                            lineStyle: {
-                                normal: {
-                                    curveness: 0.3
-                                }
-
-                            }
-                        }
-                    ]
-                };
-
-                myChart0.setOption(option);
-
+    });
+    // function sortExp(a,b){
+    //     return b.exp-a.exp;
+    // }
+//     function contactList(timerange) {
+//         $.ajax({
+//             type:"GET",
+//             url:window.ctx+"/beta/getContacts",
+//             data: {"targetPhone":targetPhone,"startTime":timerange[0],"endTime":timerange[1]},
+//             dataType:"json",
+//             success:function (data) {
+// //                console.log("data");
+// //                console.log(data);
 //
-                function nodeClick(params){
-                    if(params.data.category===1){
-                        //点击出现右侧弹框
-                        $('#echart-right').show();
-                        //清空echarts右侧图
-                        myradar(['0','0','0','0','0']);
-                        mychar02(['0','0']);
-                        mychar03(['0','0']);
+//                 if(data!==null){
+//
+//                     //初始化变量
+//                     var firstcon = data.firstContact;
+//                     var secondcon = data.secondContact;
+//
+//                     var firlen = firstcon.length;
+//                     var seclen = secondcon.length;
+//                     //给一度二度联系人名字加SE；
+//
+//                     if(firlen!==0){
+//                         firstcon.forEach(function (f) {
+//
+//                             f.name="SE"+f.name.slice(-12);
+//
+//                         });
+//                     }else {}
+//
+//                     if(seclen!==0){
+//                         secondcon.forEach(function (se) {
+//
+//                             se.name="SE"+se.name.slice(-12);
+//
+//                         });
+//                     }else {}
+//                     //对一度联系人二度联系人排序。
+//                     firstcon.sort(sortExp);
+//                     secondcon.sort(sortExp);
+//
+//
+//                     $('#1total').html(firlen+"人");
+//                     $('#2total').html(seclen+"人");
+//
+//                     $('#tit-person').html("SE"+targetPhone+"   有效联系人总数: "+(firlen+seclen));
+//
+//                     //清空ul下的li
+//                     $('#firstcontact').html("");
+//                     $('#secondcontact').html("");
+//
+//                     //根据获取数据长度每次添加一个li
+//                     function appendLi(id,len) {
+//                         for(var j=0;j<len;j++)
+//                         {
+//                             var apen="<span></span><span></span>";
+//                             var selector = '#'+id;
+//                             $(selector).append(
+//                                 "<li class=\"list-group-item mylist-group-item\"><span><i></i></span>"+apen+"</li>"
+//                             );
+//                         }
+//                     }
+//                     appendLi('firstcontact',firlen);
+//                     appendLi('secondcontact',seclen);
+//
+//
+//
+//                     //给第一联系人第二联系人设置具体值
+//                     function setValue(id,val) {
+//                         var selector = '#'+id+' >li';
+//                         $(selector).each(function (i) {
+//                             // $(this).children('span:eq(0)').find("i").text()
+//
+//                             $(this).children('span:eq(0)').html("<i>"+(i+1)+".</i>"+(val[i].name));
+//
+//                             if(val[i].tag==="重点人员"){
+//                                 $(this).children('span:eq(1)').css({"color":"#ff5353"});
+//                                 $(this).children('span:eq(2)').css({"color":"#ff5353"});
+//                             }
+//                             $(this).children('span:eq(1)').html(""+(val[i].tag));
+//                             $(this).children('span:eq(2)').html("关联指数："+(val[i].exp).toFixed(2));
+//                         });
+//                     }
+//                     setValue('firstcontact',firstcon);
+//                     setValue('secondcontact',secondcon);
+//
+//                 }else {
+//                     alert("查不到数据");
+//                 }
+//
+//             },
+//             error:function() {
+//                 console.log("获取联系人数据失败,请联系管理员");
+//             }
+//         });
+//     }
 
-                        //开始设置
-                        $('#right-curnum').html("SE"+params.data.name.slice(-12)+"");
-                        var lab="";
-                        switch(params.data.category)
-                        {
-                            case 0:
-                                lab = "当前重点人员";
-                                break;
-                            case 1:
-                                lab = "一度联系人";
-                                break;
-                            case 2:
-                                lab = "二度联系人";
-                                break;
-                        }
 
-
-                        $('#right-curlab').html(lab+"|"+"Rank"+params.dataIndex+"  |"+params.data.exp.toFixed(2));
-                        //console.log(params);
-                        //console.log(window.ctx+"/contact/getPerInfo?targetPhone="+params.name);
-//                    var para = {"targetPhone":targetPhone,"searchPhone":params.name.slice(2)};
-                        //获取右侧弹框相关数据
-                        $.ajax({
-                            type:"GET",
-                            url:window.ctx+"/beta/getPerInfo",
-                            data: {"targetPhone":targetPhone,"searchPhone":params.name.slice(2),"startTime":nodeTimerange[0],"endTime":nodeTimerange[1]},
-                            dataType:"json",
-                            success:function (data) {
-                                console.log("radar");
-                                console.log(data);
-                                console.log(targetPhone);
-
-                                if(data!==null){
-                                    var radardata = [data.contactInfo.totalCall,data.contactInfo.WorkCall,data.contactInfo.RestCall,data.contactInfo.UnderFifteenSeconds,data.contactInfo.AboveThreeMin];
-                                    var char02 = [data.teleInfo.calledTime,data.teleInfo.callingTime];
-                                    var char03 = [data.teleInfo.calledCount,data.teleInfo.callingCount];
-                                    myradar(radardata);
-                                    mychar02(char02);
-                                    mychar03(char03);
-
-
-                                }else{
-                                    console.log("没有数据");
-
-                                }
-                                //切换饼图
-                                $(".ectitle span").click(function(){
-                                    var index=$(this).index();
-                                    if(index==0){
-                                        $(this).addClass("active").siblings("span").removeClass("active");
-                                        $("#eBox02").show();
-                                        $("#eBox03").hide();
-                                        mychar02(char02);
-                                    }else if(index==2){
-                                        $(this).addClass("active").siblings("span").removeClass("active");
-                                        $("#eBox03").show();
-                                        $("#eBox02").hide();
-                                        mychar03(char03);
-                                    }
-
-                                })
-                            },
-
-                            error:function() {
-                                console.log("获取弹框数据失败,请联系管理员");
-                            }
-                        });
-                    }else{
-                        $('#echart-right').hide();
-                    }
-
-                }
-
-
-
-            },
-            error:function () {
-                alert("获取失败，请联系管理员！");
-
-            }
-        });
-
-    }
+//     function relationG(timerange) {
+//         //关系图
+//         if (myChart0 != null && myChart0 != "" && myChart0 != undefined) {
+//             myChart0.dispose();
+//         }
+//         myChart0 = echarts.init(document.getElementById('ect'));
+//
+//         myChart0.showLoading();
+//
+//         $.ajax({
+//             type:"GET",
+//             url:window.ctx+"/beta/getGraph",
+//             data: {"targetPhone":targetPhone,"startTime":timerange[0],"endTime":timerange[1]},
+//             dataType:"json",
+//             success:function (graph) {
+//
+// //                console.log("graph");
+// //                console.log(graph);
+//
+//                 myChart0.hideLoading();
+//
+//                 var categories = [{
+//                     name:'当前重点人员',
+//                     itemStyle: {
+//                         normal: {
+//                             color: "#478fca"
+//                         }
+//                     }
+//                 },
+//                     {
+//                         name:'一度联系人',
+//                         itemStyle: {
+//                             normal: {
+//                                 color: "#d34831"
+//                             }
+//                         }
+//                     },
+//                     {
+//                         name:'二度联系人',
+//                         itemStyle: {
+//                             normal: {
+//                                 color: "#de9246"
+//                             }
+//                         }
+//                     }
+//                 ];
+//                 function sortExp(a,b){
+//                     return b.exp-a.exp
+//                 }
+//                 //找到max
+//
+//                 var mynode = graph.nodes;
+//                 var brr1=[];
+//                 var brr2=[];
+//                 var max1,max2;
+//                 for(var i=0;i<mynode.length;i++){
+//                     if(mynode[i].category===1){
+//                         brr1.push(mynode[i]);
+//
+//                     }else if(mynode[i].category===2){
+//                         brr2.push(mynode[i]);
+//                     }else{}
+//                 }
+//                 brr1.sort(sortExp);
+//                 if(brr1.length!==0){max1 = brr1[0].exp;}
+//                 brr2.sort(sortExp);
+//                 if(brr2.length!==0){max2 = brr2[0].exp;}
+//
+//
+//                 graph.nodes.forEach(function (node) {
+//                     //node.itemStyle = null;
+//                     //node.draggable = true;
+//
+//
+//                     //设置大小
+//
+//                     switch(node.category)
+//                     {
+//                         case 0:
+//                             node.symbolSize = 40;
+//                             break;
+//                         case 1:
+//                             node.symbolSize = 30*node.exp/max1;
+//                             break;
+//                         case 2:
+//                             node.symbolSize = 16*node.exp/max2;
+//                             break;
+//                     }
+//                     node.name="SE"+node.name;
+//                     node.value=node.exp.toFixed(2);
+//                     node.label = {
+//                         normal: {
+//                             //4.35
+//                             show: false
+//                         }
+//                     };
+//                     node.isnode = true;
+//
+//                 });
+//                 graph.links.forEach(function (link) {
+//
+//                     link.source="SE"+link.source;
+//                     link.target="SE"+link.target;
+//                     link.islink = true;
+//
+//                 });
+//
+//
+//                 myChart0.off('click');
+//                 myChart0.on("click",nodeClick);
+//
+//                 option = {
+//                     /*title: {
+//                      text: 'L',
+//                      subtext: 'Default layout',
+//                      top: 'bottom',
+//                      left: 'right'
+//                      },*/
+//                     //4.35
+//                     tooltip: {
+//                         formatter: function (params) {
+//                             if(params.data.islink){
+//                                 if(params.data.source==="SE"+targetPhone){return params.data.source+" > "+'SE'+params.data.target.slice(-12);}
+//                                 else{return 'SE'+params.data.source.slice(-12)+" > "+'SE'+params.data.target.slice(-12);}
+//                             }
+//                             else {
+//                                 if(params.name==="SE"+targetPhone){return params.name+": "+params.value;}
+//                                 else{return 'SE'+params.name.slice(-12)+": "+params.value;}
+//                             }
+//                         }
+//                     },
+//                     legend: [{
+//                         selectedMode: 'multiple',
+//                         data: categories.map(function (a) {
+//                             return a.name;
+//                         }),
+//                         textStyle: {
+//                             color: '#ccc'
+//                         }
+//
+//                     }],
+//                     animationDuration: 1500,
+//                     animationEasingUpdate: 'quinticInOut',
+//                     series : [
+//                         {
+//                             name: '联系人节点',
+//                             type: 'graph',
+// //                            layout: 'circular',
+//                             layout: 'force',
+//
+//                             force: {
+// //                                edgeLength:200,
+// //                                edgeLength:10,
+// //                                repulsion: 500
+//                                 repulsion: 60,
+//                                 gravity: 0.2,
+// //                                edgeLength: 30,
+//                                 edgeLength: 60,
+//                                 layoutAnimation: true
+//
+//                             },
+//                             data: graph.nodes,
+//                             links: graph.links,
+//                             categories: categories,
+//                             roam: false,
+//                             draggable:false,
+//                             label: {
+//                                 normal: {
+//                                     position: 'left',
+//                                     formatter: '{b}'
+//                                 }
+//                             },
+//
+//                             lineStyle: {
+//                                 normal: {
+//                                     curveness: 0.3
+//                                 }
+//
+//                             }
+//                         }
+//                     ]
+//                 };
+//
+//                 myChart0.setOption(option);
+//
+// //
+//                 function nodeClick(params){
+//                     if(params.data.category===1){
+//                         //点击出现右侧弹框
+//                         $('#echart-right').show();
+//                         //清空echarts右侧图
+//                         myradar(['0','0','0','0','0']);
+//                         mychar02(['0','0']);
+//                         mychar03(['0','0']);
+//
+//                         //开始设置
+//                         $('#right-curnum').html("SE"+params.data.name.slice(-12)+"");
+//                         var lab="";
+//                         switch(params.data.category)
+//                         {
+//                             case 0:
+//                                 lab = "当前重点人员";
+//                                 break;
+//                             case 1:
+//                                 lab = "一度联系人";
+//                                 break;
+//                             case 2:
+//                                 lab = "二度联系人";
+//                                 break;
+//                         }
+//
+//
+//                         $('#right-curlab').html(lab+"|"+"Rank"+params.dataIndex+"  |"+params.data.exp.toFixed(2));
+//                         //console.log(params);
+//                         //console.log(window.ctx+"/contact/getPerInfo?targetPhone="+params.name);
+// //                    var para = {"targetPhone":targetPhone,"searchPhone":params.name.slice(2)};
+//                         //获取右侧弹框相关数据
+//                         $.ajax({
+//                             type:"GET",
+//                             url:window.ctx+"/beta/getPerInfo",
+//                             data: {"targetPhone":targetPhone,"searchPhone":params.name.slice(2),"startTime":nodeTimerange[0],"endTime":nodeTimerange[1]},
+//                             dataType:"json",
+//                             success:function (data) {
+//                                 console.log("radar");
+//                                 console.log(data);
+//                                 console.log(targetPhone);
+//
+//                                 if(data!==null){
+//                                     var radardata = [data.contactInfo.totalCall,data.contactInfo.WorkCall,data.contactInfo.RestCall,data.contactInfo.UnderFifteenSeconds,data.contactInfo.AboveThreeMin];
+//                                     var char02 = [data.teleInfo.calledTime,data.teleInfo.callingTime];
+//                                     var char03 = [data.teleInfo.calledCount,data.teleInfo.callingCount];
+//                                     myradar(radardata);
+//                                     mychar02(char02);
+//                                     mychar03(char03);
+//
+//
+//                                 }else{
+//                                     console.log("没有数据");
+//
+//                                 }
+//                                 //切换饼图
+//                                 $(".ectitle span").click(function(){
+//                                     var index=$(this).index();
+//                                     if(index==0){
+//                                         $(this).addClass("active").siblings("span").removeClass("active");
+//                                         $("#eBox02").show();
+//                                         $("#eBox03").hide();
+//                                         mychar02(char02);
+//                                     }else if(index==2){
+//                                         $(this).addClass("active").siblings("span").removeClass("active");
+//                                         $("#eBox03").show();
+//                                         $("#eBox02").hide();
+//                                         mychar03(char03);
+//                                     }
+//
+//                                 })
+//                             },
+//
+//                             error:function() {
+//                                 console.log("获取弹框数据失败,请联系管理员");
+//                             }
+//                         });
+//                     }else{
+//                         $('#echart-right').hide();
+//                     }
+//
+//                 }
+//
+//
+//
+//             },
+//             error:function () {
+//                 alert("获取失败，请联系管理员！");
+//
+//             }
+//         });
+//
+//     }
 
 
 

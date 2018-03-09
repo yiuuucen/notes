@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
-    <link rel="stylesheet" href="${css}/style2.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
     <script type="text/javascript" src="${js}/echarts.js" ></script>

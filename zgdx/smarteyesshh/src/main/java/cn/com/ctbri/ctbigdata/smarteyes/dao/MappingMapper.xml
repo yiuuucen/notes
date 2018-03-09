@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.com.ctbri.ctbigdata.smarteyes.model.Mapping" >
     <result column="mdn" property="mdn" jdbcType="VARCHAR" />
     <result column="telecom_encrypt" property="telecomEncrypt" jdbcType="VARCHAR" />
+    <result column="pcmd_encrypt" property="pcmdEncrypt" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    mdn, telecom_encrypt
+    mdn, telecom_encrypt, pcmd_encrypt
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.com.ctbri.ctbigdata.smarteyes.model.MappingExample" >
     select
@@ -87,8 +88,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.com.ctbri.ctbigdata.smarteyes.model.Mapping" >
-    insert into t_mapping (mdn, telecom_encrypt)
-    values (#{mdn,jdbcType=VARCHAR}, #{telecomEncrypt,jdbcType=VARCHAR})
+    insert into t_mapping (mdn, telecom_encrypt, pcmd_encrypt
+      )
+    values (#{mdn,jdbcType=VARCHAR}, #{telecomEncrypt,jdbcType=VARCHAR}, #{pcmdEncrypt,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.com.ctbri.ctbigdata.smarteyes.model.Mapping" >
     insert into t_mapping
@@ -99,6 +102,9 @@
       <if test="telecomEncrypt != null" >
         telecom_encrypt,
       </if>
+      <if test="pcmdEncrypt != null" >
+        pcmd_encrypt,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="mdn != null" >
@@ -106,6 +112,9 @@
       </if>
       <if test="telecomEncrypt != null" >
         #{telecomEncrypt,jdbcType=VARCHAR},
+      </if>
+      <if test="pcmdEncrypt != null" >
+        #{pcmdEncrypt,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -124,6 +133,9 @@
       <if test="record.telecomEncrypt != null" >
         telecom_encrypt = #{record.telecomEncrypt,jdbcType=VARCHAR},
       </if>
+      <if test="record.pcmdEncrypt != null" >
+        pcmd_encrypt = #{record.pcmdEncrypt,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -132,7 +144,8 @@
   <update id="updateByExample" parameterType="map" >
     update t_mapping
     set mdn = #{record.mdn,jdbcType=VARCHAR},
-      telecom_encrypt = #{record.telecomEncrypt,jdbcType=VARCHAR}
+      telecom_encrypt = #{record.telecomEncrypt,jdbcType=VARCHAR},
+      pcmd_encrypt = #{record.pcmdEncrypt,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

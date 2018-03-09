@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
-    <link rel="stylesheet" href="${css}/style2.css" />
     <link rel="stylesheet" href="${css}/style4.css" />
     <link rel="stylesheet" href="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>

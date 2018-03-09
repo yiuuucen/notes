@@ -169,12 +169,12 @@ footer p {
   width: 365px;
   height: 45px;
   margin-top: 50px;
-  padding: 4px 15px 4px 20px;
+  padding: 4px 4px 4px 20px;
   background-color: #c9cace;
   position: relative;
 }
 .smartEyes .textBox .text {
-  width: 85%;
+  width: 70%;
   height: 42px;
   background: none;
   border: none;
@@ -183,14 +183,262 @@ footer p {
   top: 0px;
 }
 .smartEyes .textBox .btn {
-  margin-left: 10px;
+  margin: 0 3px;
   width: 35px;
   height: 35px;
+
+}
+.smartEyes .textBox .btnSearch{
   background: url(../img/u01.png) no-repeat;
+}
+.smartEyes .textBox .btnSubmit{
+  background: url(../img/S_updata.png) no-repeat;
+  background-size: 35px;
+}
+/*head.jsp和head2.jsp也要使用这些css*/
+.geren{
+  margin: 50px 20px 0 20px;
+  position: relative;
+}
+.geren img{
+  width: 45px;
+  cursor: pointer;
+}
+.geren>div{
+  position: absolute;
+  width: 190px;
+  background:rgba(66, 69, 82, 0.6);;
+  top: 60px;
+  right: 0;
+  display: flex;
+  flex-wrap:wrap;
+  z-index: 9999;
+}
+.geren>div a{
+  width: 190px;
+  height: 45px;
+  line-height: 45px;
+  color: rgba(255,255,255,.6);
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+}
+.geren>div a:last-child{
+  border-bottom:none;
+}
+.peizhi{
+  margin: 50px 0 0 20px;
+  position: relative;
+}
+.peizhi img{
+  width: 45px;
+  cursor: pointer;
+}
+.peizhi>div{
+  position: absolute;
+  width: 190px;
+  background:rgba(66, 69, 82, 0.6);;
+  top: 60px;
+  right: 0;
+  display: flex;
+  flex-wrap:wrap;
+  z-index: 9999;
+}
+.peizhi>div a{
+  width: 190px;
+  height: 45px;
+  line-height: 45px;
+  color: rgba(255,255,255,.6);
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+}
+.textBox_head2{
+  width: 230px;
+  height: 45px;
+  margin-top: 16px;
+  padding: 4px 4px 4px 20px;
+  position: relative;
+  float: right;
+  border: 1px solid #2196f3;
+  color: rgba(255,255,255,0.6);
+  border-radius: 10px;
+}
+.textBox_head2 .text {
+  width: 70%;
+  height: 45px;
+  background: none;
+  border: none;
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 12px;
+}
+.textBox_head2 .btn {
+  margin: -3px 3px;
+  width: 35px;
+  height: 35px;
+
+}
+.textBox_head2 .btnSearch{
+  background: url(../img/head_search.png) no-repeat;
+  background-size: 35px;
+}
+/*head.jsp和head2.jsp   end*/
+.smartEyes .peizhi>div a:last-child{
+  border-bottom:none;
+}
+.S_tanchuang{
+
+}
+.S_tanchuang .submit_btn{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  background: rgba(40,42,57,0.85);
+  display: none;
+}
+.S_tanchuang .submit_btn .submit_box{
+  width: 580px;
+  height: 350px;
+  background: #2f3242;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+  box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+}
+.S_tanchuang .submit_box .box_top{
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  -moz-box-shadow: 0 10px 10px #272938;
+  box-shadow: 0 10px 10px #272938;
+}
+.S_tanchuang .submit_box .box_top span{
+  font-size: 20px;
+  color: #fff;
+}
+.S_tanchuang .submit_box .box_top img{
+  width: 18px;
+  margin: 28px 30px 0 0;
+  float: right;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+.S_tanchuang .submit_box .box_bottom{
+  color: #fff;
+  overflow: hidden;
+}
+.S_tanchuang .submit_box .box_bottom .msg{
+  width: 580px;
+  height: 280px;
+  /*background: pink;*/
+  margin: 25px auto 0;
+  color: #fff;
+}
+.S_tanchuang .submit_box .box_bottom .msg select {
+  /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+  border: solid 1px #fff;
+
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url("../img/u02.png") no-repeat  95%  transparent;
+  background-size: 15px;
+
+  /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+  padding-right: 20px;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div{
+  height: 60px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div>p{
+  width: 220px;
+  /*margin: 0 10px 0 0;*/
+  height: 100%;
+  text-align: right;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div>div{
+  width: 270px;
+  height: 100%;
+  margin: 0 0 0 5px;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div:nth-child(1)>div{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div:nth-child(2)>div{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div:nth-child(3)>div{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div:nth-child(1)>div input{
+  width: 270px;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0 0 0 14px;
+  color: #fff;
+  background: transparent;
+  font-weight: normal;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div:nth-child(1)>div span{
+  position: absolute;
+  color: red;
+  left: 120px;
+  bottom: 0;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div:nth-child(2)>div select{
+  width: 295px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #2f3242;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div:nth-child(3)>div select{
+  width: 295px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #2f3242;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.S_tanchuang .submit_box .box_bottom .msg>div:nth-child(4)>div{
+  width: 165px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #2196f3;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px 0 0 80px;
 }
 .smartEyes-container header .fr {
   margin-top: 15px;
-  padding-left: 32px;
+  /*padding-left: 32px;*/
 }
 .smartEyes-container .searchrow {
   padding: 12px 22px;
@@ -237,6 +485,7 @@ footer p {
   width: 140px;
   height: 58px;
 }
+/*概览，联系人列表，区域轨迹页面中蓝色区域统一样式*/
 .smartEyes-container .navList {
   margin-top: 18px;
 }
@@ -276,6 +525,8 @@ footer p {
 .smartEyes-container .searchBox .namelist .namelistcc span {
   color: #fff;
 }
+/*end*/
+
 .smartEyes-container .chatList {
   border: #c9ced1 solid 1px;
   margin: 0 12px;
@@ -292,96 +543,121 @@ footer p {
 .smartEyes-container .listbox .namelist .namelistcc {
   padding-left: 0;
 }
-.smartEyes-container .listl {
+/*联系人列表*/
+.contact .listl {
   box-shadow: 14px 14px 80px #21232f;
 }
-.smartEyes-container .listl .l-contacts .c-head {
+.contact .listl .l-contacts .c-head {
   overflow: hidden;
   height: 40px;
-  line-height: 3;
+  line-height: 40px;
   width: 100%;
+  background-color: #3a3e52;
 }
-.smartEyes-container .listl .l-contacts .c-head span {
-  padding: 0 10px;
+.contact .listl .l-contacts .c-head span {
+  text-align: center;
+  color:#fff;
 }
-.smartEyes-container .listl .l-contacts .c-head span:nth-child(1) {
-  color: #fff;
-  padding-left: 6px;
-  border-left: 5px solid #c23531;
+.contact .listl .l-contacts .c-head span:nth-child(1){
+  width: 120px;
 }
-.smartEyes-container .listl .l-contacts .c-head span:nth-child(2) {
-  color: #575757;
+.contact .listl .l-contacts .c-head span:nth-child(2){
+  width: 80px;
 }
-.smartEyes-container .listl .l-contacts .list {
-  width: 99%;
-  height: 258px;
+.contact .listl .l-contacts .c-head span:nth-child(3){
+  width: 40px;
+}
+.contact .listl .l-contacts .c-head span:nth-child(4){
+  width: 80px;
+}
+.contact .listl .l-contacts .list {
   overflow-y: auto;
   font-size: 12px;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item {
-  padding: 8px 8px;
+.contact .listl .l-contacts .list .list-person{
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item span:nth-child(1) {
-  color: #565656;
+.contact .listl .l-contacts .list .list-person span{
+  display: block;
+  float: left;
+  text-align: center;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item span:nth-child(1) i {
-  padding-right: 4px;
+.contact .listl .l-contacts .list .list-person span:nth-child(1){
+  width: 120px;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item span:nth-child(2) {
-  color: #b0b0b0;
-  padding: 0 15px 0 8px;
+.contact .listl .l-contacts .list .list-person span:nth-child(2){
+  width: 80px;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item span:nth-child(3) {
-  color: #b0b0b0;
+.contact .listl .l-contacts .list .list-person span:nth-child(3){
+  width: 40px;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item:nth-child(1) span:nth-child(2) {
-  color: #ff5353;
+.contact .listl .l-contacts .list .list-person span:nth-child(4){
+  width: 80px;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item:nth-child(1) span:nth-child(3) {
-  color: #ff5353;
+.contact .listl .l-contacts  .daochu{
+  width: 280px;
+  height: 40px;
+  background: rgb(33,150,243);;
+  margin: 17px 22px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item:nth-child(2) span:nth-child(2) {
-  color: #b0b0b0;
+.contact .listl{
+  width: 325px;
+  float:left;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item:nth-child(2) span:nth-child(3) {
-  color: #ffa724;
+.contact .listbox .list2{
+  float:left;
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item:nth-child(3) span:nth-child(2) {
-  color: #ff5353;
+.contact .mapBox .listArea li.active {
+  /*background-color: rgba(122, 184, 222, 0.9);*/
+  background-color: rgba(34, 123, 199, 0.9);
 }
-.smartEyes-container .listl .l-contacts .list .list-group-item:nth-child(3) span:nth-child(3) {
-  color: #24d37b;
+.contact .track .active .tracklist p {
+  /*background-color: rgba(41, 144, 208, 0.8);*/
+  background-color: rgba(35, 125, 200, 0.8);
+  color: #fff;
 }
-.smartEyes-container .listl .t-contacts .c-head span:nth-child(1) {
-  border-left: 5px solid #ca8622;
+.contact  .echart-right .csbox .cent {
+
+  /*background: url(../img/u-17.png) no-repeat;*/
+  background: none;
+  background-color: #2f3242;
 }
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(1) span:nth-child(1) {
-  color: #565656;
+.contact  .echart-right .head {
+
+  background-color: #3a3e52;
 }
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(1) span:nth-child(2) {
-  color: #b0b0b0;
+
+.contact  .echart-right {
+  top: 144px;
+  background-color: #2f3242;
+  height: 90%;
+
 }
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(1) span:nth-child(3) {
-  color: #b0b0b0;
+.contact  .echart-right .e-right .e-r-l h1 {
+
+  color: #2899fc;
+
 }
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(2) span:nth-child(1) {
-  color: #565656;
+.contact  .echart-right .e-right .ectitle span.active {
+  color: #2899fc;
 }
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(2) span:nth-child(2) {
-  color: #b0b0b0;
+.contact  .mylist-group-item {
+  background-color: #2b2d3c;
+  border: none;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #4d5060;
 }
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(2) span:nth-child(3) {
-  color: #b0b0b0;
-}
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(3) span:nth-child(1) {
-  color: #565656;
-}
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(3) span:nth-child(2) {
-  color: #b0b0b0;
-}
-.smartEyes-container .listl .t-contacts .list .list-group-item:nth-child(3) span:nth-child(3) {
-  color: #b0b0b0;
-}
+/*end*/
+
 .smartEyes-container .btnBox {
   width: 254px;
   height: 32px;
@@ -513,3 +789,21 @@ footer p {
 .smartEyes-container .g-viewlist .g-viewlist-EcBox .g-viewlist-l:nth-child(2) {
   border-left: #4a4d5c solid 1px;
 }
+/*vue的日历插件样式*/
+#app .el-date-editor{
+  background: rgb(35,126,202);
+  border: none;
+}
+#app .el-date-editor .el-range__icon{
+  color: #fff;
+}
+#app .el-range-input{
+  color: #fff;
+  background: rgb(35,126,202);
+  border: 1px solid rgb(255,255,255);
+  border-radius: 6px;
+}
+#app .el-range-separator{
+  color: #fff;
+}
+/*end*/
