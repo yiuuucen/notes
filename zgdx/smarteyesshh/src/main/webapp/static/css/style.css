@@ -547,6 +547,35 @@ footer p {
 .contact .listl {
   box-shadow: 14px 14px 80px #21232f;
 }
+.contact .listl .l-contacts{
+  position: relative;
+}
+.contact .listl .l-contacts .c-top {
+  overflow: hidden;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+}
+.contact .listl .l-contacts .c-top span {
+  text-align: center;
+  color:#999;
+  width: 60px;
+}
+.contact .listl .l-contacts .c-top span:nth-child(1){
+  width: 80px;
+  padding: 0 0 0 13px;
+  height: 30px;
+  color:#237eca;
+  text-align:left;
+  line-height: 30px;
+  margin: 5px 30px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: 1px solid #237eca;
+  background: url(../img/contact_bottom.png) 90% no-repeat;
+  background-size: 15px;
+  cursor: pointer;
+}
 .contact .listl .l-contacts .c-head {
   overflow: hidden;
   height: 40px;
@@ -562,10 +591,10 @@ footer p {
   width: 120px;
 }
 .contact .listl .l-contacts .c-head span:nth-child(2){
-  width: 80px;
+  width: 78px;
 }
 .contact .listl .l-contacts .c-head span:nth-child(3){
-  width: 40px;
+  width: 42px;
 }
 .contact .listl .l-contacts .c-head span:nth-child(4){
   width: 80px;
@@ -589,13 +618,13 @@ footer p {
   width: 120px;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(2){
-  width: 80px;
+  width: 77px;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(3){
   width: 40px;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(4){
-  width: 80px;
+  width: 77px;
 }
 .contact .listl .l-contacts  .daochu{
   width: 280px;
@@ -608,6 +637,96 @@ footer p {
   letter-spacing: 2px;
   color: rgba(255,255,255,0.8);
   cursor: pointer;
+}
+.contact .listl .l-contacts .l-con-tanC{
+  position: absolute;
+  width: 100%;
+  /*高度为100%-筛选键高度40px+导出信息按钮margin-bottom17px*/
+  height: calc( 100% - 40px + 17px);
+  left: 0;
+  top: 40px;
+  z-index: 9999;
+  background: rgba(40,42,57,0.85);
+  display: none;
+}
+.contact .listl .l-contacts .l-con-tanC .tanCont{
+  width: 246px;
+  background: #2f3242;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  text-align: center;
+}
+.contact .l-con-tanC .tanCont .tan-choose{
+  height: 90px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.5);
+}
+.contact .l-con-tanC .tanCont>div:nth-child(2){
+  border-bottom:none;
+}
+.contact .l-con-tanC .tanCont .tan-choose h3{
+  text-align: left;
+  margin: 15px 20px;
+}
+.contact .l-con-tanC .tanCont .tan-choose span{
+  display: block;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  float: left;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.contact .l-con-tanC .tanCont .tan-choose span.tan-select{
+  border:1px solid #2091ec ;
+}
+
+.contact .l-con-tanC .tanCont .tan-choose2{
+  height: 90px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.5);
+}
+.contact .l-con-tanC .tanCont .tan-choose2 h3{
+  text-align: left;
+  margin: 15px 20px;
+}
+.contact .l-con-tanC .tanCont .tan-choose2 span{
+  display: block;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  float: left;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.contact .l-con-tanC .tanCont .tan-choose2 span.tan-select{
+  border:1px solid #2091ec ;
+}
+
+.contact .l-con-tanC .tanCont .tan-reset{
+  color: #fff;
+  height: 35px;
+  line-height: 35px;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+  background: rgb(58,62,82);
+  float: left;
+}
+.contact .l-con-tanC .tanCont .tan-qued{
+  color: #fff;
+  height: 35px;
+  line-height: 35px;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+  background: #2091ec;
+  float: left;
 }
 .contact .listl{
   width: 325px;

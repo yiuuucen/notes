@@ -489,7 +489,6 @@
                             type: 'graph',
 //                            layout: 'circular',
                             layout: 'force',
-
                             force: {
 //                                edgeLength:200,
 //                                edgeLength:10,
