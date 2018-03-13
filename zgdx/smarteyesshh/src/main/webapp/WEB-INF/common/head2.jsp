@@ -60,6 +60,9 @@
     $(".btnSearch").click(function(){
         //检索条件执行
         var inputval =$("input[name='targetPhone']").val();
+        if(inputval.length==11) {
+            inputval = "86" + inputval;
+        }
         if(inputval ===""){
             alert("请输入查询ID！");
         }else if(!/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(inputval)){

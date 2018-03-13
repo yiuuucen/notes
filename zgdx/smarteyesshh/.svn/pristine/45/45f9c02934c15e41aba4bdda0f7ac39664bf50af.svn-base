@@ -119,7 +119,7 @@
                         <span>0.90</span>
                     </li>
                 </ul>
-                <div class="daochu" id="daochu">导出列表信息</div>
+                <div class="daochu">导出列表信息</div>
                 <div class="l-con-tanC">
                     <div class="tanCont">
                         <div class="tan-choose">
@@ -217,106 +217,36 @@
     var nodeTimerange=[];
     var timerange;
 
-
-    // 筛选弹窗
-    function shaixuan_tan(time){
-
-        //导出列表信息接口
-        $("#daochu").click(function(){
-            $.ajax({
-                type:"post",
-                url:window.ctx+"/new/download?targetPhone="+targetPhone+"&startTime="+time[0]+"&endTime="+time[1],
-                //data: {"targetPhone":8615000055827,"startTime":20180220,"endTime":20180307},
-                dataType:"json",
-                success:function(){
-                    // alert(1)
-                }
-            })
-            // alert(2)
-        });
-
-        $("#shaixuan").click(function(){
-            $(".l-con-tanC").css("display","block");
-        });
-        $(".tan-choose span").click(function(){
-            $(".tan-choose span").removeAttr("class");
-            $(this).attr("class","tan-select");
-        });
-        $(".tan-choose2 span").click(function(){
-            $(".tan-choose2 span").removeAttr("class");
-            $(this).attr("class","tan-select");
-        });
-        $(".tan-reset").click(function(){
-            $(".tan-choose span").removeAttr("class");
-            $(".tan-choose2 span").removeAttr("class");
-        });
-        $(".tan-qued").click(function(){
-            console.log(time);
-            $(".c-top span").remove(".pull-right");
-            $.ajax({
-                type:"GET",
-                url:"/new/getAllContacts",
-                data: {"targetPhone":targetPhone,"startTime":time[0],"endTime":time[1]},
-                //data: {"targetPhone":8615000055827,"startTime":20180220,"endTime":20180307},
-                dataType:"json",
-                //有个小bug，每次点击确定后都会加载3次这个ajax。。（没有找到原因），会导致页面出现一闪一闪的效果
-                //解决办法：给这个ajax设置为同步，也就是等待它加载最后一个ajax完成再生产数据
-                async: false,
-                success:function(data){
-                    var msg=$("#firstcontact").html();
-                    var arr=[];
-                    msg='';
-                    if($(".tan-select").length==0){
-                        for(var i=0;i<data.contactList.length;i++){
-                            data.contactList[i].name="SE"+data.contactList[i].name.slice(-12);
-                            data.contactList[i].exp=data.contactList[i].exp.toFixed(2);
-                            // console.log(typeof(data.contactList[i].exp));
-                            msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+data.contactList[i].name+'</span>'+'<span>'+data.contactList[i].tag+'</span>'+'<span>'+data.contactList[i].type+'</span>'+'<span>'+data.contactList[i].exp+'</span></li>';
-                        }
-                    }else if($(".tan-select").length==1){
-                        for(var i=0;i<data.contactList.length;i++){
-                            if(data.contactList[i].tag==$(".tan-select").html()||data.contactList[i].type==$(".tan-select").html().slice(0,2)){
-                                arr.push(data.contactList[i]);
-                            }
-                        }
-                        // console.log(arr);
-                        if(arr.length==0){
-                            msg='';
-                        }else{
-                            for(var i=0;i<arr.length;i++){
-                                arr[i].name="SE"+arr[i].name.slice(-12);
-                                arr[i].exp=arr[i].exp.toFixed(2);
-                                // console.log(typeof(data.contactList[i].exp));
-                                msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+arr[i].name+'</span>'+'<span>'+arr[i].tag+'</span>'+'<span>'+arr[i].type+'</span>'+'<span>'+arr[i].exp+'</span></li>';
-                            }
-                        }
-                    }else if($(".tan-select").length==2){
-                        for(var i=0;i<data.contactList.length;i++){
-                            if(data.contactList[i].tag==$(".tan-choose .tan-select").html()&&data.contactList[i].type==$(".tan-choose2 .tan-select").html().slice(0,2)){
-                                arr.push(data.contactList[i]);
-                            }
-                        }
-                        // console.log(arr);
-                        if(arr.length==0){
-                            msg='';
-                        }else{
-                            for(var i=0;i<arr.length;i++){
-                                arr[i].name="SE"+arr[i].name.slice(-12);
-                                arr[i].exp=arr[i].exp.toFixed(2);
-                                // console.log(typeof(data.contactList[i].exp));
-                                msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+arr[i].name+'</span>'+'<span>'+arr[i].tag+'</span>'+'<span>'+arr[i].type+'</span>'+'<span>'+arr[i].exp+'</span></li>';
-                            }
-                        }
-                    }
-                    $("#firstcontact").html(msg);
-                },
-                error:function() {
-                    console.log("获取联系人数据失败,请联系管理员");
-                }
-            });
-            $(".l-con-tanC").css("display","none");
-        });
-    }
+    //筛选弹窗
+    $("#shaixuan").click(function(){
+        $(".l-con-tanC").css("display","block");
+    });
+    $(".tan-choose span").click(function(){
+        $(".tan-choose span").removeAttr("class");
+        $(this).attr("class","tan-select");
+    });
+    $(".tan-choose2 span").click(function(){
+        $(".tan-choose2 span").removeAttr("class");
+        $(this).attr("class","tan-select");
+    });
+    // var selects
+    $(".tan-reset").click(function(){
+        $(".tan-choose span").removeAttr("class");
+        $(".tan-choose2 span").removeAttr("class");
+    });
+    $(".tan-qued").click(function(){
+        $(".c-top span").remove(".pull-right");
+        // $(".c-top").append('<span class="pull-right">重点人员</span>');
+        console.log($(".tan-select").length);
+        if($(".tan-select").length==0){
+            $(".c-top").append('<span class="pull-right">全部人员</span>');
+        }else if($(".tan-select").length==1){
+            $(".c-top").append('<span class="pull-right">'+$(".tan-select").html()+'</span>');
+        }else if($(".tan-select").length==2){
+            $(".c-top").append('<span class="pull-right">'+$(".tan-choose2 .tan-select").html()+'</span><span class="pull-right">'+$(".tan-choose .tan-select").html()+'</span>');
+        }
+        $(".l-con-tanC").css("display","none");
+    });
 
     new Vue({
         el:'#app',
@@ -363,7 +293,6 @@
                 timerange = [value[0],value[1]];
                 contactList(timerange);
                 relationG(timerange);
-                shaixuan_tan(timerange);
                 $('#echart-right').hide();
             },
             formatDate1(date){
@@ -383,14 +312,15 @@
             morenTT2=this.morenT2.slice(0,4)+this.morenT2.slice(5,7)+this.morenT2.slice(8,10);
             //    初始化
             nodeTimerange = [morenTT,morenTT2];
-            relationG(nodeTimerange);
-            contactList(nodeTimerange);
+            relationG([morenTT,morenTT2]);
+            contactList([morenTT,morenTT2]);
         }
 
     });
     function sortExp(a,b){
         return b.exp-a.exp;
     }
+
     //联系人
     function contactList(timerange){
         $.ajax({
@@ -409,15 +339,13 @@
                     msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+data.contactList[i].name+'</span>'+'<span>'+data.contactList[i].tag+'</span>'+'<span>'+data.contactList[i].type+'</span>'+'<span>'+data.contactList[i].exp+'</span></li>';
                 }
                 $("#firstcontact").html(msg);
-                shaixuan_tan(timerange);
             },
             error:function() {
                 console.log("获取联系人数据失败,请联系管理员");
             }
         });
     }
-    //有个小bug,
-    // shaixuan_tan(nodeTimerange)
+
     //中间关系图
     function relationG(timerange) {
         //关系图
@@ -469,22 +397,7 @@
                     return b.exp-a.exp
                 }
                 //找到max
-                var mynode = graph.nodes;
-                var brr1=[];
-                var brr2=[];
-                var max1,max2;
-                for(var i=0;i<mynode.length;i++){
-                    if(mynode[i].category===1){
-                        brr1.push(mynode[i]);
 
-                    }else if(mynode[i].category===2){
-                        brr2.push(mynode[i]);
-                    }else{}
-                }
-                brr1.sort(sortExp);
-                if(brr1.length!==0){max1 = brr1[0].exp;}
-                brr2.sort(sortExp);
-                if(brr2.length!==0){max2 = brr2[0].exp;}
 
                 graph.nodes.forEach(function (node) {
                     //node.itemStyle = null;
@@ -495,13 +408,13 @@
                     switch(node.category)
                     {
                         case 0:
-                            node.symbolSize = 60;
+                            node.symbolSize = 80;
                             break;
                         case 1:
-                            node.symbolSize = 50*node.exp/max1;
+                            node.symbolSize = 50;
                             break;
                         case 2:
-                            node.symbolSize = 36*node.exp/max2;
+                            node.symbolSize = 30;
                             break;
                     }
                     node.name="SE"+node.name;
@@ -558,7 +471,7 @@
 
                             force: {
                                 repulsion: 100,
-                                gravity: 0.01,
+                                gravity: 0.001,
                                 edgeLength: 70,
                                 layoutAnimation: true
 

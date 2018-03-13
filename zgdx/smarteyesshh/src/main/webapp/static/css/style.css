@@ -201,7 +201,7 @@ footer p {
   position: relative;
 }
 .geren img{
-  width: 45px;
+  width: 40px;
   cursor: pointer;
 }
 .geren>div{
@@ -231,7 +231,7 @@ footer p {
   position: relative;
 }
 .peizhi img{
-  width: 45px;
+  width: 40px;
   cursor: pointer;
 }
 .peizhi>div{
@@ -255,7 +255,7 @@ footer p {
 }
 .textBox_head2{
   width: 230px;
-  height: 45px;
+  height: 40px;
   margin-top: 16px;
   padding: 4px 4px 4px 20px;
   position: relative;
@@ -266,7 +266,7 @@ footer p {
 }
 .textBox_head2 .text {
   width: 70%;
-  height: 45px;
+  height: 40px;
   background: none;
   border: none;
   position: absolute;
@@ -282,7 +282,7 @@ footer p {
 }
 .textBox_head2 .btnSearch{
   background: url(../img/head_search.png) no-repeat;
-  background-size: 35px;
+  background-size: 30px;
 }
 /*head.jsp和head2.jsp   end*/
 .smartEyes .peizhi>div a:last-child{
@@ -559,7 +559,7 @@ footer p {
 .contact .listl .l-contacts .c-top span {
   text-align: center;
   color:#999;
-  width: 60px;
+  width: 80px;
 }
 .contact .listl .l-contacts .c-top span:nth-child(1){
   width: 80px;
@@ -615,13 +615,13 @@ footer p {
   text-align: center;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(1){
-  width: 120px;
+  width: 117px;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(2){
   width: 77px;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(3){
-  width: 40px;
+  width: 37px;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(4){
   width: 77px;
