@@ -73,32 +73,35 @@
             background: #2196f3;
         }
         .tabbtn .prev{
-            width: 148px;
-            height: 38px;
-            font-size: 16px;
-            padding: 0 47px;
-            line-height: 38px;
             background-color: #2196f3;
-            border: none;
-            border-radius: 3px 3px 3px 3px;
+            border:none;
         }
         .tabbtn .next{
-            width: 148px;
-            height: 38px;
-            font-size: 16px;
-            padding: 0 47px;
-            line-height: 38px;
+            background-color: #2196f3;
+            border:none;
+        }
+        .tabbtn .jump-ipt{
+            display: inline-block;
+            width: 60px;
+            height: 28px;
+            margin-left: 12px;
+            padding: 0 10px;
+            color: fff;
+            line-height: 28px;
+            text-align: center;
+            font-family: "Microsoft YaHei",serif;
+            font-size: 14px;
+            border: 1px solid rgba(255,255,255,0.6);
+            background: rgb(47,50,66);
+        }
+        .tabbtn .jump-btn{
             background-color: #2196f3;
             border: none;
-            border-radius: 3px 3px 3px 3px;
         }
         .alldata{
-            position: absolute;
             color: #fff;
-            width: 100px;
             height: 30px;
-            bottom: -40px;
-            right: 30px;
+            line-height: 30px;
             font-size: 15px;
             text-align: right;
         }
@@ -136,14 +139,21 @@
 
         <!--操作表单-->
         <div class="col-lg-12 col-md-12 col-xs-12 operate-box">
+            <!--2个echarts图-->
+            <div class="two-echarts">
+                <div class="tongji-head">
+                    <h3>日志统计</h3>
+                </div>
+            </div>
             <!--图表展示列表-->
             <div class="operate-log ">
+                <div class="table-head clearfix">
+                    <h3>操作日志</h3>
+                    <div>筛选</div>
+                </div>
                 <div style="position: relative">
                     <table class="operate-table1">
                     <tbody>
-                    <tr class="operate-tr1">
-                        <td class="h1" >操作日志</td>
-                    </tr>
                     <!--第二行内容-->
                     <tr class="operate-tr2">
                         <td class="table-responsive operate-table-box">
@@ -188,7 +198,6 @@
                     </tr>
                     </tbody>
                 </table>
-                    <div class="alldata">共<span>12</span>页</div>
                 </div>
                 <div class="tabbtn M-box">
                 </div>
@@ -199,13 +208,15 @@
         <jsp:include page="/WEB-INF/common/footer.jsp"/>
     <script>
         $(function(){
+            var ut = $("#userType").val();
+            console.log(ut);
             //动态获取阴影高度
-            var h= $(window).height();
-            $(".operate-log").height(h-226);
-            $(window).resize(function(){
-                var h= $(window).height();
-                $(".operate-log").height(h-226);
-            });
+            // var h= $(window).height();
+            // $(".operate-log").height(h-226);
+            // $(window).resize(function(){
+            //     var h= $(window).height();
+            //     $(".operate-log").height(h-226);
+            // });
             //设置选中
 
             $("option[value='userOperateLog']").attr("selected","selected").siblings().removeAttr("selected");
@@ -216,7 +227,6 @@
         var totalData=null;
         var showData=null;
         myajax(false,1);
-        $(".alldata span").text(pageCount);
         function myajax(async,num) {
             $.ajax({
                 type:"get",
@@ -235,7 +245,7 @@
                             return (this.getFullYear() <10 ? "0"+this.getFullYear() : this.getFullYear()) + "." + ((this.getMonth()+ 1) <10 ? "0"+(this.getMonth() + 1) : (this.getMonth() + 1)) + "." + (this.getDate()  <10 ? "0"+this.getDate() : this.getDate() ) + "&nbsp&nbsp&nbsp" + (this.getHours()<10 ? "0"+this.getHours() : this.getHours()) + ":" + (this.getMinutes()<10 ? "0"+this.getMinutes() : this.getMinutes())+ ":" + (this.getSeconds()<10 ? "0"+this.getSeconds() : this.getSeconds());
                         };
                         stringTime = newTime.toLocaleString();
-                        var html='<tr><td>'+res.data.datas[i].id+'</td><td class="row"><span class="col-lg-4 col-md-4 col-xs-4 operate-userid">'+res.data.datas[i].userId+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-username">'+res.data.datas[i].userNickname+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-querytime">'+stringTime+'</span> </td> <td class="row"> <span class="col-lg-4 col-md-4 col-xs-4 operate-tele">'+res.data.datas[i].targetPhone+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-descrip">'+res.data.datas[i].searchType+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-type">'+res.data.datas[i].personType+'</span></td></tr>';
+                        var html='<tr><td>'+res.data.datas[i].id+'</td><td class="row"><span class="col-lg-4 col-md-4 col-xs-4 operate-userid">'+res.data.datas[i].userId+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-username">'+res.data.datas[i].userNickname+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-querytime">'+stringTime+'</span> </td> <td class="row"> <span class="col-lg-4 col-md-4 col-xs-4 operate-tele">'+res.data.datas[i].targetPhone+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-descrip">'+res.data.datas[i].personType+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-type">'+res.data.datas[i].searchType+'</span></td></tr>';
                         $(".xinxi").append(html);
                     }
                 },
@@ -250,10 +260,22 @@
             totalData:totalData,
             showData:showData,
             mode:'fixed',
+            // coping:true,
+            // homePage:"首页",
+            // endPage:"尾页",
             keepShowPN:true,
-            prevContent:'上页',
-            nextContent:'下页',
+            prevContent:'<',
+            nextContent:'>',
+            jump:true,
             callback:function(index){
+
+                $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">200</b>条 / 共<b id="allpage">12</b>页</div>');
+                $("#alldata").text(totalData);
+                $("#allpage").text(pageCount);
+                //   生成首页和尾页
+                $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
+                $(".tabbtn .next").after('<a href="javascript:;" data-page="73" style="background: #2196f3;border: none">尾页</a>');
+
                 // console.log(index.getCurrent());
                 //上一页下一页无法点击
                 if(index.getCurrent()==1){
@@ -271,6 +293,12 @@
             $("tabbtn .next").css("cursor","not-allowed").css("background","#565656");
         }
 
+        $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">200</b>条 / 共<b id="allpage">12</b>页</div>');
+        $("#alldata").text(totalData);
+        $("#allpage").text(pageCount);
+        //   生成首页和尾页
+        $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
+        $(".tabbtn .next").after('<a href="javascript:;" data-page="73" style="background: #2196f3;border: none">尾页</a>');
     </script>
 
 </body>

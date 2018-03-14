@@ -100,24 +100,12 @@
                     <span class="pull-left">关联指数</span>
                 </div>
                 <ul class="list" id="firstcontact">
-                    <li class="list-person">
-                        <span>1.SE5cb3fv9sc0d3</span>
-                        <span>重点人员</span>
-                        <span>一度</span>
-                        <span>0.90</span>
-                    </li>
-                    <li class="list-person">
-                        <span>2.SE5cb3fv9sc0d3</span>
-                        <span>重点人员</span>
-                        <span>一度</span>
-                        <span>0.90</span>
-                    </li>
-                    <li class="list-person">
-                        <span>3.SE5cb3fv9sc0d3</span>
-                        <span>重点人员</span>
-                        <span>一度</span>
-                        <span>0.90</span>
-                    </li>
+                    <%--<li class="list-person">--%>
+                        <%--<span>1.SE5cb3fv9sc0d3</span>--%>
+                        <%--<span>重点人员</span>--%>
+                        <%--<span>一度</span>--%>
+                        <%--<span>0.90</span>--%>
+                    <%--</li>--%>
                 </ul>
                 <div class="daochu" id="daochu">导出列表信息</div>
                 <div class="l-con-tanC">
@@ -223,16 +211,7 @@
 
         //导出列表信息接口
         $("#daochu").click(function(){
-            $.ajax({
-                type:"post",
-                url:window.ctx+"/new/download?targetPhone="+targetPhone+"&startTime="+time[0]+"&endTime="+time[1],
-                //data: {"targetPhone":8615000055827,"startTime":20180220,"endTime":20180307},
-                dataType:"json",
-                success:function(){
-                    // alert(1)
-                }
-            })
-            // alert(2)
+            window.location.href="${ctx}/new/download?targetPhone="+targetPhone+"&startTime="+time[0]+"&endTime="+time[1];
         });
 
         $("#shaixuan").click(function(){
@@ -267,6 +246,7 @@
                     var arr=[];
                     msg='';
                     if($(".tan-select").length==0){
+                        $(".c-top").append('<span class="pull-right">全部人员</span>');
                         for(var i=0;i<data.contactList.length;i++){
                             data.contactList[i].name="SE"+data.contactList[i].name.slice(-12);
                             data.contactList[i].exp=data.contactList[i].exp.toFixed(2);
@@ -274,6 +254,7 @@
                             msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+data.contactList[i].name+'</span>'+'<span>'+data.contactList[i].tag+'</span>'+'<span>'+data.contactList[i].type+'</span>'+'<span>'+data.contactList[i].exp+'</span></li>';
                         }
                     }else if($(".tan-select").length==1){
+                        $(".c-top").append('<span class="pull-right">'+$(".tan-select").html()+'</span>');
                         for(var i=0;i<data.contactList.length;i++){
                             if(data.contactList[i].tag==$(".tan-select").html()||data.contactList[i].type==$(".tan-select").html().slice(0,2)){
                                 arr.push(data.contactList[i]);
@@ -291,6 +272,7 @@
                             }
                         }
                     }else if($(".tan-select").length==2){
+                        $(".c-top").append('<span class="pull-right">'+$(".tan-choose2 .tan-select").html()+'</span><span class="pull-right">'+$(".tan-choose .tan-select").html()+'</span>');
                         for(var i=0;i<data.contactList.length;i++){
                             if(data.contactList[i].tag==$(".tan-choose .tan-select").html()&&data.contactList[i].type==$(".tan-choose2 .tan-select").html().slice(0,2)){
                                 arr.push(data.contactList[i]);
@@ -469,22 +451,21 @@
                     return b.exp-a.exp
                 }
                 //找到max
+
                 var mynode = graph.nodes;
                 var brr1=[];
                 var brr2=[];
                 var max1,max2;
                 for(var i=0;i<mynode.length;i++){
-                    if(mynode[i].category===1){
+                    if(mynode[i].category==1){
                         brr1.push(mynode[i]);
 
-                    }else if(mynode[i].category===2){
+                    }else if(mynode[i].category==2){
                         brr2.push(mynode[i]);
-                    }else{}
+                    }
                 }
                 brr1.sort(sortExp);
                 if(brr1.length!==0){max1 = brr1[0].exp;}
-                brr2.sort(sortExp);
-                if(brr2.length!==0){max2 = brr2[0].exp;}
 
                 graph.nodes.forEach(function (node) {
                     //node.itemStyle = null;
@@ -495,13 +476,13 @@
                     switch(node.category)
                     {
                         case 0:
-                            node.symbolSize = 60;
+                            node.symbolSize = 70;
                             break;
                         case 1:
-                            node.symbolSize = 50*node.exp/max1;
+                            node.symbolSize = 60*node.exp/max1;
                             break;
                         case 2:
-                            node.symbolSize = 36*node.exp/max2;
+                            node.symbolSize = 60*node.exp/max1;
                             break;
                     }
                     node.name="SE"+node.name;

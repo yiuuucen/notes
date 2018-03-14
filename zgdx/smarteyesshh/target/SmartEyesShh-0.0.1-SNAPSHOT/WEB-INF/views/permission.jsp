@@ -236,7 +236,6 @@
                 window.location.href="${ctx}/account";
             }
 
-
             //动态获取阴影高度
             var h= $(window).height();
             $(".sysmg-rbox").height(h-226);

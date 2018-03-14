@@ -237,7 +237,7 @@ footer p {
 .peizhi>div{
   position: absolute;
   width: 190px;
-  background:rgba(66, 69, 82, 0.6);;
+  background:rgb(43,45,60);
   top: 60px;
   right: 0;
   display: flex;

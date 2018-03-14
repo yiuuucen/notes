@@ -37,7 +37,6 @@
 </header>
 <script>
     var ut = $("#userType").val();
-
     if(ut!=0){
         $(".peizhi>div>a:last-child").remove();
     }

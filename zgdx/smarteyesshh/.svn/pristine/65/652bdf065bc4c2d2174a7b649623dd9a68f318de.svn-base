@@ -451,21 +451,22 @@
                     return b.exp-a.exp
                 }
                 //找到max
-
                 var mynode = graph.nodes;
                 var brr1=[];
                 var brr2=[];
                 var max1,max2;
                 for(var i=0;i<mynode.length;i++){
-                    if(mynode[i].category==1){
+                    if(mynode[i].category===1){
                         brr1.push(mynode[i]);
 
-                    }else if(mynode[i].category==2){
+                    }else if(mynode[i].category===2){
                         brr2.push(mynode[i]);
-                    }
+                    }else{}
                 }
                 brr1.sort(sortExp);
                 if(brr1.length!==0){max1 = brr1[0].exp;}
+                brr2.sort(sortExp);
+                if(brr2.length!==0){max2 = brr2[0].exp;}
 
                 graph.nodes.forEach(function (node) {
                     //node.itemStyle = null;
@@ -476,13 +477,13 @@
                     switch(node.category)
                     {
                         case 0:
-                            node.symbolSize = 70;
+                            node.symbolSize = 60;
                             break;
                         case 1:
-                            node.symbolSize = 60*node.exp/max1;
+                            node.symbolSize = 50*node.exp/max1;
                             break;
                         case 2:
-                            node.symbolSize = 60*node.exp/max1;
+                            node.symbolSize = 36*node.exp/max2;
                             break;
                     }
                     node.name="SE"+node.name;

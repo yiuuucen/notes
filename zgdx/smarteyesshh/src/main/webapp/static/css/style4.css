@@ -13,17 +13,44 @@
 .smartEyes-container .operate-box {
     padding-left: 0px;
 }
+.smartEyes-container .operate-box .two-echarts{
+    width: 1190px;
+    height: 400px;
+    background: pink;
+    margin: 45px auto;
+    -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+    box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+}
 .smartEyes-container .operate-log {
     /*height: 582px;*/
+    width: 1190px;
     min-height: 680px;
     min-width: 1039px;
-    margin: 45px 45px 0 45px;
+    margin: 45px auto;
     background-color: #2f3242;
     /* 老的 Firefox */
     -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
     box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
 /*底边阴影*/
 }
+.smartEyes-container .operate-log .table-head{
+    line-height: 50px;
+    padding: 0 2.5%;
+    margin: 0 0 50px 0;
+    background: #393d51;
+}
+
+.smartEyes-container .operate-log .table-head h3{
+    color: #fff;
+    line-height: 50px;
+    float: left;
+    width: 120px;
+    font-size: 18px;
+}
+.smartEyes-container .operate-log .table-head>div{
+    line-height: 50px;
+    float: left;
+ }
 .smartEyes-container .operate-log  .table-bordered {
 border-bottom: none;
 }
