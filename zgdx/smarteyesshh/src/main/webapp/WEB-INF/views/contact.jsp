@@ -479,10 +479,10 @@
                             node.symbolSize = 70;
                             break;
                         case 1:
-                            node.symbolSize = 60*node.exp/max1;
+                            node.symbolSize = 70*node.exp/max1;
                             break;
                         case 2:
-                            node.symbolSize = 60*node.exp/max1;
+                            node.symbolSize = 80*node.exp/max1;
                             break;
                     }
                     node.name="SE"+node.name;

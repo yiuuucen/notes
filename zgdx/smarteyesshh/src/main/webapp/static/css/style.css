@@ -909,6 +909,7 @@ footer p {
   border-left: #4a4d5c solid 1px;
 }
 /*vue的日历插件样式*/
+/*后面发现不是所有日历样式都相同*/
 #app .el-date-editor{
   background: rgb(35,126,202);
   border: none;

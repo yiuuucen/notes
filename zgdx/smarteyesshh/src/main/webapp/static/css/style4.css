@@ -16,10 +16,41 @@
 .smartEyes-container .operate-box .two-echarts{
     width: 1190px;
     height: 400px;
-    background: pink;
+    background: rgb(47,50,66);
     margin: 45px auto;
     -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
     box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+}
+.smartEyes-container .operate-box .two-echarts .tongji-head{
+    line-height: 50px;
+    background: #393d51;
+    padding: 0 2.5%;
+}
+.smartEyes-container .operate-box .two-echarts .tongji-head h3{
+    color: #fff;
+    line-height: 50px;
+    float: left;
+    width: 120px;
+    font-size: 18px;
+}
+.smartEyes-container .operate-box .two-echarts .tongji-head>div{
+    color: #fff;
+    float: right;
+    width: 500px;
+    height: 50px;
+    text-align: right;
+}
+.smartEyes-container .operate-box .two-echarts #sys-echart1{
+    float: left;
+    width: 525px;
+    height: 230px;
+    margin: 61px 45px;
+}
+.smartEyes-container .operate-box .two-echarts #sys-echart2{
+    float: left;
+    width: 525px;
+    height: 230px;
+    margin: 61px 0;
 }
 .smartEyes-container .operate-log {
     /*height: 582px;*/

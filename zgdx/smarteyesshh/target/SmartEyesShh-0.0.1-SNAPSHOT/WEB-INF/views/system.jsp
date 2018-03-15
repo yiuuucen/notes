@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     <title>操作日志</title>
     <link rel="shortcut icon" href="${img}/ddlogo.ico">
+    <link rel="stylesheet" href="${css}/ele-ui.css" />
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
@@ -24,7 +25,8 @@
     <script type="text/javascript" src="${js}/bmap.js" ></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Zl1DTZtwQh8Vfk7G8PpVExYywZAmET9p"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
-
+    <script src="${js}/vue.js"></script>
+    <script src="${js}/ele-ui.js"></script>
     <script>
         $(function(){
             $('input.datetimepicker').datetimepicker({
@@ -105,6 +107,26 @@
             font-size: 15px;
             text-align: right;
         }
+        /*日历样式和之前不同，因此设置为id=app2*/
+        #app2{
+            margin: 5px 0;
+        }
+        #app2 .el-date-editor{
+            background: rgb(57,61,81);
+            border: none;
+        }
+        #app2 .el-date-editor .el-range__icon{
+            color: #fff;
+        }
+        #app2 .el-range-input{
+            color: #fff;
+            background: rgb(57,61,81);
+            border: 1px solid rgb(255,255,255);
+            border-radius: 6px;
+        }
+        #app2 .el-range-separator{
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -141,9 +163,32 @@
         <div class="col-lg-12 col-md-12 col-xs-12 operate-box">
             <!--2个echarts图-->
             <div class="two-echarts">
-                <div class="tongji-head">
+                <div class="tongji-head clearfix">
                     <h3>日志统计</h3>
+                    <div>
+                        <div id="app2">
+                            <template>
+                                <div class="block">
+                                    <el-date-picker
+                                            v-model="value7"
+                                            type="daterange"
+                                            align="right"
+                                            value-format="yyyy-MM-dd"
+                                            unlink-panels
+                                            :start-placeholder="morenT"
+                                            range-separator="至"
+                                            :end-placeholder="morenT2"
+                                            :picker-options="pickerOptions2"
+                                            @change="gettime"
+                                    >
+                                    </el-date-picker>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
                 </div>
+                <div id="sys-echart1"></div>
+                <div id="sys-echart2"></div>
             </div>
             <!--图表展示列表-->
             <div class="operate-log ">
@@ -222,6 +267,255 @@
             $("option[value='userOperateLog']").attr("selected","selected").siblings().removeAttr("selected");
 
         });
+
+        new Vue({
+            el:'#app2',
+            data:{
+                morenT:new Date()- 3600 * 1000 * 24 * 7,
+                morenT2:new Date(),
+                pickerOptions2: {
+                    shortcuts: [{
+                        text: '最近一周',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '最近一个月',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '最近三个月',
+                        onClick(picker) {
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                            picker.$emit('pick', [start, end]);
+                        }
+                    }]
+                },
+                value6: '',
+                value7: ''
+            },
+            methods:{
+                gettime(value){
+                    value0=value[0].slice(0,4)+value[0].slice(5,7)+value[0].slice(8,10);
+                    value1=value[1].slice(0,4)+value[1].slice(5,7)+value[1].slice(8,10);
+                    // value0=20180306;
+                    //value[0]=2018-03-06;
+                    // console.log(value[0]);
+                    // console.log(value[1]);
+                    sysEchart1_data([value0,value1],value[0],value[1]);
+                    sysEchart2_data([value0,value1]);
+                },
+                formatDate1(date){
+                    var y = date.getFullYear();
+                    var m = date.getMonth() + 1;
+                    m = m < 10 ? '0' + m : m;
+                    var d = date.getDate();
+                    d = d < 10 ? ('0' + d) : d;
+                    return y + '-' + m + '-' + d;
+                }
+            },
+            // 钩子函数，页面渲染自动执行
+            mounted(){
+                this.morenT=this.formatDate1(new Date(this.morenT));
+                this.morenT2=this.formatDate1(this.morenT2);
+                morenTT=this.morenT.slice(0,4)+this.morenT.slice(5,7)+this.morenT.slice(8,10);
+                morenTT2=this.morenT2.slice(0,4)+this.morenT2.slice(5,7)+this.morenT2.slice(8,10);
+                //    初始化
+                sysEchart1_data([morenTT,morenTT2],this.morenT,this.morenT2);
+                sysEchart2_data([morenTT,morenTT2]);
+            }
+
+        });
+
+
+        Date.prototype.format = function() {
+            var s = '';
+            var mouth = (this.getMonth() + 1)>=10?(this.getMonth() + 1):('0'+(this.getMonth() + 1));
+            var day = this.getDate()>=10?this.getDate():('0'+this.getDate());
+            s += this.getFullYear() + '/'; // 获取年份。
+            s += mouth + "/"; // 获取月份。
+            s += day; // 获取日。
+            return (s); // 返回日期。
+        };
+        // getAll传入的数据样式为(2018-3-5,2018-03-15)
+        var arr=[];
+        function getAll(begin, end) {
+            var ab = begin.split("-");
+            var ae = end.split("-");
+            var db = new Date();
+            db.setUTCFullYear(ab[0], ab[1] - 1, ab[2]);
+            var de = new Date();
+            de.setUTCFullYear(ae[0], ae[1] - 1, ae[2]);
+            var unixDb = db.getTime();
+            var unixDe = de.getTime();
+            for (var k = unixDb; k <= unixDe;) {
+                arr.push((new Date(parseInt(k))).format()) ;
+                k = k + 24 * 60 * 60 * 1000;
+            }
+        }
+        //system的第一个echart图
+        function sysEchart1_data(time,value1,value2){
+            $.ajax({
+                type: "GET",
+                url: "/log/daysLog",
+                data: {"startTime": time[0], "endTime": time[1]},
+                dataType: "json",
+                success: function (data) {
+                    arr=[];
+                    getAll(value1,value2);
+                    // console.log(arr);
+                    // console.log(data);
+                    sysEchart1(arr,data);
+                },
+                error:function(){
+                    alert("数据有误")
+                }
+            });
+        }
+
+        function sysEchart1(data_time,data_num){
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = echarts.init(document.getElementById('sys-echart1'));
+
+            // getAll('2018-02-25', '2018-03-07');
+            // console.log(arr);
+
+            option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        animation: false,
+                        type: 'cross',
+                        label:{
+                            color:"rgba(255,255,255,0.6)",
+                            backgroundColor:"rgb(47,50,66)"
+                        },
+                        lineStyle: {
+                            color: '#4baa4f',
+                            width: 2,
+                            opacity: 0.6
+                        },
+                        crossStyle: {
+                            color: 'rgb(255,255,255)',
+                            width: 2,
+                            opacity: 0.6,
+                            type:"solid"
+                        }
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '3%',
+                    bottom: '3%',
+                    top:"3%",
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.6)' } },
+                    data: data_time,
+                },
+                yAxis: {
+                    type: 'value',
+                    splitLine: { show: false },
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.6)' } },
+                },
+                series: [{
+                    data: data_num,
+                    type: 'line'
+                }]
+            };
+            // 为echarts对象加载数据
+            myChart.setOption(option);
+        }
+
+        //system的第二个echart图
+        var arr2=[];
+        var arr3=[];
+        function sysEchart2_data(time){
+            $.ajax({
+                type: "GET",
+                url: "/log/personLog",
+                data: {"startTime": time[0], "endTime":time[1]},
+                dataType: "json",
+                success: function (data) {
+                    // console.log(data);
+                    arr2=[];
+                    arr3=[];
+                    if(data.length>10){
+                        for(var i=0;i<data.length;i++){
+                            arr2.push(data[i].name);
+                            arr3.push(data[i].number);
+                        }
+                    }else{
+                        //如果数据不满10条，则填充name='',number=0,让图形最少显示出10条数据
+                        var num;
+                        num=10-data.length;
+                        for(var i=0;i<data.length;i++){
+                            arr2.push(data[i].name);
+                            arr3.push(data[i].number);
+                        }
+                        for(var j=0;j<num;j++){
+                            arr2.unshift("");
+                            arr3.unshift("0");
+                        }
+                    }
+                    sysEchart2(arr3,arr2);
+                },
+                error:function(){
+                    alert("数据有误")
+                }
+            });
+        }
+        function sysEchart2(data_num,data_name){
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = echarts.init(document.getElementById('sys-echart2'));
+
+            option = {
+
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '3%',
+                    bottom: '3%',
+                    top:"3%",
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01],
+                    splitLine: { show: false },
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.6)' } },
+                },
+                yAxis: {
+                    type: 'category',
+                    data: data_name,
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.6)' } },
+                },
+                series: [
+                    {
+                        type: 'bar',
+                        data: data_num
+                    }
+                ]
+            };
+            // 为echarts对象加载数据
+            myChart.setOption(option);
+        }
 
         var pageCount=null;
         var totalData=null;
