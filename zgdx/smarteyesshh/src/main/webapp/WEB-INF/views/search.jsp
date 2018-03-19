@@ -75,8 +75,8 @@
                 <div class="fr peizhi">
                     <img src="${img}/S_peizhi.png">
                     <div style="visibility: hidden">
-                        <a href="${ctx}/system">目标人员管理</a>
-                        <a href="${ctx}/person">用户操作日志</a>
+                        <a href="${ctx}/personlist">目标人员管理</a>
+                        <a href="${ctx}/system">用户操作日志</a>
                         <a href="${ctx}/permission">系统权限管理</a>
                     </div>
                 </div>

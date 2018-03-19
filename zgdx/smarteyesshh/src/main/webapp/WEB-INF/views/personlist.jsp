@@ -25,7 +25,10 @@
     </div>
 
     <div class="jilu clearfix">
-        <h3>查询信息</h3>
+        <h3>查询信息
+            <div class="lesscommit">提交查询号码</div>
+            <div class="morecommit">批量提交查询号码</div>
+        </h3>
         <div class="mytable">
             <div class="tabhead row">
                 <span class="col-lg-6 col-md-6 col-xs-6">猎犬用户信息</span>
@@ -33,7 +36,6 @@
                 <span class="col-lg-2 col-md-2 col-xs-2">查询记录信息</span>
             </div>
             <div class="tabcont row">
-                <div class="alldata">共<span></span>页</div>
                 <div class="lie clearfix">
                     <span class="col-lg-1 col-md-1 col-xs-1">序号</span>
                     <span class="col-lg-1 col-md-1 col-xs-1">用户ID</span>
@@ -58,6 +60,23 @@
                 </div>
             </div>
             <div class="tabbtn M-box">
+            </div>
+        </div>
+    </div>
+    <div class="submit_btn">
+        <div class="submit_box">
+            <div class="box_top">
+                <span>批量提交查询号码</span>
+                <img src="${img}/magclose.png" alt="">
+            </div>
+            <div class="box_bottom">
+                <%--<form action="${ctx}/target/uploadPhone" method="post" enctype="multipart/form-data" >--%>
+                <form method="post" enctype="multipart/form-data" id="myform">
+                    <input type="file" name="csvfile" class="choose" />
+                    <div class="load">下载批量提交模板</div>
+                    <input value="确认提交" id="btn" type="button">
+                    <div>取消</div>
+                </form>
             </div>
         </div>
     </div>
@@ -105,27 +124,105 @@
             totalData:totalData,
             showData:showData,
             mode:'fixed',
+            // coping:true,
+            // homePage:"首页",
+            // endPage:"尾页",
             keepShowPN:true,
-            prevContent:'上页',
-            nextContent:'下页',
+            prevContent:'<',
+            nextContent:'>',
+            jump:true,
             callback:function(index){
+
+                $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">200</b>条 / 共<b id="allpage">12</b>页</div>');
+                $("#alldata").text(totalData);
+                $("#allpage").text(pageCount);
+                //   生成首页和尾页
+                $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
+                $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
+
                 // console.log(index.getCurrent());
                 //上一页下一页无法点击
                 if(index.getCurrent()==1){
-                    $(".mag-jilu .tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+                    $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
                 }else if(index.getCurrent()==pageCount){
-                    $(".mag-jilu .tabbtn .next").css("cursor","not-allowed").css("background","#565656");
+                    $(".tabbtn .next").css("cursor","not-allowed").css("background","#565656");
                 }
                 myajax(true,index.getCurrent());
             }
         });
         //上一页下一页无法点击
-        if($(".mag-jilu .tabbtn span").text()==1){
-            $(".mag-jilu .tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
-        }else if($(".mag-jilu .tabbtn span").text()==pageCount){
-            $(".mag-jilu .tabbtn .next").css("cursor","not-allowed").css("background","#565656");
+        if($(".tabbtn span").text()==1){
+            $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+        }else if($(".tabbtn span").text()==pageCount){
+            $("tabbtn .next").css("cursor","not-allowed").css("background","#565656");
         }
 
+        $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">200</b>条 / 共<b id="allpage">12</b>页</div>');
+        $("#alldata").text(totalData);
+        $("#allpage").text(pageCount);
+        //   生成首页和尾页
+        $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
+        $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
+
+        // .mag-jilu页面下的2个弹窗js
+        $(".morecommit").click(function(){
+            $(".mag-jilu .submit_btn").css('display','block');
+        });
+        $(".mag-jilu .submit_box .box_top img").click(function(){
+            $(".mag-jilu .submit_btn").css('display','none')
+        });
+        $(".mag-jilu .submit_box .box_bottom div:last-child").click(function(){
+            $(".mag-jilu .submit_btn").css('display','none')
+        });
+        $(".mag-jilu .submit_fail .submit_box img").click(function(){
+            $(".mag-jilu .submit_fail").css('display','none')
+        });
+        $(".mag-jilu .submit_fail .submit_box div:nth-child(3)").click(function(){
+            $(".mag-jilu .submit_fail").css('display','none')
+        });
+
+        //morecommit弹窗
+        //点击自动下载模板
+        $('.mag-jilu .submit_btn .box_bottom .load').click(function () {
+            window.location.href="${ctx}/target/download";
+        });
+        // form表单提交
+        function test(){
+            var form = new FormData($("#myform")[0]);
+            var upfile=$("#myform input[type='file']").val();
+            //如果文件以.csv结尾则进行数据传输
+            if(upfile==''){
+                alert("请您上传文件");
+            }else{
+                if(/^.*.csv$/.test(upfile)){
+                    $.ajax({
+                        url:"target/uploadPhone",
+                        type:"post",
+                        data:form,
+                        processData:false,
+                        contentType:false,
+                        success:function(data){
+                            var data=$.parseJSON(data);
+                            if(data.result!=0){
+                                // alert("提交成功"+data.result+"条数据");
+                                alert("提交成功");
+                                window.location.href="${ctx}/personlist"
+                            }else{
+                                alert("您上传文件中的数据内容有误！");
+                            }
+                        },
+                        error:function(e){
+                            alert("错误！！");
+                        }
+                    });
+                }else{
+                    alert("您上传的文件类型有误，请下载批量提交模板")
+                }
+            }
+        }
+        $("#btn").click(function(){
+            test();
+        })
     })
 </script>
 </body>

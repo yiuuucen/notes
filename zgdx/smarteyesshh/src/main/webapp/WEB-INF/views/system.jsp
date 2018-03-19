@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="${img}/ddlogo.ico">
     <link rel="stylesheet" href="${css}/ele-ui.css" />
     <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="${js}/bootstrap/css/bootstrap-select.css" />
     <link rel="stylesheet" href="${css}/base.css" />
     <link rel="stylesheet" href="${css}/style.css" />
     <link rel="stylesheet" href="${css}/style4.css" />
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="${js}/jquery-2.1.0.js" ></script>
     <script type="text/javascript" src="${js}/jquery.pagination.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap/js/bootstrap.js" ></script>
+    <script type="text/javascript" src="${js}/bootstrap/js/bootstrap-select.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.js" ></script>
     <script type="text/javascript" src="${js}/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js" ></script>
     <script type="text/javascript" src="${js}/echarts.js" ></script>
@@ -37,76 +39,6 @@
         })
     </script>
     <style>
-        <%--分页样式--%>
-        .tabbtn{
-            height: 40px;
-            margin: 45px auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .tabbtn a{
-            display: inline-block;
-            height: 28px;
-            margin-left: 12px;
-            padding: 0 10px;
-            color: #fff;
-            line-height: 28px;
-            text-align: center;
-            font-family: "Microsoft YaHei",serif;
-            font-size: 14px;
-            background-color: #2f3242;
-            border: 1px solid #9d9fa6;
-        }
-        .tabbtn span{
-            display: inline-block;
-            height: 28px;
-            margin-left: 12px;
-            padding: 0 10px;
-            color: #fff;
-            line-height: 28px;
-            text-align: center;
-            font-family: "Microsoft YaHei",serif;
-            font-size: 14px;
-            background-color: #2f3242;
-            border: 1px solid #9d9fa6;
-        }
-        .tabbtn span.active{
-            background: #2196f3;
-        }
-        .tabbtn .prev{
-            background-color: #2196f3;
-            border:none;
-        }
-        .tabbtn .next{
-            background-color: #2196f3;
-            border:none;
-        }
-        .tabbtn .jump-ipt{
-            display: inline-block;
-            width: 60px;
-            height: 28px;
-            margin-left: 12px;
-            padding: 0 10px;
-            color: fff;
-            line-height: 28px;
-            text-align: center;
-            font-family: "Microsoft YaHei",serif;
-            font-size: 14px;
-            border: 1px solid rgba(255,255,255,0.6);
-            background: rgb(47,50,66);
-        }
-        .tabbtn .jump-btn{
-            background-color: #2196f3;
-            border: none;
-        }
-        .alldata{
-            color: #fff;
-            height: 30px;
-            line-height: 30px;
-            font-size: 15px;
-            text-align: right;
-        }
         /*日历样式和之前不同，因此设置为id=app2*/
         #app2{
             margin: 5px 0;
@@ -194,7 +126,22 @@
             <div class="operate-log ">
                 <div class="table-head clearfix">
                     <h3>操作日志</h3>
-                    <div>筛选</div>
+                    <div>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <select id="peopleSel" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="Search" data-size="5" data-none-selected-text="全部用户">
+                                    <option>option1</option>
+                                    <option>option2</option>
+                                    <option>option3</option>
+                                    <option>option4</option>
+                                    <option>option6</option>
+                                    <option>option7</option>
+                                    <option>option8</option>
+                                    <option>option9</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div style="position: relative">
                     <table class="operate-table1">
@@ -268,73 +215,85 @@
 
         });
 
-        new Vue({
-            el:'#app2',
-            data:{
-                morenT:new Date()- 3600 * 1000 * 24 * 7,
-                morenT2:new Date(),
-                pickerOptions2: {
-                    shortcuts: [{
-                        text: '最近一周',
-                        onClick(picker) {
-                            const end = new Date();
-                            const start = new Date();
-                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-                            picker.$emit('pick', [start, end]);
-                        }
-                    }, {
-                        text: '最近一个月',
-                        onClick(picker) {
-                            const end = new Date();
-                            const start = new Date();
-                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-                            picker.$emit('pick', [start, end]);
-                        }
-                    }, {
-                        text: '最近三个月',
-                        onClick(picker) {
-                            const end = new Date();
-                            const start = new Date();
-                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-                            picker.$emit('pick', [start, end]);
-                        }
-                    }]
-                },
-                value6: '',
-                value7: ''
-            },
-            methods:{
-                gettime(value){
-                    value0=value[0].slice(0,4)+value[0].slice(5,7)+value[0].slice(8,10);
-                    value1=value[1].slice(0,4)+value[1].slice(5,7)+value[1].slice(8,10);
-                    // value0=20180306;
-                    //value[0]=2018-03-06;
-                    // console.log(value[0]);
-                    // console.log(value[1]);
-                    sysEchart1_data([value0,value1],value[0],value[1]);
-                    sysEchart2_data([value0,value1]);
-                },
-                formatDate1(date){
-                    var y = date.getFullYear();
-                    var m = date.getMonth() + 1;
-                    m = m < 10 ? '0' + m : m;
-                    var d = date.getDate();
-                    d = d < 10 ? ('0' + d) : d;
-                    return y + '-' + m + '-' + d;
-                }
-            },
-            // 钩子函数，页面渲染自动执行
-            mounted(){
-                this.morenT=this.formatDate1(new Date(this.morenT));
-                this.morenT2=this.formatDate1(this.morenT2);
-                morenTT=this.morenT.slice(0,4)+this.morenT.slice(5,7)+this.morenT.slice(8,10);
-                morenTT2=this.morenT2.slice(0,4)+this.morenT2.slice(5,7)+this.morenT2.slice(8,10);
-                //    初始化
-                sysEchart1_data([morenTT,morenTT2],this.morenT,this.morenT2);
-                sysEchart2_data([morenTT,morenTT2]);
-            }
-
+        //筛选人员功能
+        $('.selectpicker').on('hidden.bs.select', function (e) {
+            // do something...
+            var value = $('.filter-option').html();
+            console.log(value);
         });
+
+
+        if(ut==0){
+            new Vue({
+                el:'#app2',
+                data:{
+                    morenT:new Date()- 3600 * 1000 * 24 * 7,
+                    morenT2:new Date(),
+                    pickerOptions2: {
+                        shortcuts: [{
+                            text: '最近一周',
+                            onClick(picker) {
+                                const end = new Date();
+                                const start = new Date();
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                                picker.$emit('pick', [start, end]);
+                            }
+                        }, {
+                            text: '最近一个月',
+                            onClick(picker) {
+                                const end = new Date();
+                                const start = new Date();
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                                picker.$emit('pick', [start, end]);
+                            }
+                        }, {
+                            text: '最近三个月',
+                            onClick(picker) {
+                                const end = new Date();
+                                const start = new Date();
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                                picker.$emit('pick', [start, end]);
+                            }
+                        }]
+                    },
+                    value6: '',
+                    value7: ''
+                },
+                methods:{
+                    gettime(value){
+                        value0=value[0].slice(0,4)+value[0].slice(5,7)+value[0].slice(8,10);
+                        value1=value[1].slice(0,4)+value[1].slice(5,7)+value[1].slice(8,10);
+                        // value0=20180306;
+                        //value[0]=2018-03-06;
+                        // console.log(value[0]);
+                        // console.log(value[1]);
+                        sysEchart1_data([value0,value1],value[0],value[1]);
+                        sysEchart2_data([value0,value1]);
+                    },
+                    formatDate1(date){
+                        var y = date.getFullYear();
+                        var m = date.getMonth() + 1;
+                        m = m < 10 ? '0' + m : m;
+                        var d = date.getDate();
+                        d = d < 10 ? ('0' + d) : d;
+                        return y + '-' + m + '-' + d;
+                    }
+                },
+                // 钩子函数，页面渲染自动执行
+                mounted(){
+                    this.morenT=this.formatDate1(new Date(this.morenT));
+                    this.morenT2=this.formatDate1(this.morenT2);
+                    morenTT=this.morenT.slice(0,4)+this.morenT.slice(5,7)+this.morenT.slice(8,10);
+                    morenTT2=this.morenT2.slice(0,4)+this.morenT2.slice(5,7)+this.morenT2.slice(8,10);
+                    //    初始化
+                    sysEchart1_data([morenTT,morenTT2],this.morenT,this.morenT2);
+                    sysEchart2_data([morenTT,morenTT2]);
+                }
+
+            });
+        }else{
+            $(".operate-box .two-echarts").css("display","none")
+        }
 
 
         Date.prototype.format = function() {
@@ -431,7 +390,17 @@
                 },
                 series: [{
                     data: data_num,
-                    type: 'line'
+                    type: 'line',
+                    itemStyle: {
+                        normal:{
+                            color: '#2196f3'
+                        }
+                    },
+                    lineStyle: {
+                        normal:{
+                            color: '#2196f3'
+                        }
+                    },
                 }]
             };
             // 为echarts对象加载数据
@@ -509,7 +478,17 @@
                 series: [
                     {
                         type: 'bar',
-                        data: data_num
+                        data: data_num,
+                        itemStyle: {
+                            normal:{
+                                color: '#2196f3'
+                            }
+                        },
+                        lineStyle: {
+                            normal:{
+                                color: '#2196f3'
+                            }
+                        },
                     }
                 ]
             };
@@ -568,7 +547,7 @@
                 $("#allpage").text(pageCount);
                 //   生成首页和尾页
                 $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
-                $(".tabbtn .next").after('<a href="javascript:;" data-page="73" style="background: #2196f3;border: none">尾页</a>');
+                $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
 
                 // console.log(index.getCurrent());
                 //上一页下一页无法点击
@@ -592,7 +571,7 @@
         $("#allpage").text(pageCount);
         //   生成首页和尾页
         $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
-        $(".tabbtn .next").after('<a href="javascript:;" data-page="73" style="background: #2196f3;border: none">尾页</a>');
+        $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
     </script>
 
 </body>

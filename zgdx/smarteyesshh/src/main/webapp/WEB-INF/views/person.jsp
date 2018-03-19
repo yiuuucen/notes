@@ -110,7 +110,7 @@
                 //点击自动下载模板
 				$('.mag .submit_btn .box_bottom .load').click(function () {
                     window.location.href="${ctx}/target/download";
-                })
+                });
 				$("input[name='tel']").blur(function () {
 	                var tel=$("input[name='tel']").val();
 	                if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(tel))){
