@@ -80,6 +80,51 @@
             </div>
         </div>
     </div>
+    <div class="submit_fail">
+        <div class="submit_box">
+            <div class="box_top">
+                <span>提交查询号码</span>
+                <img src="${img}/magclose.png" alt="">
+            </div>
+            <div class="box_bottom">
+                <div class="msg">
+                    <div>
+                        <p>查询目标手机号码:</p>
+                        <div>
+                            <input type="text" name="tel">
+                        </div>
+                    </div>
+                    <div>
+                        <p>查询目标描述:</p>
+                        <div>
+                            <select name="" id="miaoshu">
+                                <option value="" selected></option>
+                                <option value="重点人员">重点人员</option>
+                                <option value="一般人员">一般人员</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <p>查询目标标签:</p>
+                        <div>
+                            <select name="" id="biaoqian">
+                                <option value="" selected></option>
+                                <option value="涉毒">涉毒</option>
+                                <option value="盗窃">盗窃</option>
+                                <option value="强奸">强奸</option>
+                                <option value="强奸">卖淫</option>
+                                <option value="强奸">抢劫</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 id="lessbtn">确认提交</h3>
+                        <h3 class="lessclose">取消</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--底部-->
 <jsp:include page="/WEB-INF/common/footer.jsp"/>
@@ -168,6 +213,9 @@
         $(".morecommit").click(function(){
             $(".mag-jilu .submit_btn").css('display','block');
         });
+        $(".lesscommit").click(function(){
+            $(".mag-jilu .submit_fail").css('display','block');
+        })
         $(".mag-jilu .submit_box .box_top img").click(function(){
             $(".mag-jilu .submit_btn").css('display','none')
         });
@@ -177,7 +225,7 @@
         $(".mag-jilu .submit_fail .submit_box img").click(function(){
             $(".mag-jilu .submit_fail").css('display','none')
         });
-        $(".mag-jilu .submit_fail .submit_box div:nth-child(3)").click(function(){
+        $(".mag-jilu .submit_fail .submit_box .lessclose").click(function(){
             $(".mag-jilu .submit_fail").css('display','none')
         });
 
@@ -223,6 +271,33 @@
         $("#btn").click(function(){
             test();
         })
+    //    lesscommit弹窗
+        $("#lessbtn").click(function () {
+            var loadPhone=$("input[name='tel']").val();
+            var personType=$("#miaoshu option:selected").text();
+            var searchType=$("#biaoqian option:selected").text();
+            if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(loadPhone))||personType==""||searchType==""){
+                alert("请完善信息!")
+            }else{
+                if(loadPhone.length==11) {
+                    loadPhone = "86" + loadPhone;
+                }
+                $.ajax({
+                    type:"get",
+                    url:"/target/insertTarget",
+                    dataType:"json",
+                    data:{"loadPhone":loadPhone,"personType":personType,"searchType":searchType},
+                    success:function () {
+                        window.location.href="${ctx}/personlist"
+                    },
+                    error:function () {
+                        console.log("数据错误")
+                    }
+                })
+            }
+
+        });
+
     })
 </script>
 </body>
