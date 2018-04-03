@@ -468,8 +468,8 @@
                 $("#alldata").text(totalData);
                 $("#allpage").text(pageCount);
                 //   生成首页和尾页
-                $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
-                $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
+                $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none;width: 65px;">首页</a>');
+                $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none;width: 65px;">尾页</a>');
 
                 // console.log(index.getCurrent());
                 //上一页下一页无法点击
@@ -492,8 +492,8 @@
         $("#alldata").text(totalData);
         $("#allpage").text(pageCount);
         //   生成首页和尾页
-        $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
-        $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
+        $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none;width: 65px;">首页</a>');
+        $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none;width: 65px;">尾页</a>');
 
     </script>
 

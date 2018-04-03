@@ -269,4 +269,22 @@
     limit #{startPage,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_log
+    <where>
+      <if test="id != null">
+        and user_id = #{id,jdbcType=VARCHAR}
+      </if>
+      <if test="usernames != null and usernames.size() != 0">
+        and user_nickname in
+        <foreach collection="usernames" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+    limit #{startPage,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
 </mapper>

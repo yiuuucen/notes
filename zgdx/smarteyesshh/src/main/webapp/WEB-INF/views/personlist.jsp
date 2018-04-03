@@ -21,42 +21,42 @@
     <jsp:include page="/WEB-INF/common/head2.jsp"/>
     <div class="row clearfix">
         <div class="hr clearfix"></div>
-        <div class="hr clearfix"></div>
     </div>
 
     <div class="jilu clearfix">
-        <h3>查询信息
+        <h3 style="letter-spacing: 2px;font-weight: 300">目标人员列表
             <div class="lesscommit">提交查询号码</div>
             <div class="morecommit">批量提交查询号码</div>
         </h3>
         <div class="mytable">
             <div class="tabhead row">
-                <span class="col-lg-6 col-md-6 col-xs-6">猎犬用户信息</span>
-                <span class="col-lg-4 col-md-4 col-xs-4">查询目标人员信息</span>
-                <span class="col-lg-2 col-md-2 col-xs-2">查询记录信息</span>
+                <span class="col-lg-7 col-md-7 col-xs-7">目标人员信息猎犬用户信息</span>
+                <span class="col-lg-5 col-md-5 col-xs-5">猎犬用户信息</span>
             </div>
             <div class="tabcont row">
                 <div class="lie clearfix">
                     <span class="col-lg-1 col-md-1 col-xs-1">序号</span>
-                    <span class="col-lg-1 col-md-1 col-xs-1">用户ID</span>
-                    <span class="col-lg-1 col-md-1 col-xs-1">用户姓名</span>
-                    <span class="col-lg-3 col-md-3 col-xs-3">提交时间</span>
                     <span class="col-lg-2 col-md-2 col-xs-2">手机号码</span>
                     <span class="col-lg-1 col-md-1 col-xs-1">描述</span>
                     <span class="col-lg-1 col-md-1 col-xs-1">涉案类型</span>
                     <span class="col-lg-2 col-md-2 col-xs-2">查询状态</span>
+
+                    <span class="col-lg-1 col-md-1 col-xs-1">用户ID</span>
+                    <span class="col-lg-1 col-md-1 col-xs-1">用户姓名</span>
+                    <span class="col-lg-3 col-md-3 col-xs-3">提交时间</span>
                 </div>
                 <div class="xinxi">
-                    <%--<div class="lie clearfix" >--%>
-                        <%--<span class="col-lg-1 col-md-1 col-xs-1">20171229</span>--%>
-                        <%--<span class="col-lg-1 col-md-1 col-xs-1">00000123</span>--%>
-                        <%--<span class="col-lg-1 col-md-1 col-xs-1">张三</span>--%>
-                        <%--<span class="col-lg-3 col-md-3 col-xs-3">2017.12.29&nbsp;&nbsp;15:56:32</span>--%>
-                        <%--<span class="col-lg-2 col-md-2 col-xs-2">123****4342</span>--%>
-                        <%--<span class="col-lg-1 col-md-1 col-xs-1">重点人员</span>--%>
-                        <%--<span class="col-lg-1 col-md-1 col-xs-1">涉毒</span>--%>
-                        <%--<span class="col-lg-2 col-md-2 col-xs-2">已提交</span>--%>
-                    <%--</div>--%>
+                    <div class="lie clearfix" >
+                        <span class="col-lg-1 col-md-1 col-xs-1">20171229</span>
+                        <span class="col-lg-2 col-md-2 col-xs-2">123****4342</span>
+                        <span class="col-lg-1 col-md-1 col-xs-1">重点人员</span>
+                        <span class="col-lg-1 col-md-1 col-xs-1">涉毒</span>
+                        <span class="col-lg-2 col-md-2 col-xs-2">已提交</span>
+
+                        <span class="col-lg-1 col-md-1 col-xs-1">00000123</span>
+                        <span class="col-lg-1 col-md-1 col-xs-1">张三</span>
+                        <span class="col-lg-3 col-md-3 col-xs-3">2017.12.29&nbsp;&nbsp;15:56:32</span>
+                    </div>
                 </div>
             </div>
             <div class="tabbtn M-box">
@@ -152,7 +152,7 @@
                             return (this.getFullYear() <10 ? "0"+this.getFullYear() : this.getFullYear()) + "." + ((this.getMonth()+ 1) <10 ? "0"+(this.getMonth() + 1) : (this.getMonth() + 1)) + "." + (this.getDate()  <10 ? "0"+this.getDate() : this.getDate() ) + "&nbsp&nbsp&nbsp" + (this.getHours()<10 ? "0"+this.getHours() : this.getHours()) + ":" + (this.getMinutes()<10 ? "0"+this.getMinutes() : this.getMinutes())+ ":" + (this.getSeconds()<10 ? "0"+this.getSeconds() : this.getSeconds());
                         };
                         stringTime = newTime.toLocaleString();
-                        var html='<div class="lie clearfix" ><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].id+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].userId+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].userNick+'</span><span class="col-lg-3 col-md-3 col-xs-3">'+stringTime+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+res.result.datas[i].targetPhone+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].personType+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].searchType+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+res.result.datas[i].status+'</span></div>';
+                        var html='<div class="lie clearfix" ><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].id+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+res.result.datas[i].targetPhone+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].personType+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].searchType+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+res.result.datas[i].status+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].userId+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].userNick+'</span><span class="col-lg-3 col-md-3 col-xs-3">'+stringTime+'</span></div>'
                         $(".xinxi").append(html);
                     }
                 },
@@ -182,8 +182,8 @@
                 $("#alldata").text(totalData);
                 $("#allpage").text(pageCount);
                 //   生成首页和尾页
-                $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
-                $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
+                $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none;width: 65px;">首页</a>');
+                $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none;width: 65px;">尾页</a>');
 
                 // console.log(index.getCurrent());
                 //上一页下一页无法点击
@@ -206,8 +206,8 @@
         $("#alldata").text(totalData);
         $("#allpage").text(pageCount);
         //   生成首页和尾页
-        $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
-        $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
+        $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none;width: 65px;">首页</a>');
+        $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none;width: 65px;">尾页</a>');
 
         // .mag-jilu页面下的2个弹窗js
         $(".morecommit").click(function(){

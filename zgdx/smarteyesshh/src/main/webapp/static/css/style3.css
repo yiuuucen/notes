@@ -94,12 +94,13 @@
     border: 1px solid #fff;
     position: absolute;
     top: 315px;
-    left: 70px;
+    left: 83px;
     border-radius: 30px;
     text-align: center;
-    line-height: 40px;
+    line-height: 38px;
     color: #fff;
-    font-size: 18px;
+    font-size: 17px;
+    letter-spacing: 3px;
     background: transparent;
 }
 
@@ -683,8 +684,8 @@
 }
 .mag-jilu .hr{
     display: block;
-    height: 17px;
-    background: url(../img/hrhr.png);
+    height: 25px;
+    background: #2196f3;
 }
 .mag-jilu .jilu{
     margin: 45px;
@@ -707,24 +708,28 @@
     width: 120px;
     height: 30px;
     right: 130px;
+    bottom: 15px;
     font-size: 13px;
     background-color: #2196f3;
     line-height: 30px;
     text-align: center;
     border-radius: 4px;
     cursor: pointer;
+    letter-spacing: 0;
 }
 .mag-jilu .jilu h3 .morecommit{
     position: absolute;
     width: 120px;
     height: 30px;
     right: 0;
+    bottom: 15px;
     font-size: 13px;
     background-color: #2196f3;
     line-height: 30px;
     text-align: center;
     border-radius: 4px;
     cursor: pointer;
+    letter-spacing: 0;
 }
 .mag-jilu .jilu .mytable{
     margin: 0 45px;
@@ -732,25 +737,25 @@
     color: #ddd;
 }
 .mag-jilu .jilu .mytable .tabhead{
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255,255,255,0.3);
 }
 .mag-jilu .jilu .mytable .tabhead span{
     height: 47px;
     line-height: 47px;
     font-size: 18px;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid rgba(255,255,255,0.3);
 }
 .mag-jilu .jilu .mytable .tabhead span:last-child{
     border-right:none;
 }
 .mag-jilu .jilu .mytable .tabcont{
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255,255,255,0.3);
     border-top: none;
     box-sizing: border-box;
     position: relative;
 }
 .mag-jilu .jilu .mytable .tabcont .lie{
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 .mag-jilu .jilu .mytable .tabcont .lie:last-child{
     border-bottom: none;
@@ -761,8 +766,8 @@
     line-height: 34px;
     overflow: hidden;
 }
-.mag-jilu .jilu .mytable .tabcont .lie>span:nth-child(4),span:nth-child(7){
-    border-right: 1px solid #ddd;
+.mag-jilu .jilu .mytable .tabcont .lie>span:nth-child(5){
+    border-right: 1px solid rgba(255,255,255,0.3);
 }
 /*management上的2个弹窗效果*/
 .mag-jilu .submit_btn{
@@ -797,8 +802,10 @@
     box-shadow: 0 10px 10px #272938;
 }
 .mag-jilu .submit_btn .submit_box .box_top span{
-    font-size: 20px;
+    font-size: 23px;
     color: #fff;
+    letter-spacing: 2px;
+    font-weight: 300;
 }
 .mag-jilu .submit_btn .submit_box .box_top img{
     width: 18px;
@@ -827,9 +834,9 @@
 .mag-jilu .submit_btn .submit_box .box_bottom input:nth-child(3){
     display: block;
     width: 160px;
-    height: 40px;
+    height: 35px;
     text-align: center;
-    line-height: 40px;
+    line-height: 35px;
     float: left;
     background: #2196f3;
     margin: 15px 65px 0 100px;
@@ -841,9 +848,9 @@
 .mag-jilu .submit_btn .submit_box .box_bottom div:last-child{
     display: block;
     width: 160px;
-    height: 40px;
+    height: 35px;
     text-align: center;
-    line-height: 40px;
+    line-height: 35px;
     float: left;
     background: #2196f3;
     margin: 15px 65px 0 0;
@@ -879,12 +886,14 @@
     height: 70px;
     text-align: center;
     line-height: 70px;
-    -moz-box-shadow: 0 10px 10px #272938;
-    box-shadow: 0 10px 10px #272938;
+    -moz-box-shadow: 0 5px 20px 0 #272938;
+    box-shadow: 0 5px 20px 0 #272938;
 }
 .mag-jilu .submit_fail .submit_box .box_top span{
-    font-size: 20px;
+    font-size: 23px;
     color: #fff;
+    letter-spacing: 2px;
+    font-weight: 300;
 }
 .mag-jilu .submit_fail .submit_box .box_top img{
     width: 18px;
@@ -943,7 +952,7 @@
 .mag-jilu .submit_fail .submit_box .box_bottom .msg>div:nth-child(1)>div input{
     width: 295px;
     height: 35px;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255,255,255,0.7);
     border-radius: 5px;
     padding: 0 0 0 14px;
     color: #fff;
@@ -961,7 +970,7 @@
     height: 35px;
     line-height: 35px;
     background-color: #2f3242;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255,255,255,0.7);
     border-radius: 5px;
 }
 .mag-jilu .submit_fail .submit_box .box_bottom .msg>div:nth-child(3)>div select{
@@ -969,7 +978,7 @@
     height: 35px;
     line-height: 35px;
     background-color: #2f3242;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255,255,255,0.7);
     border-radius: 5px;
 }
 .mag-jilu .submit_fail .submit_box .box_bottom .msg>div:nth-child(4)>div{

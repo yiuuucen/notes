@@ -17,6 +17,9 @@
         $(function(){
             var h= $(window).height();
             $(".search").height(h-130);
+            h2=h/2-190;
+
+            $(".log .logdiv").css("top", h2);
         })
     </script>
     <style>

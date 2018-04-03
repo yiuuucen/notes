@@ -60,10 +60,12 @@
     <jsp:include page="/WEB-INF/common/head.jsp"/>
 
     <div class="row searchBox listbox container-fluid">
-        <div class="col-lg-12 col-md-12 col-xs-12 namelist clearfix">
-            <div class="pull-left namelistcc col-lg-4 col-md-4 col-xs-4">
+        <div class="col-lg-12 col-md-12 col-xs-12 namelist clearfix" style="padding-left:15px;">
+            <div class="pull-left namelistcc col-lg-4 col-md-4 col-xs-4" style="width:50%;">
                 <span>当前重点人员：</span>
                 <span id="tit-person"> </span>
+                <span>&nbsp;&nbsp;&nbsp;有效联系人总数：</span>
+                <span id="tit-contactNum"> </span>
             </div>
             <div class="pull-right text-right input-group col-lg-5">
                 <div id="app">
@@ -89,8 +91,8 @@
         </div>
         <div class="listl" style="border-bottom: none;">
             <div class="l-contacts">
-                <div class="c-top clearfix">
-                    <span class="pull-left" id="shaixuan">筛选</span>
+                <div class="c-top clearfix" style="margin-right:15px;">
+                    <span class="pull-left shaixuan-noselect" id="shaixuan">筛选</span>
                     <span class="pull-right">全部人员</span>
                 </div>
                 <div class="c-head clearfix">
@@ -112,13 +114,13 @@
                     <div class="tanCont">
                         <div class="tan-choose">
                             <h3>描述</h3>
-                            <span >重点人员</span>
-                            <span >一般人员</span>
+                            <span val="重点人员">重点人员</span>
+                            <span val="一般人员">一般人员</span>
                         </div>
                         <div class="tan-choose2">
                             <h3>关联度</h3>
-                            <span >一度联系人</span>
-                            <span >二度联系人</span>
+                            <span val="一度联系人">一度联系人</span>
+                            <span val="二度联系人">二度联系人</span>
                         </div>
                         <div class="tan-reset">重置</div>
                         <div class="tan-qued">确定</div>
@@ -143,11 +145,11 @@
                 <div class="title pull-left">
                     <img src="${img}/u-18.png" />
                 </div>
-                <div class="texTtitle pull-left"style="margin-top: 14px">
+                <div class="texTtitle pull-left" style="margin-top: 14px">
                     <%--<p id="right-curnum">SE981239123</p>--%>
                     <p id="right-curnum"></p>
                     <%--<p id="right-curlab"style="font-size: 12px;">一度联系人   Rank1   0.9</p>--%>
-                    <p id="right-curlab"style="font-size: 10px;"></p>
+                    <p id="right-curlab" style="font-size: 10px;"></p>
                 </div>
                 <div class="pull-right">
                     <%--<a href="#"><img style="margin-top: 16px;" src="${img}/u-19.png"></a>--%>
@@ -187,6 +189,16 @@
 <footer><p class="text-center">© 2017 SmartEyes | 猎犬上海网安版</p></footer>
 <script type="text/javascript" src="${js}/dataTool.js" ></script>
 <script type="text/javascript">
+	//当前重点人员
+	var targetPhone = $("#targetPhone").val();
+	var showPersonInfo = "";
+	showPersonInfo = "SE"+$("#targetPhone").val();
+    //涉案类型
+    var type = '${suspectType}';
+	if(type!=''){
+		showPersonInfo += "&nbsp;&nbsp;&nbsp;"+type+"人员";
+	}
+    $('#tit-person').html(showPersonInfo);
     //图标展示高度
     var h= $(window).height()-60;
     $("#ect").height(h);
@@ -215,7 +227,24 @@
         });
 
         $("#shaixuan").click(function(){
-            $(".l-con-tanC").css("display","block");
+	        if($(".l-con-tanC").is(":hidden")){
+	        	//筛选层显示
+	            $(".l-con-tanC").css("display","block");
+	            $("#shaixuan").removeClass("shaixuan-noselect");
+	            $("#shaixuan").addClass("shaixuan-selected");
+	            //
+	            $(".tanCont span").removeAttr("class");
+	            $(".c-top .pull-right").each(function(){
+	            	var htmlStr=$(this).html();
+	            	$(".tanCont span[val='"+htmlStr+"']").attr("class","tan-select");
+	            });
+	        
+	        }else{
+	        	//筛选层隐藏
+	        	 $(".l-con-tanC").css("display","none");
+	        	 $("#shaixuan").removeClass("shaixuan-selected");
+	        	 $("#shaixuan").addClass("shaixuan-noselect");
+	        }
         });
         $(".tan-choose span").click(function(){
             $(".tan-choose span").removeAttr("class");
@@ -231,6 +260,7 @@
         });
         $(".tan-qued").click(function(){
             console.log(time);
+            
             $(".c-top span").remove(".pull-right");
             $.ajax({
                 type:"GET",
@@ -247,12 +277,16 @@
                     msg='';
                     if($(".tan-select").length==0){
                         $(".c-top").append('<span class="pull-right">全部人员</span>');
+	                    //排序
+	                	/*data.contactList.sort(sortExp);
                         for(var i=0;i<data.contactList.length;i++){
                             data.contactList[i].name="SE"+data.contactList[i].name.slice(-12);
                             data.contactList[i].exp=data.contactList[i].exp.toFixed(2);
                             // console.log(typeof(data.contactList[i].exp));
                             msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+data.contactList[i].name+'</span>'+'<span>'+data.contactList[i].tag+'</span>'+'<span>'+data.contactList[i].type+'</span>'+'<span>'+data.contactList[i].exp+'</span></li>';
-                        }
+                        }*/
+                        //获取列表
+                		msg = getContantHtml(data.contactList);
                     }else if($(".tan-select").length==1){
                         $(".c-top").append('<span class="pull-right">'+$(".tan-select").html()+'</span>');
                         for(var i=0;i<data.contactList.length;i++){
@@ -264,15 +298,19 @@
                         if(arr.length==0){
                             msg='';
                         }else{
+                        	//排序
+                			/*arr.sort(sortExp);
                             for(var i=0;i<arr.length;i++){
                                 arr[i].name="SE"+arr[i].name.slice(-12);
                                 arr[i].exp=arr[i].exp.toFixed(2);
                                 // console.log(typeof(data.contactList[i].exp));
                                 msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+arr[i].name+'</span>'+'<span>'+arr[i].tag+'</span>'+'<span>'+arr[i].type+'</span>'+'<span>'+arr[i].exp+'</span></li>';
-                            }
+                            }*/
+                            //获取列表
+                			msg = getContantHtml(arr);
                         }
                     }else if($(".tan-select").length==2){
-                        $(".c-top").append('<span class="pull-right">'+$(".tan-choose2 .tan-select").html()+'</span><span class="pull-right">'+$(".tan-choose .tan-select").html()+'</span>');
+                        $(".c-top").append('<span class="pull-right">'+$(".tan-choose2 .tan-select").html()+'</span><span class="pull-right">|</span><span class="pull-right">'+$(".tan-choose .tan-select").html()+'</span>');
                         for(var i=0;i<data.contactList.length;i++){
                             if(data.contactList[i].tag==$(".tan-choose .tan-select").html()&&data.contactList[i].type==$(".tan-choose2 .tan-select").html().slice(0,2)){
                                 arr.push(data.contactList[i]);
@@ -282,12 +320,16 @@
                         if(arr.length==0){
                             msg='';
                         }else{
+                        	//排序
+                			/*arr.sort(sortExp);
                             for(var i=0;i<arr.length;i++){
                                 arr[i].name="SE"+arr[i].name.slice(-12);
                                 arr[i].exp=arr[i].exp.toFixed(2);
                                 // console.log(typeof(data.contactList[i].exp));
                                 msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+arr[i].name+'</span>'+'<span>'+arr[i].tag+'</span>'+'<span>'+arr[i].type+'</span>'+'<span>'+arr[i].exp+'</span></li>';
-                            }
+                            }*/
+                            //获取列表
+                			msg = getContantHtml(arr);
                         }
                     }
                     $("#firstcontact").html(msg);
@@ -297,18 +339,20 @@
                 }
             });
             $(".l-con-tanC").css("display","none");
+            $("#shaixuan").removeClass("shaixuan-selected");
+	       	$("#shaixuan").addClass("shaixuan-noselect");
         });
     }
 
     new Vue({
         el:'#app',
         data:{
-            morenT:new Date()- 3600 * 1000 * 24 * 7,
+            morenT:new Date()- 3600 * 1000 * 24 * 30,
             morenT2:new Date(),
             pickerOptions2: {
                 shortcuts: [{
                     text: '最近一周',
-                    onClick(picker) {
+                    onClick:function(picker) {
                         const end = new Date();
                         const start = new Date();
                         start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
@@ -316,7 +360,7 @@
                     }
                 }, {
                     text: '最近一个月',
-                    onClick(picker) {
+                    onClick:function(picker) {
                         const end = new Date();
                         const start = new Date();
                         start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
@@ -324,7 +368,7 @@
                     }
                 }, {
                     text: '最近三个月',
-                    onClick(picker) {
+                    onClick:function(picker) {
                         const end = new Date();
                         const start = new Date();
                         start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
@@ -336,7 +380,7 @@
             value7: ''
         },
         methods:{
-            gettime(value){
+            gettime:function(value){
                 value[0]=value[0].slice(0,4)+value[0].slice(5,7)+value[0].slice(8,10);
                 value[1]=value[1].slice(0,4)+value[1].slice(5,7)+value[1].slice(8,10);
                 // value[0]=20180306;
@@ -348,7 +392,7 @@
                 shaixuan_tan(timerange);
                 $('#echart-right').hide();
             },
-            formatDate1(date){
+            formatDate1:function(date){
                 var y = date.getFullYear();
                 var m = date.getMonth() + 1;
                 m = m < 10 ? '0' + m : m;
@@ -358,7 +402,7 @@
             }
         },
         // 钩子函数，页面渲染自动执行
-        mounted(){
+        mounted:function(){
             this.morenT=this.formatDate1(new Date(this.morenT));
             this.morenT2=this.formatDate1(this.morenT2);
             morenTT=this.morenT.slice(0,4)+this.morenT.slice(5,7)+this.morenT.slice(8,10);
@@ -373,6 +417,21 @@
     function sortExp(a,b){
         return b.exp-a.exp;
     }
+    function getContantHtml(contactList){
+    	var msg=''
+    	//排序
+        contactList.sort(sortExp);
+        for(var i=0;i<contactList.length;i++){
+	    	contactList[i].name="SE"+contactList[i].name.slice(-12);
+            contactList[i].exp=contactList[i].exp.toFixed(2);
+	        if(contactList[i].tag=='重点人员'){
+	        	msg +='<li class="list-person zhongdian-person">'+'<span>'+(i+1)+'.'+contactList[i].name+'</span>'+'<span>'+contactList[i].tag+'</span>'+'<span>'+contactList[i].type+'</span>'+'<span>'+contactList[i].exp+'</span></li>';
+	        }else{
+	        	msg +='<li class="list-person">'+'<span>'+(i+1)+'.'+contactList[i].name+'</span>'+'<span>'+contactList[i].tag+'</span>'+'<span>'+contactList[i].type+'</span>'+'<span>'+contactList[i].exp+'</span></li>';
+	        }
+	    }
+        return msg;
+    }
     //联系人
     function contactList(timerange){
         $.ajax({
@@ -383,13 +442,24 @@
             dataType:"json",
             success:function(data){
                 var msg=$("#firstcontact").html();
+                console.log(data);
                 msg='';
+                //更新有效联系人总数
+                if(data.contactList!=null){
+	                $('#tit-contactNum').html(""+data.contactList.length);
+                }else{
+                	$('#tit-contactNum').html(""+0);
+                }
+                //排序
+                /*data.contactList.sort(sortExp);
                 for(var i=0;i<data.contactList.length;i++){
                     data.contactList[i].name="SE"+data.contactList[i].name.slice(-12);
                     data.contactList[i].exp=data.contactList[i].exp.toFixed(2);
                     // console.log(typeof(data.contactList[i].exp));
                     msg+='<li class="list-person">'+'<span>'+(i+1)+'.'+data.contactList[i].name+'</span>'+'<span>'+data.contactList[i].tag+'</span>'+'<span>'+data.contactList[i].type+'</span>'+'<span>'+data.contactList[i].exp+'</span></li>';
-                }
+                }*/
+                //获取列表
+                msg = getContantHtml(data.contactList);
                 $("#firstcontact").html(msg);
                 shaixuan_tan(timerange);
             },
@@ -431,18 +501,19 @@
                     }
                 },
                     {
-                        name:'重点人员',
-                        itemStyle: {
-                            normal: {
-                                color: "rgb(76,175,80)"
-                            }
-                        }
-                    },
-                    {
                         name:'一般人员',
                         itemStyle: {
                             normal: {
                                 color: "#4a4f67"
+                            }
+                        }
+                    }
+                    ,
+                    {
+                        name:'重点人员',
+                        itemStyle: {
+                            normal: {
+                                color: "rgb(76,175,80)"
                             }
                         }
                     }
@@ -457,10 +528,10 @@
                 var brr2=[];
                 var max1,max2;
                 for(var i=0;i<mynode.length;i++){
-                    if(mynode[i].category==1){
+                    if(mynode[i].tag==1){
                         brr1.push(mynode[i]);
 
-                    }else if(mynode[i].category==2){
+                    }else if(mynode[i].tag==2){
                         brr2.push(mynode[i]);
                     }
                 }
@@ -470,21 +541,25 @@
                 graph.nodes.forEach(function (node) {
                     //node.itemStyle = null;
                     //node.draggable = true;
-                    // graph.nodes
                     //设置大小
-                    // console.log(node);
+
+                    //tag这个属性传给echarts，判断节点类别
+                    /*if(node.tag==0){
+                        node.symbolSize = 70;
+                    }
                     switch(node.category)
                     {
-                        case 0:
-                            node.symbolSize = 70;
+                    
+                        case "一般人员":
+                            node.symbolSize = 50*node.exp+20;
+                            //node.category=1;
                             break;
-                        case 1:
-                            node.symbolSize = 70*node.exp/max1;
+                        case "重点人员":
+                            node.symbolSize = 50*node.exp+20;
+                            //node.category=2;
                             break;
-                        case 2:
-                            node.symbolSize = 80*node.exp/max1;
-                            break;
-                    }
+                    }*/
+                    node.symbolSize = 50*node.exp+20;
                     node.name="SE"+node.name;
                     node.value=node.exp.toFixed(2);
                     node.label = {
@@ -494,6 +569,12 @@
                         }
                     };
                     node.isnode = true;
+                    //node.fixed = true;
+                    if(node.tag==0){
+	                    node.fixed= true;
+    					node.x=myChart0.getWidth() / 2;
+    					node.y= myChart0.getHeight() / 2;
+                    }
                 });
 
                 graph.links.forEach(function (link) {
@@ -505,7 +586,6 @@
 
                 myChart0.off('click');
                 myChart0.on("click",nodeClick);
-
                 option = {
                     tooltip: {
                         formatter: function (params) {
@@ -524,13 +604,14 @@
                         data: categories.map(function (a) {
                             return a.name;
                         }),
+                        /*['一般人员','重点人员'],*/
                         textStyle: {
                             color: '#ccc'
                         }
 
                     }],
-                    animationDuration: 1500,
-                    animationEasingUpdate: 'quinticInOut',
+                    animationDuration:1500,
+                    animationEasingUpdate:'quinticInOut',
                     series : [
                         {
                             name: '联系人节点',
@@ -538,8 +619,8 @@
                             layout: 'force',
 
                             force: {
-                                repulsion: 100,
-                                gravity: 0.01,
+                                repulsion: 150,
+                                gravity: 0.1,
                                 edgeLength: 70,
                                 layoutAnimation: true
 
@@ -571,11 +652,11 @@
 
 //
                 function nodeClick(params){
-                    if(params.data.category!=0){
+                    if(params.data.tag!=0){
                         //点击出现右侧弹框
                         $('#echart-right').show();
                         //只有不是一度联系人，都只显示基本信息
-                        if(params.data.category!=1){
+                        if(params.data.tag!=1){
                             $("#echart-right .e-right").hide()
                         }else{
                             $("#echart-right .e-right").show()
@@ -588,7 +669,8 @@
                         //开始设置
                         $('#right-curnum').html("SE"+params.data.name.slice(-12)+"");
                         var lab="";
-                        switch(params.data.category)
+                        lab=params.data.category;
+                        /*switch(params.data.category)
                         {
                             case 0:
                                 lab = "当前重点人员";
@@ -599,10 +681,10 @@
                             case 2:
                                 lab = "一般人员";
                                 break;
-                        }
+                        }*/
 
 
-                        $('#right-curlab').html(lab+"|"+"Rank"+params.dataIndex+"  |"+params.data.exp.toFixed(2));
+                        $('#right-curlab').html(lab+"&nbsp;&nbsp;|&nbsp;&nbsp;"+"Rank"+params.dataIndex+"&nbsp;&nbsp;|&nbsp;&nbsp;"+params.data.exp.toFixed(2));
                         //console.log(params);
                         //console.log(window.ctx+"/contact/getPerInfo?targetPhone="+params.name);
 //                    var para = {"targetPhone":targetPhone,"searchPhone":params.name.slice(2)};
@@ -613,9 +695,6 @@
                             data: {"targetPhone":targetPhone,"searchPhone":params.name.slice(2),"startTime":nodeTimerange[0],"endTime":nodeTimerange[1]},
                             dataType:"json",
                             success:function (data) {
-                                console.log("radar");
-                                console.log(data);
-                                console.log(targetPhone);
 
                                 if(data!==null){
                                     var radardata = [data.contactInfo.totalCall,data.contactInfo.WorkCall,data.contactInfo.RestCall,data.contactInfo.UnderFifteenSeconds,data.contactInfo.AboveThreeMin];

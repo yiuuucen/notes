@@ -89,7 +89,7 @@ body {
   background: url(../img/u-17.png) no-repeat;
 }
 .echart-right .csbox .cent .texTtitle {
-  width: 140px;
+  width: 155px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -143,12 +143,12 @@ footer p {
   font-size: 12px;
   float: left;
   background: url(../img/u02.png) no-repeat 95%;
-  border: #ffffff solid 1px;
+  border: 1px solid rgba(255,255,255,0.6);
   min-height: 26px;
   margin-right: 10px;
   padding-right: 20px;
   height: 26px;
-  border-radius: 14px;
+  border-radius: 5px;
   line-height: 24px;
   -moz-padding-top: 4px;
 }
@@ -189,15 +189,16 @@ footer p {
 
 }
 .smartEyes .textBox .btnSearch{
-  background: url(../img/u01.png) no-repeat;
+  background: url(../img/uu01.png) no-repeat;
+  background-size: 28px;
 }
 .smartEyes .textBox .btnSubmit{
-  background: url(../img/S_updata.png) no-repeat;
-  background-size: 35px;
+  background: url(../img/S_updata.png) center no-repeat;
+  background-size: 30px;
 }
 /*head.jsp和head2.jsp也要使用这些css*/
 .geren{
-  margin: 50px 20px 0 20px;
+  margin: 50px 40px 0 16px;
   position: relative;
 }
 .geren img{
@@ -207,7 +208,9 @@ footer p {
 .geren>div{
   position: absolute;
   width: 190px;
-  background:rgba(66, 69, 82, 0.6);;
+  background:#3e3e52;
+  -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+  box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
   top: 60px;
   right: 0;
   display: flex;
@@ -231,18 +234,20 @@ footer p {
   position: relative;
 }
 .peizhi img{
-  width: 40px;
+  width: 35px;
   cursor: pointer;
 }
 .peizhi>div{
   position: absolute;
   width: 190px;
-  background:rgb(43,45,60);
+  background:#3e3e52;
   top: 60px;
   right: 0;
   display: flex;
   flex-wrap:wrap;
   z-index: 9999;
+  -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+  box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
 }
 .peizhi>div a{
   width: 190px;
@@ -253,20 +258,23 @@ footer p {
   border-bottom: 1px solid rgba(255,255,255,0.4);
   letter-spacing: 1px;
 }
+.peizhi>div a:last-child{
+  border-bottom: none;
+}
 .textBox_head2{
   width: 230px;
-  height: 40px;
-  margin-top: 16px;
+  height: 35px;
+  margin-top: 19px;
   padding: 4px 4px 4px 20px;
   position: relative;
   float: right;
   border: 1px solid #2196f3;
   color: rgba(255,255,255,0.6);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .textBox_head2 .text {
   width: 70%;
-  height: 40px;
+  height: 34px;
   background: none;
   border: none;
   position: absolute;
@@ -275,14 +283,14 @@ footer p {
   font-size: 12px;
 }
 .textBox_head2 .btn {
-  margin: -3px 3px;
+  margin: -1px 0;
   width: 35px;
   height: 35px;
 
 }
 .textBox_head2 .btnSearch{
   background: url(../img/head_search.png) no-repeat;
-  background-size: 30px;
+  background-size: 25px;
 }
 /*head.jsp和head2.jsp   end*/
 .smartEyes .peizhi>div a:last-child{
@@ -314,6 +322,26 @@ footer p {
   text-align: center;
   -moz-box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
   box-shadow:-10px 0 10px #272938, /*左边阴影*/ 10px 0 10px #272938, /*右边阴影*/ 0 -10px 10px #272938, /*顶部阴影*/ 0 10px 10px #272938;
+}
+
+.S_tanchuang2{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  display: none;
+}
+.S_tanchuang2 .submit_box{
+  background: #2196f3;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
 }
 .S_tanchuang .submit_box .box_top{
   height: 70px;
@@ -515,7 +543,7 @@ footer p {
 }
 .smartEyes-container .searchBox .namelist {
   height: 40px;
-  background-color: #237eca;
+  background-color: #2196f3;
   padding: 0 30px 0 36px;
 }
 .smartEyes-container .searchBox .namelist .namelistcc {
@@ -554,27 +582,39 @@ footer p {
   overflow: hidden;
   height: 40px;
   line-height: 40px;
-  width: 100%;
+  /*width: 100%;*/
 }
 .contact .listl .l-contacts .c-top span {
   text-align: center;
   color:#999;
-  width: 80px;
+  /*width: 80px;*/
+  margin-right:5px;
 }
 .contact .listl .l-contacts .c-top span:nth-child(1){
   width: 80px;
   padding: 0 0 0 13px;
   height: 30px;
-  color:#237eca;
+  /*color:#237eca;*/
   text-align:left;
   line-height: 30px;
-  margin: 5px 30px;
+  margin: 5px 15px;
   border-radius: 5px;
   box-sizing: border-box;
   border: 1px solid #237eca;
-  background: url(../img/contact_bottom.png) 90% no-repeat;
+  /*background: url(../img/contact_bottom.png) 90% no-repeat;*/
   background-size: 15px;
   cursor: pointer;
+}
+
+.contact .listl .l-contacts .c-top .shaixuan-noselect{
+	color:#237eca;
+	background: url(../img/contact_bottom.png) 90% no-repeat;
+}
+
+.contact .listl .l-contacts .c-top .shaixuan-selected{
+	color:#fff;
+	background: url(../img/contact_top.png) 90% no-repeat;
+	background-color:#237eca;
 }
 .contact .listl .l-contacts .c-head {
   overflow: hidden;
@@ -588,16 +628,16 @@ footer p {
   color:#fff;
 }
 .contact .listl .l-contacts .c-head span:nth-child(1){
-  width: 120px;
+  width: 127px;
 }
 .contact .listl .l-contacts .c-head span:nth-child(2){
-  width: 78px;
+  width: 66px;
 }
 .contact .listl .l-contacts .c-head span:nth-child(3){
-  width: 42px;
+  width: 57px;
 }
 .contact .listl .l-contacts .c-head span:nth-child(4){
-  width: 80px;
+  width: 57px;
 }
 .contact .listl .l-contacts .list {
   overflow-y: auto;
@@ -615,16 +655,24 @@ footer p {
   text-align: center;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(1){
-  width: 117px;
+  width: 127px;
+  padding-left: 15px;
+  text-align: left;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(2){
-  width: 77px;
+  width: 66px;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(3){
-  width: 37px;
+  width: 57px;
 }
 .contact .listl .l-contacts .list .list-person span:nth-child(4){
-  width: 77px;
+  width: 57px;
+}
+.contact .listl .l-contacts .list .zhongdian-person span:nth-child(2),
+.contact .listl .l-contacts .list .zhongdian-person span:nth-child(3),
+.contact .listl .l-contacts .list .zhongdian-person span:nth-child(4){
+ color:rgba(85, 182, 60, 1);
+ font-weight: bold;
 }
 .contact .listl .l-contacts  .daochu{
   width: 280px;
@@ -673,15 +721,17 @@ footer p {
   display: block;
   width: 90px;
   height: 30px;
-  line-height: 30px;
-  border: 1px solid #fff;
+  line-height: 28px;
+  border: 1px solid #9d9fa6;
   border-radius: 3px;
   float: left;
   margin: 0 15px;
   cursor: pointer;
+  font-size:12px;
 }
 .contact .l-con-tanC .tanCont .tan-choose span.tan-select{
-  border:1px solid #2091ec ;
+  border:1px solid #4a4f67 ;
+  background:#4a4f67;
 }
 
 .contact .l-con-tanC .tanCont .tan-choose2{
@@ -697,15 +747,17 @@ footer p {
   display: block;
   width: 90px;
   height: 30px;
-  line-height: 30px;
-  border: 1px solid #fff;
+  line-height: 28px;
+  border: 1px solid #9d9fa6;
   border-radius: 3px;
   float: left;
   margin: 0 15px;
   cursor: pointer;
+  font-size:12px;
 }
 .contact .l-con-tanC .tanCont .tan-choose2 span.tan-select{
-  border:1px solid #2091ec ;
+  border:1px solid #4a4f67 ;
+  background:#4a4f67;
 }
 
 .contact .l-con-tanC .tanCont .tan-reset{
@@ -911,15 +963,17 @@ footer p {
 /*vue的日历插件样式*/
 /*后面发现不是所有日历样式都相同*/
 #app .el-date-editor{
-  background: rgb(35,126,202);
+  background: #2196f3;
   border: none;
+  padding: 5px;
+  text-align: center;
 }
 #app .el-date-editor .el-range__icon{
   color: #fff;
 }
 #app .el-range-input{
   color: #fff;
-  background: rgb(35,126,202);
+  background: #2196f3;
   border: 1px solid rgb(255,255,255);
   border-radius: 6px;
 }
@@ -948,6 +1002,7 @@ footer p {
   font-size: 14px;
   background-color: #2f3242;
   border: 1px solid #9d9fa6;
+  border-radius: 3px;
 }
 .tabbtn span{
   display: inline-block;
@@ -964,6 +1019,8 @@ footer p {
 }
 .tabbtn span.active{
   background: #2196f3;
+  border: 1px solid #2196f3;
+  border-radius: 3px;
 }
 .tabbtn .prev{
   background-color: #2196f3;
@@ -979,17 +1036,19 @@ footer p {
   height: 28px;
   margin-left: 12px;
   padding: 0 10px;
-  color: fff;
+  color: #fff;
   line-height: 28px;
   text-align: center;
   font-family: "Microsoft YaHei",serif;
   font-size: 14px;
   border: 1px solid rgba(255,255,255,0.6);
   background: rgb(47,50,66);
+  border-radius: 3px;
 }
 .tabbtn .jump-btn{
   background-color: #2196f3;
   border: none;
+  width: 65px;
 }
 .alldata{
   color: #fff;

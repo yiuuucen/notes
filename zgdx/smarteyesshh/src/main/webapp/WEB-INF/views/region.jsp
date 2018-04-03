@@ -56,7 +56,7 @@
             <div class="pull-left namelistcc ">
                 <span>当前重点人员：</span>
                 <span id="tit-person"></span>
-                <span id="tit-area">&nbsp;最常活动区域：</span>
+                <span id="tit-area">&nbsp;&nbsp;&nbsp;最常活动区域：</span>
             </div>
             <div class="pull-right text-right input-group col-lg-5">
                 <!--<input placeholder="2017-10-01 16:49" type="text" class="pull-right datetimepicker" />
@@ -152,8 +152,17 @@
 //    获取页面高度加了这个页面会变乱;
 //    var h= $(window).height();
 //    $(".maplist").height(h-100);
-    var targetPhone=$("#targetPhone").val();
-    $('#tit-person').html("  "+"SE"+targetPhone+"  ");
+    var targetPhone = $("#targetPhone").val();
+    var showPersonInfo = "";
+	showPersonInfo = "SE"+$("#targetPhone").val();
+	//涉案类型
+	//涉案类型
+    var type = '${suspectType}';
+	if(type!=''){
+		showPersonInfo += "&nbsp;&nbsp;&nbsp;"+type+"人员";
+	}
+	$('#tit-person').html(showPersonInfo);
+	
     var myChart3;
 
     var mydata = [[],[],[]];
@@ -367,7 +376,7 @@
         var tp = $("#targetPhone").val();
         $.ajax({
             type:"GET",
-            url:window.ctx+"/getHeatMap?targetPhone="+tp,
+            url:window.ctx+"/location/getReginHeatMap?targetPhone="+tp,
             dataType:"json",
             success:function (data) {
                 var points = data.map(function (seg) {
@@ -556,8 +565,11 @@
         dataType: "jsonp",
         success: function (data) {
             if (data.message === '成功') {
-                var route = data.result.routes[0].steps;
                 mytrack1 = [];
+                if(data.result.routes== null ||data.result.routes.length<=0){
+                return mytrack1;
+                }
+                var route = data.result.routes[0].steps;
                 for (var s = 0; s < route.length; s++) {
                     var arr = route[s][0].path.split(';');
                     for (var i = 0; i < arr.length; i += 5) {
@@ -597,8 +609,11 @@
                     dataType: "jsonp",
                     success: function (data) {
                         if (data.message === '成功') {
-                            var route = data.result.routes[0].steps;
                             mytrack1 = [];
+                            if(data.result.routes== null ||data.result.routes.length<=0){
+				                return mytrack1;
+				            }
+                            var route = data.result.routes[0].steps;
                             for (var s = 0; s < route.length; s++) {
                                 var arr = route[s][0].path.split(';');
                                 for (var i = 0; i < arr.length; i += 5) {
@@ -632,6 +647,9 @@
                     success: function (data) {
                         if (data.message === '成功') {
                             mytrack2 = [];
+                            if(data.result.routes== null ||data.result.routes.length<=0){
+				                return mytrack2;
+				            }
                             var route = data.result.routes[0].steps;
                             for (var s = 0; s < route.length; s++) {
                                 var arr = route[s][0].path.split(';');
@@ -826,14 +844,28 @@
             '居住地':[mydata[0][0],mydata[0][1]],
             '工作地':[mydata[1][0],mydata[1][1]],
             '可疑地':[mydata[2][0],mydata[2][1]],
-            '工作途径点1':[myptArr[0][0],myptArr[0][1]],
-            '工作途径点2':[myptArr[1][0],myptArr[1][1]],
-            '工作途径点3':[myptArr[2][0],myptArr[2][1]],
-            '可疑途径点1':[myptArr[0][0],myptArr[0][1]],
-            '可疑途径点2':[myptArr[1][0],myptArr[1][1]],
-            '可疑途径点3':[myptArr[2][0],myptArr[2][1]]
+            //'工作途径点1':[myptArr[0][0],myptArr[0][1]],
+            //'工作途径点2':[myptArr[1][0],myptArr[1][1]],
+            //'工作途径点3':[myptArr[2][0],myptArr[2][1]],
+            //'可疑途径点1':[myptArr[0][0],myptArr[0][1]],
+            //'可疑途径点2':[myptArr[1][0],myptArr[1][1]],
+            //'可疑途径点3':[myptArr[2][0],myptArr[2][1]]
 
         };
+        if(myptArr.length>0){
+        	geoCoordMap['工作途径点1']=[myptArr[0][0],myptArr[0][1]];
+        	geoCoordMap['可疑途径点1']=[myptArr[0][0],myptArr[0][1]];
+        }
+        
+        if(myptArr.length>1){
+        	geoCoordMap['工作途径点2']=[myptArr[1][0],myptArr[1][1]];
+        	geoCoordMap['可疑途径点2']=[myptArr[1][0],myptArr[1][1]];
+        }
+        
+        if(myptArr.length>2){
+        	geoCoordMap['工作途径点3']=[myptArr[2][0],myptArr[2][1]];
+        	geoCoordMap['可疑途径点3']=[myptArr[2][0],myptArr[2][1]];
+        }
 
 
 

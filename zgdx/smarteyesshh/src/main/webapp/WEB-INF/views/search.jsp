@@ -47,11 +47,11 @@
             <div class="col-lg-12 col-md-12 col-xs-12 clearfix smartEyes">
                 <div class="logo pull-left"><a href="${ctx}/search"></a><img src="${img}/logo.png" style="margin-top: 20px;"></a></div>
                 <div class="textBox pull-left">
-                    <form action="${ctx}/overview">
+                    <form action="${ctx}/overview" onkeydown="if(event.keyCode==13){return false;}">
                         <input type="text" class="text"  name="targetPhone" />
                         <button type="button" disabled style="outline:none;" class="btn btnSubmit pull-right"></button>
-                        <div style="width: 3px;height: 90%;background: #2f3242;float: right;margin-top: 2.25px;"></div>
-                        <button type="button" style="outline:none;" class="btn btnSearch pull-right"></button>
+                        <div style="width: 2px;height: 90%;background: #2f3242;float: right;margin-top: 2.25px;"></div>
+                        <button type="button" style="outline:none;margin:3px 5px  0 0 ;" class="btn btnSearch pull-right"></button>
                     </form>
                 </div>
                 <%--<div class="col-lg-1 col-md-1 col-xs-1 fr" style="margin-top: 42px">--%>
@@ -72,7 +72,7 @@
                         <a href="${ctx}/user/logout">退出账户</a>
                     </div>
                 </div>
-                <div class="fr peizhi">
+                <div class="fr peizhi" style="margin-top: 52px">
                     <img src="${img}/S_peizhi.png">
                     <div style="visibility: hidden">
                         <a href="${ctx}/personlist">目标人员管理</a>
@@ -122,6 +122,8 @@
                                     <option value="涉毒">涉毒</option>
                                     <option value="盗窃">盗窃</option>
                                     <option value="强奸">强奸</option>
+                                    <option value="卖淫">卖淫</option>
+                                    <option value="抢劫">抢劫</option>
                                 </select>
                             </div>
                         </div>
@@ -138,6 +140,14 @@
             </div>
         </div>
     </div>
+    <div>
+        <%--search页的提交框--%>
+        <div class="S_tanchuang2" style="display: none;">
+            <div class="submit_box">
+                该号码尚未入库，请先提交入库
+            </div>
+        </div>
+    </div>
     <%--</div>--%>
     <!--底部-->
     <footer style="position: fixed; background: url(${img}/b01.png) 100% top no-repeat #3a3e52;"><p class="text-center">© 2017 SmartEyes | 猎犬上海网安版</p></footer>
@@ -147,10 +157,94 @@
 <script>
     var ut = $("#userType").val();
 
+    document.onkeydown=function(event){
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if(e && e.keyCode==13){ // enter 键
+            //要做的事情
+            //检索条件执行
+            var inputval =$("input[name='targetPhone']").val();
+            if(inputval.length==11) {
+                inputval = "86" + inputval;
+            }
+            if(inputval ===""){
+                alert("请输入查询ID！");
+            }else if(!/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(inputval)){
+                alert("请输入正确的查询号！");
+            }else{
+                $.ajax({
+                    type: "post",
+                    url: "/phoneExist",
+                    data: {"targetPhone":inputval},
+                    dataType: "json",
+                    async: true,
+                    success: function(mes){
+                        if(mes.res==true){
+                            //跳转到搜索结果页
+                            //window.location.href="重点人员-搜索结果列表.html";
+                            window.location.href="/overview?targetPhone="+inputval;
+                        }else{
+                            var timer=null;
+                            clearTimeout(timer);
+                            $(".S_tanchuang2").show();
+                            timer=setTimeout(function(){
+                                $(".S_tanchuang2").hide();
+                            },3000);
+                            $(".btnSubmit").removeAttr("disabled");
+                            $(".btnSubmit").click(function (){
+                                $(".submit_btn").css("display","block");
+                                $("input[name='tel']").val(inputval);
+                                $(".queding").click(function () {
+                                    var loadPhone=$("input[name='tel']").val();
+                                    var personType=$("#miaoshu option:selected").text();
+                                    var searchType=$("#biaoqian option:selected").text();
+                                    if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(loadPhone))||personType==""||searchType==""){
+                                        alert("请完善信息!")
+                                    }else{
+                                        if(loadPhone.length==11) {
+                                            loadPhone = "86" + loadPhone;
+                                        }
+                                        $.ajax({
+                                            type:"get",
+                                            url:"/target/insertTarget",
+                                            dataType:"json",
+                                            data:{"loadPhone":loadPhone,"personType":personType,"searchType":searchType},
+                                            success:function () {
+                                                window.location.href="${ctx}/personlist"
+                                            },
+                                            error:function () {
+                                                console.log("数据错误")
+                                            }
+                                        })
+                                    }
+
+                                });
+                            });
+                        }
+                    },
+                    error:function(err) {
+
+                    }
+                });
+            }
+        }
+    };
+
     if(ut!=0){
         $(".peizhi>div>a:last-child").remove();
     }
-    $(".peizhi img").click(function(){
+    function stopPropagation(e) {
+        if (e.stopPropagation)
+            e.stopPropagation();//停止冒泡  非ie
+        else
+            e.cancelBubble = true;//停止冒泡 ie
+    }
+    $(document).bind('click',function(){
+        $(".peizhi div").css('visibility','hidden');
+        $(".geren div").css('visibility','hidden');
+    });
+    $('.peizhi img').bind('click',function(e){
+
+        stopPropagation(e);//调用停止冒泡方法,阻止document方法的执行
         if($(".peizhi div").css("visibility")=="hidden"){
             $(".peizhi div").css("visibility","visible");
             $(".geren div").css("visibility","hidden");
@@ -158,7 +252,9 @@
             $(".peizhi div").css("visibility","hidden");
         }
     });
-    $(".geren img").click(function(){
+    $('.geren img').bind('click',function(e){
+
+        stopPropagation(e);//调用停止冒泡方法,阻止document方法的执行
         if($(".geren div").css("visibility")=="hidden"){
             $(".geren div").css("visibility","visible");
             $(".peizhi div").css("visibility","hidden");
@@ -166,6 +262,24 @@
             $(".geren div").css("visibility","hidden");
         }
     });
+
+    // $(".peizhi img").click(function(){
+    //
+    //     if($(".peizhi div").css("visibility")=="hidden"){
+    //         $(".peizhi div").css("visibility","visible");
+    //         $(".geren div").css("visibility","hidden");
+    //     }else{
+    //         $(".peizhi div").css("visibility","hidden");
+    //     }
+    // });
+    // $(".geren img").click(function(){
+    //     if($(".geren div").css("visibility")=="hidden"){
+    //         $(".geren div").css("visibility","visible");
+    //         $(".peizhi div").css("visibility","hidden");
+    //     }else{
+    //         $(".geren div").css("visibility","hidden");
+    //     }
+    // });
 
     $(function(){
         $(".btnSearch").click(function(){
@@ -192,7 +306,12 @@
                             //window.location.href="重点人员-搜索结果列表.html";
                             window.location.href="/overview?targetPhone="+inputval;
                         }else{
-                            alert("该号码不存在，请提交！");
+                            var timer=null;
+                            clearTimeout(timer);
+                            $(".S_tanchuang2").show();
+                            timer=setTimeout(function(){
+                                $(".S_tanchuang2").hide();
+                            },3000);
                             $(".btnSubmit").removeAttr("disabled");
                             $(".btnSubmit").click(function (){
                                 $(".submit_btn").css("display","block");

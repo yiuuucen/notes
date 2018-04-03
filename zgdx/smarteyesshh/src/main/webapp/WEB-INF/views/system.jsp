@@ -38,28 +38,6 @@
 
         })
     </script>
-    <style>
-        /*日历样式和之前不同，因此设置为id=app2*/
-        #app2{
-            margin: 5px 0;
-        }
-        #app2 .el-date-editor{
-            background: rgb(57,61,81);
-            border: none;
-        }
-        #app2 .el-date-editor .el-range__icon{
-            color: #fff;
-        }
-        #app2 .el-range-input{
-            color: #fff;
-            background: rgb(57,61,81);
-            border: 1px solid rgb(255,255,255);
-            border-radius: 6px;
-        }
-        #app2 .el-range-separator{
-            color: #fff;
-        }
-    </style>
 </head>
 <body>
 <div class="container-fluid smartEyes-container">
@@ -89,6 +67,28 @@
 
     <div class="container-fluid row searchBox">
         <div class="col-lg-12 col-md-12 col-xs-12 namelist clearfix">
+            <h3 class="pul">操作日志</h3>
+            <div>
+                <div id="app">
+                    <template>
+                        <div class="block">
+                            <el-date-picker
+                                    v-model="value7"
+                                    type="daterange"
+                                    align="right"
+                                    value-format="yyyy-MM-dd"
+                                    unlink-panels
+                                    :start-placeholder="morenT"
+                                    range-separator="至"
+                                    :end-placeholder="morenT2"
+                                    :picker-options="pickerOptions2"
+                                    @change="gettime"
+                            >
+                            </el-date-picker>
+                        </div>
+                    </template>
+                </div>
+            </div>
         </div>
 
         <!--操作表单-->
@@ -98,25 +98,25 @@
                 <div class="tongji-head clearfix">
                     <h3>日志统计</h3>
                     <div>
-                        <div id="app2">
-                            <template>
-                                <div class="block">
-                                    <el-date-picker
-                                            v-model="value7"
-                                            type="daterange"
-                                            align="right"
-                                            value-format="yyyy-MM-dd"
-                                            unlink-panels
-                                            :start-placeholder="morenT"
-                                            range-separator="至"
-                                            :end-placeholder="morenT2"
-                                            :picker-options="pickerOptions2"
-                                            @change="gettime"
-                                    >
-                                    </el-date-picker>
-                                </div>
-                            </template>
-                        </div>
+                        <%--<div id="app2">--%>
+                            <%--<template>--%>
+                                <%--<div class="block">--%>
+                                    <%--<el-date-picker--%>
+                                            <%--v-model="value7"--%>
+                                            <%--type="daterange"--%>
+                                            <%--align="right"--%>
+                                            <%--value-format="yyyy-MM-dd"--%>
+                                            <%--unlink-panels--%>
+                                            <%--:start-placeholder="morenT"--%>
+                                            <%--range-separator="至"--%>
+                                            <%--:end-placeholder="morenT2"--%>
+                                            <%--:picker-options="pickerOptions2"--%>
+                                            <%--@change="gettime"--%>
+                                    <%-->--%>
+                                    <%--</el-date-picker>--%>
+                                <%--</div>--%>
+                            <%--</template>--%>
+                        <%--</div>--%>
                     </div>
                 </div>
                 <div id="sys-echart1"></div>
@@ -125,19 +125,14 @@
             <!--图表展示列表-->
             <div class="operate-log ">
                 <div class="table-head clearfix">
-                    <h3>操作日志</h3>
+                    <h3>日志详情</h3>
                     <div>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
                                 <select id="peopleSel" class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="Search" data-size="5" data-none-selected-text="全部用户">
-                                    <option>option1</option>
-                                    <option>option2</option>
-                                    <option>option3</option>
-                                    <option>option4</option>
-                                    <option>option6</option>
-                                    <option>option7</option>
-                                    <option>option8</option>
-                                    <option>option9</option>
+                                    <%--<option>option1</option>--%>
+                                    <%--<option>option2</option>--%>
+                                    <%--<option>option3</option>--%>
                                 </select>
                             </div>
                         </form>
@@ -201,33 +196,123 @@
     <script>
         $(function(){
             var ut = $("#userType").val();
-            console.log(ut);
-            //动态获取阴影高度
-            // var h= $(window).height();
-            // $(".operate-log").height(h-226);
-            // $(window).resize(function(){
-            //     var h= $(window).height();
-            //     $(".operate-log").height(h-226);
-            // });
             //设置选中
-
             $("option[value='userOperateLog']").attr("selected","selected").siblings().removeAttr("selected");
 
         });
 
-        //筛选人员功能
-        $('.selectpicker').on('hidden.bs.select', function (e) {
-            // do something...
-            var value = $('.filter-option').html();
-            console.log(value);
-        });
-
-
         if(ut==0){
+            //当管理员进入时加载这个ajax获取所有人信息
+            $.ajax({
+                type:"get",
+                url:"/log/getNames",
+                dataType:"json",
+                async:false,
+                success:function (arr) {
+                    // console.log(arr);
+                    var msg='';
+                    for(var i=0;i<arr.length;i++){
+                        msg+="<option>"+arr[i]+"</option>";
+                    }
+                    $("#peopleSel").html(msg);
+                },
+                error:function () {
+                    console.log("数据错误")
+                }
+            });
+
+            //筛选人员功能
+            $('.selectpicker').on('hidden.bs.select', function (e) {
+                // do something...
+                var value = $('.filter-option').html();
+                //去除value中所有空格
+                value=value.replace(/\s+/g, "");
+                if(value=="全部用户"){
+                    value='';
+                }
+                console.log(value);
+                myajax2(false,1,value);
+                function myajax2(async,num,name){
+                    $.ajax({
+                        type:"get",
+                        url:"/log/searchLog",
+                        dataType:"json",
+                        async: false,
+                        data:{"pageCode":num,"userName":name},
+                        success:function (res) {
+                            $(".xinxi").children().remove();
+                            pageCount=res.data.totalPage;
+                            totalData=res.data.totalRecord;
+                            showData=res.data.pageSize;
+                            for(var i=0;i<res.data.datas.length;i++){
+                                newTime = new Date(res.data.datas[i].searchTime);
+                                Date.prototype.toLocaleString = function() {
+                                    return (this.getFullYear() <10 ? "0"+this.getFullYear() : this.getFullYear()) + "." + ((this.getMonth()+ 1) <10 ? "0"+(this.getMonth() + 1) : (this.getMonth() + 1)) + "." + (this.getDate()  <10 ? "0"+this.getDate() : this.getDate() ) + "&nbsp&nbsp&nbsp" + (this.getHours()<10 ? "0"+this.getHours() : this.getHours()) + ":" + (this.getMinutes()<10 ? "0"+this.getMinutes() : this.getMinutes())+ ":" + (this.getSeconds()<10 ? "0"+this.getSeconds() : this.getSeconds());
+                                };
+                                stringTime = newTime.toLocaleString();
+                                var html='<tr><td>'+res.data.datas[i].id+'</td><td class="row"><span class="col-lg-4 col-md-4 col-xs-4 operate-userid">'+res.data.datas[i].userId+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-username">'+res.data.datas[i].userNickname+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-querytime">'+stringTime+'</span> </td> <td class="row"> <span class="col-lg-4 col-md-4 col-xs-4 operate-tele">'+res.data.datas[i].targetPhone+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-descrip">'+res.data.datas[i].personType+'</span> <span class="col-lg-4 col-md-4 col-xs-4 operate-type">'+res.data.datas[i].searchType+'</span></td></tr>';
+                                $(".xinxi").append(html);
+                            }
+                        },
+                        error:function () {
+                            // $(".mag .submit_fail").css('display','block');
+                            console.log("数据错误")
+                        }
+                    })
+                }
+
+                $(".M-box").remove();
+                $(".operate-log").append('<div class="tabbtn M-box"></div>');
+                $('.M-box').pagination({
+                    pageCount:pageCount,
+                    totalData:totalData,
+                    showData:showData,
+                    mode:'fixed',
+                    // coping:true,
+                    // homePage:"首页",
+                    // endPage:"尾页",
+                    keepShowPN:true,
+                    prevContent:'<',
+                    nextContent:'>',
+                    jump:true,
+                    callback:function(index){
+
+                        $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata"></b>条 / 共<b id="allpage"></b>页</div>');
+                        $("#alldata").text(totalData);
+                        $("#allpage").text(pageCount);
+                        //   生成首页和尾页
+                        $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none;width: 65px;">首页</a>');
+                        $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none;width: 65px">尾页</a>');
+
+                        // console.log(index.getCurrent());
+                        //上一页下一页无法点击
+                        if(index.getCurrent()==1){
+                            $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+                        }else if(index.getCurrent()==pageCount){
+                            $(".tabbtn .next").css("cursor","not-allowed").css("background","#565656");
+                        }
+                        myajax2(true,index.getCurrent(),value);
+                    }
+                });
+                //上一页下一页无法点击
+                if($(".tabbtn span").text()==1){
+                    $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+                }else if($(".tabbtn span").text()==pageCount){
+                    $("tabbtn .next").css("cursor","not-allowed").css("background","#565656");
+                }
+
+                $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">200</b>条 / 共<b id="allpage">12</b>页</div>');
+                $("#alldata").text(totalData);
+                $("#allpage").text(pageCount);
+                //   生成首页和尾页
+                $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none;width: 65px">首页</a>');
+                $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none;width: 65px">尾页</a>');
+            });
+
             new Vue({
-                el:'#app2',
+                el:'#app',
                 data:{
-                    morenT:new Date()- 3600 * 1000 * 24 * 7,
+                    morenT:new Date()- 3600 * 1000 * 24 * 30,
                     morenT2:new Date(),
                     pickerOptions2: {
                         shortcuts: [{
@@ -257,7 +342,7 @@
                         }]
                     },
                     value6: '',
-                    value7: ''
+                    value7: '',
                 },
                 methods:{
                     gettime(value){
@@ -292,7 +377,8 @@
 
             });
         }else{
-            $(".operate-box .two-echarts").css("display","none")
+            $(".operate-box .two-echarts").css("display","none");
+            $("#peopleSel").attr("disabled","disabled");
         }
 
 
@@ -509,10 +595,10 @@
                 data:{"pageCode":num},
                 success:function (res) {
                     $(".xinxi").children().remove();
+                    pageCount=res.data.totalPage;
+                    totalData=res.data.totalRecord;
+                    showData=res.data.pageSize;
                     for(var i=0;i<res.data.datas.length;i++){
-                        pageCount=res.data.totalPage;
-                        totalData=res.data.totalRecord;
-                        showData=res.data.pageSize;
                         newTime = new Date(res.data.datas[i].searchTime);
                         Date.prototype.toLocaleString = function() {
                             return (this.getFullYear() <10 ? "0"+this.getFullYear() : this.getFullYear()) + "." + ((this.getMonth()+ 1) <10 ? "0"+(this.getMonth() + 1) : (this.getMonth() + 1)) + "." + (this.getDate()  <10 ? "0"+this.getDate() : this.getDate() ) + "&nbsp&nbsp&nbsp" + (this.getHours()<10 ? "0"+this.getHours() : this.getHours()) + ":" + (this.getMinutes()<10 ? "0"+this.getMinutes() : this.getMinutes())+ ":" + (this.getSeconds()<10 ? "0"+this.getSeconds() : this.getSeconds());
@@ -528,50 +614,53 @@
                 }
             })
         }
-        $('.M-box').pagination({
-            pageCount:pageCount,
-            totalData:totalData,
-            showData:showData,
-            mode:'fixed',
-            // coping:true,
-            // homePage:"首页",
-            // endPage:"尾页",
-            keepShowPN:true,
-            prevContent:'<',
-            nextContent:'>',
-            jump:true,
-            callback:function(index){
 
-                $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">200</b>条 / 共<b id="allpage">12</b>页</div>');
-                $("#alldata").text(totalData);
-                $("#allpage").text(pageCount);
-                //   生成首页和尾页
-                $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
-                $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
+            $('.M-box').pagination({
+                pageCount:pageCount,
+                totalData:totalData,
+                showData:showData,
+                mode:'fixed',
+                // coping:true,
+                // homePage:"首页",
+                // endPage:"尾页",
+                keepShowPN:true,
+                prevContent:'<',
+                nextContent:'>',
+                jump:true,
+                callback:function(index){
 
-                // console.log(index.getCurrent());
-                //上一页下一页无法点击
-                if(index.getCurrent()==1){
-                    $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
-                }else if(index.getCurrent()==pageCount){
-                    $(".tabbtn .next").css("cursor","not-allowed").css("background","#565656");
+                    $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">55</b>条 / 共<b id="allpage"></b>页</div>');
+                    $("#alldata").text(totalData);
+                    $("#allpage").text(pageCount);
+                    //   生成首页和尾页
+                    $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none;width: 65px">首页</a>');
+                    $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none;width: 65px">尾页</a>');
+
+                    // console.log(index.getCurrent());
+                    //上一页下一页无法点击
+                    if(index.getCurrent()==1){
+                        $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+                    }else if(index.getCurrent()==pageCount){
+                        $(".tabbtn .next").css("cursor","not-allowed").css("background","#565656");
+                    }
+                    myajax(true,index.getCurrent());
                 }
-                myajax(true,index.getCurrent());
+            });
+            //上一页下一页无法点击
+            if($(".tabbtn span").text()==1){
+                $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
+            }else if($(".tabbtn span").text()==pageCount){
+                $("tabbtn .next").css("cursor","not-allowed").css("background","#565656");
             }
-        });
-        //上一页下一页无法点击
-        if($(".tabbtn span").text()==1){
-            $(".tabbtn .prev").css("cursor","not-allowed").css("background","#565656");
-        }else if($(".tabbtn span").text()==pageCount){
-            $("tabbtn .next").css("cursor","not-allowed").css("background","#565656");
-        }
 
-        $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">200</b>条 / 共<b id="allpage">12</b>页</div>');
-        $("#alldata").text(totalData);
-        $("#allpage").text(pageCount);
-        //   生成首页和尾页
-        $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none">首页</a>');
-        $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none">尾页</a>');
+            $(".tabbtn .prev").before('<div class="alldata">共<b id="alldata">200</b>条 / 共<b id="allpage">12</b>页</div>');
+            $("#alldata").text(totalData);
+            $("#allpage").text(pageCount);
+            //   生成首页和尾页
+            $(".tabbtn .prev").before('<a href="javascript:;" data-page="1" style="background: #2196f3;border: none;width: 65px">首页</a>');
+            $(".tabbtn .next").after('<a href="javascript:;" data-page="'+pageCount+'" style="background: #2196f3;border: none;width: 65px">尾页</a>');
+
+
     </script>
 
 </body>

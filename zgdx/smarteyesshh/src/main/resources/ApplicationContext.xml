@@ -129,4 +129,14 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
+	<bean id="suspectMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="cn.com.ctbri.ctbigdata.smarteyes.dao.SuspectMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="workRestLocMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="cn.com.ctbri.ctbigdata.smarteyes.dao.WorkRestLocMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
 </beans>
