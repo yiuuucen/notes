@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/style.css">
+	<style type="text/css">
+	body, html,#allmap,#allmap2 {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=	X1m8e0sAG0fI1UVYvxaAHjxyVi9LvKDG"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/CurveLine/1.5/src/CurveLine.min.js"></script>
+
+	<title>地图展示</title>
+</head>
+<body>
+	<div class="tab">
+        <ul>
+            <li class="hActive">活动区域</li>
+            <li>活动轨迹</li>
+        </ul>
+        <ol>
+			<li>
+				<label for="">区域一</label>
+				<input type="text" my-data="num1" value="121.24356710396394">--
+				<input type="text" my-data="num2" value="31.188669026176047">
+			</li>
+			<li>
+				<label for="">区域二</label>
+				<input type="text" my-data="num3" value="121.5236751742856">--
+				<input type="text" my-data="num4" value="31.112174867118885">
+			</li>
+			<li>
+				<label for="">区域三</label>
+				<input type="text" my-data="num5" value="121.49495394125242">--
+				<input type="text" my-data="num6" value="31.12528006297392">
+			</li>
+			<li>
+				<button id="btn01">提交</button>
+			</li>
+		</ol>
+		<ol>
+			<li>
+				<label for="">区域一</label>
+				<input type="text" my-data="num11" value="121.391">--
+				<input type="text" my-data="num12" value="31.117">
+			</li>
+			<li>
+				<label for="">区域二</label>
+				<input type="text" my-data="num13" value="121.558">--
+				<input type="text" my-data="num14" value="31.224">
+			</li>
+			<li>
+				<label for="">区域三</label>
+				<input type="text" my-data="num15" value="121.511">--
+				<input type="text" my-data="num16" value="31.268">
+			</li>
+			<li>
+				<label for="">区域四</label>
+				<input type="text" my-data="num17" value="121.355">--
+				<input type="text" my-data="num18" value="30.748">
+			</li>
+			<li>
+				<label for="">区域五</label>
+				<input type="text" my-data="num19" value="121.283">--
+				<input type="text" my-data="num20" value="31.373">
+			</li>
+			<li>
+				<button id="btn02">提交</button>
+			</li>
+		</ol>
+
+        <div id="allmap" style="position: absolute;"></div>
+        <div id="allmap2" style="position: absolute;"></div>
+	</div>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/index.js"></script>
+	<script>
+		var h= $(window).height();
+        $("#allmap").height(h);
+        $("#allmap2").height(h);
+	</script>
+</body>
+</html>

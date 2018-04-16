@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/style2.css">
+	<style type="text/css">
+	.tab ol{display: block}
+	</style>
+	<title>活动轨迹</title>
+</head>
+<body>
+	<div class="tab">
+		<ol >
+			<li>
+				<label for="num11">区域一</label>
+				<input id="num11" type="text" my-data="num11" value="121.391">&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" my-data="num12" value="31.117">
+			</li>
+			<li>
+				<label for="num13">区域二</label>
+				<input id="num13" type="text" my-data="num13" value="121.558">&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" my-data="num14" value="31.224">
+			</li>
+			<li>
+				<label for="num15">区域三</label>
+				<input id="num15" type="text" my-data="num15" value="121.511">&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" my-data="num16" value="31.268">
+			</li>
+			<li>
+				<label for="num17">区域四</label>
+				<input id="num17" type="text" my-data="num17" value="121.355">&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" my-data="num18" value="30.748">
+			</li>
+			<li>
+				<label for="num19">区域五</label>
+				<input id="num19" type="text" my-data="num19" value="121.283">&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" my-data="num20" value="31.373">
+			</li>
+			<li>
+				<button id="btn02">提交</button>
+			</li>
+		</ol>
+		
+        <div id="allmap2"></div>
+	</div>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/echarts.js"></script>
+	<script src="js/bmap.js"></script>
+	<script src="js/china.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=	X1m8e0sAG0fI1UVYvxaAHjxyVi9LvKDG"></script>
+	<script src="js/index3.js"></script>
+	<script>
+		var h= $(window).height();
+        
+        $("#allmap2").height(h);
+	</script>
+</body>
+</html>
