@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body{ background:black;}
+#c1{ background:white;}
+</style>
+<script>
+//HTML5 canvas 的动画如何开发呢，这个能不能出些视频
+
+window.onload = function(){
+	var oC = document.getElementById('c1');
+	var oGC = oC.getContext('2d');
+	var iNum = 0;
+	oGC.strokeRect(0,0,100,100);
+	
+	setInterval(function(){
+		
+		iNum++;
+		oGC.clearRect(0,0,oC.width,oC.height);
+		oGC.strokeRect(iNum,iNum,100,100);
+		
+	},30);
+	
+};
+
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="500" height="500"></canvas>
+</body>
+</html>
