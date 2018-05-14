@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/style2.css">
+	<style type="text/css">
+	body, html,#allmap{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=	X1m8e0sAG0fI1UVYvxaAHjxyVi9LvKDG"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/CurveLine/1.5/src/CurveLine.min.js"></script>
+
+	<title>活动区域</title>
+</head>
+<body>
+	<div class="tab">
+        <ol>
+        	<div>
+        		<span>人员一</span>
+        		<li>
+        			<label for="num1">区域一</label>
+        			<input id="num1" type="text" my-data="num1" value="121.339515,31.29522">
+        		</li>
+        		<li>
+        			<label for="num2">区域二</label>
+        			<input id="num2" type="text" my-data="num2" value="121.326867,31.217675">
+        		</li>
+        		<li>
+        			<label for="num3">区域三</label>
+        			<input id="num3" type="text" my-data="num3" value="121.373435,31.033682">
+        		</li>
+        		<!-- <li>
+        			<button id="btn01">提交</button>
+        		</li> -->
+        	</div>
+        	<div>
+        		<span>人员二</span>
+        		<li>
+        			<label for="num4">区域一</label>
+        			<input id="num4" type="text" my-data="num4" value="121.675266,31.250775">
+        		</li>
+        		<li>
+        			<label for="num5">区域二</label>
+        			<input id="num5" type="text" my-data="num5" value="121.54246,31.320889">
+        		</li>
+        		<li>
+        			<label for="num6">区域三</label>
+        			<input id="num6" type="text" my-data="num6" value="121.595928,30.968307">
+        		</li>
+        		<!-- <li>
+        			<button id="btn01">提交</button>
+        		</li> -->
+        	</div>
+        	<button id="btn01">提交</button>
+        	<span id="switch"></span>
+		</ol>
+		
+
+        <div id="allmap" style="position: absolute;"></div>
+	</div>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/index2.js"></script>
+	<script>
+		var h= $(window).height();
+        $("#allmap").height(h);
+	</script>
+</body>
+</html>

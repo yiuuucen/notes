@@ -1,0 +1,79 @@
+/*样式重置*/
+body,ul,ol,p,dl,dd,h2,h3{
+    margin: 0;
+}
+ul,input,ol{
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+table{
+	border-collapse: collapse;
+}
+/*去除点击input后的边框*/
+html{
+	
+    height: 100%;
+}
+body{
+
+    height: 100%;
+    font-size: 12px;
+    color: #333;
+    overflow-x:hidden
+}
+
+input{
+    outline:none;
+}
+/**/
+
+.tab{
+	position: relative;
+}
+.tab ul{
+	display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    z-index: 10;
+    margin: 5%;
+}
+.tab ul li{
+	padding: 10px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+	margin: 0 20px 0 0;
+	background: rgba(255,255,255,0.6);
+}
+.tab ul li.hActive{
+	background: #2384F1;
+    color: #fff;
+}
+.tab ol{
+	display: none;
+	position: absolute;
+	z-index: 10;
+	margin: 8% 5%;
+}
+.tab ol li{
+	height: 50px;
+	display: flex;
+	align-items: center;
+}
+.tab ol li label{
+	background: #fff;
+	margin: 0 10px 0 0
+}
+.tab ol li input{
+	display: block;
+	width: 60px;
+	height: 22px;
+}
+.tab>div{
+	display: none;
+}

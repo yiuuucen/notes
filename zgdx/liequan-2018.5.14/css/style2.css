@@ -1,0 +1,118 @@
+/*样式重置*/
+body,ul,ol,p,dl,dd,h2,h3{
+    margin: 0;
+}
+ul,input,ol{
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+table{
+	border-collapse: collapse;
+}
+/*去除点击input后的边框*/
+html{
+	
+    height: 100%;
+}
+body{
+
+    height: 100%;
+    font-size: 12px;
+    color: #333;
+    overflow-x:hidden
+}
+
+input{
+    outline:none;
+}
+/**/
+
+.tab{
+	position: relative;
+    height: 100%;
+}
+.tab ol{
+	position: absolute;
+	z-index: 10;
+	width: 255px;
+    height: 100%;
+    background: #eee;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    box-shadow: 4px 0px 10px #959595;
+    left: 0;
+}
+.tab ol>span{
+    position: absolute;
+    right: -30px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 30px;
+    border-radius: 0 5px 5px 0;
+    height: 70px;
+    box-sizing: border-box;
+    box-shadow: 4px 0px 10px #959595;
+    background: #eee;
+    cursor: pointer;
+    /*background: url(../img/open.png) 50% no-repeat;*/
+}
+.tab ol>span:after{
+    content: url(../img/open.png);
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: 70px;
+    text-align: center;
+}
+.tab ol div{
+    margin: 0 0 30px 0;
+}
+.tab ol div span{
+    display: block;
+    width: 65px;
+    height: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 25px;
+    color: #2196f3;
+}
+.tab ol li{
+	height: 50px;
+	display: flex;
+	align-items: center;
+}
+.tab ol li label{
+	width: 65px;
+    height: 25px;
+    background: #2196f3;
+    text-align: center;
+    line-height: 25px;
+    color: #fff;
+    margin: 0 10px 0 0;
+}
+.tab ol li input{
+	display: block;
+	width: 120px;
+    height: 28px;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+.tab ol button{
+	width: 65px;
+    height: 25px;
+    background: #6fbf73;
+    border: none;
+    color: #fff;
+}
+.tab ol div:nth-child(2) span{
+    color: #f4a942;
+}
+.tab ol div:nth-child(2) li label{
+    background: #f4a942;
+}
