@@ -46,7 +46,48 @@ $(function(){
         var num11=$("input[my-data='num11']").val();
         var num12=$("input[my-data='num12']").val();
 
+        var arr1=[num1,num2,num3,num4,num5,num6];
+        var arr2=[num7,num8,num9,num10,num11,num12];
+       
+        function change(arr){
+            for(var i=0;i<arr.length;i++){
+                if(arr[i]==''){
+                    for(var j=i+1;j<arr.length;j++){
+                        if(arr[j]!=''){
+                            arr[i]=arr[j]
+                            break;
+                        }
+                    }
+                }
+            }
+            for(var i=arr.length-1;i>=0;i--){
+                if(arr[i]==''){
+                    for(var j=i-1;j>=0;j--){
+                        if(arr[j]!=''){
+                            arr[i]=arr[j]
+                            return;
+                        }
+                    }
+                }
+            }
+            return arr;
+        }
+        change(arr1);
+        change(arr2);
         
+        num1=arr1[0];
+        num2=arr1[1];
+        num3=arr1[2];
+        num4=arr1[3];
+        num5=arr1[4];
+        num6=arr1[5];
+
+        num7=arr2[0];
+        num8=arr2[1];
+        num9=arr2[2];
+        num10=arr2[3];
+        num11=arr2[4];
+        num12=arr2[5];
 
         var chart = echarts.init(document.getElementById('allmap2'));
             
