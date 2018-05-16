@@ -5,7 +5,8 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" href="css/style3.css">
 	<style type="text/css">
-	.tab ol{display: block}
+	.tab ol{display: block;overflow-y: auto;}
+        ::-webkit-scrollbar{width:0px}
 	</style>
 	<title>活动轨迹</title>
 </head>
@@ -47,7 +48,7 @@
         		</li>
         		<li>
         			<label for="num8">位置二</label>
-        			<input id="num8" type="text" my-data="num8">
+        			<input id="num8" type="text" my-data="num8" value="121.744256,31.209522">
         		</li>
         		<li>
         			<label for="num9">位置三</label>
@@ -63,14 +64,13 @@
         		</li>
         		<li>
         			<label for="num12">位置六</label>
-        			<input id="num12" type="text" my-data="num12">
+        			<input id="num12" type="text" my-data="num12" value="121.57638,30.932382">
         		</li>
         	</div>
         	<button id="btn02">提交</button>
-        	<span id="switch"></span>
-		</ol>
+	</ol>
 		
-
+        <span id="switch"><img src="img/open.png" alt=""></span>
         <div id="allmap2"></div>
 	</div>
 

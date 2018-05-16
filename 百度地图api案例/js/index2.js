@@ -7,15 +7,23 @@ $("#btn01").click(function(){
 $("#switch").click(function(){
     
     if($(".tab ol").css("left")=='0px'){
-        
-        $(".tab ol").animate({
-            left:"-255px",
-        })
-    }else{
-        $(".tab ol").animate({
-            left:"0px",
-        })
-    }
+            
+            $(".tab ol").animate({
+                left:"-255px",
+            })
+            $("#switch").animate({
+                left:"0px",
+            })
+            $("#switch>img").attr("src","img/close.png")
+        }else{
+            $(".tab ol").animate({
+                left:"0px",
+            })
+            $("#switch").animate({
+                left:"255px",
+            })
+            $("#switch>img").attr("src","img/open.png")
+        }
 })
 
 function mydata(str){
@@ -51,6 +59,130 @@ function map01(){
         ]}));     
     map.setCurrentCity("上海");          // 设置地图显示的城市 此项是必须设置的
     map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+    // 修改地图样式
+    // var styleJson = [{
+    //                     "featureType": "water",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "color": "#d1d1d1"
+    //                     }
+    //                 }, {
+    //                     "featureType": "land",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "color": "#f3f3f3"
+    //                     }
+    //                 }, {
+    //                     "featureType": "boundary",
+    //                     "elementType": "geometry",
+    //                     "stylers": {
+    //                         "color": "#979797"
+    //                     }
+    //                 }, {
+    //                     "featureType": "railway",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "visibility": "off"
+    //                     }
+    //                 }, {
+    //                     "featureType": "highway",
+    //                     "elementType": "geometry",
+    //                     "stylers": {
+    //                         "color": "#ffffff"
+    //                     }
+    //                 }, {
+    //                     "featureType": "highway",
+    //                     "elementType": "geometry.fill",
+    //                     "stylers": {
+    //                         "color": "#979797",
+    //                         "lightness": 1
+    //                     }
+    //                 }, {
+    //                     "featureType": "highway",
+    //                     "elementType": "labels",
+    //                     "stylers": {
+    //                         "visibility": "off"
+    //                     }
+    //                 }, {
+    //                     "featureType": "arterial",
+    //                     "elementType": "geometry",
+    //                     "stylers": {
+    //                         "color": "#ffffff"
+    //                     }
+    //                 }, {
+    //                     "featureType": "arterial",
+    //                     "elementType": "geometry.fill",
+    //                     "stylers": {
+    //                         "color": "#ffffff"
+    //                     }
+    //                 }, {
+    //                     "featureType": "poi",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "visibility": "off"
+    //                     }
+    //                 }, {
+    //                     "featureType": "gray",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "color": "#979797",
+    //                         "visibility": "off"
+    //                     }
+    //                 }, {
+    //                     "featureType": "subway",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "visibility": "off"
+    //                     }
+    //                 }, {
+    //                     "featureType": "manmade",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "visibility": "off"
+    //                     }
+    //                 }, {
+    //                     "featureType": "local",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "visibility": "true"
+    //                     }
+    //                 }, {
+    //                     "featureType": "arterial",
+    //                     "elementType": "labels",
+    //                     "stylers": {
+    //                         "visibility": "off"
+    //                     }
+    //                 }, {
+    //                     "featureType": "boundary",
+    //                     "elementType": "geometry.fill",
+    //                     "stylers": {
+    //                         "color": "#979797"
+    //                     }
+    //                 }, {
+    //                     "featureType": "building",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "color": "#979797"
+    //                     }
+    //                 }, {
+    //                     "featureType": "label",
+    //                     "elementType": "all",
+    //                     "stylers": {
+    //                         "visibility": "true"
+    //                     }
+    //                 }]
+    var styleJson=[
+                    {
+                        "featureType": "all",
+                        "elementType": "all",
+                        "stylers": {
+                            "lightness": 10,
+                            "saturation": -100
+                        }
+                    },       
+                  ]
+     map.setMapStyle({styleJson:styleJson});
 
     // var pt1 = new BMap.Point(121.24356710396394,31.188669026176047);
     // var pt2 = new BMap.Point(121.5236751742856,31.112174867118885);

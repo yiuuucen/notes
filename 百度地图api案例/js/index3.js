@@ -12,10 +12,18 @@ $(function(){
             $(".tab ol").animate({
                 left:"-255px",
             })
+            $("#switch").animate({
+                left:"0px",
+            })
+            $("#switch>img").attr("src","img/close.png")
         }else{
             $(".tab ol").animate({
                 left:"0px",
             })
+            $("#switch").animate({
+                left:"255px",
+            })
+            $("#switch>img").attr("src","img/open.png")
         }
     })
 
@@ -92,9 +100,18 @@ $(function(){
         var chart = echarts.init(document.getElementById('allmap2'));
             
             var bmap = {
-                center: [121.391,31.117],
-                zoom: 10,
+                
                 roam: true,
+                mapStyle: {
+                    styleJson: [{
+                        "featureType": "all",
+                        "elementType": "all",
+                        "stylers": {
+                            "lightness": 10,
+                            "saturation": -100
+                        }
+                    }]
+                }
             }
 
         var res=[
@@ -111,6 +128,24 @@ $(function(){
             [{coord:[mydata(num10)[0],mydata(num10)[1]]},{coord:[mydata(num11)[0],mydata(num11)[1]]}],
             [{coord:[mydata(num11)[0],mydata(num11)[1]]},{coord:[mydata(num12)[0],mydata(num12)[1]]}]
         ];
+
+        //根据提供的地理区域或坐标设置地图视野，调整后的视野会保证包含提供的地理区域或坐标
+		var pointArray=new Array();
+		pointArray[0] = new BMap.Point(mydata(num1)[0],mydata(num1)[1]); // 创建坐标
+		pointArray[1] = new BMap.Point(mydata(num2)[0],mydata(num2)[1]); // 创建坐标
+		pointArray[2] = new BMap.Point(mydata(num3)[0],mydata(num3)[1]); // 创建坐标
+		pointArray[3] = new BMap.Point(mydata(num4)[0],mydata(num4)[1]); // 创建坐标
+		pointArray[4] = new BMap.Point(mydata(num5)[0],mydata(num5)[1]); // 创建坐标
+		pointArray[5] = new BMap.Point(mydata(num6)[0],mydata(num6)[1]); // 创建坐标
+
+		pointArray[6] = new BMap.Point(mydata(num7)[0],mydata(num7)[1]); // 创建坐标
+		pointArray[7] = new BMap.Point(mydata(num8)[0],mydata(num8)[1]); // 创建坐标
+		pointArray[8] = new BMap.Point(mydata(num9)[0],mydata(num9)[1]); // 创建坐标
+		pointArray[9] = new BMap.Point(mydata(num10)[0],mydata(num10)[1]); // 创建坐标
+		pointArray[10] = new BMap.Point(mydata(num11)[0],mydata(num11)[1]); // 创建坐标
+		pointArray[11] = new BMap.Point(mydata(num12)[0],mydata(num12)[1]); // 创建坐标
+
+
         var color = ['#237cc8', '#f4a942'];
         var series = [];
         var series2 = [];
@@ -150,7 +185,7 @@ $(function(){
                 lineStyle: {
                     normal: {
                         color: color[0],
-                        width: 1,
+                        width: 3,
                         opacity: 0.4,
                         curveness: 0.2
                     }
@@ -174,6 +209,7 @@ $(function(){
                 symbolSize: function (val) {
                      return val[2] / 8;
                 },
+                showEffectOn: 'render',
                 itemStyle: {
                     normal: {
                         color: color[0]
@@ -217,7 +253,7 @@ $(function(){
                 lineStyle: {
                     normal: {
                         color: color[1],
-                        width: 1,
+                        width: 3,
                         opacity: 0.4,
                         curveness: 0.2
                     }
@@ -253,11 +289,14 @@ $(function(){
 
         option ={
             bmap:bmap,
+            tooltip: {
+                trigger: 'item'
+            },
             geo: {
                 map: 'bmap',
                 label: {
                     emphasis: {
-                        show: false
+                        show: true
                     }
                 },
                 roam: true,
@@ -276,6 +315,8 @@ $(function(){
         }
 
         chart.setOption(option);
+        var bmap = chart.getModel().getComponent('bmap').getBMap();
+		bmap.setViewport(pointArray);
     }
 
 })
