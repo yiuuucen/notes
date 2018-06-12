@@ -174,7 +174,7 @@ BODY 标签选项：
         <section class="content">
 
             <!-- Default box -->
-            <div class="box">
+            <div class="box allCount">
                 <div class="box-header with-border">
                     <h3 class="box-title">日志统计</h3>
 
@@ -368,7 +368,9 @@ BODY 标签选项：
 <!-- 图中的2个echart图 -->
 <script>
     $(function() {
-
+        if(ut!=0){
+            $(".allCount").remove();
+        }
         var pageCount;
         var totalData;
         var showData;

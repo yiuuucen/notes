@@ -4,6 +4,7 @@
 <aside class="main-sidebar">
     <input type="hidden" value="${userType}" id="userType"/>
     <input type="hidden" value="${targetPhone}" id="targetPhone"/>
+    <input type="hidden" value="${suspectType}" id="suspectType"/>
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar" style="height: auto;">
 
@@ -13,7 +14,7 @@
                 <img src="/smarteyesshh/static/dist/img/user2-160x160.jpg" class="img-circle" alt="用户图像">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p class="userNa">Alexander Pierce</p>
                 <!-- Status -->
                 <a href="${ctx}/user/logout"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
@@ -54,7 +55,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/smarteyesshh/permission?targetPhone=${targetPhone}">用户管理</a></li>
+                    <li class="manage"><a href="/smarteyesshh/permission?targetPhone=${targetPhone}">用户管理</a></li>
                     <li><a href="/smarteyesshh/account?targetPhone=${targetPhone}">账号设置</a></li>
                 </ul>
             </li>
@@ -92,6 +93,18 @@
     if(!tel){
         $(".xq").remove()
     }
+    if(ut!=0){
+        $(".manage").remove();
+    }
+    $.ajax({
+        type: "GET",
+        url: "user/getUser",
+        dataType: "json",
+        success: function (res) {
+            $(".userNa").text(res.name)
+        }
+
+    })
     $("#search").click(function(){
 
         //检索条件执行

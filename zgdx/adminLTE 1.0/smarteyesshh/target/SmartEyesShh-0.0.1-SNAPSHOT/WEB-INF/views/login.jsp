@@ -130,7 +130,7 @@
 
                                 }
                             }else{
-                                window.location.href = '${ctx}/search';
+                                window.location.href = '${ctx}/personlist';
                             }
                         },
                         error:function(err) {
@@ -172,7 +172,7 @@
 	                        
 	                        }
                         }else{
-                            window.location.href = '${ctx}/search';
+                            window.location.href = '${ctx}/personlist';
                         }
                     },
                     error:function(err) {

@@ -178,6 +178,7 @@
                     dataType: "json",
                     async: true,
                     success: function(mes){
+                        // console.log(mes)
                         if(mes.res==true){
                             //跳转到搜索结果页
                             //window.location.href="重点人员-搜索结果列表.html";
