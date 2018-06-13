@@ -154,9 +154,25 @@
                           </thead>
                           <tbody class="xinxi">
 
-                          <%--<tr role="row" class="even"><td class="sorting_1">1</td><td>10001</td><td class="sysmg-hidetd">张三</td><td class="sysmg-hidetd">138****6677</td><td class="sysmg-hidetd">********</td><td class="sysmg-hideinput"><input type="text" class="sysmgdata" name="sysmgdata1" value="张三"></td><td class="sysmg-hideinput"><input type="text" class="sysmgdata" name="sysmgdata2" value="138****6677"></td><td class="sysmg-hideinput"><input type="text" class="sysmgdata" name="sysmgdata3" value="ac5ad10403ebf0b48f9ab6e81c4ebe3f"></td><td><span class="label label-danger mybtn2">重置</span></td><td><span class="label label-danger mybtn2">禁用</span></td></tr>--%>
+                            <tr role="row" class="even">
+                              <td class="sorting_1">1</td>
+                              <td>10001</td>
+                              <td class="sysmg-hidetd">张三</td>
+                              <td class="sysmg-hidetd">138****6677</td>
+                              <td class="sysmg-hidetd">********</td>
+                              <td class="sysmg-hideinput">
+                                <input type="text" class="sysmgdata" name="sysmgdata1" value="张三">
+                              </td>
+                              <td class="sysmg-hideinput">
+                                <input type="text" class="sysmgdata" name="sysmgdata2" value="138****6677">
+                              </td>
+                              <td class="sysmg-hideinput">
+                                <input type="text" class="sysmgdata" name="sysmgdata3" value="ac5ad10403ebf0b48f9ab6e81c4ebe3f"></td><td><span class="label label-danger mybtn2">重置</span>
+                                <span class="label label-danger mybtn2">禁用</span>
+                              </td>
+                            </tr>
 
-                        </tbody>
+                          </tbody>
                         </table>
                       </div>
                     </div>
@@ -387,7 +403,6 @@
 
 
         // 重置按钮点击事件
-        changebtnEvent();
         function changebtnEvent() {
             var myinput = [];
             var myinput2 = [];

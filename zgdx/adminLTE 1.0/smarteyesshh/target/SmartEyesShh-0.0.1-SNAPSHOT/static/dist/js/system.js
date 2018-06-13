@@ -131,6 +131,71 @@ function sysEchart1_data(arr,data){
     }
 
     myChart1 = echarts.init(document.getElementById('barEchart01'));
+    if(arr&&data){
+        option = {
+            title: {
+                text: '总查询量',
+                bottom:'0',
+                left:'40%',
+            },
+            tooltip: {
+                formatter: '{b}<br/>{c} 次',
+                trigger: 'axis',
+                axisPointer: {
+                    animation: false,
+                    type: 'cross',
+                    label:{
+                        color:"rgba(0,0,0,0.6)",
+                        backgroundColor:"rgb(222,222,222)"
+                    },
+                    lineStyle: {
+                        color: '#4baa4f',
+                        width: 2,
+                        opacity: 0.6
+                    },
+                    crossStyle: {
+                        color: 'rgb(0,0,0)',
+                        width: 2,
+                        opacity: 0.6,
+                        type:"solid"
+                    }
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '3%',
+                bottom: '10%',
+                top:"3%",
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                axisLine: { lineStyle: { color: 'rgba(0,0,0,0.6)' } },
+                data: arr,
+            },
+            yAxis: {
+                type: 'value',
+                splitLine: { show: false },
+                axisLine: { lineStyle: { color: 'rgba(0,0,0,0.6)' } },
+            },
+            series: [{
+                data: data,
+                type: 'line',
+                itemStyle: {
+                    normal:{
+                        color: '#2196f3'
+                    }
+                },
+                lineStyle: {
+                    normal:{
+                        color: '#2196f3'
+                    }
+                },
+            }]
+        };
+        // 为echarts对象加载数据
+        myChart1.setOption(option);
+    }
     
     // myChart1.showLoading({
     //     text: 'loading...',
@@ -139,69 +204,6 @@ function sysEchart1_data(arr,data){
     //     maskColor: 'transparent',
     //     zlevel: 0,
     // });
-    option = {
-          title: {
-              text: '总查询量',
-              bottom:'0',
-              left:'40%',
-          },
-          tooltip: {
-              formatter: '{b}<br/>{c} 次',
-              trigger: 'axis',
-              axisPointer: {
-                  animation: false,
-                  type: 'cross',
-                  label:{
-                      color:"rgba(0,0,0,0.6)",
-                      backgroundColor:"rgb(222,222,222)"
-                  },
-                  lineStyle: {
-                      color: '#4baa4f',
-                      width: 2,
-                      opacity: 0.6
-                  },
-                  crossStyle: {
-                      color: 'rgb(0,0,0)',
-                      width: 2,
-                      opacity: 0.6,
-                      type:"solid"
-                  }
-              }
-          },
-          grid: {
-              left: '3%',
-              right: '3%',
-              bottom: '10%',
-              top:"3%",
-              containLabel: true
-          },
-          xAxis: {
-              type: 'category',
-              axisLine: { lineStyle: { color: 'rgba(0,0,0,0.6)' } },
-              data: arr,
-          },
-          yAxis: {
-              type: 'value',
-              splitLine: { show: false },
-              axisLine: { lineStyle: { color: 'rgba(0,0,0,0.6)' } },
-          },
-          series: [{
-              data: data,
-              type: 'line',
-              itemStyle: {
-                  normal:{
-                      color: '#2196f3'
-                  }
-              },
-              lineStyle: {
-                  normal:{
-                      color: '#2196f3'
-                  }
-              },
-          }]
-      };
-    // 为echarts对象加载数据
-    myChart1.setOption(option);
 }
 
 
@@ -247,6 +249,7 @@ function sysEchart2_data(time){
     }
     // 基于准备好的dom，初始化echarts图表
     myChart2 = echarts.init(document.getElementById('barEchart02'));
+
 
     option = {
         title: {

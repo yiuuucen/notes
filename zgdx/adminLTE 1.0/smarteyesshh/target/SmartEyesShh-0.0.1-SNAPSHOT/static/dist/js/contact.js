@@ -510,7 +510,7 @@ function myradar(arr){
 
     //雷达图
     option = {
-        backgroundColor:'none',
+        backgroundColor:'transparent',
         title: {
             text: ''
         },
@@ -613,7 +613,7 @@ function mychar02(arr){
 
     //饼状图
     option = {
-        backgroundColor:'none',
+        backgroundColor:'transparent',
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c}min ({d}%)"
@@ -698,7 +698,7 @@ function mychar03(arr){
 
     //饼状图
     option = {
-        backgroundColor:'none',
+        backgroundColor:'transparent',
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c}次 ({d}%)"

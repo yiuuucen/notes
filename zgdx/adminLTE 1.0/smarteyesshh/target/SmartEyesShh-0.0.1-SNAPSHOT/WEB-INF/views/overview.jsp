@@ -177,7 +177,7 @@ BODY 标签选项：
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">联系人特征 <small>有效联系人<span class="perNum"></span></small></h3>
-                            <a href="${cxt}/smarteyesshh/contact" class="pull-right"><img src="${cenimg}/more.png">更多</a>
+                            <a href="/smarteyesshh/contact?targetPhone=${targetPhone}" class="pull-right"><img src="${cenimg}/more.png">更多</a>
                         </div>
                         <div class="box-body">
                             <div style="display: flex;justify-content: space-around;height: 400px">
@@ -218,7 +218,7 @@ BODY 标签选项：
                         <div class="box-header with-border">
                             <input type="hidden" id="address">
                             <h3 class="box-title">区域特征 <small>常活动区域:<span class="addNum"></span></small></h3>
-                            <a href="${cxt}/smarteyesshh/overview" class="pull-right"><img src="${cenimg}/more.png">更多</a>
+                            <a href="/smarteyesshh/region?mydata=1&targetPhone=${targetPhone}" class="pull-right"><img src="${cenimg}/more.png">更多</a>
                             <select class="pull-right select" style="margin: 0 30px 0 0">
                                 <option value="allday">全天</option>
                                 <option value="morning">上午</option>

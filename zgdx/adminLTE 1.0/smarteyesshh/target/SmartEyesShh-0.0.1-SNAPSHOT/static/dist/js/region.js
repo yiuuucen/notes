@@ -278,7 +278,12 @@
             dataType: "json",
             //[ [121.24356710396394,31.188669026176047], [121.5236751742856,31.112174867118885], [121.49495394125242,31.12528006297392] ]
             success: function (data) {
-                areaMap(data);
+                if(data.length!=0){
+                    areaMap(data);
+                }else{
+                    alert("没有数据")
+                }
+
             },
             error: function () {
                 alert("获取失败，请联系管理员！");
@@ -447,49 +452,84 @@
             url: window.ctx+"/region/getRegion?targetPhone="+targetPhone,
             dataType: "json",
             success: function (mydata) {
-
-                $.ajax({
-                    type: "GET",
-                    //如果设置为false没有正确变为同步
-                    async: false,
-                    url: 'https://api.map.baidu.com/direction/v2/transit?ak=6XS2KGjHtiSTaR9CzIAQlBcnMQpcs6uI&origin='
-                    + mydata[0][1] + ',' + mydata[0][0] + '&destination=' + mydata[1][1] + ',' + mydata[1][0],
-                    dataType: "jsonp",
-                    success: function (data) {
-                        if (data.message === '成功') {
-                            mytrack1 = [];
-                            if(data.result.routes== null ||data.result.routes.length<=0){
-                                //有时候2个点之间太近或者地理原因，没有公交路线，直接让起点连接终点
-                                //最好的办法就是判断当没有公交路线时，走骑行路线或者驾车路线。
-                                //https://api.map.baidu.com/direction/v2/riding?
-                                mytrack11 = [[mydata[0][0],mydata[0][1]],[mydata[1][0],mydata[1][1]]];
-                            }else{
-                                //百度api中公交车routes有多种方案，这里统一用routes[0],
-                                //由于点太多导致效果图不好看，这里简化为5个点
-                                var steps = data.result.routes[0].steps;
-                                for (var s = 0; s < steps.length; s++) {
-                                    var arr = steps[s][0].path.split(';');
-                                    for (var j = 0; j < arr.length; j++) {
-                                        var point = arr[j].split(',');
-                                        //res.push({lng: point[0], lat: point[1]});
-                                        mytrack1.push([point[0], point[1]]);
+                myChart3.dispose();
+                if(mydata.length!=0){
+                    $.ajax({
+                        type: "GET",
+                        //如果设置为false没有正确变为同步
+                        async: false,
+                        url: 'https://api.map.baidu.com/direction/v2/transit?ak=6XS2KGjHtiSTaR9CzIAQlBcnMQpcs6uI&origin='
+                        + mydata[0][1] + ',' + mydata[0][0] + '&destination=' + mydata[1][1] + ',' + mydata[1][0],
+                        dataType: "jsonp",
+                        success: function (data) {
+                            if (data.message === '成功') {
+                                mytrack1 = [];
+                                if(data.result.routes== null ||data.result.routes.length<=0){
+                                    //有时候2个点之间太近或者地理原因，没有公交路线，直接让起点连接终点
+                                    //最好的办法就是判断当没有公交路线时，走骑行路线或者驾车路线。
+                                    //https://api.map.baidu.com/direction/v2/riding?
+                                    $.ajax({
+                                        type: "GET",
+                                        //如果设置为false没有正确变为同步
+                                        async: false,
+                                        url: 'https://api.map.baidu.com/direction/v2/riding?ak=6XS2KGjHtiSTaR9CzIAQlBcnMQpcs6uI&origin='
+                                        + mydata[0][1] + ',' + mydata[0][0] + '&destination=' + mydata[1][1] + ',' + mydata[1][0],
+                                        dataType: "jsonp",
+                                        success:function(data){
+                                            //如果起点和终点在一起时，就没有路线，routes为空
+                                            if(data.result.routes.length!=0){
+                                                var steps = data.result.routes[0].steps;
+                                                for (var s = 0; s < steps.length; s++) {
+                                                    var arr = steps[s].path.split(';');
+                                                    for (var j = 0; j < arr.length; j++) {
+                                                        var point = arr[j].split(',');
+                                                        //res.push({lng: point[0], lat: point[1]});
+                                                        mytrack1.push([point[0], point[1]]);
+                                                    }
+                                                }
+                                                mytrack11=[];
+                                                var n=0;
+                                                for(var m=0;m<mytrack1.length;m=m+mytrack1.length/4){
+                                                    n=Math.ceil(m)
+                                                    mytrack11.push(mytrack1[n])
+                                                }
+                                                mytrack11.push(mytrack1[mytrack1.length-1]);
+                                                trailMap(mytrack11);
+                                            }else{
+                                                trailMap([[mydata[0][0],mydata[0][1]],[mydata[1][0],mydata[1][1]]])
+                                            }
+                                        }
+                                    })
+                                }else{
+                                    //百度api中公交车routes有多种方案，这里统一用routes[0],
+                                    //由于点太多导致效果图不好看，这里简化为5个点
+                                    var steps = data.result.routes[0].steps;
+                                    for (var s = 0; s < steps.length; s++) {
+                                        var arr = steps[s][0].path.split(';');
+                                        for (var j = 0; j < arr.length; j++) {
+                                            var point = arr[j].split(',');
+                                            //res.push({lng: point[0], lat: point[1]});
+                                            mytrack1.push([point[0], point[1]]);
+                                        }
                                     }
+                                    mytrack11=[];
+                                    var n=0;
+                                    for(var m=0;m<mytrack1.length;m=m+mytrack1.length/4){
+                                        n=Math.ceil(m)
+                                        mytrack11.push(mytrack1[n])
+                                    }
+                                    mytrack11.push(mytrack1[mytrack1.length-1]);
+                                    trailMap(mytrack11);
                                 }
-                                mytrack11=[];
-                                var n=0;
-                                for(var m=0;m<mytrack1.length;m=m+mytrack1.length/4){
-                                    n=Math.ceil(m)
-                                    mytrack11.push(mytrack1[n])
-                                }
-                                mytrack11.push(mytrack1[mytrack1.length-1]);
                             }
-                            trailMap(mytrack11);
+                        },
+                        error: function () {
+                            alert("获取失败，请联系管理员！");
                         }
-                    },
-                    error: function () {
-                        alert("获取失败，请联系管理员！");
-                    }
-                });
+                    });
+                }else{
+                    alert("没有数据")
+                }
             },
             error: function () {
                 alert("获取失败，请联系管理员！");
@@ -498,7 +538,6 @@
     }
     //可疑轨迹
     function at03Map(){
-
         var targetPhone=$("#targetPhone").val();
         trailMap();
         $.ajax({
@@ -508,48 +547,81 @@
             dataType: "json",
             success: function (mydata) {
                 myChart3.dispose();
-                $.ajax({
-                    type: "GET",
-                    //如果设置为false没有正确变为同步
-                    async: false,
-                    url: 'https://api.map.baidu.com/direction/v2/transit?ak=6XS2KGjHtiSTaR9CzIAQlBcnMQpcs6uI&origin='
-                    + mydata[0][1] + ',' + mydata[0][0] + '&destination=' + mydata[2][1] + ',' + mydata[2][0],
-                    dataType: "jsonp",
-                    success: function (data) {
-                        mytrack2=[];
-                        if (data.message === '成功') {
-                            if(data.result.routes== null ||data.result.routes.length<=0){
-                                //console.log(data)
-                                mytrack22 = [[mydata[0][0],mydata[0][1]],[mydata[2][0],mydata[2][1]]];
-                            }else{
-                                //百度api中公交车routes有多种方案，这里统一用routes[0],
-                                //由于点太多导致效果图不好看，这里简化为5个点
-                                var steps = data.result.routes[0].steps;
-                                for (var s = 0; s < steps.length; s++) {
-                                    var arr = steps[s][0].path.split(';');
-                                    for (var j = 0; j < arr.length; j ++) {
-                                        var point = arr[j].split(',');
-                                        //res.push({lng: point[0], lat: point[1]});
-                                        mytrack2.push([point[0], point[1]]);
+                if(mydata.length!=0){
+                    $.ajax({
+                        type: "GET",
+                        //如果设置为false没有正确变为同步
+                        async: false,
+                        url: 'https://api.map.baidu.com/direction/v2/transit?ak=6XS2KGjHtiSTaR9CzIAQlBcnMQpcs6uI&origin='
+                        + mydata[0][1] + ',' + mydata[0][0] + '&destination=' + mydata[2][1] + ',' + mydata[2][0],
+                        dataType: "jsonp",
+                        success: function (data) {
+                            mytrack2=[];
+                            if (data.message === '成功') {
+                                if(data.result.routes== null ||data.result.routes.length<=0){
+                                    $.ajax({
+                                        type: "GET",
+                                        //如果设置为false没有正确变为同步
+                                        async: false,
+                                        url: 'https://api.map.baidu.com/direction/v2/riding?ak=6XS2KGjHtiSTaR9CzIAQlBcnMQpcs6uI&origin='
+                                        + mydata[0][1] + ',' + mydata[0][0] + '&destination=' + mydata[2][1] + ',' + mydata[2][0],
+                                        dataType: "jsonp",
+                                        success:function(data){
+                                            if(data.result.routes.length!=0){
+                                                var steps = data.result.routes[0].steps;
+                                                for (var s = 0; s < steps.length; s++) {
+                                                    var arr = steps[s].path.split(';');
+                                                    for (var j = 0; j < arr.length; j++) {
+                                                        var point = arr[j].split(',');
+                                                        //res.push({lng: point[0], lat: point[1]});
+                                                        mytrack2.push([point[0], point[1]]);
+                                                    }
+                                                }
+                                                mytrack22=[];
+                                                var n=0;
+                                                for(var m=0;m<mytrack2.length;m=m+mytrack2.length/4){
+                                                    n=Math.ceil(m)
+                                                    mytrack11.push(mytrack2[n])
+                                                }
+                                                mytrack22.push(mytrack2[mytrack1.length-1]);
+                                                trailMap(mytrack22);
+                                            }else{
+                                                trailMap([[mydata[0][0],mydata[0][1]],[mydata[2][0],mydata[2][1]]]);
+                                            }
 
+                                        }
+                                    })
+                                }else{
+                                    //百度api中公交车routes有多种方案，这里统一用routes[0],
+                                    //由于点太多导致效果图不好看，这里简化为5个点
+                                    var steps = data.result.routes[0].steps;
+                                    for (var s = 0; s < steps.length; s++) {
+                                        var arr = steps[s][0].path.split(';');
+                                        for (var j = 0; j < arr.length; j ++) {
+                                            var point = arr[j].split(',');
+                                            //res.push({lng: point[0], lat: point[1]});
+                                            mytrack2.push([point[0], point[1]]);
+
+                                        }
                                     }
+                                    mytrack22=[];
+                                    var n=0;
+                                    for(var m=0;m<mytrack2.length;m=m+mytrack2.length/4){
+                                        n=Math.ceil(m)
+                                        mytrack22.push(mytrack2[n])
+                                    }
+                                    mytrack22.push(mytrack2[mytrack2.length-1]);
+                                    trailMap(mytrack22);
                                 }
-                                mytrack22=[];
-                                var n=0;
-                                for(var m=0;m<mytrack2.length;m=m+mytrack2.length/4){
-                                    n=Math.ceil(m)
-                                    mytrack22.push(mytrack2[n])
-                                }
-                                mytrack22.push(mytrack2[mytrack2.length-1]);
                             }
-
-                            trailMap(mytrack22);
+                        },
+                        error: function () {
+                            alert("获取失败，请联系管理员！");
                         }
-                    },
-                    error: function () {
-                        alert("获取失败，请联系管理员！");
-                    }
-                });
+                    });
+                }else{
+                    alert("没有数据")
+                }
             },
             error: function () {
                 alert("获取失败，请联系管理员！");
@@ -573,140 +645,136 @@
         //     zlevel: 0,
         // });
 
-        if(!arr){
-            // alert("没有数据！！")
-            return;
-        }
+        if(arr){
+            var bmap = {
 
-        var bmap = {
-
-            roam: true,
-            mapStyle: {
-                styleJson: [{
-                    "featureType": "all",
-                    "elementType": "all",
-                    "stylers": {
-                        "lightness": 10,
-                        "saturation": -100
-                    }
-                }]
-            }
-        }
-        res=[];
-        data2=[];
-        pointArray=[];
-        //
-        // // data2=[{value:[num1[0],num1[1],80]},{value:[num2[0],num2[1],80]},{value:[num3[0],num3[1],80]},{value:[num4[0],num4[1],80]},{value:[num5[0],num5[1],80]},{value:[num6[0],num6[1],80]}]
-        // // var arr=[[121.30502,31.301144],[121.420578,31.233486],[121.348714,31.16034],[121.398157,31.103958],[121.330317,30.994066],[121.123922,31.106432]];
-        for(var j=0;j<arr.length-1;j++){
-            res.push([{coord:arr[j]},{coord:arr[j+1]}]);
-        }
-
-        for(var i=0;i<arr.length;i++){
-            pointArray[i] = new BMap.Point(arr[i][0],arr[i][1]);
-            data2.push({value:[arr[i][0],arr[i][1],80]})
-        }
-
-        series=[
-            {
-                type: 'lines',
-                coordinateSystem: 'bmap',
-                zlevel: 1,
-                effect: {
-                    show: true,
-                    period: 6,
-                    trailLength: 0.7,
-                    color: 'fff',
-                    symbolSize: 3
-                },
-                lineStyle: {
-                    normal: {
-                        color:'#237cc8',
-                        width: 0,
-                        curveness: 0.2
-                    }
-                },
-                data: res
-            },
-            {
-                type: 'lines',
-                coordinateSystem: 'bmap',
-                zlevel: 2,
-                effect: {
-                    show: true,
-                    period: 6,
-                    trailLength: 0,
-                    symbol: "triangle",
-                    symbolSize: 8
-                },
-                lineStyle: {
-                    normal: {
-                        color: '#237cc8',
-                        width: 3,
-                        opacity: 0.4,
-                        curveness: 0.2
-                    }
-                },
-                data:res
-            },
-            {
-                type: 'effectScatter',
-                coordinateSystem: 'bmap',
-                zlevel: 2,
-                rippleEffect: {
-                    brushType: 'stroke'
-                },
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'right',
-                        formatter: '{b}'
-                    }
-                },
-                symbolSize: function (val) {
-                    return val[2] / 8;
-                },
-                showEffectOn: 'render',
-                itemStyle: {
-                    normal: {
-                        color: '#237cc8'
-                    }
-                },
-                data : data2
-                // data : [{value:[mydata(num1)[0],mydata(num1)[1],80]},{value:[mydata(num2)[0],mydata(num2)[1],80]},{value:[mydata(num3)[0],mydata(num3)[1],80]},{value:[mydata(num4)[0],mydata(num4)[1],80]},{value:[mydata(num5)[0],mydata(num5)[1],80]},{value:[mydata(num6)[0],mydata(num6)[1],80]}]
-            },
-        ]
-
-
-        option ={
-            bmap:bmap,
-            tooltip: {
-                trigger: 'item'
-            },
-            geo: {
-                map: 'bmap',
-                label: {
-                    emphasis: {
-                        show: true
-                    }
-                },
                 roam: true,
-                zoom:1,
-                itemStyle: {
-                    normal: {
-                        areaColor: '#323c48',
-                        borderColor: '#404a59'
-                    },
-                    emphasis: {
-                        areaColor: '#2a333d'
-                    }
+                mapStyle: {
+                    styleJson: [{
+                        "featureType": "all",
+                        "elementType": "all",
+                        "stylers": {
+                            "lightness": 10,
+                            "saturation": -100
+                        }
+                    }]
                 }
-            },
-            series: series
-        }
+            }
+            res=[];
+            data2=[];
+            pointArray=[];
+            //
+            // // data2=[{value:[num1[0],num1[1],80]},{value:[num2[0],num2[1],80]},{value:[num3[0],num3[1],80]},{value:[num4[0],num4[1],80]},{value:[num5[0],num5[1],80]},{value:[num6[0],num6[1],80]}]
+            // // var arr=[[121.30502,31.301144],[121.420578,31.233486],[121.348714,31.16034],[121.398157,31.103958],[121.330317,30.994066],[121.123922,31.106432]];
+            for(var j=0;j<arr.length-1;j++){
+                res.push([{coord:arr[j]},{coord:arr[j+1]}]);
+            }
 
-        myChart3.setOption(option);
-        var bmap = myChart3.getModel().getComponent('bmap').getBMap();
-        bmap.setViewport(pointArray);
+            for(var i=0;i<arr.length;i++){
+                pointArray[i] = new BMap.Point(arr[i][0],arr[i][1]);
+                data2.push({value:[arr[i][0],arr[i][1],80]})
+            }
+
+            series=[
+                {
+                    type: 'lines',
+                    coordinateSystem: 'bmap',
+                    zlevel: 1,
+                    effect: {
+                        show: true,
+                        period: 6,
+                        trailLength: 0.7,
+                        color: 'fff',
+                        symbolSize: 3
+                    },
+                    lineStyle: {
+                        normal: {
+                            color:'#237cc8',
+                            width: 0,
+                            curveness: 0.2
+                        }
+                    },
+                    data: res
+                },
+                {
+                    type: 'lines',
+                    coordinateSystem: 'bmap',
+                    zlevel: 2,
+                    effect: {
+                        show: true,
+                        period: 6,
+                        trailLength: 0,
+                        symbol: "triangle",
+                        symbolSize: 8
+                    },
+                    lineStyle: {
+                        normal: {
+                            color: '#237cc8',
+                            width: 3,
+                            opacity: 0.4,
+                            curveness: 0.2
+                        }
+                    },
+                    data:res
+                },
+                {
+                    type: 'effectScatter',
+                    coordinateSystem: 'bmap',
+                    zlevel: 2,
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'right',
+                            formatter: '{b}'
+                        }
+                    },
+                    symbolSize: function (val) {
+                        return val[2] / 8;
+                    },
+                    showEffectOn: 'render',
+                    itemStyle: {
+                        normal: {
+                            color: '#237cc8'
+                        }
+                    },
+                    data : data2
+                    // data : [{value:[mydata(num1)[0],mydata(num1)[1],80]},{value:[mydata(num2)[0],mydata(num2)[1],80]},{value:[mydata(num3)[0],mydata(num3)[1],80]},{value:[mydata(num4)[0],mydata(num4)[1],80]},{value:[mydata(num5)[0],mydata(num5)[1],80]},{value:[mydata(num6)[0],mydata(num6)[1],80]}]
+                },
+            ]
+
+
+            option ={
+                bmap:bmap,
+                tooltip: {
+                    trigger: 'item'
+                },
+                geo: {
+                    map: 'bmap',
+                    label: {
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    roam: true,
+                    zoom:1,
+                    itemStyle: {
+                        normal: {
+                            areaColor: '#323c48',
+                            borderColor: '#404a59'
+                        },
+                        emphasis: {
+                            areaColor: '#2a333d'
+                        }
+                    }
+                },
+                series: series
+            }
+            myChart3.setOption(option);
+            var bmap = myChart3.getModel().getComponent('bmap').getBMap();
+            bmap.setViewport(pointArray);
+        }
     }
 
