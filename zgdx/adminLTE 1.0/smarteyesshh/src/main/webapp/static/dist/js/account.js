@@ -28,11 +28,20 @@ function changePw() {
             var newPwd=$("#f5").val();
             var reNew=$("#f6").val();
             if(oldPwd==''||newPwd===''||reNew===''){
-                alert("请输入密码")
+                $(".popup").text("请输入密码").animate({top:0});
+                setTimeout(function(){
+                    $(".popup").animate({top:"-40px"});
+                },2000)
             }else if(oldPwd==newPwd){
-                alert("新密码不能和旧密码相同")
+                $(".popup").text("新密码不能和旧密码相同").animate({top:0});
+                setTimeout(function(){
+                    $(".popup").animate({top:"-40px"});
+                },2000)
             }else if(newPwd!=reNew){
-                alert("两次输入的新密码不相同")
+                $(".popup").text("两次输入的新密码不相同").animate({top:0});
+                setTimeout(function(){
+                    $(".popup").animate({top:"-40px"});
+                },2000)
             }else{
                 $.ajax({
                     type: "GET",
@@ -40,13 +49,18 @@ function changePw() {
                     dataType: "json",
                     data:{"oldPwd": oldPwd, "newPwd": newPwd},
                     success:function(res){
-                    	console.log(res)
                         if (res.result == 1) {
-                            alert("修改密码成功");
+                            $(".popup").text("修改密码成功").animate({top:0});
+                            setTimeout(function(){
+                                $(".popup").animate({top:"-40px"});
+                            },2000)
                             $(".chang1").css("display","block");
                             $(".chang2").css("display","none");
                         } else {
-                            alert("您输入的旧密码有误");
+                            $(".popup").text("输入的旧密码有误").animate({top:0});
+                            setTimeout(function(){
+                                $(".popup").animate({top:"-40px"});
+                            },2000)
                         }
                     },
                     error:function(){

@@ -36,45 +36,29 @@
   <!-- jQuery 2.2.3 -->
   <script src="${plugins}/jQuery/jquery-2.2.3.min.js"></script>
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
+<body class="hold-transition login-page clearfix login">
+<div class="login-box clearfix">
   <div class="login-logo">
-    <a href="${cxt}/index"><b>LIEQUAN</b></a>
+    <a href="${cxt}/index">
+      <img src="${cenimgnew}/logo.png" alt="">
+    </a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
-
     <div>
-      <div class="form-group has-feedback">
-        <input type="user" class="form-control" placeholder="user" name="username">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label class="">
-              <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Remember Me
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" id="submit">Sign In</button>
-        </div>
-        <!-- /.col -->
-      </div>
+      <span>账号:</span>
+      <input type="text" placeholder="请输入手机号" name="username">
     </div>
-
-    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
-
+    <div>
+      <span>密码:</span>
+      <input type="password" placeholder="请输入密码" name="password">
+    </div>
+    <p id="submit">登录</p>
   </div>
   <!-- /.login-box-body -->
+</div>
+<div class="footer">
+  <strong>&copy; 2018  SmartEyes </a>|</strong> 猎犬上海网安版
 </div>
 <!-- /.login-box -->
 

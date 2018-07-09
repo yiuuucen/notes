@@ -11,7 +11,7 @@ $("#submit").click(function(){
             if(!data.status) {
                 alert(data.res);
             }else{
-                window.location.href = 'personlist';
+                window.location.href = window.ctx+'/search?targetPhone=';
             }
         },
         error:function() {
@@ -19,3 +19,10 @@ $("#submit").click(function(){
         }
     });
 });
+
+$(document).keyup(function (e) {//捕获文档对象的按键弹起事件
+    if (e.keyCode == 13) {//按键信息对象以参数的形式传递进来了
+        //此处编写用户敲回车后的代码
+        $("#submit").click();
+    }
+})

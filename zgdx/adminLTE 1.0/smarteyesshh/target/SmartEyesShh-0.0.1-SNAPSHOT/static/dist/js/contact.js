@@ -243,11 +243,20 @@ function showContactList(contactList){
 
         //选中标签更新
         var cTopHmtl = '';
+        var title='';
+        // for(var j=0;j<selectedList.length;j++){
+        //     cTopHmtl +='<span class="pull-right">'+selectedList[j]+'</span>';
+        //     if(j<selectedList.length-1){
+        //         cTopHmtl +='<span class="pull-right">|</span>';
+        //     }
+        // }
         for(var j=0;j<selectedList.length;j++){
-            cTopHmtl +='<span class="pull-right">'+selectedList[j]+'</span>';
-            if(j<selectedList.length-1){
-                cTopHmtl +='<span class="pull-right">|</span>';
-            }
+            title +=selectedList[j]+" ";
+        }
+        if(selectedList.length>1){
+            cTopHmtl='<span class="pull-right" title="'+title+'">'+selectedList[0]+"..."+'</span>'
+        }else{
+            cTopHmtl='<span class="pull-right" title="'+title+'">'+selectedList[0]+'</span>'
         }
         $(".c-top").append(cTopHmtl);
 
@@ -297,7 +306,7 @@ function telContactList(timerange){
         //data: {"targetPhone":8615000055827,"startTime":20180220,"endTime":20180307},
         dataType:"json",
         success:function(data){
-
+            console.log(data)
             $("#telNum").html(data.contactList.length)
             myChart.dispose();
             // var msg=$("#firstcontact").html();
@@ -346,13 +355,13 @@ function relationG(timerange) {
         data: {"targetPhone": targetPhone, "startTime": timerange[0], "endTime": timerange[1]},
         dataType: "json",
         success:function(graph){
-
+            console.log(graph)
             if(!graph){
                 return;
             }
             myChart0.hideLoading();
 
-            var categories=[{"name":"当前重点人员","itemStyle":{"normal":{"color":"#2090ec"}}},{"name":"一般人员","itemStyle":{"normal":{"color":"#4a4f67"}}},{"name":"重点人员","itemStyle":{"normal":{"color":"rgb(76,175,80)"}}}]
+            var categories=[{"name":"当前重点人员","itemStyle":{"normal":{"color":"#2090ec"}}},{"name":"一般人员","itemStyle":{"normal":{"color":"#4a4f67"}}},{"name":"重点人员","itemStyle":{"normal":{"color":"#7af7d5"}}}]
             //找到max
 
             var mynode = graph.nodes;
@@ -538,17 +547,16 @@ function myradar(arr){
                 name: {
                     // formatter:'',
                     textStyle: {
-                        color:'#6292b1'
+                        color:'#fff'
                     }
                 },
                 splitArea: {
                     areaStyle: {
                         color: [
-                            'rgba(98, 146, 177, 0.2)',
-                            'rgba(98, 146, 177, 0.4)',
-                            'rgba(98, 146, 177, 0.6)',
-                            'rgba(98, 146, 177, 0.8)',
-                            'rgba(98, 146, 177, 1)'
+                            'rgb(41, 62,95,)',
+                            'rgb(38, 86, 136)',
+                            'rgb(35, 119, 192)',
+                            'rgb(33, 150, 243)',
                         ],
                         shadowColor: 'rgba(0, 0, 0, 0.3)',
                         shadowBlur: 10
@@ -557,7 +565,6 @@ function myradar(arr){
                 axisLine: {
                     lineStyle: {
                         color: 'rgba(255, 255, 255, 0.5)'
-
                     }
                 },
                 splitLine: {

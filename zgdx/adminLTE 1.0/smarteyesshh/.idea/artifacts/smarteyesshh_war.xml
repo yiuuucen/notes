@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="smarteyesshh:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="SmartEyesShh.war">
-      <element id="artifact" artifact-name="smarteyesshh:war exploded" />
-    </root>
-  </artifact>
-</component>

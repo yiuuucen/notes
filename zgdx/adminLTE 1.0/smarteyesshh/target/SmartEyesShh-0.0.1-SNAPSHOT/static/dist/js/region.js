@@ -1,18 +1,20 @@
     //判断region页面中进入的哪一个图
     var str=window.location.search;
     if(str.match('mydata=1')){
-        $("#bar01").addClass('mActive');
+        $(".data1").addClass('active');
         setTimeout(function(){
             $("#bar01").click()
         },1)  
     }else if(str.match('mydata=2')){
-        $("#bar02").addClass('mActive');
+        $(".data2").addClass('active');
         setTimeout(function(){
+            findmap();
             $("#bar02").click()
         },1) 
     }else if(str.match('mydata=3')){
-        $("#bar03").addClass('mActive');
+        $(".data3").addClass('active');
         setTimeout(function(){
+            findmap()
             $("#bar03").click()
         },1) 
     }
@@ -136,13 +138,77 @@
           $(".track li:nth-child(1)").removeClass("active");
           at03Map();
       })
+    });   
+
+    //重置按钮
+    $(".region .DTreset").click(function(){
+        window.location.reload();
     });
 
     // 热力图
     var myChart1;
     var myChart2;
     var myChart3;
-    
+
+    // 获取常活动区域函数
+    function findmap(){
+        var targetPhone=$("#targetPhone").val();
+        $.ajax({
+            type: "GET",
+            url: window.ctx + "/location/getReginHeatMap?targetPhone=" + targetPhone,
+            dataType: "json",
+            success:function(data){
+                var often = data.map(function (seg) {
+                    return seg.coord;
+                });
+
+
+                var myGeo = new BMap.Geocoder();
+                var len=often.length;
+                var arr2=[]
+                //地图获取地点位置这个接口是异步进行的，这里使用的是设置定时器延迟5秒，
+                //但有个小BUG，如果数据太大，或者信号不好，超过5秒后还没生成完数据，
+                //常活动区域就用这5秒内产生的地点进行选择，而不是所有数据。
+                for(var i=0;i<len;i++){
+                    myGeo.getLocation(new BMap.Point(often[i][0], often[i][1]), function(result){
+                        // $("#address").val(result.addressComponents.district+","+$("#address").val());
+                        arr2.push(result.addressComponents.district)
+                    });
+                };
+                setTimeout(function(){
+                    var res = {};
+                    // 遍历数组
+                    for (var i=0;i<arr2.length;i++) {
+                        if (!res[arr2[i]]) {
+                            res[arr2[i]] = 1
+                        } else {
+                            res[arr2[i]]++
+                        }
+                    }
+                    // console.log(res);
+                    // 遍历 res
+                    var keys = Object.keys(res);
+                    var maxNum = 0,secNum=0, maxEle,secEle;
+                    for (var i=0;i<keys.length;i++) {
+                        if (res[keys[i]] > maxNum) {
+                            maxNum = res[keys[i]];
+                            maxEle = keys[i];
+                        }else if(res[keys[i]] > secNum){
+                            secNum = res[keys[i]];
+                            secEle = keys[i];
+                        }
+                    }
+                    if(!len){
+                        $('#tit-area').html("无常活动区域");
+                    }else{
+                        $('#tit-area').html("最常活动区域 : " + maxEle);
+                    }
+                },5000)
+            }
+        })
+    }
+
+
     function reliMap(){
         if (myChart1 != null && myChart1 != "" && myChart1 != undefined) {
             myChart1.dispose();
@@ -160,13 +226,15 @@
         var targetPhone=$("#targetPhone").val();
         var tel=targetPhone.slice(-11);
         // $("#tit-person").html('SE189****0796  盗窃人员')
-        $("#tit-person").html('SE'+tel.slice(0,3)+'****'+tel.slice(7,11)+$("#suspectType").val()+"人员" )
+        $("#tit-person").html('SE'+tel.slice(0,3)+'****'+tel.slice(7,11)+'&nbsp;&nbsp;&nbsp;'+$("#suspectType").val()+"人员" )
+
         $.ajax({
             type: "GET",
             url: window.ctx + "/location/getReginHeatMap?targetPhone=" + targetPhone,
             dataType: "json",
             success:function(data){
                 myChart1.hideLoading();
+                $(".DTreset").css("display","block");
                 if(data!=null && data.length>0){
                     map1HasDataFlag = true;
                 }
@@ -280,6 +348,7 @@
             success: function (data) {
                 if(data.length!=0){
                     areaMap(data);
+                    $(".DTreset").css("display","block");
                 }else{
                     alert("没有数据")
                 }
@@ -293,7 +362,7 @@
     function areaMap(data){
 
         var map = new BMap.Map("barEchart02");    // 创建Map实例
-        map.centerAndZoom("上海", 11);  // 初始化地图,设置中心点坐标和地图级别
+        map.centerAndZoom(new BMap.Point(data[0][0],data[0][1]),16);  // 初始化地图,设置中心点坐标和地图级别
         //添加地图类型控件
         map.addControl(new BMap.MapTypeControl({
             mapTypes:[
@@ -322,7 +391,7 @@
         //开始添加覆盖
 
         //--第一个圆居住地
-        var circle1 = new BMap.Circle(pt1,7000,{strokeColor:"#237cc8",
+        var circle1 = new BMap.Circle(pt1,150,{strokeColor:"#237cc8",
             strokeWeight:2,
             fillColor:"#237cc8",
             strokeOpacity:0.9,
@@ -332,16 +401,16 @@
         map.addOverlay(circle1);
 
         //添加图标
-        var myIcon1 = new BMap.Icon("static/dist/img/old/location1.png", new BMap.Size(80,43),{
-            anchor: new BMap.Size(40, 43)
+        var myIcon1 = new BMap.Icon("static/dist/img/old/u-26.png", new BMap.Size(110,43),{
+            anchor: new BMap.Size(55, 43)
         });
         var marker1 = new BMap.Marker(pt1,{icon:myIcon1});  // 创建标注
         map.addOverlay(marker1);
 
         //--第二个圆工作地
-        var circle2 = new BMap.Circle(pt2,7000,{strokeColor:"#237cc8",
+        var circle2 = new BMap.Circle(pt2,150,{strokeColor:"#2dadc2",
             strokeWeight:2,
-            fillColor:"#237cc8",
+            fillColor:"#2dadc2",
             strokeOpacity:0.9,
             fillOpacity: 0.3
         });
@@ -349,16 +418,16 @@
         map.addOverlay(circle2);
 
         //添加图标
-        var myIcon2 = new BMap.Icon("static/dist/img/old/location1.png", new BMap.Size(80,43),{
-            anchor: new BMap.Size(40, 43)
+        var myIcon2 = new BMap.Icon("static/dist/img/old/u-25.png", new BMap.Size(110,43),{
+            anchor: new BMap.Size(55, 43)
         });
         var marker2 = new BMap.Marker(pt2,{icon:myIcon2});  // 创建标注
         map.addOverlay(marker2);
 
         //--第三个圆
-        var circle3 = new BMap.Circle(pt3,7000,{strokeColor:"#237cc8",
+        var circle3 = new BMap.Circle(pt3,150,{strokeColor:"#c23531",
             strokeWeight:2,
-            fillColor:"#237cc8",
+            fillColor:"#c23531",
             strokeOpacity:0.9,
             fillOpacity: 0.3
         });
@@ -366,8 +435,8 @@
         map.addOverlay(circle3);
 
         //添加图标
-        var myIcon3 = new BMap.Icon("static/dist/img/old/location1.png", new BMap.Size(80,43),{
-            anchor: new BMap.Size(40, 43)
+        var myIcon3 = new BMap.Icon("static/dist/img/old/u-27.png", new BMap.Size(110,43),{
+            anchor: new BMap.Size(55, 43)
         });
         var marker3 = new BMap.Marker(pt3,{icon:myIcon3});  // 创建标注
         map.addOverlay(marker3);
@@ -377,57 +446,63 @@
 
         //---给三个圆添加文字
         //居住地
-        function opts1(){
-            var opts = {
-                position : pt1,    // 指定文本标注所在的地理位置
-                offset   : new BMap.Size(0, -33)    //设置文本偏移量
-            };
-            var label = new BMap.Label("区域一", opts);  // 创建文本标注对象
-            label.setStyle({
-                color : "#fff",
-                background:"#2196f3",
-                fontSize : "10px",
-                height : "15px",
-                lineHeight : "15px",        
-                border:"none"
-            });
-            map.addOverlay(label);
-        }
-        opts1();
-        function opts2(){
-            var opts = {
-                position : pt2,    // 指定文本标注所在的地理位置
-                offset   : new BMap.Size(0, -33)    //设置文本偏移量
-            };
-            var label = new BMap.Label("区域二", opts);  // 创建文本标注对象
-            label.setStyle({
-                color : "#fff",
-                background:"#2196f3",
-                fontSize : "10px",
-                height : "15px",
-                lineHeight : "15px",        
-                border:"none"
-            });
-            map.addOverlay(label);
-        }
-        opts2();
-        function opts3(){
-            var opts = {
-                position : pt3,    // 指定文本标注所在的地理位置
-                offset   : new BMap.Size(0, -33)    //设置文本偏移量
-            };
-            var label = new BMap.Label("区域三", opts);  // 创建文本标注对象
-            label.setStyle({
-                color : "#fff",
-                background:"#2196f3",
-                fontSize : "10px",
-                height : "15px",
-                lineHeight : "15px",        
-                border:"none"
-            });
-            map.addOverlay(label);
-        }
-        opts3();
+        // function opts1(){
+        //     var opts = {
+        //         position : pt1,    // 指定文本标注所在的地理位置
+        //         offset   : new BMap.Size(-27, 5)    //设置文本偏移量
+        //     };
+        //     var label = new BMap.Label("居住地", opts);  // 创建文本标注对象
+        //     label.setStyle({
+        //         color : "#fff",
+        //         fontSize : "12px",
+        //         height : "24px",
+        //         lineHeight : "20px",
+        //         paddingLeft:"10px",
+        //         paddingRight:"44px",
+        //         background:"#237cc8",
+        //         border:"none"
+        //     });
+        //     map.addOverlay(label);
+        // }
+        // opts1();
+        // function opts2(){
+        //     var opts = {
+        //         position : pt2,    // 指定文本标注所在的地理位置
+        //         offset   : new BMap.Size(-27, 5)    //设置文本偏移量
+        //     };
+        //     var label = new BMap.Label("工作地", opts);  // 创建文本标注对象
+        //     label.setStyle({
+        //         color : "#ffffff",
+        //         fontSize : "12px",
+        //         height : "24px",
+        //         lineHeight : "20px",
+        //         paddingLeft:"10px",
+        //         paddingRight:"44px",
+        //         background:"#2dadc2",
+        //         border:"none"
+        //     });
+        //     map.addOverlay(label);
+        // }
+        // opts2();
+        // function opts3(){
+        //     var opts = {
+        //         position : pt3,    // 指定文本标注所在的地理位置
+        //         offset   : new BMap.Size(-27, 5)    //设置文本偏移量
+        //     };
+        //     var label = new BMap.Label("可疑地", opts);  // 创建文本标注对象
+        //     label.setStyle({
+        //         color : "#ffffff",
+        //         fontSize : "12px",
+        //         height : "24px",
+        //         lineHeight : "20px",
+        //         paddingLeft:"10px",
+        //         paddingRight:"44px",
+        //         background:"#c23531",
+        //         border:"none"
+        //     });
+        //     map.addOverlay(label);
+        // }
+        // opts3();
 
     }
 ///////////////////////////////////////////////////////////////////////////
@@ -454,6 +529,7 @@
             success: function (mydata) {
                 myChart3.dispose();
                 if(mydata.length!=0){
+                    $(".DTreset").css("display","block");
                     $.ajax({
                         type: "GET",
                         //如果设置为false没有正确变为同步
@@ -548,6 +624,7 @@
             success: function (mydata) {
                 myChart3.dispose();
                 if(mydata.length!=0){
+                    $(".DTreset").css("display","block");
                     $.ajax({
                         type: "GET",
                         //如果设置为false没有正确变为同步
@@ -749,7 +826,10 @@
             option ={
                 bmap:bmap,
                 tooltip: {
-                    trigger: 'item'
+                    trigger: 'item',
+                    // formatter: function (params) {
+                    //     return 'X: ' + params.data[0].toFixed(2) + '<br>Y: ' + params.data[1].toFixed(2);
+                    // }
                 },
                 geo: {
                     map: 'bmap',

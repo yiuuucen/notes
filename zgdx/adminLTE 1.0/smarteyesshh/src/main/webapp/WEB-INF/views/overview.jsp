@@ -65,78 +65,7 @@ BODY 标签选项：
 <div class="wrapper overview">
 
     <!-- Main Header -->
-    <header class="main-header">
-
-        <!-- Logo -->
-        <a href="${ctx}/index" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>猎犬</b></span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg" style="height: 100%;text-align: left;"><img src="${cenimg}/logo.png" alt="" style="height: 90%"></span>
-        </a>
-
-        <!-- Header Navbar -->
-        <nav class="navbar navbar-static-top" role="navigation">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">切换导航</span>
-            </a>
-            <!-- Navbar Right Menu -->
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <!-- User Account Menu -->
-                    <li class="dropdown user user-menu">
-                        <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <!-- The user image in the navbar-->
-                            <img src="${cenimg}/user2-160x160.jpg" class="user-image" alt="用户图像">
-                            <!-- hidden-xs 在小型设备上隐藏用户名，只显示图像。 -->
-                            <span class="hidden-xs">Alexander Pierce</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- The user image in the menu -->
-                            <li class="user-header">
-                                <img src="${cenimg}/user2-160x160.jpg" class="img-circle" alt="用户图像">
-
-                                <p>
-                                    Alexander Pierce - Web 开发人员
-                                    <small>注册于2012年11月</small>
-                                </p>
-                            </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">关注</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">销售</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">好友</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">资料</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">退出</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Control Sidebar Toggle Button -->
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <jsp:include page="/WEB-INF/common/head.jsp"/>
     <!-- Left side column. contains the logo and sidebar -->
     <jsp:include page="/WEB-INF/common/leftTool.jsp"/>
 
@@ -144,7 +73,7 @@ BODY 标签选项：
     <div class="content-wrapper">
         <!-- Content Header (页眉) -->
         <section class="content-header">
-            <small style="font-size: 18px;">当前重点人员：<span id="tit-person"></span></small>
+            <small style="font-size: 18px;color:#fff">当前重点人员：<span id="tit-person"></span></small>
             <ol class="breadcrumb">
                 <div id="app">
                     <template>
@@ -174,14 +103,14 @@ BODY 标签选项：
             <!-- Default box -->
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">联系人特征 <small>有效联系人<span class="perNum"></span></small></h3>
-                            <a href="/smarteyesshh/contact?targetPhone=${targetPhone}" class="pull-right"><img src="${cenimg}/more.png">更多</a>
+                    <div class="box hbox">
+                        <div class="box-header with-border hbox-header" style="background: rgb(53,55,78)">
+                            <h3 class="box-title hbox-title">联系人特征 <small style="color: #2196f3">有效联系人<span class="perNum"></span></small></h3>
+                            <a href="${ctx}/contact?targetPhone=${targetPhone}" class="pull-right"><img src="${cenimg}/more.png">更多</a>
                         </div>
                         <div class="box-body">
                             <div style="display: flex;justify-content: space-around;height: 400px">
-                                <div id="barEchart01" style="width: 50%;height: 100%;border-right: 1px solid #eee"></div>
+                                <div id="barEchart01" style="width: 50%;height: 100%;border-right: 1px solid rgba(255,255,255,0.6)"></div>
                                 <div id="barEchart02" style="width: 50%;height: 100%"></div>
                             </div>
                         </div>
@@ -194,14 +123,14 @@ BODY 标签选项：
             <!-- Default box -->
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">通话特征 <small>通话总时长:<span class="telNum"></span></small></h3>
+                    <div class="box hbox">
+                        <div class="box-header with-border hbox-header" style="background: rgb(53,55,78)">
+                            <h3 class="box-title hbox-title">通话特征 <small style="color: #2196f3">通话总时长:<span class="telNum"></span></small></h3>
                             <a href="#" class="pull-right"><img src="${cenimg}/more.png">更多</a>
                         </div>
                         <div class="box-body">
                             <div style="display: flex;justify-content: space-around;height: 400px">
-                                <div id="barEchart03" style="width: 50%;height: 100%;border-right: 1px solid #eee"></div>
+                                <div id="barEchart03" style="width: 50%;height: 100%;border-right: 1px solid rgba(255,255,255,0.6)"></div>
                                 <div id="barEchart04" style="width: 50%;height: 100%"></div>
                             </div>
                         </div>
@@ -214,12 +143,12 @@ BODY 标签选项：
             <!-- Default box -->
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header with-border">
+                    <div class="box hbox">
+                        <div class="box-header with-border hbox-header" style="background: rgb(53,55,78)">
                             <input type="hidden" id="address">
-                            <h3 class="box-title">区域特征 <small>常活动区域:<span class="addNum"></span></small></h3>
-                            <a href="/smarteyesshh/region?mydata=1&targetPhone=${targetPhone}" class="pull-right"><img src="${cenimg}/more.png">更多</a>
-                            <select class="pull-right select" style="margin: 0 30px 0 0">
+                            <h3 class="box-title hbox-title">区域特征 <small style="color: #2196f3">常活动区域:<span class="addNum"></span></small></h3>
+                            <a href="${ctx}/region?mydata=1&targetPhone=${targetPhone}" class="pull-right"><img src="${cenimg}/more.png">更多</a>
+                            <select class="pull-right select" style="margin: 0 30px 0 0;padding: 0 10px;background: rgb(52,56,78);">
                                 <option value="allday">全天</option>
                                 <option value="morning">上午</option>
                                 <option value="afternoon">下午</option>
@@ -243,91 +172,8 @@ BODY 标签选项：
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
-            任何你想要的
-        </div>
-        <!-- Default to the left -->
-        <strong>&copy; 2017 <a href="#"> SmartEyes </a>|</strong> 猎犬上海网安版.
-    </footer>
+    <jsp:include page="/WEB-INF/common/footer.jsp"/>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <!-- Home tab content -->
-            <div class="tab-pane active" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">近期活动</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:;">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's 生日</h4>
-
-                                <p>23岁生日，在4月24日</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-
-                <h3 class="control-sidebar-heading">任务进度</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:;">
-                            <h4 class="control-sidebar-subheading">
-                                自定义模板设计
-                                <span class="pull-right-container">
-                  <span class="label label-danger pull-right">70%</span>
-                </span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-
-            </div>
-            <!-- /.tab-pane -->
-            <!-- 统计标签内容 -->
-            <div class="tab-pane" id="control-sidebar-stats-tab">统计标签内容</div>
-            <!-- /.tab-pane -->
-            <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">常规设置</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            报告面板使用
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            有关此常规设置选项信息
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-                </form>
-            </div>
-            <!-- /.tab-pane -->
-        </div>
-    </aside>
-    <!-- /.control-sidebar -->
-    <!-- 添加侧边栏的背景。
-         这个 div必须放在 control-sidebar 之后 -->
-    <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -355,7 +201,7 @@ BODY 标签选项：
 <script src="${dist}/js/overview.js"></script>
 
 <script>
-
+    $(".pg1").addClass("active");
 </script>
 
 </body>

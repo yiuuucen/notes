@@ -8,10 +8,6 @@ $(".box_top img").click(function(){
 $(".lessclose").click(function(){
 	$(".submit_fail").css("display","none");
 })
-$("#lessbtn").click(function(){
-	$(".submit_fail").css("display","none");
-})
-
 
 $(".content-header .up-some").click(function(){
 	$(".submit_btn").css("display","block");
@@ -34,7 +30,10 @@ function test(){
     var upfile=$("#myform input[type='file']").val();
     //如果文件以.csv结尾则进行数据传输
     if(upfile==''){
-        alert("请您上传文件");
+        $(".popup").text("请您上传文件").animate({top:0});
+        setTimeout(function(){
+            $(".popup").animate({top:"-40px"});
+        },2000)
     }else{
         if(/^.*.csv$/.test(upfile)){
             $.ajax({
@@ -47,10 +46,16 @@ function test(){
                     var data=$.parseJSON(data);
                     if(data.result!=0){
                         // alert("提交成功"+data.result+"条数据");
-                        alert("提交成功");
-                        window.location.href="${ctx}/personlist"
+                        $(".popup").text("提交成功").animate({top:0});
+                        setTimeout(function(){
+                            $(".popup").animate({top:"-40px"});
+                            window.location.href=window.ctx+"/personlist"
+                        },2000)
                     }else{
-                        alert("您上传文件中的数据内容有误！");
+                        $(".popup").text("您上传文件中的数据内容有误！").animate({top:0});
+                        setTimeout(function(){
+                            $(".popup").animate({top:"-40px"});
+                        },2000)
                     }
                 },
                 error:function(e){
@@ -58,7 +63,10 @@ function test(){
                 }
             });
         }else{
-            alert("您上传的文件类型有误，请下载批量提交模板")
+            $(".popup").text("您上传的文件类型有误，请下载批量提交模板").animate({top:0});
+            setTimeout(function(){
+                $(".popup").animate({top:"-40px"});
+            },2000)
         }
     }
 }
@@ -70,9 +78,17 @@ $("#lessbtn").click(function () {
     var loadPhone=$("input[name='tel']").val();
     var personType=$("#miaoshu option:selected").text();
     var searchType=$("#biaoqian option:selected").text();
-    if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(loadPhone))||personType==""||searchType==""){
-        alert("请完善信息!")
-    }else{
+    if(!(/[1][3-8]{1}\d{9}($|[^0-9]{1})/.test(loadPhone))){
+        $(".popup").text("输入的号码有误").animate({top:0});
+        setTimeout(function(){
+            $(".popup").animate({top:"-40px"});
+        },2000)
+    }else if(personType==""||searchType==""){
+        $(".popup").text("请完善信息!").animate({top:0});
+        setTimeout(function(){
+            $(".popup").animate({top:"-40px"});
+        },2000)
+    } else{
         if(loadPhone.length==11) {
             loadPhone = "86" + loadPhone;
         }
@@ -82,7 +98,7 @@ $("#lessbtn").click(function () {
             dataType:"json",
             data:{"loadPhone":loadPhone,"personType":personType,"searchType":searchType},
             success:function () {
-                window.location.href="${ctx}/personlist"
+                window.location.href=window.ctx+"/personlist"
             },
             error:function () {
                 console.log("数据错误")

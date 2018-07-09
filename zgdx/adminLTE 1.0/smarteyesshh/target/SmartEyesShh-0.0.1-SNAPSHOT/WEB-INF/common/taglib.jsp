@@ -15,6 +15,7 @@
 <c:set var="dist" value="${pageContext.request.contextPath}/static/dist" />
 <c:set var="plugins" value="${pageContext.request.contextPath}/static/plugins" />
 <c:set var="cenimg" value="${pageContext.request.contextPath}/static/dist/img/old" />
+<c:set var="cenimgnew" value="${pageContext.request.contextPath}/static/dist/img/new" />
 
 <c:set var="webinf" value="/WEB-INF" />
 <script type="text/javascript">

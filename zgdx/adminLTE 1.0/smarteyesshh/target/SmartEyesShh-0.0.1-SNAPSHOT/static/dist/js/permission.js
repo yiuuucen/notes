@@ -9,13 +9,22 @@ $(".add").click(function(){
         var tel=$('#f2').val();
         var pwd=$('#f3').val();
         if(name==''){
-        	alert("请输入姓名");
+            $(".popup").text("请输入姓名").animate({top:0});
+            setTimeout(function(){
+                $(".popup").animate({top:"-40px"});
+            },2000)
         	return 0;
 		}else if(!phoneReg.test(tel)){
-        	alert("请输入正确的手机号");
+            $(".popup").text("请输入正确的手机号").animate({top:0});
+            setTimeout(function(){
+                $(".popup").animate({top:"-40px"});
+            },2000)
         	return 0;
 		}else if(pwd=''){
-        	alert("请输入密码")
+            $(".popup").text("请输入密码").animate({top:0});
+            setTimeout(function(){
+                $(".popup").animate({top:"-40px"});
+            },2000)
 			return 0;
 		}
         $.ajax({
@@ -25,11 +34,16 @@ $(".add").click(function(){
             data:{"usernick":name,"username":tel,"password":pwd},
             success:function (res) {
                 if(res.result===1){
-                    alert("添加成功");
-                    window.location.reload();
+                    $(".popup").text("添加成功").animate({top:0});
+                    setTimeout(function(){
+                        $(".popup").animate({top:"-40px"});
+                        window.location.reload();
+                    },2000)
                 }else{
-                    alert("当前账号已存在不能添加");
-
+                    $(".popup").text("当前账号已存在不能添加").animate({top:0});
+                    setTimeout(function(){
+                        $(".popup").animate({top:"-40px"});
+                    },2000)
                 }
             },error:function () {
                 console.log("添加提交错误");

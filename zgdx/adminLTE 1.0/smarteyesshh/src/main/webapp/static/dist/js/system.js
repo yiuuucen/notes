@@ -137,6 +137,9 @@ function sysEchart1_data(arr,data){
                 text: '总查询量',
                 bottom:'0',
                 left:'40%',
+                textStyle:{
+                    color:'#fff'
+                }
             },
             tooltip: {
                 formatter: '{b}<br/>{c} 次',
@@ -145,19 +148,18 @@ function sysEchart1_data(arr,data){
                     animation: false,
                     type: 'cross',
                     label:{
-                        color:"rgba(0,0,0,0.6)",
-                        backgroundColor:"rgb(222,222,222)"
+                        color:"rgba(255,255,255,0.6)",
+                        backgroundColor:"rgb(36,37,57)",
                     },
                     lineStyle: {
-                        color: '#4baa4f',
+                        color: '#5a66e7',
                         width: 2,
                         opacity: 0.6
                     },
                     crossStyle: {
-                        color: 'rgb(0,0,0)',
+                        color: 'rgba(255,255,255,0.6)',
                         width: 2,
-                        opacity: 0.6,
-                        type:"solid"
+                        type:"dotted"
                     }
                 }
             },
@@ -170,25 +172,26 @@ function sysEchart1_data(arr,data){
             },
             xAxis: {
                 type: 'category',
-                axisLine: { lineStyle: { color: 'rgba(0,0,0,0.6)' } },
+                axisLine: { lineStyle: { color: 'rgba(255,255,255,0.6)' } },
                 data: arr,
             },
             yAxis: {
                 type: 'value',
                 splitLine: { show: false },
-                axisLine: { lineStyle: { color: 'rgba(0,0,0,0.6)' } },
+                axisLine: { lineStyle: { color: 'rgba(255,255,255,0.6)' } },
             },
             series: [{
                 data: data,
                 type: 'line',
+                smooth: true,
                 itemStyle: {
                     normal:{
-                        color: '#2196f3'
+                        color: '#5ad7ff'
                     }
                 },
                 lineStyle: {
                     normal:{
-                        color: '#2196f3'
+                        color: '#5ad7ff'
                     }
                 },
             }]
@@ -253,9 +256,12 @@ function sysEchart2_data(time){
 
     option = {
         title: {
-              text: '分用户查询量',
-              bottom:'0',
-              left:'40%',
+            text: '分用户查询量',
+            bottom:'0',
+            left:'40%',
+            textStyle:{
+                color:'#fff'
+            }
         },
         tooltip: {
             formatter: '{b}：{c} 次',
@@ -275,12 +281,12 @@ function sysEchart2_data(time){
             type: 'value',
             boundaryGap: [0, 0.01],
             splitLine: { show: false },
-            axisLine: { lineStyle: { color: 'rgba(0,0,0,0.6)' } },
+            axisLine: { lineStyle: { color: 'rgba(255,255,255,0.6)' } },
         },
         yAxis: {
             type: 'category',
             data: arr2,
-            axisLine: { lineStyle: { color: 'rgba(0,0,0,0.6)' } },
+            axisLine: { lineStyle: { color: 'rgba(255,255,255,0.6)' } },
         },
         series: [
             {
@@ -288,7 +294,15 @@ function sysEchart2_data(time){
                 data: arr3,
                 itemStyle: {
                     normal:{
-                        color: '#2196f3'
+                        // linear-gradient(to right,#2296f3 , purple)
+                        // color:"linear-gradient('to right', '#2296f3' , '#5d6cf4')",
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 1, 1,
+                            [
+                                {offset: 0, color: '#2296f3'},
+                                {offset: 1, color: '#5d6cf4'}
+                            ]
+                        )
                     }
                 },
                 lineStyle: {

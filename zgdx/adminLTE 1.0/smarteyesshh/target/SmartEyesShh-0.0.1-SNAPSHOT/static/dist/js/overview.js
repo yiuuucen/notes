@@ -5,11 +5,12 @@ new Vue({
         morenT:new Date()- 3600 * 1000 * 24 * 30,
         morenT2:new Date(),
         pickerOptions2: {
+            //
             disabledDate:function(time) {
                 let curDate = (new Date()).getTime();
                 let three = 186 * 24 * 3600 * 1000;
                 let threeMonths = curDate - three;
-                return time.getTime() > Date.now() || time.getTime() < threeMonths;;
+                return time.getTime() > Date.now() || time.getTime() < threeMonths;
             },
             shortcuts: [{
                 text: '最近一周',
@@ -47,8 +48,9 @@ new Vue({
           // value[0]=2018-03-06;
           // value0=20180306;
           relation([value0,value1],value[0],value[1]);
+          calendar([value0,value1],value[0],value[1]);
           sel([value0,value1]);
-          // calendar([morenTT,morenTT2],value[0],value[1])
+
         },
         formatDate1:function(date){
             var y = date.getFullYear();
@@ -361,6 +363,9 @@ function contacts(graph,val1,val2){
                 text: 'Top10核心联系人',
                 top:'0',
                 left:'40%',
+                textStyle:{
+                    color:'#fff'
+                }
             },
             series: [{
                 type: 'graph',
@@ -448,6 +453,9 @@ function pcher(data){
                 text: '联系人属性分布',
                 top:'0',
                 left:'40%',
+                textStyle:{
+                    color:'#fff'
+                }
             },
             series: [
                 {
@@ -524,6 +532,40 @@ function pcher(data){
 
 }
 
+
+
+//获取选择日期，几个月的日期
+var futdate;
+var futdate2;
+function futureData(time){
+    futdate='';
+    //time="2018-01-01
+    var year;
+    var year2;
+    var mouth;
+    var mouth2;
+    var day;
+
+    year=time.substring(0,4);
+    year2=time.substring(0,4);
+    year2=Number(year2);
+    mouth=time.substring(5,7);
+    mouth2=time.substring(5,7);
+    day=time.substring(8,10);
+
+    if(Number(mouth)+6>12){
+        mouth=Number(mouth)+6-12;
+        year=Number(year)+1;
+    }else{
+        mouth=Number(mouth)+6;
+    }
+
+    mouth= mouth >=10 ? mouth : "0"+mouth;
+    futdate=year+"-"+mouth+"-"+day;
+    futdate2=(year2+1)+"-"+mouth2+"-"+day;
+}
+
+
 //通话特征---日期热力图
 function calendar(timerange,startTime,endTime){
     
@@ -538,7 +580,6 @@ function calendar(timerange,startTime,endTime){
         maskColor: 'transparent',
         zlevel: 0,
     });
-
     var targetPhone=$("#targetPhone").val();
     var Nowyear=new Date();
     $.ajax({
@@ -548,6 +589,7 @@ function calendar(timerange,startTime,endTime){
         dataType: "json",
         async: true,
         success:function(res){
+            console.log(res)
             myChart3.hideLoading();
 
             var len = res.duration.length;
@@ -585,7 +627,7 @@ function calendar(timerange,startTime,endTime){
                         null
                     ]);
                 }
-                // console.log(data);
+                // console.log(res.duration.length);
                 for(var i=0;i<data.length;i++){
                     if(data[i][0]==startTime){
                         for(var j=0;j<res.duration.length;j++){
@@ -595,6 +637,9 @@ function calendar(timerange,startTime,endTime){
                 }
                 return data;
             }
+            futureData(startTime);
+            // console.log(futdate)
+            // console.log(futdate2);
             option = {
                 title: {
 
@@ -602,7 +647,7 @@ function calendar(timerange,startTime,endTime){
                     left: 'center',
                     top:'1%',
                     textStyle: {
-                        color: '#2196f3',
+                        color: '#fff',
                     }
                 },
                 tooltip: {
@@ -627,13 +672,13 @@ function calendar(timerange,startTime,endTime){
                 calendar: [
                     {
                         right:'5%',
-                        range: [nowyear+"-01-01",nowyear+"-06-30"],
+                        range: [startTime,futdate],
                         cellSize: ['auto', 20],
                         dayLabel:{
-                            color:"#333"
+                            color:"#ccc"
                         },
                         monthLabel:{
-                            color:"#333"
+                            color:"#ccc"
                         },
                         splitLine: {
                             show: true,
@@ -654,13 +699,13 @@ function calendar(timerange,startTime,endTime){
                     {
                         right:'5%',
                         top: 240,
-                        range: [oldyear+"-07-01",oldyear+"-12-31"],
+                        range: [futdate,futdate2],
                         cellSize: ['auto', 20],
                         dayLabel:{
-                            color:"#333"
+                            color:"#ccc"
                         },
                         monthLabel:{
-                            color:"#333"
+                            color:"#ccc"
                         },
                         splitLine: {
                             show: true,
@@ -689,17 +734,17 @@ function calendar(timerange,startTime,endTime){
                     type: 'heatmap',
                     coordinateSystem: 'calendar',
                     calendarIndex: 1,
-                    data: getVirtulData(oldyear,startTime,endTime)
-                    // data:getVirtulData(2017,"2018-04-30","2018-05-30")
+                    data: getVirtulData(nowyear,startTime,endTime)
+                    // data:getVirtulData(2017,"2017-04-30","2017-05-30")
                 }]
 
             };
+
             myChart3.setOption(option);
             myChart3.off('click');
             myChart3.on('click', function (params) {
                 var day = params.data[0].replace(/-/g,"");
                 lineBar(day);
-
             });
         }
     })
@@ -811,12 +856,19 @@ function lineBar(searchTime){
                     {
                         name:'时长',
                         type:'bar',
+                        smooth: true,
                         // data:[0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.58,0.00,0.00,0.00,0.00,0.00,0.00],
                         data:data.duration,
                         barWidth: 15,
                         itemStyle:{
                             normal:{
-                                color:'#237cc8'
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 1, 0, 0,
+                                    [
+                                        {offset: 0, color: '#2198f2'},
+                                        {offset: 1, color: '#79f6d4'}
+                                    ]
+                                )
                             }
                         }
                     },
@@ -864,7 +916,8 @@ function reliMap(time,chose){
         maskColor: 'transparent',
         zlevel: 0,
     });
-
+    //因为生成区域有个定时器延迟，为了保证时效性，在改变了条件后，生成的地址可能不同，清除之前的地址
+    $('.addNum').html("");
     $.ajax({
         type: "GET",
         url: window.ctx + "/location/getHeatMap",
@@ -893,7 +946,6 @@ function reliMap(time,chose){
                 });
             };
             setTimeout(function(){
-                console.log(arr2);
                 var res = {};
                 // 遍历数组
                 for (var i=0;i<arr2.length;i++) {
@@ -917,7 +969,7 @@ function reliMap(time,chose){
                     }
                 }
                 if(!len){
-                    $('.addNum').html("");
+                    $('.addNum').html("暂无活动区域 ");
                 }else{
                     if(!secEle){
                         $('.addNum').html(maxEle);
@@ -925,7 +977,7 @@ function reliMap(time,chose){
                         $('.addNum').html(maxEle+","+secEle);
                     }
                 }
-            },5000)
+            },5000);
 
 
 

@@ -10,7 +10,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>用户目标管理</title>
+  <title>目标人员管理</title>
   <link rel="shortcut icon" href="${cenimg}/ddlogo.ico">
   <!-- 告诉浏览器该页面是自适应布局 -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -44,78 +44,7 @@
 <div class="wrapper personlist">
 
   <!-- Main Header -->
-  <header class="main-header">
-
-    <!-- Logo -->
-    <a href="${ctx}/index" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>猎犬</b></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg" style="height: 100%;text-align: left;"><img src="${cenimg}/logo.png" alt="" style="height: 90%"></span>
-    </a>
-
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">切换导航</span>
-      </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">                  
-          <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <img src="${cenimg}/user2-160x160.jpg" class="user-image" alt="用户图像">
-              <!-- hidden-xs 在小型设备上隐藏用户名，只显示图像。 -->
-              <span class="hidden-xs">Alexander Pierce</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <img src="${cenimg}/user2-160x160.jpg" class="img-circle" alt="用户图像">
-
-                <p>
-                  Alexander Pierce - Web 开发人员
-                  <small>注册于2012年11月</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">关注</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">销售</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">好友</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">资料</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">退出</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+    <jsp:include page="/WEB-INF/common/head.jsp"/>
   <!-- Left side column. contains the logo and sidebar -->
   <jsp:include page="/WEB-INF/common/leftTool.jsp"/>
 
@@ -123,10 +52,10 @@
   <div class="content-wrapper">
     <!-- Content Header (页眉) -->
     <section class="content-header">
-      <h1>
+      <h1 style="color: #fff">
         目标人员管理
-        <small class="label label-success up-some">批量提交查询号码</small>
-        <small class="label label-success up-one">提交查询号码</small>
+        <small class="label up-some">批量提交查询号码</small>
+        <small class="label up-one">提交查询号码</small>
       </h1>
     </section>
 
@@ -134,30 +63,30 @@
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">目标人员列表</h3>
+          <div class="box hbox">
+            <div class="box-header with-border hbox-header">
+              <h3 class="box-title hbox-title">目标人员列表</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
                   <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
                       <div class="col-sm-12">
-                        <table id="example2" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example2_info">
+                        <table id="example2" class="table table-bordered dataTable" role="grid" aria-describedby="example2_info" style="color: #fff">
                           <thead>
                             <tr role="row">
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="5">目标人员信息</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="3">猎犬用户信息</th>
+                              <th tabindex="0" rowspan="1" colspan="5" style="border-right:1px solid rgba(255,255,255,0.3)">目标人员信息</th>
+                              <th tabindex="0" rowspan="1" colspan="3">猎犬用户信息</th>
                             </tr>
                             <tr role="row">
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">序号</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">手机号码</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">描述</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">涉案类型</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">查询状态</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">用户ID</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">用户姓名</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">提交时间</th>
+                              <th tabindex="0" rowspan="1" colspan="1">序号</th>
+                              <th tabindex="0" rowspan="1" colspan="1">手机号码</th>
+                              <th tabindex="0" rowspan="1" colspan="1">描述</th>
+                              <th tabindex="0" rowspan="1" colspan="1">涉案类型</th>
+                              <th tabindex="0" rowspan="1" colspan="1" style="border-right:1px solid rgba(255,255,255,0.3)">查询状态</th>
+                              <th tabindex="0" rowspan="1" colspan="1">用户ID</th>
+                              <th tabindex="0" rowspan="1" colspan="1">用户姓名</th>
+                              <th tabindex="0" rowspan="1" colspan="1">提交时间</th>
                             </tr>
                           </thead>
                           <tbody class="xinxi">
@@ -178,7 +107,7 @@
                     </div>
                 </div>
             <!-- /.box-body -->
-            <div class="box-footer">
+            <div class="box-footer hbox-footer">
                 <div class="tabbtn M-box">
                 </div>
             </div>
@@ -194,91 +123,8 @@
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-      任何你想要的
-    </div>
-    <!-- Default to the left -->
-    <strong>&copy; 2017 <a href="#"> SmartEyes </a>|</strong> 猎犬上海网安版.
-  </footer>
+  <jsp:include page="/WEB-INF/common/footer.jsp"/>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">近期活动</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's 生日</h4>
-
-                <p>23岁生日，在4月24日</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">任务进度</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                自定义模板设计
-                <span class="pull-right-container">
-                  <span class="label label-danger pull-right">70%</span>
-                </span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- 统计标签内容 -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">统计标签内容</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">常规设置</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              报告面板使用
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              有关此常规设置选项信息
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- 添加侧边栏的背景。
-       这个 div必须放在 control-sidebar 之后 -->
-  <div class="control-sidebar-bg"></div>
 
   <div class="submit_btn">
         <div class="submit_box">
@@ -306,13 +152,13 @@
             <div class="box_bottom">
                 <div class="msg">
                     <div>
-                        <p>查询目标手机号码:</p>
+                        <p>目标人员号码:</p>
                         <div>
                             <input type="text" name="tel">
                         </div>
                     </div>
                     <div>
-                        <p>查询目标描述:</p>
+                        <p>目标人员描述:</p>
                         <div>
                             <select name="" id="miaoshu">
                                 <option value="" selected></option>
@@ -322,15 +168,15 @@
                         </div>
                     </div>
                     <div>
-                        <p>查询目标标签:</p>
+                        <p>目标人员标签:</p>
                         <div>
                             <select name="" id="biaoqian">
                                 <option value="" selected></option>
                                 <option value="涉毒">涉毒</option>
                                 <option value="盗窃">盗窃</option>
                                 <option value="强奸">强奸</option>
-                                <option value="强奸">卖淫</option>
-                                <option value="强奸">抢劫</option>
+                                <option value="卖淫">卖淫</option>
+                                <option value="抢劫">抢劫</option>
                             </select>
                         </div>
                     </div>
@@ -365,7 +211,7 @@
 <script>
 
     $(function() {
-
+        $(".pg4").addClass("active");
         var pageCount;
         var totalData;
         var showData;
@@ -388,7 +234,12 @@
                 // console.log(index.getCurrent())
                 perdata(true,index.getCurrent());
             }
-        })
+        });
+        $(".alldata").remove();
+        $(".tabbtn").before('<div class="alldata">共<b id="alldata"></b>条 / 共<b id="allpage"></b>页</div>');
+        $("#alldata").text(totalData);
+        $("#allpage").text(pageCount);
+
         function perdata(async, num) {
 
             $.ajax({
@@ -414,7 +265,7 @@
                         phone = phone.slice(-11);
 
                         // var html='<div class="lie clearfix" ><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].id+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+phone+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].personType+'</span><span class="col-lg-1 col-md-1 col-xs-1" style="padding: 0 0 0 3%;">'+res.result.datas[i].searchType+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+res.result.datas[i].status+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].userId+'</span><span class="col-lg-1 col-md-1 col-xs-1" style="padding: 0 0 0 3%">'+res.result.datas[i].userNick+'</span><span class="col-lg-3 col-md-3 col-xs-3">'+stringTime+'</span></div>'
-                        html += '<tr role="row" class="even"><td class="sorting_1">' + res.result.datas[i].id + '</td><td>' + phone + '</td><td>' + res.result.datas[i].personType + '</td><td>' + res.result.datas[i].searchType + '</td><td>' + res.result.datas[i].status + '</td><td>' + res.result.datas[i].userId + '</td><td>' + res.result.datas[i].userNick + '</td><td>' + stringTime + '</td></tr>'
+                        html += '<tr role="row"><td class="sorting_1">' + res.result.datas[i].id + '</td><td>' + phone + '</td><td>' + res.result.datas[i].personType + '</td><td>' + res.result.datas[i].searchType + '</td><td style="border-right:1px solid rgba(255,255,255,0.3)">' + res.result.datas[i].status + '</td><td>' + res.result.datas[i].userId + '</td><td>' + res.result.datas[i].userNick + '</td><td>' + stringTime + '</td></tr>'
                     }
 
                     $(".xinxi").append(html);

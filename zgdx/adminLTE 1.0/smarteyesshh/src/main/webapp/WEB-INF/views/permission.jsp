@@ -44,78 +44,7 @@
 <div class="wrapper permission">
 
   <!-- Main Header -->
-  <header class="main-header">
-
-    <!-- Logo -->
-    <a href="${ctx}/index" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>猎犬</b></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg" style="height: 100%;text-align: left;"><img src="${cenimg}/logo.png" alt="" style="height: 90%"></span>
-    </a>
-
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">切换导航</span>
-      </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">                  
-          <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <img src="${cenimg}/user2-160x160.jpg" class="user-image" alt="用户图像">
-              <!-- hidden-xs 在小型设备上隐藏用户名，只显示图像。 -->
-              <span class="hidden-xs">Alexander Pierce</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <img src="${cenimg}/user2-160x160.jpg" class="img-circle" alt="用户图像">
-
-                <p>
-                  Alexander Pierce - Web 开发人员
-                  <small>注册于2012年11月</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">关注</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">销售</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">好友</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">资料</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">退出</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+  <jsp:include page="/WEB-INF/common/head.jsp"/>
   <!-- Left side column. contains the logo and sidebar -->
   <jsp:include page="/WEB-INF/common/leftTool.jsp"/>
 
@@ -123,9 +52,9 @@
   <div class="content-wrapper">
     <!-- Content Header (页眉) -->
     <section class="content-header">
-      <h1>
+      <h1 style="color:#fff">
         系统权限管理
-        <small class="label label-success add">添加用户</small>
+        <small class="label add">添加用户</small>
       </h1>
     </section>
 
@@ -133,65 +62,65 @@
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
-          <div class="box msg">  
-            <div class="box-header with-border">
-              <h3 class="box-title">用户管理</h3>
+          <div class="box msg hbox">
+            <div class="box-header with-border hbox-header">
+              <h3 class="box-title hbox-title">用户管理</h3>
             </div>
             <div class="box-body">
                   <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
                       <div class="col-sm-12">
-                        <table id="example2" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example2_info">
+                        <table id="example2" class="table table-bordered dataTable" role="grid" aria-describedby="example2_info" style="color: #fff">
                           <thead>                
                             <tr role="row">
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">序号</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">用户ID</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">用户姓名</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">用户手机号</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1">密码</th>
-                              <th class="sorting_asc" tabindex="0" rowspan="1" colspan="2">操作</th>
+                              <th tabindex="0" rowspan="1" colspan="1">序号</th>
+                              <th tabindex="0" rowspan="1" colspan="1">用户ID</th>
+                              <th tabindex="0" rowspan="1" colspan="1">用户姓名</th>
+                              <th tabindex="0" rowspan="1" colspan="1">用户手机号</th>
+                              <th tabindex="0" rowspan="1" colspan="1">密码</th>
+                              <th tabindex="0" rowspan="1" colspan="2">操作</th>
                             </tr>
                           </thead>
                           <tbody class="xinxi">
 
-                            <tr role="row" class="even">
-                              <td class="sorting_1">1</td>
-                              <td>10001</td>
-                              <td class="sysmg-hidetd">张三</td>
-                              <td class="sysmg-hidetd">138****6677</td>
-                              <td class="sysmg-hidetd">********</td>
-                              <td class="sysmg-hideinput">
-                                <input type="text" class="sysmgdata" name="sysmgdata1" value="张三">
-                              </td>
-                              <td class="sysmg-hideinput">
-                                <input type="text" class="sysmgdata" name="sysmgdata2" value="138****6677">
-                              </td>
-                              <td class="sysmg-hideinput">
-                                <input type="text" class="sysmgdata" name="sysmgdata3" value="ac5ad10403ebf0b48f9ab6e81c4ebe3f"></td><td><span class="label label-danger mybtn2">重置</span>
-                                <span class="label label-danger mybtn2">禁用</span>
-                              </td>
-                            </tr>
+                            <%--<tr role="row" class="even">--%>
+                              <%--<td class="sorting_1">1</td>--%>
+                              <%--<td>10001</td>--%>
+                              <%--<td class="sysmg-hidetd">张三</td>--%>
+                              <%--<td class="sysmg-hidetd">138****6677</td>--%>
+                              <%--<td class="sysmg-hidetd">********</td>--%>
+                              <%--<td class="sysmg-hideinput">--%>
+                                <%--<input type="text" class="sysmgdata" name="sysmgdata1" value="张三">--%>
+                              <%--</td>--%>
+                              <%--<td class="sysmg-hideinput">--%>
+                                <%--<input type="text" class="sysmgdata" name="sysmgdata2" value="138****6677">--%>
+                              <%--</td>--%>
+                              <%--<td class="sysmg-hideinput">--%>
+                                <%--<input type="text" class="sysmgdata" name="sysmgdata3" value="ac5ad10403ebf0b48f9ab6e81c4ebe3f"></td><td><span class="label label-danger mybtn2">修改</span>--%>
+                                <%--<span class="label label-danger mybtn2">禁用</span>--%>
+                              <%--</td>--%>
+                            <%--</tr>--%>
 
                           </tbody>
                         </table>
                       </div>
                     </div>
-                    </div>
+                  </div>
             </div>
-            <div class="box-footer">
+            <div class="box-footer hbox-footer">
               <div class="tabbtn M-box">
               </div>
             </div>
             <!-- /.box-body -->
           </div>
-          <div class="box adduser"> 
-            <div class="box-header with-border">
-              <h3 class="box-title">添加用户</h3>
+          <div class="box adduser hbox">
+            <div class="box-header with-border hbox-header">
+              <h3 class="box-title hbox-title">添加用户</h3>
             </div>  
             <div class="box-body">
                 <div class="sysmg-adduser">                                   
                     <div>
-                        <label for="f1">姓名:</label>
+                        <label for="f1">姓  名:</label>
                         <input type="text" name="adduser1" id="f1">
                     </div>
                     <div>
@@ -199,11 +128,34 @@
                         <input type="text" name="adduser2" id="f2">
                     </div>
                     <div>
-                        <label for="f3">密码:</label>
+                        <label for="f3">密  码:</label>
                         <input type="password" name="adduser3" id="f3">
                     </div>
                     <input type="submit" value="确认添加" class="sysmg-subBtn"> 
                 </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <div class="box changeuser hbox">
+            <div class="box-header with-border hbox-header">
+              <h3 class="box-title hbox-title">修改用户信息</h3>
+            </div>
+            <div class="box-body">
+              <div class="sysmg-adduser">
+                <div>
+                  <label for="f4">用户姓名:</label>
+                  <input type="text" name="adduser4" id="f4">
+                </div>
+                <div>
+                  <label for="f5">用户手机号:</label>
+                  <input type="text" name="adduser5" id="f5">
+                </div>
+                <div>
+                  <label for="f6">密     码:</label>
+                  <input type="password" name="adduser6" id="f6">
+                </div>
+                <input type="submit" value="完成" class="sysmg-subBtn2">
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -218,91 +170,7 @@
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-      任何你想要的
-    </div>
-    <!-- Default to the left -->
-    <strong>&copy; 2017 <a href="#"> SmartEyes </a>|</strong> 猎犬上海网安版.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">近期活动</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's 生日</h4>
-
-                <p>23岁生日，在4月24日</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">任务进度</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                自定义模板设计
-                <span class="pull-right-container">
-                  <span class="label label-danger pull-right">70%</span>
-                </span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- 统计标签内容 -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">统计标签内容</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">常规设置</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              报告面板使用
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              有关此常规设置选项信息
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- 添加侧边栏的背景。
-       这个 div必须放在 control-sidebar 之后 -->
-  <div class="control-sidebar-bg"></div>
+  <jsp:include page="/WEB-INF/common/footer.jsp"/>
 
 </div>
 <!-- ./wrapper -->
@@ -327,7 +195,7 @@
 <script>
 
     $(function() {
-
+        $(".pg6").addClass("active");
         var ut = $("#userType").val();
 
         if(ut === "1"){
@@ -356,7 +224,11 @@
                 // console.log(index.getCurrent())
                 manData(true,index.getCurrent());
             }
-        })
+        });
+        $(".alldata").remove();
+        $(".tabbtn").before('<div class="alldata">共<b id="alldata"></b>条 / 共<b id="allpage"></b>页</div>');
+        $("#alldata").text(totalData);
+        $("#allpage").text(pageCount);
         function manData(async, num) {
 
             $.ajax({
@@ -388,7 +260,7 @@
                         stringTime = newTime.toLocaleString();
 
                         // var html='<div class="lie clearfix" ><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].id+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+phone+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].personType+'</span><span class="col-lg-1 col-md-1 col-xs-1" style="padding: 0 0 0 3%;">'+res.result.datas[i].searchType+'</span><span class="col-lg-2 col-md-2 col-xs-2">'+res.result.datas[i].status+'</span><span class="col-lg-1 col-md-1 col-xs-1">'+res.result.datas[i].userId+'</span><span class="col-lg-1 col-md-1 col-xs-1" style="padding: 0 0 0 3%">'+res.result.datas[i].userNick+'</span><span class="col-lg-3 col-md-3 col-xs-3">'+stringTime+'</span></div>'
-                        html += '<tr role="row" class="even"><td class="sorting_1">'+((num-1)*10+1+i)+'</td><td>'+res.data.datas[i].id+'</td><td class="sysmg-hidetd">'+res.data.datas[i].nickname+'</td><td class="sysmg-hidetd">'+omitusername+'</td><td class="sysmg-hidetd">'+"********"+'</td><td class="sysmg-hideinput"><input  type="text" class="sysmgdata"  name="sysmgdata1" value="'+res.data.datas[i].nickname+'"/></td><td class="sysmg-hideinput"><input type="text" class="sysmgdata"  name="sysmgdata2" value="'+res.data.datas[i].username+'"/></td><td class="sysmg-hideinput"><input type="text" class="sysmgdata"  name="sysmgdata3" value="'+res.data.datas[i].password+'"/></td><td><span class="label label-danger mybtn2">重置</span></td><td><span class="label label-danger mybtn2">'+status+'</span></td></tr>'
+                        html += '<tr role="row" class="even"><td class="sorting_1">'+((num-1)*10+1+i)+'</td><td>'+res.data.datas[i].id+'</td><td class="sysmg-hidetd">'+res.data.datas[i].nickname+'</td><td class="sysmg-hidetd">'+omitusername+'</td><td class="sysmg-hidetd">'+"********"+'</td><td class="sysmg-hideinput"><input  type="text" class="sysmgdata"  name="sysmgdata1" value="'+res.data.datas[i].nickname+'"/></td><td class="sysmg-hideinput"><input type="text" class="sysmgdata"  name="sysmgdata2" value="'+res.data.datas[i].username+'"/></td><td class="sysmg-hideinput"><input type="text" class="sysmgdata"  name="sysmgdata3" value="'+res.data.datas[i].password+'"/></td><td><span class="label mybtn2">修改</span></td><td><span class="label  mybtn2">'+status+'</span></td></tr>'
                     }
 
                     $(".xinxi").append(html);
@@ -402,100 +274,68 @@
         }
 
 
-        // 重置按钮点击事件
+        // 修改按钮点击事件
         function changebtnEvent() {
+
             var myinput = [];
-            var myinput2 = [];
+            var myinput2=[];
             //0为没点击
             var changestatus = 0;
             $(".mybtn2").click(function () {
+
                 var mytxt = this.innerHTML;
                 var inputuserid = $(this).parent("td").parent("tr").children("td").eq(1).text();
 
-                if(mytxt ==="重置"){
-                    if(changestatus === 0){
-                        this.innerHTML="完成";
-                        $(this).parent("td").parent("tr").children('.sysmg-hidetd').css("display","none");
-                        $(this).parent("td").parent("tr").children('.sysmg-hideinput').css("display","table-cell");
-                        for(var j = 0;j < 3;j++){
-                            //为什么不行
-//                               myinput[i] = $(this).parent("span").parent("td").parent("tr").children("input").eq(i).val();
-                            var mystring2 = "sysmgdata"+(j+1);
-                            myinput2[j] = $(this).parent("td").parent("tr").find("input[name='"+mystring2+"']").val();
-                        }
-                        changestatus = 1;
-//                           myinput[3] = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
-                    }else {
-                        alert("有未完成修改的记录");
-                    }
-
-                }else if(mytxt ==="完成"){
-
-                    this.innerHTML="重置";
-                    changestatus = 0;
-
+                if(mytxt ==="修改"){
+                    $(".msg").css("display","none");
+                    $(".changeuser").css("display","block");
                     for(var i = 0;i < 3;i++){
                         var mystring = "sysmgdata"+(i+1);
                         myinput[i] = $(this).parent("td").parent("tr").find("input[name='"+mystring+"']").val();
 
                     }
-                    //userId
-//                            inputuserid = $(this).parent("span").parent("td").parent("tr").children("td").eq(1).text();
 
-                    //把文字显示出来
+                    $("#f4").val(""+myinput[0]).attr("mydata",myinput[0]);
+                    $("#f5").val((myinput[1].substr(0,3)+"****"+myinput[1].substr(7)));
+                    $("#f6").val("********");
 
-                    $(this).parent("td").parent("tr").find(".sysmg-hidetd").eq(0).text(""+myinput[0]);
-                    $(this).parent("td").parent("tr").find(".sysmg-hidetd").eq(1).text((myinput[1].substr(0,3)+"****"+myinput[1].substr(7)));
-                    $(this).parent("td").parent("tr").find(".sysmg-hidetd").eq(2).text("********");
 
-                    $(this).parent("td").parent("tr").children('.sysmg-hideinput').css("display","none");
-                    $(this).parent("td").parent("tr").children('.sysmg-hidetd').css("display","table-cell");
-                    //如果确实改了，就提交请求。
-                    var paraarr = {};
-                    paraarr.userId = inputuserid;
-                    var numArr = [];
-                    for(var k = 0 ;k<3; k++){
-                        //有哪几个改了。
-                        if(myinput[k] !== myinput2[k]){
-                            numArr.push(k);
+                    $(".sysmg-subBtn2").click(function(){
+                        var changename;
+                        var changetel;
+                        var changepwd;
+
+                        var arr={};
+                        arr.userId=inputuserid;
+
+                        //如果没有改变，则传空值过去
+                        if($("#f4").val()!=myinput[0]){
+                            arr.usernick=$("#f4").val();
                         }
-                    }
-                    var numArrlen = numArr.length;
-                    //确实改了
-                    if(numArrlen !== 0) {
-                        for (var q = 0; q < numArrlen; q++) {
-                            switch (numArr[q]) {
-                                case 0:
-                                    paraarr.usernick = myinput[0];
-                                    break;
-                                case 1:
-                                    paraarr.username = myinput[1];
-                                    break;
-                                case 2:
-                                    paraarr.password = myinput[2];
-                                    break;
-                            }
+                        if($("#f5").val()!=myinput[1]){
+                            arr.username=$("#f5").val()
+                        }
+                        if($("#f6").val()!="********"){
+                            arr.password=$("#f6").val()
                         }
 
-                        //提交保存数据
                         $.ajax({
-                            type:"GET",
-                            url:"user/setUser",
-                            dataType:"json",
-//                                    data:{"userId":myinput[3],"usernick":myinput[0],"username":myinput[1],"password":myinput[2]},
-                            data: paraarr,
-                            success:function (res) {
-                                if(res.result===1){
-                                    alert("重置成功");
-                                }else{
-                                    alert("不能重置");
+                            type: "GET",
+                            url: "user/setUser",
+                            dataType: "json",
+                            data:arr,
+                            success: function (res) {
+                                if (res.result === 1) {
+                                    alert("修改成功");
+                                    window.location.reload();
+                                } else {
+                                    alert("修改失败");
                                 }
-                            },error:function () {
+                            }, error: function () {
                                 console.log("修改提交错误");
                             }
-
                         })
-                    }
+                    })
 
 
                 }else if(mytxt ==="禁用"){
@@ -508,9 +348,15 @@
                         data:{"userId":inputuserid,"status":-1},
                         success:function (res) {
                             if(res.result===1){
-                                alert("禁用成功");
+                                $(".popup").text("禁用成功").animate({top:0});
+                                setTimeout(function(){
+                                    $(".popup").animate({top:"-40px"});
+                                },2000)
                             }else{
-                                alert("不能禁用");
+                                $(".popup").text("不能禁用").animate({top:0});
+                                setTimeout(function(){
+                                    $(".popup").animate({top:"-40px"});
+                                },2000)
                             }
                         },error:function () {
                             console.log("禁用提交错误");
@@ -527,9 +373,15 @@
                         data:{"userId":inputuserid,"status":1},
                         success:function (res) {
                             if(res.result===1){
-                                alert("启用成功");
+                                $(".popup").text("启用成功").animate({top:0});
+                                setTimeout(function(){
+                                    $(".popup").animate({top:"-40px"});
+                                },2000)
                             }else{
-                                alert("不能启用");
+                                $(".popup").text("不能启用").animate({top:0});
+                                setTimeout(function(){
+                                    $(".popup").animate({top:"-40px"});
+                                },2000)
                             }
                         },error:function () {
                             console.log("启用提交错误");
